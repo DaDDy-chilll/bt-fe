@@ -6,6 +6,8 @@ import type { VForm } from "vuetify/components";
 
 const store = useAuthStore();
 const form = ref<VForm>();
+
+
 /**
  * Login payload
  */

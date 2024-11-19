@@ -5,7 +5,6 @@ import type { FetchContext, FetchError } from "ofetch";
 import { StatusCodes } from "~/utils/status-codes";
 
 const apiBaseUrl = useRuntimeConfig().public.apiBaseUrl;
-alert(apiBaseUrl);
 
 export const fetcher = <ResT>(
   path: string,

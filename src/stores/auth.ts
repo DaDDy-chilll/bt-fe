@@ -10,6 +10,7 @@ export const useAuthStore = defineStore("auth", {
   getters: {},
   actions: {
     async login(payload: LoginPayload) {
+      console.log("store login", payload);
       return await useAuthApi(payload);
     },
   },
