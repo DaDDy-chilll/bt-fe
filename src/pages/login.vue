@@ -1,12 +1,10 @@
 <script setup lang="ts">
 definePageMeta({ layout: "authentication" });
 import type { LoginPayload } from "../types/auth";
-import { reactive, ref } from "vue";
 import { useAuthStore } from "../stores/auth";
-import type { VForm } from "vuetify/components";
 
 const store = useAuthStore();
-const form = ref<VForm>();
+
 
 
 
@@ -23,10 +21,9 @@ const loginPayload: LoginPayload = reactive<LoginPayload>({
  * Login function
  */
 const login = async () => {
-  const validation = await form.value?.validate();
-  if (validation?.valid) {
+
     await store.login(loginPayload);
-  }
+
 };
 </script>
 <template>

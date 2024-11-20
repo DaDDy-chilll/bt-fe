@@ -9,7 +9,23 @@ export default {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#2F667B",
+        primarylight: "#42ACD5",
+        primarydark: "#2E2D3F",
+        secondarylight: "#49BDEA",
+        secondarydark: "#545497",
+        accent1: "#42ACD5",
+        accent2: "#FF9208",
+        accentblack: "#262424",
+        accentwhite: "#FFFFFF",
+        success: "#3FD868",
+        danger: "#F43C3C",
+        muted: "#E0E0E0",
+        secondarydark: "#383746",
+      },
+    },
   },
   plugins: [],
 }
