@@ -1,5 +1,9 @@
 import Aura from "@primevue/themes/aura";
+import { resolve } from "path";
 export default defineNuxtConfig({
+  alias: {
+    "@assets": resolve(__dirname, "/"),
+  },
   app: {
     head: {
       charset: "utf-8",
@@ -10,7 +14,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   ssr: false,
   srcDir: "src",
-  css: ["./src/assets/css/main.css", "./src/assets/css/root.css"],
+  css: ["~/assets/scss/main.scss", "~/assets/scss/root.scss"],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -25,8 +29,8 @@ export default defineNuxtConfig({
         options: {
           darkModeSelector: "html",
           cssLayer: {
-            name: "primevue",
-            order: "tailwind-base,primevue,tailwind-utilities",
+            name: "my-theme",
+            order: "tailwind-base",
           }
         },
       },

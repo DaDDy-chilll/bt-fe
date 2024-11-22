@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.p-panelmenu-panel {
+    background: var(--primary) !important;
+    margin-top: 0.5rem !important;
+}
+
+
+.p-panelmenu-item-content {
+    padding: 0.4rem 0.7rem !important;
+    color: var(--muted) !important;
+}
+
+.p-panelmenu-header-content {
+    padding: 0rem 0.7rem !important;
+}
+
+.p-panelmenu-header-content:hover,
+.p-panelmenu-item-content:hover {
+    background: var(--primarylight) !important;
+}

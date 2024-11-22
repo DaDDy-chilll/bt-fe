@@ -134,7 +134,7 @@ const items = ref([
 </script>
 
 <template>
-  <div class="w-60 bg-primary h-[calc(100vh-(2.75rem))] px-5">
+  <div class="w-60 bg-primary  px-5">
     <img src="../assets/images/logo.png" alt="logo" class="w-full h-12 object-contain " />
     <PanelMenu :model="items" class="pt-4">
       <template #item="{ item }">

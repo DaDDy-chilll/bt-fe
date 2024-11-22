@@ -24,6 +24,7 @@ export default {
         danger: "#F43C3C",
         muted: "#E0E0E0",
         secondarydark: "#383746",
+        label: "#6b7280",
       },
     },
   },
