@@ -1,0 +1,7 @@
+[
+    { "id": 1, "type": "Ring" },
+    { "id": 2, "type": "Necklace" },
+    { "id": 3, "type": "Earring" },
+    { "id": 4, "type": "Bracelet" },
+    { "id": 5, "type": "Pendant" }
+]

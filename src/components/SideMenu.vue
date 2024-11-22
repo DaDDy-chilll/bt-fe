@@ -72,7 +72,7 @@ const items = ref([
     icon: "pi pi-fw pi-home",
     shortcut: "pi pi-fw pi-chevron-down",
     items: [
-         {
+      {
         label: "New Warehouse",
         icon: "pi pi-fw pi-plus",
       },
@@ -84,7 +84,7 @@ const items = ref([
   },
   {
     label: "Tracking",
-    icon: "pi pi-fw pi-compass"
+    icon: "pi pi-fw pi-compass",
   },
   {
     label: "Report(Pro)",
@@ -134,11 +134,18 @@ const items = ref([
 </script>
 
 <template>
-  <div class="w-60 bg-primary  px-5">
-    <img src="../assets/images/logo.png" alt="logo" class="w-full h-12 object-contain " />
+  <div class="w-56 bg-primary px-3">
+    <img
+      src="../assets/images/logo.png"
+      alt="logo"
+      class="w-full h-12 object-contain"
+    />
     <PanelMenu :model="items" class="pt-4">
       <template #item="{ item }">
-        <a v-ripple class="flex align-items-center items-center  py-2 cursor-pointer">
+        <a
+          v-ripple
+          class="flex align-items-center items-center py-2 cursor-pointer"
+        >
           <span :class="[item.icon, 'text-muted']" />
           <span class="ml-2 text-muted">{{ item.label }}</span>
           <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />

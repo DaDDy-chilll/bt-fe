@@ -1,0 +1,6 @@
+[
+    { "id": 1, "type": "Diamond", "icon": "/_nuxt/assets/images/Diamond.png" },
+    { "id": 2, "type": "Jade", "icon": "/_nuxt/assets/images/Jade.png" },
+    { "id": 3, "type": "Ruby", "icon": "/_nuxt/assets/images/Ruby.png" },
+    { "id": 4, "type": "Sapphire", "icon": "/_nuxt/assets/images/Sapphire.png" }
+]
