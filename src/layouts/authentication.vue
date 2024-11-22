@@ -1,18 +1,14 @@
 <script setup lang="ts">
-  const isLogin = ref<boolean>(false);
-  const image = isLogin ? 'red':'blue';
-  const styleBackground = computed(() => ({
-  // backgroundImage: `url(${backgroundImageUrl.value})`,
-  backgound:image,
-  // backgroundSize: 'cover',
-  // backgroundPosition: 'center'
-}));
-
-console.log(styleBackground)
+const isLight = ref<boolean>(true);
 </script>
 
 <template>
-  <div class="flex justify-center items-center min-h-screen" :style="styleBackground.value">
+  <div
+    :class="[
+      'flex justify-center items-center min-h-screen bg-cover bg-center p-5',
+      isLight ? 'bg-light_img' : 'bg-dark_img',
+    ]"
+  >
     <slot />
   </div>
 </template>

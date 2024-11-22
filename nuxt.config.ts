@@ -36,7 +36,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ["@pinia/nuxt", "@primevue/nuxt-module"],
+  modules: ["@pinia/nuxt", "@primevue/nuxt-module", "nuxt-svgo"],
   components: [
     {
       path: "~/components",

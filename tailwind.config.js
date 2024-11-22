@@ -26,6 +26,10 @@ export default {
         secondarydark: "#383746",
         label: "#6b7280",
       },
+      backgroundImage: {
+        'light_img': "url(@/assets/images/light_bg.jpg)",
+        'dark_img': "url(@/assets/images/dark_bg.jpg)",
+      }
     },
   },
   plugins: [],
