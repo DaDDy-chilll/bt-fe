@@ -308,9 +308,7 @@ const nickNameOptions = [
             :options="nickNameOptions"
             optionLabel="name"
             class="w-full h-10 dropdown-svg-white text-sm  bg-transparent dark:bg-accentblack"
-            labelStyle="
-              text-sm text-label dark:text-accentwhite bg-transparent dark:bg-accentblack
-            "
+   
           />
           <label for="on_label" class="text-sm text-label dark:text-accentwhite bg-transparent dark:bg-accentblack"
             >What is your childhood nickname?</label
