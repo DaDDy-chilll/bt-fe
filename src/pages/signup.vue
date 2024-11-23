@@ -14,7 +14,7 @@ const store = useAuthStore();
  *@updated ****-**-**
  */
 definePageMeta({ layout: "authentication" });
-useHead({ title: "Register" });
+useHead({ title: "Sign Up" });
 
 /**
  *@description Value of email,password,name,confirmPassword,favoriteColor,nickname
@@ -82,6 +82,8 @@ const register = async () => {
   // await store.login(loginPayload);
 };
 
+
+//This is Example for favorite color and nickname
 const favoriteColors = [
   { id: 1, color: "White" },
   { id: 2, color: "Black" },
@@ -95,21 +97,22 @@ const nickNameOptions = [
   { id: 3, name: "Red" },
   { id: 4, name: "Blue" },
 ];
+
 </script>
 <template>
-  <div class="w-full sm:max-w-md bg-white rounded-xl p-7 shadow-md">
+  <div class="w-full sm:max-w-md bg-accentwhite rounded-xl p-7 shadow-md dark:bg-accentblack">
     <!-- Logo -->
-    <LOGO alt="logo" class="w-52 h-52 mx-auto" />
-    <h1 class="text-2xl font-medium text-center">Login</h1>
+    <LOGO alt="logo" class=" mx-auto mb-3" />
+    <h1 class="text-2xl font-medium text-center text-accentblack dark:text-accentwhite">Sign Up</h1>
 
-    <!-- Email and Password -->
+    <!-- Name, Email, Password, Confirm Password, Favorite Color, Nickname -->
     <div class="space-y-5 my-3">
       <!-- Name -->
       <div>
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm bg-transparent border-b border-accentblack',
+            'text-sm bg-transparent border-b border-accentblack dark:border-accentwhite',
             {
               'border-red-500': errorMessage?.name,
             },
@@ -117,17 +120,17 @@ const nickNameOptions = [
         >
           <InputText
             name="email"
-            type="text"
+            type="email"
             id="on_label"
             v-model="registerPayload.name"
             autocomplete="off"
-            class="bg-transparent p-2"
+            class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
           />
           <label
             for="on_label"
             :class="[
               'bg-transparent ',
-              errorMessage?.name ? 'text-red-500' : 'text-label',
+              errorMessage?.name ? 'text-red-500' : 'text-label  dark:text-accentwhite',
             ]"
             >Name</label
           >
@@ -147,7 +150,7 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm   bg-transparent border-b border-accentblack',
+            'text-sm   bg-transparent border-b border-accentblack dark:border-accentwhite',
             {
               'border-red-500': errorMessage?.email,
             },
@@ -159,13 +162,13 @@ const nickNameOptions = [
             id="on_label"
             v-model="registerPayload.email"
             autocomplete="off"
-            class="bg-transparent p-2"
+            class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
           />
           <label
             for="on_label"
             :class="[
               'bg-transparent',
-              errorMessage?.email ? 'text-red-500' : 'text-label',
+              errorMessage?.email ? 'text-red-500' : 'text-label dark:text-accentwhite',
             ]"
             >Email</label
           >
@@ -185,7 +188,7 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm   bg-transparent border-b border-accentblack',
+            'text-sm   bg-transparent border-b border-accentblack dark:border-accentwhite',
             {
               'border-red-500': errorMessage?.password,
             },
@@ -197,13 +200,13 @@ const nickNameOptions = [
             id="on_label"
             v-model="registerPayload.password"
             autocomplete="off"
-            class="bg-transparent p-2"
+            class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
           />
           <label
             for="on_label"
             :class="[
               'bg-transparent',
-              errorMessage?.password ? 'text-red-500' : 'text-label',
+              errorMessage?.password ? 'text-red-500' : 'text-label dark:text-accentwhite',
             ]"
             >Password</label
           >
@@ -223,7 +226,7 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm  bg-transparent border-b border-accentblack',
+            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite',
             {
               'border-red-500': errorMessage?.confirmPassword,
             },
@@ -235,13 +238,13 @@ const nickNameOptions = [
             id="on_label"
             v-model="registerPayload.confirmPassword"
             autocomplete="off"
-            class="bg-transparent p-2"
+            class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
           />
           <label
             for="on_label"
             :class="[
               'bg-transparent',
-              errorMessage?.confirmPassword ? 'text-red-500' : 'text-label',
+              errorMessage?.confirmPassword ? 'text-red-500' : 'text-label dark:text-accentwhite',
             ]"
             >Confirm Password</label
           >
@@ -261,7 +264,7 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm  bg-transparent border-b border-accentblack',
+            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite',
             {
               'border-red-500': errorMessage?.favoriteColor,
             },
@@ -272,9 +275,9 @@ const nickNameOptions = [
             inputId="on_label"
             :options="favoriteColors"
             optionLabel="color"
-            class="w-full h-10 dropdown-svg-white"
+            class="w-full h-10 dropdown-svg-white text-accentblack dark:text-accentwhite bg-transparent dark:bg-accentblack"
           />
-          <label for="on_label" class="text-sm text-label"
+          <label for="on_label" class="text-sm text-label dark:text-accentwhite bg-transparent dark:bg-accentblack"
             >What is your favorite color?</label
           >
         </FloatLabel>
@@ -293,7 +296,7 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm  bg-transparent border-b border-accentblack',
+            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite',
             {
               'border-red-500': errorMessage?.nickname,
             },
@@ -304,9 +307,12 @@ const nickNameOptions = [
             inputId="on_label"
             :options="nickNameOptions"
             optionLabel="name"
-            class="w-full h-10 dropdown-svg-white text-sm"
+            class="w-full h-10 dropdown-svg-white text-sm  bg-transparent dark:bg-accentblack"
+            labelStyle="
+              text-sm text-label dark:text-accentwhite bg-transparent dark:bg-accentblack
+            "
           />
-          <label for="on_label" class="text-sm text-label"
+          <label for="on_label" class="text-sm text-label dark:text-accentwhite bg-transparent dark:bg-accentblack"
             >What is your childhood nickname?</label
           >
         </FloatLabel>
@@ -321,7 +327,7 @@ const nickNameOptions = [
       </div>
 
       <div>
-        <p class="text-[.7rem] text-center">
+        <p class="text-[.7rem] text-center text-accentblack dark:text-accentwhite">
           By signing up, you are agreeing to the
           <NuxtLink to="/terms-and-conditions" class="text-primarylight"
             >Terms and Conditions</NuxtLink
@@ -341,30 +347,30 @@ const nickNameOptions = [
       />
     </div>
 
-    <!-- Register and Help -->
+    <!-- Login and Help -->
     <div class="flex items-center justify-between">
-      <p class="text-sm text-center">
+      <p class="text-sm text-center text-accentblack dark:text-accentwhite">
         Already have an account?
         <NuxtLink to="/login" class="text-primarylight">Login</NuxtLink>
       </p>
       <p class="text-sm text-center text-primarylight">Help?</p>
     </div>
 
-    <p class="text-sm text-center my-3">- Or Sign Up With -</p>
+    <p class="text-sm text-center my-3 text-accentblack dark:text-accentwhite">- Or Sign Up With -</p>
 
     <!-- Google and Facebook -->
     <div class="flex items-center justify-around gap-2 mt-5">
       <button
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite"
       >
         <LogosGoogleIcon />
-        <span>Google</span>
+        <span class="text-accentblack dark:text-accentwhite">Google</span>
       </button>
       <button
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite"
       >
         <LogosFacebook />
-        <span>Facebook</span>
+        <span class="text-accentblack dark:text-accentwhite">Facebook</span>
       </button>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Password, Button, Message } from "primevue";
-import LOGO from "@/assets/icons/logo.svg";
+import LOGO from "~/assets/icons/logo.svg";
 import LogosGoogleIcon from "@/assets/icons/google.vue";
 import LogosFacebook from "@/assets/icons/facebook.vue";
 import type { LoginPayload, ErrorMessage } from "../types/auth";
@@ -27,6 +27,12 @@ const loginPayload: LoginPayload = reactive<LoginPayload>({
   password: "",
 });
 
+/**
+ *@description Error message
+ *@author PSK
+ *@created 2024-11-22
+ *@updated ****-**-**
+ */
 const errorMessage: ErrorMessage = reactive<ErrorMessage>({
   email: null,
   password: null,
@@ -55,19 +61,20 @@ const login = async () => {
   // await store.login(loginPayload);
 };
 </script>
-<template>
-  <div class="w-full sm:max-w-md bg-white rounded-xl p-8 shadow-md">
-    <!-- Logo -->
-    <LOGO alt="logo" class="w-52 h-52 mx-auto" />
-    <h1 class="text-2xl font-medium text-center">Login</h1>
 
+
+<template>
+  <div class="w-full sm:max-w-md bg-accentwhite rounded-xl p-8 shadow-md dark:bg-accentblack">
+    <!-- Logo -->
+    <LOGO alt="logo" class=" mx-auto mb-3" />
+    <h1 class="text-2xl font-medium text-center text-accentblack dark:text-accentwhite">Login</h1>
     <!-- Email and Password -->
     <div class="space-y-7 my-3">
       <div>
         <FloatLabel
           variant="on"
           :class="[
-            'text-lg  bg-transparent border-b border-accentblack',
+            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite',
             {
               'border-red-500': errorMessage?.email,
             },
@@ -79,13 +86,13 @@ const login = async () => {
             id="on_label"
             v-model="loginPayload.email"
             autocomplete="off"
-            class="bg-transparent p-3"
+            class="bg-transparent p-2 w-full text-accentblack dark:text-accentwhite"
           />
           <label
             for="on_label"
             :class="[
               'bg-transparent',
-              errorMessage?.email ? 'text-red-500' : 'text-label',
+              errorMessage?.email ? 'text-red-500' : 'text-label  dark:text-accentwhite',
             ]"
             >Email</label
           >
@@ -103,7 +110,7 @@ const login = async () => {
         <FloatLabel
           variant="on"
           :class="[
-            'text-lg  bg-transparent border-b border-accentblack',
+            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite ' ,
             {
               'border-red-500': errorMessage?.password,
             },
@@ -114,15 +121,16 @@ const login = async () => {
             v-model="loginPayload.password"
             toggleMask
             autocomplete="off"
-            class="bg-transparent p-3 rounded-none"
+            class=" p-2 rounded-none w-full text-accentblack dark:text-accentwhite "
             :feedback="false"
             fluid
+            :inputStyle="{'background-color': 'transparent'}"
           />
           <label
             for="on_label"
             :class="[
-              'bg-transparent',
-              errorMessage?.password ? 'text-red-500' : 'text-label',
+              'bg-transparent ',
+              errorMessage?.password ? 'text-red-500' : 'text-label dark:text-accentwhite',
             ]"
             >Password</label
           >
@@ -143,8 +151,9 @@ const login = async () => {
             inputId="remember_me"
             name="remember_me"
             value="remember_me"
+        
           />
-          <label for="remember_me" class="select-none text-sm"
+          <label for="remember_me" class="select-none text-sm text-accentblack dark:text-accentwhite"
             >Remember Me</label
           >
         </div>
@@ -163,28 +172,28 @@ const login = async () => {
 
     <!-- Register and Help -->
     <div class="flex items-center justify-between">
-      <p class="text-sm text-center">
+      <p class="text-sm text-center text-accentblack dark:text-accentwhite">
         Don't have an account?
-        <NuxtLink to="/register" class="text-primarylight">Register</NuxtLink>
+        <NuxtLink to="/signup" class="text-primarylight">Sign Up</NuxtLink>
       </p>
       <p class="text-sm text-center text-primarylight">Help?</p>
     </div>
 
-    <p class="text-sm text-center my-3">- Or Login With -</p>
+    <p class="text-sm text-center my-3 text-accentblack dark:text-accentwhite">- Or Login With -</p>
 
     <!-- Google and Facebook -->
     <div class="flex items-center justify-around gap-2 mt-5">
       <button
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite"
       >
         <LogosGoogleIcon />
-        <span>Google</span>
+        <span class="text-accentblack dark:text-accentwhite">Google</span>
       </button>
       <button
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite"
       >
         <LogosFacebook />
-        <span>Facebook</span>
+        <span class="text-accentblack dark:text-accentwhite">Facebook</span>
       </button>
     </div>
   </div>
