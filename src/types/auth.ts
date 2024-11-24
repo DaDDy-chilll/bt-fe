@@ -8,11 +8,11 @@ export type RegisterPayload = {
   password: string;
   name: string;
   confirmPassword: string;
-  favoriteColor: string;
-  nickname: string;
+  favoriteColor: string | number;
+  nickname: string | number;
 }
 
-export type ErrorMessage = {
+export type ErrorPayload = {
   email: string | null;
   password: string | null;
   name?: string | null;

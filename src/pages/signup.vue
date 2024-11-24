@@ -1,11 +1,27 @@
 <script setup lang="ts">
 import { Password, Button, Message } from "primevue";
 import LOGO from "@/assets/icons/logo.svg";
-import LogosGoogleIcon from "@/assets/icons/google.vue";
-import LogosFacebook from "@/assets/icons/facebook.vue";
-import type { RegisterPayload, ErrorMessage } from "../types/auth";
+import LogosGoogleIcon from "@/assets/icons/google.svg";
+import LogosFacebook from "@/assets/icons/facebook.svg";
+import type { RegisterPayload, ErrorPayload } from "../types/auth";
+import { errorMessage } from "@/consts/errorMessage";
 import { useAuthStore } from "../stores/auth";
 const store = useAuthStore();
+
+//This is Example for favorite color and nickname
+const favoriteColors = [
+  { id: 1, color: "White" },
+  { id: 2, color: "Black" },
+  { id: 3, color: "Red" },
+  { id: 4, color: "Blue" },
+];
+
+const nickNameOptions = [
+  { id: 1, name: "White" },
+  { id: 2, name: "Black" },
+  { id: 3, name: "Red" },
+  { id: 4, name: "Blue" },
+];
 
 /**
  *@description Page Layout and Title
@@ -31,72 +47,74 @@ const registerPayload: RegisterPayload = reactive<RegisterPayload>({
   nickname: "",
 });
 
-const errorMessage: ErrorMessage = reactive<ErrorMessage>({
+/**
+ *@description Error Message
+ *@author PSK
+ *@created 2024-11-24
+ *@updated ****-**-**
+ */
+const error: ErrorPayload = reactive<ErrorPayload>({
   email: null,
   password: null,
+  name: null,
+  confirmPassword: null,
+  favoriteColor: null,
+  nickname: null,
 });
 
 /**
  *@description Login function
  *@author PSK
  *@created 2024-11-22
- *@updated ****-**-**
+ *@updated 2024-11-24
  */
 const register = async () => {
-  if (!registerPayload.email) {
-    errorMessage.email = "Email is required";
-  } else {
-    errorMessage.email = null;
+  checkValidation();
+  if(Object.values(error).every(value => value === null)) {
+    try {
+      await store.register(registerPayload);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  if (!registerPayload.password) {
-    errorMessage.password = "Password is required";
-  } else {
-    errorMessage.password = null;
-  }
-
-  if (!registerPayload.name) {
-    errorMessage.name = "Name is required";
-  } else {
-    errorMessage.name = null;
-  }
-
-  if (!registerPayload.confirmPassword) {
-    errorMessage.confirmPassword = "Confirm Password is required";
-  } else {
-    errorMessage.confirmPassword = null;
-  }
-
-  if (!registerPayload.favoriteColor) {
-    errorMessage.favoriteColor = "Favorite Color is required";
-  } else {
-    errorMessage.favoriteColor = null;
-  }
-
-  if (!registerPayload.nickname) {
-    errorMessage.nickname = "Nickname is required";
-  } else {
-    errorMessage.nickname = null;
-  }
-
-  // await store.login(loginPayload);
 };
 
 
-//This is Example for favorite color and nickname
-const favoriteColors = [
-  { id: 1, color: "White" },
-  { id: 2, color: "Black" },
-  { id: 3, color: "Red" },
-  { id: 4, color: "Blue" },
-];
+const checkValidation = () => {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-const nickNameOptions = [
-  { id: 1, name: "White" },
-  { id: 2, name: "Black" },
-  { id: 3, name: "Red" },
-  { id: 4, name: "Blue" },
-];
+  //check Email
+  if (!registerPayload.email) error.email = errorMessage.EMAIL_REQUIRED;
+  else if(!emailPattern.test(registerPayload.email)) error.email = errorMessage.EMAIL_INVALID;
+  else error.email = null;
+
+  //check Password
+  if (!registerPayload.password) error.password = errorMessage.PASSWORD_REQUIRED;
+  else if(!passwordPattern.test(registerPayload.password)) error.password = errorMessage.PASSWORD_INVALID;
+  else error.password = null;
+
+  //check Name
+  if (!registerPayload.name) error.name = errorMessage.NAME_REQUIRED;
+  else error.name = null;
+
+  //check Confirm Password
+  if (!registerPayload.confirmPassword) error.confirmPassword = errorMessage.CONFIRM_PASSWORD_REQUIRED;
+  else if(registerPayload.password !== registerPayload.confirmPassword) error.confirmPassword = errorMessage.PASSWORD_NOT_MATCH;
+  else error.confirmPassword = null;
+
+  //check Favorite Color
+  if (!registerPayload.favoriteColor) error.favoriteColor = errorMessage.FAVORITE_COLOR_REQUIRED;
+  else error.favoriteColor = null;
+
+  //check Nickname
+  if (!registerPayload.nickname) error.nickname = errorMessage.NICKNAME_REQUIRED;
+  else error.nickname = null;
+}
+
+
+
 
 </script>
 <template>
@@ -112,10 +130,8 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm bg-transparent border-b border-accentblack dark:border-accentwhite',
-            {
-              'border-red-500': errorMessage?.name,
-            },
+            'text-sm bg-transparent border-b',
+            error?.name ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
           ]"
         >
           <InputText
@@ -130,18 +146,18 @@ const nickNameOptions = [
             for="on_label"
             :class="[
               'bg-transparent ',
-              errorMessage?.name ? 'text-red-500' : 'text-label  dark:text-accentwhite',
+              error?.name ? 'text-red-500' : 'text-label  dark:text-accentwhite',
             ]"
             >Name</label
           >
         </FloatLabel>
         <Message
-          v-if="errorMessage?.name"
+          v-if="error?.name"
           severity="error"
           variant="simple"
           size="small"
           class="mt-1"
-          >{{ errorMessage.name }}</Message
+          >{{ error.name }}</Message
         >
       </div>
 
@@ -150,10 +166,8 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm   bg-transparent border-b border-accentblack dark:border-accentwhite',
-            {
-              'border-red-500': errorMessage?.email,
-            },
+            'text-sm   bg-transparent border-b',
+            error?.email ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
           ]"
         >
           <InputText
@@ -168,18 +182,18 @@ const nickNameOptions = [
             for="on_label"
             :class="[
               'bg-transparent',
-              errorMessage?.email ? 'text-red-500' : 'text-label dark:text-accentwhite',
+              error?.email ? 'text-red-500' : 'text-label dark:text-accentwhite',
             ]"
             >Email</label
           >
         </FloatLabel>
         <Message
-          v-if="errorMessage?.email"
+          v-if="error?.email"
           severity="error"
           variant="simple"
           size="small"
           class="mt-1"
-          >{{ errorMessage.email }}</Message
+          >{{ error.email }}</Message
         >
       </div>
 
@@ -188,10 +202,8 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm   bg-transparent border-b border-accentblack dark:border-accentwhite',
-            {
-              'border-red-500': errorMessage?.password,
-            },
+            'text-sm   bg-transparent border-b',
+            error?.password ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
           ]"
         >
           <InputText
@@ -206,18 +218,18 @@ const nickNameOptions = [
             for="on_label"
             :class="[
               'bg-transparent',
-              errorMessage?.password ? 'text-red-500' : 'text-label dark:text-accentwhite',
+              error?.password ? 'text-red-500' : 'text-label dark:text-accentwhite',
             ]"
             >Password</label
           >
         </FloatLabel>
         <Message
-          v-if="errorMessage?.password"
+          v-if="error?.password"
           severity="error"
           variant="simple"
           size="small"
           class="mt-1"
-          >{{ errorMessage.password }}</Message
+          >{{ error.password }}</Message
         >
       </div>
 
@@ -226,10 +238,8 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite',
-            {
-              'border-red-500': errorMessage?.confirmPassword,
-            },
+            'text-sm  bg-transparent border-b',
+            error?.confirmPassword ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
           ]"
         >
           <InputText
@@ -244,18 +254,18 @@ const nickNameOptions = [
             for="on_label"
             :class="[
               'bg-transparent',
-              errorMessage?.confirmPassword ? 'text-red-500' : 'text-label dark:text-accentwhite',
+              error?.confirmPassword ? 'text-red-500' : 'text-label dark:text-accentwhite',
             ]"
             >Confirm Password</label
           >
         </FloatLabel>
         <Message
-          v-if="errorMessage?.confirmPassword"
+          v-if="error?.confirmPassword"
           severity="error"
           variant="simple"
           size="small"
           class="mt-1"
-          >{{ errorMessage.confirmPassword }}</Message
+          >{{ error.confirmPassword }}</Message
         >
       </div>
 
@@ -264,10 +274,8 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite',
-            {
-              'border-red-500': errorMessage?.favoriteColor,
-            },
+            'text-sm  bg-transparent border-b',
+            error?.favoriteColor ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
           ]"
         >
           <Select
@@ -277,17 +285,20 @@ const nickNameOptions = [
             optionLabel="color"
             class="w-full h-10 dropdown-svg-white text-accentblack dark:text-accentwhite bg-transparent dark:bg-accentblack"
           />
-          <label for="on_label" class="text-sm text-label dark:text-accentwhite bg-transparent dark:bg-accentblack"
+          <label for="on_label" :class="[
+            'text-sm',
+            error?.favoriteColor ? 'text-red-500' : 'text-label dark:text-accentwhite bg-transparent dark:bg-accentblack'
+          ]"
             >What is your favorite color?</label
           >
         </FloatLabel>
         <Message
-          v-if="errorMessage?.favoriteColor"
+          v-if="error?.favoriteColor"
           severity="error"
           variant="simple"
           size="small"
           class="mt-1"
-          >{{ errorMessage.favoriteColor }}</Message
+          >{{ error.favoriteColor }}</Message
         >
       </div>
 
@@ -296,10 +307,8 @@ const nickNameOptions = [
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite',
-            {
-              'border-red-500': errorMessage?.nickname,
-            },
+            'text-sm  bg-transparent border-b',
+            error?.nickname ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
           ]"
         >
           <Select
@@ -310,28 +319,31 @@ const nickNameOptions = [
             class="w-full h-10 dropdown-svg-white text-sm  bg-transparent dark:bg-accentblack"
    
           />
-          <label for="on_label" class="text-sm text-label dark:text-accentwhite bg-transparent dark:bg-accentblack"
+          <label for="on_label" :class="[
+            'text-sm',
+            error?.nickname ? 'text-red-500' : 'text-label dark:text-accentwhite bg-transparent dark:bg-accentblack'
+          ]"
             >What is your childhood nickname?</label
           >
         </FloatLabel>
         <Message
-          v-if="errorMessage?.nickname"
+          v-if="error?.nickname"
           severity="error"
           variant="simple"
           size="small"
           class="mt-1"
-          >{{ errorMessage.nickname }}</Message
+          >{{ error.nickname }}</Message
         >
       </div>
 
       <div>
         <p class="text-[.7rem] text-center text-accentblack dark:text-accentwhite">
           By signing up, you are agreeing to the
-          <NuxtLink to="/terms-and-conditions" class="text-primarylight"
+          <NuxtLink to="/terms-and-conditions" class="text-primarylight cursor-pointer hover:text-primarylight/50"
             >Terms and Conditions</NuxtLink
           >
           and
-          <NuxtLink to="/privacy-policy" class="text-primarylight"
+          <NuxtLink to="/privacy-policy" class="text-primarylight cursor-pointer hover:text-primarylight/50"
             >Privacy Policy.</NuxtLink
           >
         </p>
@@ -341,7 +353,7 @@ const nickNameOptions = [
         severity="secondary"
         label="Sign Up"
         @click="register"
-        class="w-full bg-primarylight text-white p-2"
+        class="w-full bg-primarylight text-white p-2 hover:bg-primarylight/70 cursor-pointer"
       />
     </div>
 
@@ -349,9 +361,9 @@ const nickNameOptions = [
     <div class="flex items-center justify-between">
       <p class="text-sm text-center text-accentblack dark:text-accentwhite">
         Already have an account?
-        <NuxtLink to="/login" class="text-primarylight">Login</NuxtLink>
+        <NuxtLink to="/login" class="text-primarylight cursor-pointer hover:text-primarylight/50">Login</NuxtLink>
       </p>
-      <p class="text-sm text-center text-primarylight">Help?</p>
+      <p class="text-sm text-center text-primarylight cursor-pointer hover:text-primarylight/50">Help?</p>
     </div>
 
     <p class="text-sm text-center my-3 text-accentblack dark:text-accentwhite">- Or Sign Up With -</p>
@@ -359,15 +371,15 @@ const nickNameOptions = [
     <!-- Google and Facebook -->
     <div class="flex items-center justify-around gap-2 mt-5">
       <button
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <LogosGoogleIcon />
+        <LogosGoogleIcon alt="google" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Google</span>
       </button>
       <button
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <LogosFacebook />
+        <LogosFacebook alt="facebook" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Facebook</span>
       </button>
     </div>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { Password, Button, Message } from "primevue";
-import LOGO from "~/assets/icons/logo.svg";
-import LogosGoogleIcon from "@/assets/icons/google.vue";
-import LogosFacebook from "@/assets/icons/facebook.vue";
-import type { LoginPayload, ErrorMessage } from "../types/auth";
+import LOGO from "@/assets/icons/logo.svg";
+import LogosGoogleIcon from "@/assets/icons/google.svg";
+import LogosFacebook from "@/assets/icons/facebook.svg";
+import type { LoginPayload, ErrorPayload } from "../types/auth";
+import { errorMessage } from "@/consts/errorMessage";
 import { useAuthStore } from "../stores/auth";
 const store = useAuthStore();
 
@@ -33,33 +34,77 @@ const loginPayload: LoginPayload = reactive<LoginPayload>({
  *@created 2024-11-22
  *@updated ****-**-**
  */
-const errorMessage: ErrorMessage = reactive<ErrorMessage>({
+const error: ErrorPayload = reactive<ErrorPayload>({
   email: null,
   password: null,
 });
 
+/**
+ *@description Remember me
+ *@author PSK
+ *@created 2024-11-22
+ *@updated 2024-11-24
+ */
 const remember_me = ref(false);
+
+
+/**
+ *@description Check validation 
+ *@author PSK
+ *@created 2024-11-24
+ *@updated ****-**-**
+ */
+const checkValidation = () => {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; 
+ if (!loginPayload.email) error.email = errorMessage.EMAIL_REQUIRED;
+ else if(!emailPattern.test(loginPayload.email)) error.email = errorMessage.EMAIL_INVALID;
+ else error.email = null;
+ 
+ if (!loginPayload.password) error.password = errorMessage.PASSWORD_REQUIRED;
+ else if(!passwordPattern.test(loginPayload.password)) error.password = errorMessage.PASSWORD_INVALID;
+ else error.password = null;
+}
 
 /**
  *@description Login function
  *@author PSK
  *@created 2024-11-22
+ *@updated 2024-11-24
+ */
+ const login = async () => {
+  checkValidation();
+  if(Object.values(error).every(value => value === null)) {
+    try {
+      await store.login(loginPayload);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+};
+
+
+/**
+ *@description Google login function
+ *@author PSK
+ *@created 2024-11-24
  *@updated ****-**-**
  */
-const login = async () => {
-  console.log(loginPayload, errorMessage);
-  if (!loginPayload.email) {
-    errorMessage.email = "Email is required";
-  } else {
-    errorMessage.email = null;
-  }
-  if (!loginPayload.password) {
-    errorMessage.password = "Password is required";
-  } else {
-    errorMessage.password = null;
-  }
-  // await store.login(loginPayload);
-};
+const googleLogin =  () => {
+  console.log("google login");
+}
+
+/**
+ *@description Facebook login function
+ *@author PSK
+ *@created 2024-11-24
+ *@updated ****-**-**
+ */
+const facebookLogin = () => {
+  console.log("facebook login");
+}
+
+
 </script>
 
 
@@ -74,10 +119,8 @@ const login = async () => {
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite',
-            {
-              'border-red-500': errorMessage?.email,
-            },
+            'text-sm  bg-transparent border-b',
+            error?.email ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
           ]"
         >
           <InputText
@@ -92,28 +135,26 @@ const login = async () => {
             for="on_label"
             :class="[
               'bg-transparent',
-              errorMessage?.email ? 'text-red-500' : 'text-label  dark:text-accentwhite',
+              error?.email ? 'text-red-500' : 'text-label  dark:text-accentwhite',
             ]"
             >Email</label
           >
         </FloatLabel>
         <Message
-          v-if="errorMessage?.email"
+          v-if="error?.email"
           severity="error"
           variant="simple"
           size="small"
           class="mt-1"
-          >{{ errorMessage.email }}</Message
+          >{{ error.email }}</Message
         >
       </div>
       <div>
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm  bg-transparent border-b border-accentblack dark:border-accentwhite ' ,
-            {
-              'border-red-500': errorMessage?.password,
-            },
+            'text-sm  bg-transparent border-b',
+            error?.password ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
           ]"
         >
           <Password
@@ -130,18 +171,18 @@ const login = async () => {
             for="on_label"
             :class="[
               'bg-transparent ',
-              errorMessage?.password ? 'text-red-500' : 'text-label dark:text-accentwhite',
+              error?.password ? 'text-red-500' : 'text-label dark:text-accentwhite',
             ]"
             >Password</label
           >
         </FloatLabel>
         <Message
-          v-if="errorMessage?.password"
+          v-if="error?.password"
           severity="error"
           size="small"
           variant="simple"
           class="mt-1"
-          >{{ errorMessage.password }}</Message
+          >{{ error.password }}</Message
         >
       </div>
       <div class="flex items-center justify-between">
@@ -151,13 +192,12 @@ const login = async () => {
             inputId="remember_me"
             name="remember_me"
             value="remember_me"
-        
           />
-          <label for="remember_me" class="select-none text-sm text-accentblack dark:text-accentwhite"
+          <label for="remember_me" class="select-none text-sm text-accentblack dark:text-accentwhite cursor-pointer hover:text-accentblack/50 dark:hover:text-acc/50  "
             >Remember Me</label
           >
         </div>
-        <NuxtLink to="/forgot-password" class="text-sm text-primarylight"
+        <NuxtLink to="/forgot-password" class="text-sm text-primarylight cursor-pointer hover:text-primarylight/50  "
           >Forgot Password?</NuxtLink
         >
       </div>
@@ -166,7 +206,7 @@ const login = async () => {
         severity="secondary"
         label="Login"
         @click="login"
-        class="w-full bg-primarylight text-white p-2"
+        class="w-full bg-primarylight text-white p-2 hover:bg-primarylight/70 cursor-pointer"
       />
     </div>
 
@@ -174,9 +214,9 @@ const login = async () => {
     <div class="flex items-center justify-between">
       <p class="text-sm text-center text-accentblack dark:text-accentwhite">
         Don't have an account?
-        <NuxtLink to="/signup" class="text-primarylight">Sign Up</NuxtLink>
+        <NuxtLink to="/signup" class="text-primarylight cursor-pointer hover:text-primarylight/50">Sign Up</NuxtLink>
       </p>
-      <p class="text-sm text-center text-primarylight">Help?</p>
+      <p class="text-sm text-center text-primarylight cursor-pointer hover:text-primarylight/50">Help?</p>
     </div>
 
     <p class="text-sm text-center my-3 text-accentblack dark:text-accentwhite">- Or Login With -</p>
@@ -184,17 +224,21 @@ const login = async () => {
     <!-- Google and Facebook -->
     <div class="flex items-center justify-around gap-2 mt-5">
       <button
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite"
+        @click="googleLogin"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <LogosGoogleIcon />
+        <LogosGoogleIcon alt="google" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Google</span>
       </button>
       <button
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite"
+        @click="facebookLogin"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <LogosFacebook />
+        <LogosFacebook alt="facebook" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Facebook</span>
       </button>
     </div>
   </div>
 </template>
+
+
