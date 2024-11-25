@@ -16,10 +16,12 @@ const items = ref([
       {
         label: "New Order",
         icon: "pi pi-fw pi-plus",
+        src: "/order/new-order",
       },
       {
         label: "Manage Orders",
         icon: "pi pi-fw pi-pencil",
+        src: "/order/manage-order",
       },
     ],
   },
