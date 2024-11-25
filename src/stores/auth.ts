@@ -1,12 +1,9 @@
-
-import type { LoginPayload,RegisterPayload } from "@/types/auth";
+import type { LoginPayload, RegisterPayload } from "@/types/auth";
 
 import { defineStore, getActivePinia } from "pinia";
-import { useLoginApi, useRegisterApi } from "~/apis/auth";
+import { useLoginApi, useRegisterApi, useForgotApi } from "~/apis/auth";
 export const useAuthStore = defineStore("auth", {
-  state: () => ({
-    
-  }),
+  state: () => ({}),
   getters: {},
   actions: {
     /**
@@ -33,6 +30,19 @@ export const useAuthStore = defineStore("auth", {
     async register(payload: RegisterPayload) {
       console.log("store register", payload);
       return await useRegisterApi(payload);
+    },
+
+    /**
+     * @param payload Forgot Password
+     * @returns Promise<LoginPayload>
+     * @description Register function
+     * @author PSK
+     * @created 2024-11-25
+     * @updated ****-**-**
+     */
+    async forgot(payload: LoginPayload) {
+      console.log("store forgot password", payload);
+      return await useForgotApi(payload);
     },
   },
 });

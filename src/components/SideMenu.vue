@@ -63,10 +63,12 @@ const items = ref([
       {
         label: "Manage Customers",
         icon: "pi pi-fw pi-pencil",
+        src: "/customer",
       },
       {
         label: "Mail Marketing",
         icon: "pi pi-fw pi-envelope",
+        src: "/customer/marketing",
       },
     ],
   },
@@ -78,10 +80,12 @@ const items = ref([
       {
         label: "New Warehouse",
         icon: "pi pi-fw pi-plus",
+        src: "/warehouse",
       },
       {
         label: "Check Warehouse",
         icon: "pi pi-fw pi-pencil",
+        src: "/warehouse/check",
       },
     ],
   },

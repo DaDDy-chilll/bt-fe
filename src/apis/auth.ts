@@ -36,3 +36,21 @@ export const useRegisterApi = async (payload: RegisterPayload) => {
   );
   return data;
 }
+
+
+/**
+ * @param payload Login Payload
+ * @returns data
+ * @description Forgot passworld function
+ * @author PSK
+ * @created 2024-11-25
+ * @updated ****-**-**
+ */
+export const useForgotApi = async (payload: LoginPayload) => {
+  console.log("api forgot password", payload);
+  const { data, error } = await useAsyncData(
+    "register",
+    fetcher("/forgot", { method: "POST", body: payload })
+  );
+  return data;
+}
