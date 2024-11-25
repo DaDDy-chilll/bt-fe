@@ -6,6 +6,7 @@ const items = ref([
   {
     label: "Dashboard",
     icon: "pi pi-fw pi-th-large",
+    src: "/dashboard",
   },
   {
     label: "Order",
@@ -30,10 +31,12 @@ const items = ref([
       {
         label: "New Products",
         icon: "pi pi-fw pi-plus",
+        src: "/product",
       },
       {
         label: "Manage Products",
         icon: "pi pi-fw pi-pencil",
+        src: "/product/manage",
       },
     ],
   },
@@ -89,6 +92,7 @@ const items = ref([
   {
     label: "Report(Pro)",
     icon: "pi pi-fw pi-chart-line",
+    badge: "Pro",
   },
   {
     label: "Invoice",
@@ -145,10 +149,11 @@ const items = ref([
         <a
           v-ripple
           class="flex align-items-center items-center py-2 cursor-pointer"
+          :href="item.src"
         >
           <span :class="[item.icon, 'text-muted']" />
           <span class="ml-2 text-muted">{{ item.label }}</span>
-          <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
+          <Badge v-if="item.badge" class="ml-auto bg-accent2" :value="item.badge" />
           <span v-if="item.shortcut" class="ml-auto">
             <span :class="[item.shortcut, 'text-muted']" />
           </span>

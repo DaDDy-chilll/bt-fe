@@ -12,7 +12,6 @@ import ProductType from "./producttype.json";
 import GoldType from "./goldtype.json";
 import GoldColor from "./goldcolor.json";
 
-
 // Fetching Data
 const gemTypes = GemType;
 const gemColors = GemColor;
@@ -67,6 +66,7 @@ const product = ref<Product>({
   pe2: 0,
   yaway2: 0,
   chan2: 0,
+  gm2: 0,
   latkha: 0,
   gems: [],
   memo: "",
@@ -85,14 +85,15 @@ const gem = ref<Gem>({
 const gemSlot = ref([]);
 const selectedCity = ref(null);
 const addGermVisible = ref(false);
+const blockScreen = ref(false);
+const drawerVisible = ref(false);
 
 /**
  * Add Gem to the product
  */
-const addGem = () => {
+const addGem = (gem: Gem) => {
   addGermVisible.value = false;
-  gemSlot.value.push(gem.value);
-  console.log(gemSlot.value);
+  gemSlot.value.push(gem);
   gem.value = {
     id: 0,
     type: "",
@@ -106,16 +107,24 @@ const addGem = () => {
 
 /**
  * Remove Gem from the product
- * @param index 
+ * @param index
  */
 const removeGem = (index: number) => {
   gemSlot.value.splice(index, 1);
+};
+
+const addProduct = () => {
+  console.log(product.value);
+  blockScreen.value = true;
+  setTimeout(() => {
+    blockScreen.value = false;
+  }, 2000);
 };
 </script>
 
 <template>
   <div class="flex gap-4 justify-between items-start w-full">
-    <div class="w-2/3 bg-accentwhite drop-shadow-md rounded-lg">
+    <div class="w-full lg:w-2/3 bg-accentwhite drop-shadow-md rounded-lg">
       <Card>
         <template #title>
           <h2 class="text-xl float-left">New Product</h2>
@@ -192,10 +201,11 @@ const removeGem = (index: number) => {
               <!-- Length -->
               <FloatLabel variant="on">
                 <div class="flex items-center h-10">
-                  <InputText
+                  <InputNumber
                     id="length_label"
                     v-model="product.productLength.length"
                     class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
+                    fluid
                   />
                   <label for="length_label" class="text-sm text-label"
                     >Length</label
@@ -212,10 +222,11 @@ const removeGem = (index: number) => {
               <!-- Weight -->
               <FloatLabel variant="on">
                 <div class="flex items-center w-auto h-10">
-                  <InputText
+                  <InputNumber
                     id="weight_label"
                     v-model="product.productWeight.weight"
                     class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
+                    fluid
                   />
                   <label for="weight_label" class="text-sm text-label"
                     >Weight</label
@@ -269,7 +280,7 @@ const removeGem = (index: number) => {
             <!-- Size -->
             <FloatLabel variant="on">
               <div class="flex items-center h-10">
-                <InputText
+                <InputNumber
                   id="length_label"
                   v-model="product.goldSize.size"
                   class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
@@ -289,7 +300,7 @@ const removeGem = (index: number) => {
             <!-- Weight -->
             <FloatLabel variant="on">
               <div class="flex items-center w-auto h-10">
-                <InputText
+                <InputNumber
                   id="weight_label"
                   v-model="product.goldWeight.weight"
                   class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
@@ -310,48 +321,54 @@ const removeGem = (index: number) => {
           <!-- Gold Weight Mass -->
           <p class="text-base text-label mt-2 mb-4">Gold Weight Mass</p>
           <div class="grid grid-cols-5 gap-2 w-full mb-6">
-            <!-- Kyatt -->
             <FloatLabel variant="on">
-              <InputText
-                id="on_label"
+              <!-- Kyatt -->
+              <InputNumber
                 v-model="product.kyatt"
-                class="border w-full h-10 pl-2"
+                inputId="on_label"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Kyatt</label>
             </FloatLabel>
+
             <!-- Pe -->
             <FloatLabel variant="on">
-              <InputText
+              <InputNumber
                 id="on_label"
                 v-model="product.pe"
-                class="border w-full h-10 pl-2"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Pe</label>
             </FloatLabel>
             <!-- Yaway -->
             <FloatLabel variant="on">
-              <InputText
+              <InputNumber
                 id="on_label"
                 v-model="product.yaway"
-                class="border w-full h-10 pl-2"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Yaway</label>
             </FloatLabel>
             <!-- Chan -->
             <FloatLabel variant="on">
-              <InputText
+              <InputNumber
                 id="on_label"
                 v-model="product.chan"
-                class="border w-full h-10 pl-2"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Chan</label>
             </FloatLabel>
             <!-- GM -->
             <FloatLabel variant="on">
-              <InputText
+              <InputNumber
                 id="on_label"
                 v-model="product.gm"
-                class="border w-full h-10 pl-2"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Gm</label>
             </FloatLabel>
@@ -361,46 +378,51 @@ const removeGem = (index: number) => {
           <div class="grid grid-cols-5 gap-2 w-full mb-6">
             <!-- Kyatt -->
             <FloatLabel variant="on">
-              <InputText
+              <InputNumber
                 id="on_label"
                 v-model="product.kyatt2"
-                class="border w-full h-10 pl-2"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Kyatt</label>
             </FloatLabel>
             <!-- Pe -->
             <FloatLabel variant="on">
-              <InputText
+              <InputNumber
                 id="on_label"
                 v-model="product.pe2"
-                class="border w-full h-10 pl-2"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Pe</label>
             </FloatLabel>
             <!-- Yaway -->
             <FloatLabel variant="on">
-              <InputText
+              <InputNumber
                 id="on_label"
                 v-model="product.yaway2"
-                class="border w-full h-10 pl-2"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Yaway</label>
             </FloatLabel>
             <!-- Chan -->
             <FloatLabel variant="on">
-              <InputText
+              <InputNumber
                 id="on_label"
                 v-model="product.chan2"
-                class="border w-full h-10 pl-2"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Chan</label>
             </FloatLabel>
             <!-- GM -->
             <FloatLabel variant="on">
-              <InputText
+              <InputNumber
                 id="on_label"
                 v-model="product.gm2"
-                class="border w-full h-10 pl-2"
+                class="border h-10 pl-2 rounded-md"
+                fluid
               />
               <label for="on_label" class="text-sm text-label">Gm</label>
             </FloatLabel>
@@ -409,14 +431,12 @@ const removeGem = (index: number) => {
           <p class="text-base text-label mt-2 mb-4">Latt Kha</p>
           <div class="grid grid-cols-5 gap-2 w-full mb-6">
             <!-- Kyatt -->
-            <FloatLabel variant="on">
-              <InputText
-                id="on_label"
-                v-model="product.latkha"
-                class="border w-full h-10 pl-2"
-              />
-              <label for="on_label" class="text-sm text-label">Kyatt</label>
-            </FloatLabel>
+            <InputNumber
+              id="on_label"
+              v-model="product.latkha"
+              class="border h-10 pl-2 rounded-md"
+              fluid
+            />
           </div>
           <!-- Divider -->
           <div class="border-t border-muted w-2/3 mx-auto my-6"></div>
@@ -447,12 +467,17 @@ const removeGem = (index: number) => {
                   />
                   {{ gemTypes[germ.type - 1].type }}
                 </p>
-                <i class="pi pi-trash text-red-500 float-right" @click="removeGem(index)"></i>
+                <i
+                  class="pi pi-trash text-red-500 float-right"
+                  @click="removeGem(index)"
+                ></i>
               </template>
               <template #content>
                 <div class="flex justify-between items-center my-2">
                   <p class="text-sm text-label">Color</p>
-                  <p class="text-sm text-label">{{ gemColors[germ.color - 1].color }}</p>
+                  <p class="text-sm text-label">
+                    {{ gemColors[germ.color - 1].color }}
+                  </p>
                 </div>
                 <div class="flex justify-between items-center my-2">
                   <p class="text-sm text-label">Gem Mass</p>
@@ -474,103 +499,16 @@ const removeGem = (index: number) => {
         </template>
       </Card>
     </div>
-    <div class="w-1/3 drop-shadow-md rounded-lg">
-      <Card>
-        <template #title>
-          <h2 class="text-2xl">
-            <i class="pi pi-box mr-2 text-xl"></i>
-            #P-000000
-          </h2>
-        </template>
-        <template #content>
-          <div class="flex justify-between items-center">
-            <p class="text-base text-accentblack font-medium">
-              {{ product.productName }}
-            </p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">John Doe</p>
-            <p class="text-sm text-label">100</p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Product Category</p>
-            <p class="text-sm text-label">{{ product.productCategory.category }}</p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Product Type</p>
-            <p class="text-sm text-label">{{ product.productType.type }}</p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Length</p>
-            <p class="text-sm text-label">{{ product.productLength.length }} {{ product.productLength.unit }}</p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Weight</p>
-            <p class="text-sm text-label">{{ product.productWeight.weight }} {{ product.productWeight.unit }}</p>
-          </div>
-
-          <!-- Divider -->
-          <div class="border-t border-muted w-full my-4"></div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Gold Type</p>
-            <p class="text-sm text-label">{{ product.goldType.type }}</p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Gold Color</p>
-            <p class="text-sm text-label">{{ product.goldColor.color }}</p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Size</p>
-            <p class="text-sm text-label">{{ product.goldSize.size }} {{ product.goldSize.unit }}</p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Weight</p>
-            <p class="text-sm text-label">{{ product.goldWeight.weight }} {{ product.goldWeight.unit }}</p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Gold Mass Weight</p>
-            <p class="text-sm text-label">{{ product.kyatt }}K {{ product.pe }}P {{ product.yaway }}Y {{ product.chan }}C</p>
-          </div>
-          <!-- Divider -->
-          <div class="border-t border-muted w-full my-4"></div>
-          <div class="flex justify-between items-center my-4" v-for="(germ, index) in gemSlot" :key="index">
-            <p class="text-sm text-accentblack">Gem Slot {{ index + 1 }}</p>
-            <p class="text-sm text-label">
-              <img
-                :src="gemTypes[germ.type - 1].icon"
-                alt="germ"
-                class="w-5 h-5 mx-2 float-left"
-              />
-              {{ gemTypes[germ.type - 1].type }}
-            </p>
-          </div>
-          <!-- Divider -->
-          <div class="border-t border-muted w-full my-4"></div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">A Yout Twat</p>
-            <p class="text-sm text-label">{{ product.kyatt2 }}K {{ product.pe2 }}P {{ product.yaway2 }}Y {{ product.chan2 }}C</p>
-          </div>
-          <div class="flex justify-between items-center my-4">
-            <p class="text-sm text-accentblack">Latt Kha</p>
-            <p class="text-sm text-label">{{ product.latkha }}</p>
-          </div>
-        </template>
-      </Card>
-      <Card class="mt-4">
-        <template #title>
-          <h2 class="text-base">Memo</h2>
-        </template>
-        <template #content>
-          <Textarea
-            v-model="value3"
-            class="w-full bg-muted p-2"
-            rows="5"
-            cols="30"
-            style="resize: none"
-          />
-        </template>
-      </Card>
+    <div class="hidden lg:block w-1/3 drop-shadow-md rounded-lg">
+      <!-- <template #detail> -->
+      <product-detail :product="product" />
+      <!-- </template> -->
     </div>
+    <Button
+      icon="pi pi-box"
+      class="lg:hidden bg-accent2 text-accentwhite drop-shadow-lg w-10 h-10 rounded-full flex justify-center items-center fixed top-1/2 right-4 transform -translate-y-1/2"
+      @click="drawerVisible = true"
+    />
   </div>
   <div class="flex justify-end mt-4 w-full">
     <Button
@@ -581,93 +519,41 @@ const removeGem = (index: number) => {
     <Button
       label="Add Product"
       class="bg-primarylight px-4 py-2 text-accentwhite"
+      @click="addProduct"
     />
   </div>
   <!-- Add Germ Dialog -->
   <Dialog
     v-model:visible="addGermVisible"
+    modal
     header="Gem Slot"
     :style="{ width: '25rem' }"
-    pt:root:class="!border-0 !bg-accentwhite"
-    pt:mask:class="backdrop-blur-sm  bg-opacity-30"
+    :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
     class="!rounded-lg !border-muted"
   >
-    <!-- Gem Type -->
-    <FloatLabel variant="on" class="my-2">
-      <Select
-        v-model="gem.type"
-        inputId="on_label"
-        :options="gemTypes"
-        optionLabel="type"
-        optionValue="id"
-        class="w-full border h-10 dropdown-svg-white"
-      />
-      <label for="on_label" class="text-sm text-label">Gem Type</label>
-    </FloatLabel>
-    <!-- Gem Type -->
-    <FloatLabel variant="on" class="my-4">
-      <Select
-        v-model="gem.color"
-        inputId="on_label"
-        :options="gemColors"
-        optionLabel="color"
-        optionValue="id"
-        class="w-full border h-10 dropdown-svg-white"
-      />
-      <label for="on_label" class="text-sm text-label">Gem Color</label>
-    </FloatLabel>
-    <!-- Gem Type -->
-    <FloatLabel variant="on" class="my-4">
-      <div class="flex items-center h-10">
-        <InputText
-          id="length_label"
-          v-model="gem.mass"
-          class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
-        />
-        <label for="length_label" class="text-sm text-label">Gem Mass</label>
-        <Select
-          v-model="gem.massUnit"
-          :options="gemMassUnits"
-          optionLabel="unit"
-          optionValue="id"
-          class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
-        />
-      </div>
-    </FloatLabel>
-    <!-- Gem Type -->
-    <FloatLabel variant="on" class="my-4">
-      <InputText
-        id="on_label"
-        v-model="gem.pieces"
-        class="border w-full h-10 pl-2"
-      />
-      <label for="on_label" class="text-sm text-label">Gem Pieces</label>
-    </FloatLabel>
-    <!-- Gem Type -->
-    <FloatLabel variant="on" class="my-4">
-      <InputText
-        id="on_label"
-        v-model="gem.price"
-        class="border w-full h-10 pl-2"
-      />
-      <label for="on_label" class="text-sm text-label">Gem Price</label>
-    </FloatLabel>
-    <div class="flex justify-end gap-2 w-full mt-6">
-      <Button
-        type="button"
-        label="Discard"
-        severity="secondary"
-        @click="addGermVisible = false"
-        class="bg-accentwhite border text-sm text-red-500 border-red-500 px-4 py-2 mr-auto"
-      ></Button>
-      <Button
-        type="button"
-        label="Add Gem"
-        class="bg-primarylight px-4 py-2 text-sm text-accentwhite float-right"
-        @click="addGem"
-      ></Button>
-    </div>
+    <product-add-germ
+      :gem="gem"
+      :gemTypes="gemTypes"
+      :gemColors="gemColors"
+      :gemMassUnits="gemMassUnits"
+      @addGem="addGem"
+    />
   </Dialog>
+  <BlockUI :blocked="blockScreen" fullScreen>
+    <div
+      class="fixed inset-0 flex justify-center items-center"
+      v-show="blockScreen"
+    >
+      <ProgressSpinner />
+    </div>
+  </BlockUI>
+  <Drawer
+    v-model:visible="drawerVisible"
+    header="Product Detail"
+    position="right"
+  >
+    <product-detail :product="product" />
+  </Drawer>
 </template>
 
 <style scoped>
