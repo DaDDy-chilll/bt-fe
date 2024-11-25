@@ -18,6 +18,13 @@ definePageMeta({ layout: "authentication" });
 useHead({ title: "Login" });
 
 /**
+ *@description Remember me
+ *@author PSK
+ *@created 2024-11-22
+ *@updated 2024-11-24
+ */
+const remember_me = ref<boolean>(false);
+/**
  *@description Value of email and password
  *@author PSK
  *@created 2024-11-22
@@ -39,14 +46,6 @@ const error: ErrorPayload = reactive<ErrorPayload>({
   password: null,
 });
 
-/**
- *@description Remember me
- *@author PSK
- *@created 2024-11-22
- *@updated 2024-11-24
- */
-const remember_me = ref(false);
-
 
 /**
  *@description Check validation 
@@ -56,14 +55,17 @@ const remember_me = ref(false);
  */
 const checkValidation = () => {
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; 
- if (!loginPayload.email) error.email = errorMessage.EMAIL_REQUIRED;
- else if(!emailPattern.test(loginPayload.email)) error.email = errorMessage.EMAIL_INVALID;
- else error.email = null;
- 
- if (!loginPayload.password) error.password = errorMessage.PASSWORD_REQUIRED;
- else if(!passwordPattern.test(loginPayload.password)) error.password = errorMessage.PASSWORD_INVALID;
- else error.password = null;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  //Check for Mail
+  if (!loginPayload.email) error.email = errorMessage.EMAIL_REQUIRED;
+  else if (!emailPattern.test(loginPayload.email)) error.email = errorMessage.EMAIL_INVALID;
+  else error.email = null;
+
+  //Check for Password
+  if (!loginPayload.password) error.password = errorMessage.PASSWORD_REQUIRED;
+  else if (!passwordPattern.test(loginPayload.password)) error.password = errorMessage.PASSWORD_INVALID;
+  else error.password = null;
 }
 
 /**
@@ -72,9 +74,9 @@ const checkValidation = () => {
  *@created 2024-11-22
  *@updated 2024-11-24
  */
- const login = async () => {
+const login = async () => {
   checkValidation();
-  if(Object.values(error).every(value => value === null)) {
+  if (Object.values(error).every(value => value === null)) {
     try {
       await store.login(loginPayload);
     } catch (error) {
@@ -83,14 +85,13 @@ const checkValidation = () => {
   }
 };
 
-
 /**
  *@description Google login function
  *@author PSK
  *@created 2024-11-24
  *@updated ****-**-**
  */
-const googleLogin =  () => {
+const googleLogin = () => {
   console.log("google login");
 }
 
@@ -104,7 +105,6 @@ const facebookLogin = () => {
   console.log("facebook login");
 }
 
-
 </script>
 
 
@@ -116,98 +116,48 @@ const facebookLogin = () => {
     <!-- Email and Password -->
     <div class="space-y-7 my-3">
       <div>
-        <FloatLabel
-          variant="on"
-          :class="[
-            'text-sm  bg-transparent border-b',
-            error?.email ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
-          ]"
-        >
-          <InputText
-            name="email"
-            type="text"
-            id="on_label"
-            v-model="loginPayload.email"
-            autocomplete="off"
-            class="bg-transparent p-2 w-full text-accentblack dark:text-accentwhite"
-          />
-          <label
-            for="on_label"
-            :class="[
-              'bg-transparent',
-              error?.email ? 'text-red-500' : 'text-label  dark:text-accentwhite',
-            ]"
-            >Email</label
-          >
+        <FloatLabel variant="on" :class="[
+          'text-sm  bg-transparent border-b',
+          error?.email ? 'border-red-500' : 'border-accentblack dark:border-accentwhite'
+        ]">
+          <InputText name="email" type="text" id="on_label" v-model="loginPayload.email" autocomplete="off"
+            class="bg-transparent p-2 w-full text-accentblack dark:text-accentwhite" />
+          <label for="on_label" :class="[
+            'bg-transparent',
+            error?.email ? 'text-red-500' : 'text-label  dark:text-accentwhite',
+          ]">Email</label>
         </FloatLabel>
-        <Message
-          v-if="error?.email"
-          severity="error"
-          variant="simple"
-          size="small"
-          class="mt-1"
-          >{{ error.email }}</Message
-        >
+        <Message v-if="error?.email" severity="error" variant="simple" size="small" class="mt-1">{{ error.email }}
+        </Message>
       </div>
       <div>
-        <FloatLabel
-          variant="on"
-          :class="[
-            'text-sm  bg-transparent border-b',
-            error?.password ? 'border-red-500': 'border-accentblack dark:border-accentwhite'
-          ]"
-        >
-          <Password
-            id="on_label"
-            v-model="loginPayload.password"
-            toggleMask
-            autocomplete="off"
-            class=" p-2 rounded-none w-full text-accentblack dark:text-accentwhite "
-            :feedback="false"
-            fluid
-            :inputStyle="{'background-color': 'transparent'}"
-          />
-          <label
-            for="on_label"
-            :class="[
-              'bg-transparent ',
-              error?.password ? 'text-red-500' : 'text-label dark:text-accentwhite',
-            ]"
-            >Password</label
-          >
+        <FloatLabel variant="on" :class="[
+          'text-sm  bg-transparent border-b',
+          error?.password ? 'border-red-500' : 'border-accentblack dark:border-accentwhite'
+        ]">
+          <Password id="on_label" v-model="loginPayload.password" toggleMask autocomplete="off"
+            class=" p-2 rounded-none w-full text-accentblack dark:text-accentwhite " :feedback="false" fluid
+            :inputStyle="{ 'background-color': 'transparent' }" />
+          <label for="on_label" :class="[
+            'bg-transparent ',
+            error?.password ? 'text-red-500' : 'text-label dark:text-accentwhite',
+          ]">Password</label>
         </FloatLabel>
-        <Message
-          v-if="error?.password"
-          severity="error"
-          size="small"
-          variant="simple"
-          class="mt-1"
-          >{{ error.password }}</Message
-        >
+        <Message v-if="error?.password" severity="error" size="small" variant="simple" class="mt-1">{{ error.password }}
+        </Message>
       </div>
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
-          <Checkbox
-            v-model="remember_me"
-            inputId="remember_me"
-            name="remember_me"
-            value="remember_me"
-          />
-          <label for="remember_me" class="select-none text-sm text-accentblack dark:text-accentwhite cursor-pointer hover:text-accentblack/50 dark:hover:text-acc/50  "
-            >Remember Me</label
-          >
+          <Checkbox v-model="remember_me" inputId="remember_me" name="remember_me" value="remember_me" />
+          <label for="remember_me"
+            class="select-none text-sm text-accentblack dark:text-accentwhite cursor-pointer hover:text-accentblack/50 dark:hover:text-acc/50  ">Remember
+            Me</label>
         </div>
-        <NuxtLink to="/forgot-password" class="text-sm text-primarylight cursor-pointer hover:text-primarylight/50  "
-          >Forgot Password?</NuxtLink
-        >
+        <NuxtLink to="/forgot-password" class="text-sm text-primarylight cursor-pointer hover:text-primarylight/50  ">
+          Forgot Password?</NuxtLink>
       </div>
-      <Button
-        type="submit"
-        severity="secondary"
-        label="Login"
-        @click="login"
-        class="w-full bg-primarylight text-white p-2 hover:bg-primarylight/70 cursor-pointer"
-      />
+      <Button type="submit" severity="secondary" label="Login" @click="login"
+        class="w-full bg-primarylight text-white p-2 hover:bg-primarylight/70 cursor-pointer" />
     </div>
 
     <!-- Register and Help -->
@@ -223,22 +173,16 @@ const facebookLogin = () => {
 
     <!-- Google and Facebook -->
     <div class="flex items-center justify-around gap-2 mt-5">
-      <button
-        @click="googleLogin"
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
-      >
+      <button @click="googleLogin"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10">
         <LogosGoogleIcon alt="google" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Google</span>
       </button>
-      <button
-        @click="facebookLogin"
-        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
-      >
+      <button @click="facebookLogin"
+        class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10">
         <LogosFacebook alt="facebook" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Facebook</span>
       </button>
     </div>
   </div>
 </template>
-
-
