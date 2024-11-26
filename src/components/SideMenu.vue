@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import PanelMenu from "primevue/panelmenu";
 
+
 const items = ref([
   {
     label: "Dashboard",
@@ -148,10 +149,10 @@ const items = ref([
     />
     <PanelMenu :model="items" class="pt-4">
       <template #item="{ item }">
-        <a
+        <NuxtLink
           v-ripple
           class="flex align-items-center items-center py-2 cursor-pointer"
-          :href="item.src"
+          :to="item.src"
         >
           <span :class="[item.icon, 'text-muted']" />
           <span class="ml-2 text-muted">{{ item.label }}</span>
@@ -159,7 +160,7 @@ const items = ref([
           <span v-if="item.shortcut" class="ml-auto">
             <span :class="[item.shortcut, 'text-muted']" />
           </span>
-        </a>
+        </NuxtLink>
       </template>
     </PanelMenu>
   </div>
