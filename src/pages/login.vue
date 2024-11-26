@@ -110,9 +110,11 @@ const facebookLogin = () => {
 
 <template>
   <div class="w-full sm:max-w-md bg-accentwhite rounded-xl p-8 shadow-md dark:bg-accentblack">
+  
     <!-- Logo -->
     <LOGO alt="logo" class=" mx-auto mb-3" />
     <h1 class="text-2xl font-medium text-center text-accentblack dark:text-accentwhite">Login</h1>
+
     <!-- Email and Password -->
     <div class="space-y-7 my-3">
       <div>
@@ -184,5 +186,6 @@ const facebookLogin = () => {
         <span class="text-accentblack dark:text-accentwhite">Facebook</span>
       </button>
     </div>
+
   </div>
 </template>
