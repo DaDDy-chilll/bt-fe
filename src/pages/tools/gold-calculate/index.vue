@@ -2,14 +2,13 @@
 import { ref} from "vue";
 import { useRouter } from "vue-router";
 import BackIcon from "@/assets/icons/back_icon.vue";
-import method1 from "./method1.json";
-import method2 from "./method2.json";
+import goldmethods from "./goldmethods.json";
 import { GoldMethod } from "@/types/goldMethod";
 import MethodTable from "./methodTable.vue";
 
 //fetching data
-const method1Data = method1;
-const method2Data = method2;
+const method1Data = goldmethods.filter((method) => method.method === "method1");
+const method2Data = goldmethods.filter((method) => method.method === "method2");
 
 //v-model variables
 const m1_model_data = ref<GoldMethod[]>(method1Data);

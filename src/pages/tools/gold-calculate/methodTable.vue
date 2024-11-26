@@ -39,11 +39,11 @@ const onSaveMethod1 = () => {
           </thead>
           <tbody>
             <tr
-              v-for="item in model_data"
+              v-for="(item, index) in model_data"
               :key="item.id"
               class="border-b border-gray-200"
             >
-              <td class="py-3 px-4">{{ item.id }}.</td>
+              <td class="py-3 px-4">{{ index + 1 }}.</td>
               <td class="py-3 px-4">{{ item.weight }}</td>
               <td class="py-3 px-4">{{ item.category }}</td>
               <td class="py-3 px-4">
