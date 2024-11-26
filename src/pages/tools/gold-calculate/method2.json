@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "method": "method2",
+        "weight": "Yway",
+        "category": "Yangon",
+        "one_kyatt": 1,
+        "five_muu": 1,
+        "one_matt": 1,
+        "one_mu": 1,
+        "one_pae": 1
+    },
+    {
+        "id": 2,
+        "method": "method2",
+        "weight": "Pe",
+        "category": "Yangon",
+        "one_kyatt": 1,
+        "five_muu": 1,
+        "one_matt": 1,
+        "one_mu": 1,
+        "one_pae": 1
+    },
+    {
+        "id": 3,
+        "method": "method2",
+        "weight": "Yway",
+        "category": "Mandalay",
+        "one_kyatt": 1,
+        "five_muu": 1,
+        "one_matt": 1,
+        "one_mu": 1,
+        "one_pae": 1
+    },
+    {
+        "id": 4,
+        "method": "method2",
+        "weight": "Pe",
+        "category": "Mandalay",
+        "one_kyatt": 1,
+        "five_muu": 1,
+        "one_matt": 1,
+        "one_mu": 1,
+        "one_pae": 1
+    }
+]
