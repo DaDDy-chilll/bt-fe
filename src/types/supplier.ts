@@ -23,3 +23,11 @@ export type Memo = {
   date: string;
   text: string;
 };
+
+export type ManageSupplier = {
+  search: string;
+  dateFrom: string;
+  dateTo: string;
+  state: string;
+  city: string;
+};

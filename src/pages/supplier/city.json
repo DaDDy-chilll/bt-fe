@@ -1,0 +1,22 @@
+{
+  "cities": {
+    "Ayeyarwady": ["Pathein", "Hinthada", "Myaungmya", "Bogale", "Maubin", "Kyaunggon", "Ngapudaw", "Labutta", "Pyapon", "Wakema", "Dedaye", "Kyonpyaw", "Thabaung", "Danubyu"],
+    "Bago": ["Bago", "Pyay", "Taungoo", "Nyaunglebin", "Tharrawaddy", "Letpadan", "Paukkhaung", "Shwedaung", "Zigon", "Gyobingauk", "Padaung", "Paungde", "Pyuntaza", "Oktwin"],
+    "Chin": ["Hakha", "Falam", "Tonzang", "Tedim", "Mindat", "Paletwa", "Kanpetlet", "Matupi", "Rezua", "Thantlang"],
+    "Kachin": ["Myitkyina", "Bhamo", "Mohnyin", "Putao", "Shwegu", "Waingmaw", "Mogaung", "Sumprabum", "Chipwi", "Injangyang", "Tanai", "Tsawlaw"],
+    "Kayah": ["Loikaw", "Demoso", "Hpruso", "Shadaw", "Bawlakhe", "Mese", "Pasaung"],
+    "Kayin": ["Hpa-An", "Myawaddy", "Hlaingbwe", "Kawkareik", "Thandaung", "Hpapun", "Kyainseikgyi"],
+    "Magway": ["Magway", "Minbu", "Thayet", "Pakokku", "Yenangyaung", "Chauk", "Natmauk", "Pwintbyu", "Salin", "Taungdwingyi", "Aunglan", "Kamma", "Seikphyu", "Myaing"],
+    "Mandalay": ["Mandalay", "Pyin Oo Lwin", "Meiktila", "Kyaukse", "Myingyan", "Amarapura", "Nyaung-U", "Thabeikkyin", "Madaya", "Mogok", "Tada-U", "Singu", "Sintgaing", "Yamethin"],
+    "Mon": ["Mawlamyine", "Thaton", "Ye", "Kyaikto", "Mudon", "Chaungzon", "Thanbyuzayat", "Paung", "Bilin"],
+    "Rakhine": ["Sittwe", "Thandwe", "Kyaukphyu", "Mrauk-U", "Maungdaw", "Buthidaung", "Minbya", "Ponnagyun", "Rathedaung", "Ann", "Gwa", "Toungup", "Ramree", "Manaung"],
+    "Sagaing": ["Sagaing", "Monywa", "Shwebo", "Katha", "Kale", "Tamu", "Mingin", "Mawlaik", "Yinmabin", "Kani", "Kanbalu", "Pinlebu", "Banmauk", "Hkamti"],
+    "Shan": ["Taunggyi", "Lashio", "Kengtung", "Muse", "Hsipaw", "Nyaungshwe", "Kalaw", "Pindaya", "Monghsat", "Mongton", "Mongyai", "Mongpan", "Mongping", "Mongkhet"],
+    "Tanintharyi": ["Dawei", "Myeik", "Kawthoung", "Palaw", "Thayetchaung", "Launglon", "Yebyu", "Tanintharyi", "Bokpyin"],
+    "Yangon": ["Yangon", "Thanlyin", "Hmawbi", "Hlegu", "Twante", "Dala", "Insein", "Kyauktan", "Kayan", "Htantabin", "Dagon", "Shwepyithar", "Hlaingthaya", "Mingaladon"]
+  }
+}
+
+
+
+
