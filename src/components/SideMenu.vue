@@ -124,6 +124,7 @@ const items = ref([
       {
         label: "Gold Calculate",
         icon: "pi pi-fw pi-calculator",
+        src: "/tools/gold-calculate",
       },
     ],
   },
