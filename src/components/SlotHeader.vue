@@ -9,14 +9,14 @@
     <p class="text-accentblack my-2 px-6 py-3 float-left text-xl">
       {{ title }}
     </p>
-    <div class="float-right w-44 mx-5">
-      <a v-if="button?.link" :href="button?.link">
+    <div class="float-right  mx-5">
+      <NuxtLink v-if="button?.link" :to="button?.link">
         <Button
           :label="button?.label"
-          class="w-full bg-primarylight text-accentwhite py-2 text-sm"
+          class="w-full bg-primarylight px-3 text-accentwhite py-2 text-sm"
           :icon="button?.icon"
         />
-      </a>
+      </NuxtLink>
     </div>
   </div>
 </template>

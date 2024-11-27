@@ -10,6 +10,7 @@ export type Gem = {
 
 export type Product = {
   id: number;
+  warehouse: string;
   images: string[];
   productCategory: {
     id: number;

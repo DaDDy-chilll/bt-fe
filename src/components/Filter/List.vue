@@ -70,7 +70,7 @@ const toggleTypeFilter = (event, item) => {
     </Popover>
   </div>
 
-  <Popover ref="op" class="!bg-primary text-accentwhite">
+  <Popover ref="op" class="!text-accentblack !border-muted border px-2">
     <div
       v-for="item in filterItems"
       :key="item.name"
@@ -84,7 +84,7 @@ const toggleTypeFilter = (event, item) => {
         binary
         class="mr-2"
       />
-      <label :for="item.name" class="text-accentwhite">{{ item.name }}</label>
+      <label :for="item.name" class="text-accentblack">{{ item.name }}</label>
     </div>
   </Popover>
 </template>
@@ -92,5 +92,10 @@ const toggleTypeFilter = (event, item) => {
 <style scoped>
 :deep(.p-checkbox-checked .p-checkbox-box) {
   @apply !bg-primarylight;
+}
+
+:deep(.p-checkbox) {
+  @apply border-muted  drop-shadow-sm shadow-sm rounded-md;
+  border-width: 0.09rem;
 }
 </style>

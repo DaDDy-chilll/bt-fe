@@ -156,10 +156,10 @@ const filterSelected = (event) => {
         }"
       />
       <div class="flex justify-center items-center px-6">
-        <div class="w-full float-left flex justify-start items-center">
+        <div class="w-full float-left flex justify-start items-center ml-3">
           <filter-list
             :filterItems="filterItems"
-            class="flex justify-start items-center"
+            class="flex justify-start  items-center"
           />
         </div>
       </div>

@@ -37,13 +37,13 @@ const applyFilter = () => {
         }}</label>
       </div>
     </div>
-<div class="mt-3 flex justify-end">
+<!-- <div class="mt-3 flex justify-end">
     <Button
       label="Apply"
       class="bg-primarylight px-4 py-1 text-accentwhite text-xs hover:bg-primary"
       @click="applyFilter"
     />
-    </div>
+    </div> -->
 </template>
 
 <style scoped>

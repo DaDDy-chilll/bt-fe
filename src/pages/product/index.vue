@@ -11,6 +11,7 @@ import ProductCategory from "./productcategory.json";
 import ProductType from "./producttype.json";
 import GoldType from "./goldtype.json";
 import GoldColor from "./goldcolor.json";
+import Warehouse from "./warehouse.json";
 
 // Fetching Data
 const gemTypes = GemType;
@@ -22,6 +23,7 @@ const goldTypes = GoldType;
 const goldColors = GoldColor;
 const units = LengthUnit;
 const weightUnits = WeightUnit;
+const warehouses = Warehouse;
 
 // V-Model Variables
 const images = ref([
@@ -35,6 +37,7 @@ const images = ref([
 
 const product = ref<Product>({
   id: 0,
+  warehouse: "",
   images: [],
   productCategory: "",
   productType: "",
@@ -131,11 +134,12 @@ const addProduct = () => {
             <div class="card flex items-center justify-center text-base">
               <span class="mr-4">Warehouse</span>
               <Select
-                v-model="selectedCity"
-                :options="cities"
-                optionLabel="name"
-                placeholder="Select a City"
-                class="w-full md:w-40 bg-primarylight text-accentwhite"
+                v-model="product.warehouse"
+                :options="warehouses"
+                optionLabel="value"
+                optionValue="id"
+                placeholder="Select a Warehouse"
+                class="w-full md:w-48 bg-primarylight text-sm text-accentwhite"
               />
             </div>
           </div>
