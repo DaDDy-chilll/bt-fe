@@ -1,5 +1,5 @@
 [
-    { "id": 1, "category": "Pure Gold" },
-    { "id": 2, "category": "Pure Gem" },
-    { "id": 3, "category": "Gold + Gem" }
+    { "id": 1, "value": "Pure Gold" },
+    { "id": 2, "value": "Pure Gem" },
+    { "id": 3, "value": "Gold + Gem" }
 ]

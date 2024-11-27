@@ -4,6 +4,8 @@ import { ref } from "vue";
 const props = defineProps({
   product: Object,
 });
+
+console.log(props.product);
 </script>
 
 <template>
@@ -27,12 +29,12 @@ const props = defineProps({
       <div class="flex justify-between items-center my-4">
         <p class="text-sm text-accentblack">Product Category</p>
         <p class="text-sm text-label">
-          {{ product.productCategory.category }}
+          {{ product.productCategory.value }}
         </p>
       </div>
       <div class="flex justify-between items-center my-4">
         <p class="text-sm text-accentblack">Product Type</p>
-        <p class="text-sm text-label">{{ product.productType.type }}</p>
+        <p class="text-sm text-label">{{ product.productType.value }}</p>
       </div>
       <div class="flex justify-between items-center my-4">
         <p class="text-sm text-accentblack">Length</p>
@@ -53,11 +55,11 @@ const props = defineProps({
       <div class="border-t border-muted w-full my-4"></div>
       <div class="flex justify-between items-center my-4">
         <p class="text-sm text-accentblack">Gold Type</p>
-        <p class="text-sm text-label">{{ product.goldType.type }}</p>
+        <p class="text-sm text-label">{{ product.goldType.value }}</p>
       </div>
       <div class="flex justify-between items-center my-4">
         <p class="text-sm text-accentblack">Gold Color</p>
-        <p class="text-sm text-label">{{ product.goldColor.color }}</p>
+        <p class="text-sm text-label">{{ product.goldColor.value }}</p>
       </div>
       <div class="flex justify-between items-center my-4">
         <p class="text-sm text-accentblack">Size</p>
@@ -82,17 +84,17 @@ const props = defineProps({
       <div class="border-t border-muted w-full my-4"></div>
       <div
         class="flex justify-between items-center my-4"
-        v-for="(germ, index) in gemSlot"
+        v-for="(germ, index) in product.gems"
         :key="index"
       >
         <p class="text-sm text-accentblack">Gem Slot {{ index + 1 }}</p>
         <p class="text-sm text-label">
           <img
-            :src="gemTypes[germ.type - 1].icon"
+            :src="germ.icon"
             alt="germ"
             class="w-5 h-5 mx-2 float-left"
           />
-          {{ gemTypes[germ.type - 1].type }}
+          {{ germ.type }}
         </p>
       </div>
       <!-- Divider -->

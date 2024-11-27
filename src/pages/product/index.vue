@@ -93,7 +93,7 @@ const drawerVisible = ref(false);
  */
 const addGem = (gem: Gem) => {
   addGermVisible.value = false;
-  gemSlot.value.push(gem);
+  product.value.gems.push(gem);
   gem.value = {
     id: 0,
     type: "",
@@ -114,7 +114,6 @@ const removeGem = (index: number) => {
 };
 
 const addProduct = () => {
-  console.log(product.value);
   blockScreen.value = true;
   setTimeout(() => {
     blockScreen.value = false;
@@ -158,7 +157,7 @@ const addProduct = () => {
                   v-model="product.productCategory"
                   inputId="on_label"
                   :options="productCategories"
-                  optionLabel="category"
+                  optionLabel="value"
                   class="w-full border h-10 dropdown-svg-white"
                 />
                 <label for="on_label" class="text-sm text-label"
@@ -172,11 +171,11 @@ const addProduct = () => {
                   v-model="product.productType"
                   inputId="on_label"
                   :options="productTypes"
-                  optionLabel="type"
+                  optionLabel="value"
                   class="w-full border h-10 dropdown-svg-white"
                 />
                 <label for="on_label" class="text-sm text-label"
-                  >Product Type</label
+                  >Product Type <span class="text-red-500">*</span></label
                 >
               </FloatLabel>
             </div>
@@ -213,8 +212,8 @@ const addProduct = () => {
                   <Select
                     v-model="product.productLength.unit"
                     :options="units"
-                    optionLabel="unit"
-                    optionValue="unit"
+                    optionLabel="value"
+                    optionValue="value"
                     class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
                   />
                 </div>
@@ -234,8 +233,8 @@ const addProduct = () => {
                   <Select
                     v-model="product.productWeight.unit"
                     :options="weightUnits"
-                    optionLabel="unit"
-                    optionValue="unit"
+                    optionLabel="value"
+                    optionValue="value"
                     class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
                   />
                 </div>
@@ -252,7 +251,7 @@ const addProduct = () => {
                   v-model="product.goldType"
                   inputId="on_label"
                   :options="goldTypes"
-                  optionLabel="type"
+                  optionLabel="value"
                   class="w-full border h-10 dropdown-svg-white"
                 />
                 <label for="on_label" class="text-sm text-label"
@@ -266,7 +265,7 @@ const addProduct = () => {
                   v-model="product.goldColor"
                   inputId="on_label"
                   :options="goldColors"
-                  optionLabel="color"
+                  optionLabel="value"
                   class="w-full border h-10 dropdown-svg-white"
                 />
                 <label for="on_label" class="text-sm text-label"
@@ -291,8 +290,8 @@ const addProduct = () => {
                 <Select
                   v-model="product.goldSize.unit"
                   :options="units"
-                  optionLabel="unit"
-                  optionValue="unit"
+                  optionLabel="value"
+                  optionValue="value"
                   class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
                 />
               </div>
@@ -311,8 +310,8 @@ const addProduct = () => {
                 <Select
                   v-model="product.goldWeight.unit"
                   :options="weightUnits"
-                  optionLabel="unit"
-                  optionValue="unit"
+                  optionLabel="value"
+                  optionValue="value"
                   class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
                 />
               </div>
@@ -465,7 +464,7 @@ const addProduct = () => {
                     alt="germ"
                     class="w-5 h-5 mx-2 float-left"
                   />
-                  {{ gemTypes[germ.type - 1].type }}
+                  {{ gemTypes[germ.type - 1].value }}
                 </p>
                 <i
                   class="pi pi-trash text-red-500 float-right"
@@ -476,7 +475,7 @@ const addProduct = () => {
                 <div class="flex justify-between items-center my-2">
                   <p class="text-sm text-label">Color</p>
                   <p class="text-sm text-label">
-                    {{ gemColors[germ.color - 1].color }}
+                    {{ gemColors[germ.color - 1].value }}
                   </p>
                 </div>
                 <div class="flex justify-between items-center my-2">

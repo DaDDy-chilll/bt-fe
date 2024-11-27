@@ -1,4 +1,4 @@
 [
-    { "unit": "g", "id": 1 },
-    { "unit": "kg", "id": 2 }
+    { "id": 1, "value": "g" },
+    { "id": 2, "value": "kg" }
 ]

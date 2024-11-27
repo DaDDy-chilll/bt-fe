@@ -29,6 +29,15 @@ export default {
       backgroundImage: {
         'light_img': "url(@/assets/images/light_bg.jpg)",
         'dark_img': "url(@/assets/images/dark_bg.jpg)",
+      },
+      fontSize: {
+        'small': '9px',
+        'medium': '12px',
+        'large': '16px',
+        'xlarge': '20px',
+        '2xlarge': '24px',
+        '3xlarge': '32px',
+        '4xlarge': '40px',
       }
     },
   },

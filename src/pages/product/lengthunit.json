@@ -1,4 +1,4 @@
 [
-    { "unit": "mm", "id": 1 },
-    { "unit": "cm", "id": 2 }
+    { "id": 1, "value": "mm" },
+    { "id": 2, "value": "cm" }
 ]

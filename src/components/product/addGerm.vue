@@ -27,7 +27,7 @@ const addGem = () => {
       v-model="gem.type"
       inputId="on_label"
       :options="gemTypes"
-      optionLabel="type"
+      optionLabel="value"
       optionValue="id"
       class="w-full border h-10 dropdown-svg-white"
     />
@@ -39,7 +39,7 @@ const addGem = () => {
       v-model="gem.color"
       inputId="on_label"
       :options="gemColors"
-      optionLabel="color"
+      optionLabel="value"
       optionValue="id"
       class="w-full border h-10 dropdown-svg-white"
     />
@@ -57,7 +57,7 @@ const addGem = () => {
       <Select
         v-model="gem.massUnit"
         :options="gemMassUnits"
-        optionLabel="unit"
+        optionLabel="value"
         optionValue="id"
         class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
       />

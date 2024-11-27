@@ -1,5 +1,5 @@
 [
-    { "id": 1, "color": "Pink Gold" },
-    { "id": 2, "color": "Rose Gold" },
-    { "id": 3, "color": "White Gold" }
+    { "id": 1, "value": "Pink Gold" },
+    { "id": 2, "value": "Rose Gold" },
+    { "id": 3, "value": "White Gold" }
 ]

@@ -1,6 +1,6 @@
 [
-    { "id": 1, "color": "White" },
-    { "id": 2, "color": "Black" },
-    { "id": 3, "color": "Red" },
-    { "id": 4, "color": "Blue" }
+    { "id": 1, "value": "White" },
+    { "id": 2, "value": "Black" },
+    { "id": 3, "value": "Red" },
+    { "id": 4, "value": "Blue" }
 ]
