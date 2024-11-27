@@ -7,6 +7,7 @@ import goldType from "./goldtype.json";
 import staff from "./staff.json";
 import gemType from "./gemtype.json";
 import warehouse from "./warehouse.json";
+import supplier from "./supplier.json";
 
 const products = ref(productlist);
 const op = ref();
@@ -30,6 +31,7 @@ const filterItems = ref([
     isSelected: true,
     filterItems: {
       value: "",
+      list: [],
     },
   },
   {
@@ -84,11 +86,12 @@ const filterItems = ref([
   },
   {
     name: "Supplier",
-    type: "number",
+    type: "select",
     icon: "pi pi-user",
     isSelected: true,
     filterItems: {
       value: "",
+      list: supplier,
     },
   },
 ]);

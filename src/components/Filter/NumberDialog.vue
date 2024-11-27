@@ -5,20 +5,30 @@ const props = defineProps({
   textFilterItems: Object,
 });
 
-// const selectedOption = ref([
-//   { label: "Contains", value: "Contains" },
-// ]);
+const minValue = ref(0);
+const maxValue = ref(0);
+
 </script>
 
 <template>
   <FloatLabel variant="on" class="mt-1.5">
     <InputNumber
       id="text_input"
-      v-model="textValue"
+      v-model="minValue"
       class="border w-full h-10 pl-2"
     />
     <label for="text_input" class="text-sm text-label">
-      {{ textFilterItems.type }}
+      Min
+    </label>
+  </FloatLabel>
+   <FloatLabel variant="on" class="mt-1.5">
+    <InputNumber
+      id="text_input"
+      v-model="maxValue"
+      class="border w-full h-10 pl-2"
+    />
+    <label for="text_input" class="text-sm text-label">
+      Max
     </label>
   </FloatLabel>
   <div class="mt-6 flex justify-end">

@@ -6,45 +6,35 @@ const props = defineProps({
 });
 
 const op = ref();
-const textFilter = ref(false);
-const numberFilter = ref(false);
-const dateFilter = ref(false);
-const selectFilter = ref(false);
+const textop = ref();
+const selectop = ref();
+const textFilterItem = ref();
+const selectFilterItem = ref();
 
+
+/**
+ * toggle filter
+ * @param {Object} event
+ */
 const toggleFilter = (event) => {
   op.value.toggle(event);
 };
-
-const textFilterItem = ref();
-const selectFilterItem = ref();
-const numberFilterItem = ref();
 
 /**
  * type filter
  * @param {Object} item
  */
-const typeFilter = (item) => {
-  resetFilter();
+const toggleTypeFilter = (event, item) => {
   if (item.type === "text") {
-    textFilter.value = true;
-    textFilterItem.value = item.filterItems;
+    textFilterItem.value = item;
+    textop.value.toggle(event);
   } else if (item.type === "select") {
-    selectFilter.value = true;
-    selectFilterItem.value = item.filterItems;
-  } else if (item.type === "number") {
-    numberFilter.value = true;
-    numberFilterItem.value = item.filterItems;
+    selectFilterItem.value = item;
+    selectop.value.toggle(event);
   }
 };
 
-/**
- * reset filter
- */
-const resetFilter = () => {
-  textFilter.value = false;
-  selectFilter.value = false;
-  numberFilter.value = false;
-};
+
 </script>
 
 <template>
@@ -66,22 +56,20 @@ const resetFilter = () => {
         class="bg-primary text-accentwhite py-2.5 px-3 text-xs rounded-md flex justify-center items-center"
         iconPos="right"
         iconClass="p-0 mx-2"
-        @click="typeFilter(item)"
+        @click="toggleTypeFilter($event, item)"
       />
     </div>
+
     <!-- text filter -->
-    <filter-text-dialog
-      :textFilterItems="textFilterItem"
-      v-model:visible="textFilter"
-    />
-
+    <Popover ref="textop" class="!border-muted border">
+      <filter-text-dialog :textFilterItems="textFilterItem" />
+    </Popover>
     <!-- select filter -->
-    <filter-select-dialog
-      :selectFilterItems="selectFilterItem"
-      v-model:visible="selectFilter"
-    />
-
+    <Popover ref="selectop" class="!border-muted border">
+      <filter-select-dialog :selectFilterItems="selectFilterItem" />
+    </Popover>
   </div>
+
   <Popover ref="op" class="!bg-primary text-accentwhite">
     <div
       v-for="item in filterItems"
