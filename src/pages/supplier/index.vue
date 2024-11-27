@@ -222,7 +222,7 @@ const sendFormData = async () => {
         </template>
       </Card>
     </div>
-    <div class="w-2/5 bg-accentwhite drop-shadow-md rounded-lg" :style="{ height: `calc(100vh - 5.5vh)` }">
+    <div class="w-2/5 bg-accentwhite drop-shadow-md rounded-lg" >
       <Card class="h-full">
         <template #title>
           <h3 class="text-lg font-bold mb-4">Memo</h3>
