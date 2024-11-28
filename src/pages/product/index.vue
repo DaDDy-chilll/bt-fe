@@ -138,8 +138,8 @@ const addProduct = () => {
                 :options="warehouses"
                 optionLabel="value"
                 optionValue="id"
-                placeholder="Select a Warehouse"
-                class="w-full md:w-48 bg-primarylight text-sm text-accentwhite"
+                placeholder="Select Warehouse"
+                class="w-full md:w-44 bg-primarylight text-sm text-accentwhite"
               />
             </div>
           </div>
