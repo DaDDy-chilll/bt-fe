@@ -24,7 +24,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   title: string;
-  button: {
+  button?: {
     label: string;
     link: string;
     icon: string;
