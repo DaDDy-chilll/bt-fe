@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "product_name": "Elegant Diamond Ring",
+    "product_id": "122412646",
+    "type": "Ring",
+    "category": "Gold + Gem",
+    "quantity": 12,
+    "attributes": {
+      "diamond": true,
+      "ruby": true
+    },
+    "carat": "24K",
+    "price": 120000000,
+    "image": "https://images.unsplash.com/photo-1604629219689-5d7d2ad5a5ae"
+  },
+  {
+    "id": 2,
+    "product_name": "Royal Ruby Necklace",
+    "product_id": "222412647",
+    "type": "Necklace",
+    "category": "Gold",
+    "quantity": 8,
+    "attributes": {
+      "diamond": false,
+      "ruby": true
+    },
+    "carat": "18K",
+    "price": 80000000,
+    "image": "https://example.com/images/necklace1.jpg"
+  },
+  {
+    "id": 3,
+    "product_name": "Charming Silver Bracelet",
+    "product_id": "322412648",
+    "type": "Bracelet",
+    "category": "Silver + Gem",
+    "quantity": 5,
+    "attributes": {
+      "diamond": true,
+      "ruby": false
+    },
+    "carat": "22K",
+    "price": 50000000,
+    "image": "https://example.com/images/bracelet1.jpg"
+  },
+  {
+    "id": 4,
+    "product_name": "Luxury Platinum Earrings",
+    "product_id": "422412649",
+    "type": "Earrings",
+    "category": "Platinum + Gem",
+    "quantity": 10,
+    "attributes": {
+      "diamond": true,
+      "ruby": true
+    },
+    "carat": "24K",
+    "price": 150000000,
+    "image": "https://example.com/images/earrings1.jpg"
+  },
+  {
+    "id": 5,
+    "product_name": "Classic Gold Pendant",
+    "product_id": "522412650",
+    "type": "Pendant",
+    "category": "Gold",
+    "quantity": 7,
+    "attributes": {
+      "diamond": false,
+      "ruby": false
+    },
+    "carat": "14K",
+    "price": 40000000,
+    "image": "https://example.com/images/pendant1.jpg"
+  },
+  {
+    "id": 6,
+    "product_name": "Sophisticated Gem Ring",
+    "product_id": "622412651",
+    "type": "Ring",
+    "category": "Silver + Gem",
+    "quantity": 6,
+    "attributes": {
+      "diamond": false,
+      "ruby": true
+    },
+    "carat": "18K",
+    "price": 60000000,
+    "image": "https://example.com/images/ring2.jpg"
+  },
+  {
+    "id": 7,
+    "product_name": "Elegant Diamond Choker",
+    "product_id": "722412652",
+    "type": "Necklace",
+    "category": "Gold + Diamond",
+    "quantity": 4,
+    "attributes": {
+      "diamond": true,
+      "ruby": false
+    },
+    "carat": "24K",
+    "price": 180000000,
+    "image": "https://example.com/images/necklace2.jpg"
+  },
+  {
+    "id": 8,
+    "product_name": "Simple Silver Bangle",
+    "product_id": "822412653",
+    "type": "Bracelet",
+    "category": "Silver",
+    "quantity": 15,
+    "attributes": {
+      "diamond": false,
+      "ruby": false
+    },
+    "carat": "10K",
+    "price": 25000000,
+    "image": "https://example.com/images/bracelet2.jpg"
+  },
+  {
+    "id": 9,
+    "product_name": "Bold Ruby Earrings",
+    "product_id": "922412654",
+    "type": "Earrings",
+    "category": "Platinum + Gem",
+    "quantity": 9,
+    "attributes": {
+      "diamond": true,
+      "ruby": false
+    },
+    "carat": "22K",
+    "price": 120000000,
+    "image": "https://example.com/images/earrings2.jpg"
+  },
+  {
+    "id": 10,
+    "product_name": "Glowing Ruby Pendant",
+    "product_id": "102412655",
+    "type": "Pendant",
+    "category": "Gold + Ruby",
+    "quantity": 3,
+    "attributes": {
+      "diamond": false,
+      "ruby": true
+    },
+    "carat": "14K",
+    "price": 45000000,
+    "image": "https://example.com/images/pendant2.jpg"
+  },
+  {
+    "id": 11,
+    "product_name": "Majestic Gemstone Ring",
+    "product_id": "112412656",
+    "type": "Ring",
+    "category": "Gold + Gem",
+    "quantity": 11,
+    "attributes": {
+      "diamond": true,
+      "ruby": true
+    },
+    "carat": "20K",
+    "price": 100000000,
+    "image": "https://example.com/images/ring3.jpg"
+  },
+  {
+    "id": 12,
+    "product_name": "Minimalist Gold Chain",
+    "product_id": "122412657",
+    "type": "Necklace",
+    "category": "Gold",
+    "quantity": 2,
+    "attributes": {
+      "diamond": false,
+      "ruby": false
+    },
+    "carat": "16K",
+    "price": 60000000,
+    "image": "https://example.com/images/necklace3.jpg"
+  },
+  {
+    "id": 13,
+    "product_name": "Opulent Platinum Cuff",
+    "product_id": "132412658",
+    "type": "Bracelet",
+    "category": "Platinum",
+    "quantity": 8,
+    "attributes": {
+      "diamond": true,
+      "ruby": true
+    },
+    "carat": "24K",
+    "price": 170000000,
+    "image": "https://example.com/images/bracelet3.jpg"
+  },
+  {
+    "id": 14,
+    "product_name": "Radiant Gem Earrings",
+    "product_id": "142412659",
+    "type": "Earrings",
+    "category": "Gold + Gem",
+    "quantity": 14,
+    "attributes": {
+      "diamond": true,
+      "ruby": true
+    },
+    "carat": "22K",
+    "price": 140000000,
+    "image": "https://example.com/images/earrings3.jpg"
+  },
+  {
+    "id": 15,
+    "product_name": "Delicate Silver Pendant",
+    "product_id": "152412660",
+    "type": "Pendant",
+    "category": "Silver",
+    "quantity": 12,
+    "attributes": {
+      "diamond": false,
+      "ruby": false
+    },
+    "carat": "18K",
+    "price": 50000000,
+    "image": "https://example.com/images/pendant3.jpg"
+  },
+  {
+    "id": 16,
+    "product_name": "Lustrous Diamond Band",
+    "product_id": "162412661",
+    "type": "Ring",
+    "category": "Gold + Diamond",
+    "quantity": 5,
+    "attributes": {
+      "diamond": true,
+      "ruby": false
+    },
+    "carat": "24K",
+    "price": 200000000,
+    "image": "https://example.com/images/ring4.jpg"
+  },
+  {
+    "id": 17,
+    "product_name": "Gleaming Gem Necklace",
+    "product_id": "172412662",
+    "type": "Necklace",
+    "category": "Silver + Gem",
+    "quantity": 3,
+    "attributes": {
+      "diamond": true,
+      "ruby": true
+    },
+    "carat": "20K",
+    "price": 75000000,
+    "image": "https://example.com/images/necklace4.jpg"
+  },
+  {
+    "id": 18,
+    "product_name": "Timeless Ruby Bangle",
+    "product_id": "182412663",
+    "type": "Bracelet",
+    "category": "Gold + Ruby",
+    "quantity": 10,
+    "attributes": {
+      "diamond": false,
+      "ruby": true
+    },
+    "carat": "22K",
+    "price": 95000000,
+    "image": "https://example.com/images/bracelet4.jpg"
+  },
+  {
+    "id": 19,
+    "product_name": "Glistening Platinum Hoops",
+    "product_id": "192412664",
+    "type": "Earrings",
+    "category": "Platinum + Gem",
+    "quantity": 7,
+    "attributes": {
+      "diamond": true,
+      "ruby": true
+    },
+    "carat": "24K",
+    "price": 130000000,
+    "image": "https://example.com/images/earrings4.jpg"
+  },
+  {
+    "id": 20,
+    "product_name": "Vintage Gold Pendant",
+    "product_id": "202412665",
+    "type": "Pendant",
+    "category": "Gold",
+    "quantity": 6,
+    "attributes": {
+      "diamond": false,
+      "ruby": false
+    },
+    "carat": "16K",
+    "price": 40000000,
+    "image": "https://example.com/images/pendant4.jpg"
+  }
+]

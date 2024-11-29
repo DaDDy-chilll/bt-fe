@@ -1,33 +1,52 @@
 <script setup lang="ts">
-useHead({ title: "Check Warehouse" });
-import Warehouse from "./warehouse.json";
-import Products from "./products.json";
+defineProps({
+  close: {
+    type: Function,
+    required: true,
+  },
+  product: {
+    type: Array,
+    required: true,
+  },
+  warehouses: {
+    type: Array,
+    required: true,
+  },
+  transfer: {
+    type: Function,
+    required: true,
+  },
+});
 
-const warehouses = Warehouse;
-const products: transferProduct[] = Products;
-const selectedWarehouse = ref("");
-const transferModel = ref<boolean>(true);
-
-const toogleTransferModel = () => {
-  transferModel.value = !transferModel.value;
-};
-
-const transferProducts = () => {
-  toogleTransferModel();
-};
+const fromWarehouse = ref("");
+const toWarehouse = ref("");
 </script>
 <template>
-  <div class="relative">
-    <Card>
+  <div
+    class="absolute top-0 left-0 right-0 bottom-0 bg-label bg-opacity-50 p-2 z-50 min-h-screen" 
+  >
+    <Card class="h-full relative">
       <template #title>
-        <div class="flex gap-5">
+        <div class="flex">
           <BackArrow class="cursor-pointer hover:opacity-80" />
-          <h1 class="text-2xl font-bold mb-5">Warehouse</h1>
+          <h1 class="text-lg font-bold mb-2">Warehouse Items Transfer</h1>
         </div>
         <div class="flex justify-between items-center">
-          <div class="float-left">
+          <div class="float-left flex justify-center items-center gap-5">
             <Select
-              v-model="selectedWarehouse"
+              v-model="fromWarehouse"
+              :options="warehouses"
+              optionLabel="value"
+              optionValue="id"
+              placeholder="Select Warehouse"
+              class="w-full md:w-48 bg-primarylight text-xs text-accentwhite"
+            />
+            <i
+              class="pi pi-arrow-right-arrow-left"
+              style="font-size: 1.5rem"
+            ></i>
+            <Select
+              v-model="toWarehouse"
               :options="warehouses"
               optionLabel="value"
               optionValue="id"
@@ -35,35 +54,27 @@ const transferProducts = () => {
               class="w-full md:w-48 bg-primarylight text-xs text-accentwhite"
             />
           </div>
-          <div class="float-right">
-            <Button
-              label="Transfer Products"
-              class="p-3 bg-primarylight text-xs text-accentwhite"
-              icon="pi pi-sort-alt"
-              @click="transferProducts"
-            />
-          </div>
         </div>
       </template>
       <template #content>
-        <div class="flex flex-col gap-5">
+        <div class="h-full">
           <DataTable
-            :value="products"
+            :value="product"
             stripedRows
-            class="w-full text-sm"
+            class="w-full h-full text-sm"
             scrollable
             resizableColumns
             columnResizeMode="fit"
             showGridlines
-            paginator
+             :paginator="product.length > 10"
             :rows="10"
             :rowsPerPageOptions="[10, 20, 50]"
-            :totalRecords="products.length"
+            :totalRecords="product.length"
           >
             <template #header>
               <div class="">
-                <span class="text-lg font-bold"
-                  >Total Products ({{ products.length }})</span
+                <span class="text-base font-bold"
+                  >Total Products ({{ product.length }})</span
                 >
               </div>
             </template>
@@ -113,22 +124,20 @@ const transferProducts = () => {
           </DataTable>
         </div>
       </template>
+      <template #footer>
+        <div class="flex justify-end gap-5 absolute right-5 bottom-5">
+          <Button
+            label="Discard"
+            class="py-2 px-10 bg-white border-2 border-danger text-sm text-danger"
+            @click="close"
+          />
+          <Button
+            label="Transfer"
+            class="py-2 px-10 bg-primarylight text-sm text-accentwhite"
+            @click="transfer"
+          />
+        </div>
+      </template>
     </Card>
-    <WarehouseTransferModel
-      v-if="transferModel"
-      :close="toogleTransferModel"
-      :product="products"
-      :warehouses="warehouses"
-      :transfer="transferProducts"
-    />
   </div>
 </template>
-
-<style scoped>
-:deep(.p-select-dropdown > svg) {
-  @apply text-accentwhite;
-}
-:deep(.p-select-label, .p-placeholder) {
-  @apply text-accentwhite;
-}
-</style>
