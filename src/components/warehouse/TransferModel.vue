@@ -21,11 +21,7 @@ defineProps({
 const fromWarehouse = ref("");
 const toWarehouse = ref("");
 const selectedProduct = ref();
-// const checked = ref([]);
 
-// const handleCheckboxChange = (event: any) => {
-//   checked.value = event.value;
-// };
 </script>
 <template>
   <div
@@ -91,11 +87,6 @@ const selectedProduct = ref();
               selectionMode="multiple"
               headerStyle="display: none"
             ></Column>
-            <!-- <Column field="id"  class="">
-              <template #body="slotProps">
-                <Checkbox v-model="checked" binary :value="slotProps.data.id" @change="handleCheckboxChange" />
-              </template>
-            </Column> -->
             <Column field="id_name" class="">
               <template #body="slotProps">
                 <div class="flex justify-start gap-2">
