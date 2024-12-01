@@ -10,19 +10,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Step 2: Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Deploy
+      # Step 3: Build the project locally
+      - name: Build project
+        run: npm run build
+
+      # Step 4: Generate static files (if using static site generation)
+      - name: Generate static files
+        run: npm run generate
+
+      # Step 5: Deploy to server
+      - name: Deploy to Server
+        env:
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DROPLET_IP: ${{ secrets.DROPLET_IP }}
         run: |
-          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.DROPLET_IP }} << EOF
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no "$SSH_USER@$DROPLET_IP" << 'EOF'
+            set -e
             export PATH=$PATH:/usr/local/bin
             cd /var/www/betta_inv_client_fe/
             git restore .
             git pull
+            npm ci
             npm run build
             npm run generate
           EOF
