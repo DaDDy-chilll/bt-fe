@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "name": "John Doe",
+    "phone": "09123456789", 
+    "role_id": 1,
+    "position": "Software Engineer",
+    "address": "123 Main St, Anytown, USA",
+    "email": "john.doe@example.com",
+    "emergency_contact": "Jane Doe",
+    "religion":1,
+    "dob": "1990-01-01",
+    "blood_type_id": 1,
+    "profile_path": "https://via.placeholder.com/150"
+}

@@ -1,0 +1,6 @@
+{
+  "goldUnits": [
+    { "id": 1, "name": "gram" },
+    { "id": 2, "name": "kg" }
+  ]
+}

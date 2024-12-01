@@ -1,0 +1,34 @@
+{
+  "todayGoldData": [
+    {
+      "id": 1,
+      "gold_type_id": 1,
+      "gold_weight": "100kg",
+      "ygea_price": 4000000,
+      "pyin_pa_price": 5000000,
+      "other_price": 6000000,
+      "default": 1,
+      "unit_id": 1
+    },
+    {
+      "id": 2,
+      "gold_type_id": 2,
+      "gold_weight": "200kg",
+      "ygea_price": 5000000,
+      "pyin_pa_price": 6000000,
+      "other_price": 7000000,
+      "default": 1,
+      "unit_id": 1
+    },
+    {
+      "id": 3,
+      "gold_type_id": 3,
+      "gold_weight": "300kg",
+      "ygea_price": 6000000,
+      "pyin_pa_price": 7000000,
+      "other_price": 8000000,
+      "default": 1,
+      "unit_id": 1
+    }
+  ]
+}

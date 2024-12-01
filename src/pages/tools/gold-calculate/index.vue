@@ -3,8 +3,9 @@ import { ref} from "vue";
 import { useRouter } from "vue-router";
 import BackIcon from "@/assets/icons/back_icon.vue";
 import goldmethods from "./goldmethods.json";
-import { GoldMethod } from "@/types/goldMethod";
-import MethodTable from "./methodTable.vue";
+import type {GoldMethod} from "@/types/goldMethod";
+import MethodTable from "@/components/tools/methodTable.vue";
+import slotHeader from "@/components/slotHeader.vue";
 
 //fetching data
 const method1Data = goldmethods.filter((method) => method.method === "method1");
@@ -19,13 +20,8 @@ const router = useRouter();
 
 <template>
   <div>
-    <div class="p-4 bg-accentwhite rounded-lg">
-      <!-- Header -->
-      <div class="flex items-center gap-2">
-       <button @click="router.back()"><BackIcon /></button>
-        <h1 class="sm:text-2xl text-xl font-bold">Gold Calculation Methods</h1>
-      </div>
-
+     <slotHeader title="Gold Calculation Methods"/>
+     <div class="px-6 py-2 bg-accentwhite rounded-lg">
       <!-- Method Table  1-->
       <div>
         <MethodTable :model_data="m1_model_data" />

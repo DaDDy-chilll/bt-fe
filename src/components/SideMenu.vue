@@ -133,12 +133,14 @@ const items = ref([
     icon: "pi pi-fw pi-cog",
     items: [
       {
-        label: "Profile Settings",
+        label: "Master Settings",
         icon: "pi pi-fw pi-pencil",
+        src: "/settings/masterSettings",
       },
       {
         label: "System Settings",
         icon: "pi pi-fw pi-pencil",
+        src: "/settings/systemSettings",
       },
     ],
   },
