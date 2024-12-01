@@ -8,10 +8,22 @@ const products: transferProduct[] = Products;
 const selectedWarehouse = ref("");
 const transferModel = ref<boolean>(false);
 
+/**
+ * Toggle transfer model
+ * @author PSK
+ * @created 2024-12-01
+ * @updated ****-**-**
+ */
 const toogleTransferModel = () => {
   transferModel.value = !transferModel.value;
 };
 
+/**
+ * Transfer products function
+ * @author PSK
+ * @created 2024-12-01
+ * @updated ****-**-**
+ */
 const transferProducts = () => {
   toogleTransferModel();
 };

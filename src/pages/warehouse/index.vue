@@ -10,6 +10,12 @@ const warehouse = reactive<warehousePayLoad>({
   warehouseType: "",
 });
 
+/**
+ * Create warehouse function
+ * @author PSK
+ * @created 2024-12-01
+ * @updated ****-**-**
+ */
 const createWarehouse = () => {
   console.log("createWarehouse", warehouse);
 };
