@@ -6,7 +6,7 @@ import Products from "./products.json";
 const warehouses = Warehouse;
 const products: transferProduct[] = Products;
 const selectedWarehouse = ref("");
-const transferModel = ref<boolean>(true);
+const transferModel = ref<boolean>(false);
 
 const toogleTransferModel = () => {
   transferModel.value = !transferModel.value;
@@ -21,7 +21,6 @@ const transferProducts = () => {
     <Card>
       <template #title>
         <div class="flex gap-5">
-          <BackArrow class="cursor-pointer hover:opacity-80" />
           <h1 class="text-2xl font-bold mb-5">Warehouse</h1>
         </div>
         <div class="flex justify-between items-center">

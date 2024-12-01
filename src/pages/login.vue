@@ -270,3 +270,9 @@ const facebookLogin = () => {
     </div>
   </div>
 </template>
+<style scoped>
+:deep(.p-checkbox) {
+  @apply border-muted  drop-shadow-sm shadow-sm rounded-md;
+  border-width: 0.09rem;
+}
+</style>

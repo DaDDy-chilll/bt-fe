@@ -20,10 +20,16 @@ defineProps({
 
 const fromWarehouse = ref("");
 const toWarehouse = ref("");
+const selectedProduct = ref();
+// const checked = ref([]);
+
+// const handleCheckboxChange = (event: any) => {
+//   checked.value = event.value;
+// };
 </script>
 <template>
   <div
-    class="absolute top-0 left-0 right-0 bottom-0 bg-label bg-opacity-50 p-2 z-50 min-h-screen" 
+    class="absolute top-0 left-0 right-0 bottom-0 bg-label bg-opacity-50 p-2 z-50 min-h-screen"
   >
     <Card class="h-full relative">
       <template #title>
@@ -66,10 +72,13 @@ const toWarehouse = ref("");
             resizableColumns
             columnResizeMode="fit"
             showGridlines
-             :paginator="product.length > 10"
+            :paginator="product.length > 10"
             :rows="10"
             :rowsPerPageOptions="[10, 20, 50]"
             :totalRecords="product.length"
+            v-model:selection="selectedProduct"
+            dataKey="id"
+            :showHeaders="false"
           >
             <template #header>
               <div class="">
@@ -78,7 +87,16 @@ const toWarehouse = ref("");
                 >
               </div>
             </template>
-            <Column field="id_name" header="Product ID && Name" class="">
+            <Column
+              selectionMode="multiple"
+              headerStyle="display: none"
+            ></Column>
+            <!-- <Column field="id"  class="">
+              <template #body="slotProps">
+                <Checkbox v-model="checked" binary :value="slotProps.data.id" @change="handleCheckboxChange" />
+              </template>
+            </Column> -->
+            <Column field="id_name" class="">
               <template #body="slotProps">
                 <div class="flex justify-start gap-2">
                   <img
@@ -98,10 +116,10 @@ const toWarehouse = ref("");
                 </div>
               </template>
             </Column>
-            <Column field="type" header="Product Type" class=""></Column>
-            <Column field="quantity" header="Quantity" class=""></Column>
-            <Column field="category" header="Category" class=""></Column>
-            <Column field="attributes" header="Gems" class="">
+            <Column field="type" class=""></Column>
+            <Column field="quantity" class=""></Column>
+            <Column field="category" class=""></Column>
+            <Column field="attributes" class="">
               <template #body="slotProps">
                 <div class="flex gap-2">
                   <img
@@ -119,8 +137,8 @@ const toWarehouse = ref("");
                 </div>
               </template>
             </Column>
-            <Column field="carat" header="Gole Type" class=""> </Column>
-            <Column field="price" header="Price" class=""></Column>
+            <Column field="carat" class=""> </Column>
+            <Column field="price" class=""></Column>
           </DataTable>
         </div>
       </template>
@@ -141,3 +159,11 @@ const toWarehouse = ref("");
     </Card>
   </div>
 </template>
+
+
+<style scoped>
+:deep(.p-checkbox) {
+  @apply border-muted drop-shadow-sm shadow-sm rounded-md;
+  border-width: 0.09rem;
+}
+</style>
