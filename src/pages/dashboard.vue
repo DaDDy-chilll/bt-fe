@@ -131,7 +131,7 @@ const orders = ref([
         </div>
         <div class="float-right">
           <p class="text-sm text-secondarydark">
-            Welcome John Doe / Shwe Nan Daw
+            Welcome Zayar / Shwe Nan Daw
           </p>
         </div>
       </div>
