@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import MasterNavBar from "@/components/settings/masterSettings/master-nav-bar.vue";
 import AddIcon from "~/assets/icons/add_icon.vue";
-import DeleteIcon from "~/assets/icons/delete.vue";
-import EditIcon from "~/assets/icons/edit.vue";
-import type { GoldTypes } from "~/types/goldTypes";
 import goldTypes from "./goldTypes.json";
 import { ref, watch } from "vue";
 import GoldMasterModal from "@/components/settings/masterSettings/goldMasterModal.vue";
+import DataTable from "primevue/datatable";
+import Popover from "primevue/popover";
+
 
 //variables
 const displayModal = ref(false);
@@ -15,15 +15,21 @@ const modalId = ref(0);
 
 //fetching data
 const gold_types = goldTypes;
+console.log(gold_types, "gold_types");
 
 //form data for edit modal
-const formData = ref<GoldTypes>({
+const formData = ref({
   id: 0,
-  name: " ",
-});
+  name: "",
+  unit_id: 0,
+  });
+
 
 //model variables
-const gold_types_model = ref<GoldTypes[]>(gold_types.goldTypes);
+const gold_types_model = ref(gold_types);
+
+// Ref to hold multiple popovers dynamically
+const popovers = ref<Record<number, any>>({});
 
 /********** functions **********/
 /**
@@ -38,7 +44,7 @@ const deleteGoldType = (id: number) => {
 
   //update model
   gold_types_model.value = gold_types_model.value.filter(
-    (type) => type.id !== id
+    (type: any) => type.id !== id
   );
 };
 
@@ -55,10 +61,11 @@ const editGoldType = (id: number) => {
   modalId.value = id;
   
   //set modal data
-  const goldType = gold_types_model.value.find((type) => type.id === id);
+  const goldType = gold_types_model.value.find((type: any) => type.id === id);
   formData.value = {
     id: id,
-    name: goldType?.name?.replace('K', '') || '',
+    name: goldType?.name || '',
+    unit_id: goldType?.unit_id || 0,
   };
 };
 
@@ -68,13 +75,14 @@ const editGoldType = (id: number) => {
  * @author Aye Nadi
  * @returns void
  */
-const addGoldType = (newGoldType: GoldTypes) => {
-  //api call - try catch
+const addGoldType = (newGoldType: any) => {
+  //api call - try catch / check duplicate
   //add gold type
   //update model
   const newType = {
     id: gold_types_model.value.length + 1,
-    name: newGoldType.name + "K",
+    name: newGoldType.name,
+    unit_id: newGoldType.unit_id,
   };
   gold_types_model.value.push(newType);
 
@@ -88,7 +96,7 @@ const addGoldType = (newGoldType: GoldTypes) => {
  * @author Aye Nadi
  * @returns void
  */
-const updateGoldType = (updatedGoldType: GoldTypes) => {
+const updateGoldType = (updatedGoldType: any) => {
   //api call - try catch
   //update gold type
   //update model
@@ -97,66 +105,127 @@ const updateGoldType = (updatedGoldType: GoldTypes) => {
     gold_types_model.value[index] = updatedGoldType;
   }
 };
+
+/**
+ * Toggle the popover
+ * @param event - The event that triggered the toggle
+ * @param id - The ID of the popover to toggle
+ * @author Aye Nadi
+ * @returns void
+ */
+ const toggle = (event: MouseEvent, id: number) => {
+  const popoverRef = popovers.value[id]; // Access the correct popover by ID
+  if (popoverRef) {
+    popoverRef.toggle(event);
+  }
+};
+
+
+/**
+ * Close the popover
+ * @param id - The ID of the popover to close
+ * @author Aye Nadi
+ * @returns void
+ */
+const closePopover = (id: number) => {
+  const popoverRef = document.querySelector(`[ref="op-${id}"]`) as any;
+  if (popoverRef) {
+    popoverRef.hide();
+  }
+};
 </script>
 
 <template>
   <div>
     <MasterNavBar />
     <div class="px-6">
-      <button
-        @click="(modalType = 'add'), (displayModal = true)"
+      <div class="flex md:justify-end items-center justify-start">
+        <button
+          @click="(modalType = 'add'), (displayModal = true)"
       class="bg-primarylight text-white px-4 py-2 rounded-md mt-8 mb-8"
     >
       <span class="flex items-center gap-2">
         <AddIcon />
-        Add
-      </span>
-    </button>
+          Add
+        </span>
+      </button>
+    </div>
     <!--table-->
-    <div class="w-[95%] md:w-[80%] lg:w-[60%] xl:w-[40%]">
+    <div class="w-full">
       <div class="overflow-x-auto">
-        <table
-          class="w-full border-collapse rounded-lg overflow-hidden min-w-[300px]"
-        >
-          <thead class="border border-gray-300 text-center">
-            <td class="px-4 py-2">Gold Type</td>
-            <td class="px-4 py-2">Action</td>
-          </thead>
-          <tbody>
-            <tr
-              v-if="gold_types_model.length > 0"
-              v-for="(type, index) in gold_types_model"
-              :key="type.id"
-              :class="{ 'bg-primarylight bg-opacity-50': index % 2 === 1 }"
-              class="text-center"
+        <DataTable
+            :value="gold_types_model"
+            stripedRows
+            class="w-full text-sm"
+            scrollable
+            :resizableColumns="true"
+            columnResizeMode="fit"
+            showGridlines
+            paginator
+            :rows="14"
+            :rowsPerPageOptions="[5, 10, 20]"
+            :totalRecords="gold_types_model.length"
+            responsiveLayout="scroll"
+            breakpoint="sm"
+          >
+            <!--No-->
+            <Column field="no" header="No" class="w-[15%]">
+              <template #body="slotProps">
+                {{ slotProps.index + 1 }}
+              </template>
+            </Column>
+            <!--Gold Type-->
+            <Column field="gold_type_id" header="Gold Type" class="w-[70%]">
+              <template #body="slotProps">
+                {{
+                  gold_types_model.find(
+                    (type: any) => type.id === slotProps.data.id
+                  )?.name || slotProps.data.id
+                }}
+              </template>
+            </Column>
+            <!--Action-->
+            <Column
+              field="action"
+              header="Action" 
+              class="w-[15%]"
+              alignFrozen="right"
+              frozen
             >
-              <td
-                class="border border-black border-r-0 border-l-gray-300 px-4 py-2 whitespace-nowrap"
-                :class="{
-                  'border-b-gray-300': index === gold_types_model.length - 1,
-                }"
-              >
-                <span>{{ type.name }}</span>
-              </td>
-              <td
-                class="border border-black px-4 py-2 border-l-0 border-r-gray-300"
-                :class="{
-                  'border-b-gray-300': index === gold_types_model.length - 1,
-                }"
-              >
-                <div class="flex items-center justify-center flex-wrap gap-2">
-                  <button @click="deleteGoldType(type.id)">
-                    <DeleteIcon />
-                  </button>
-                  <button @click="editGoldType(type.id)"><EditIcon /></button>
-                </div>
-              </td>
-            </tr>
-            <tr v-else>
-              <td colspan="2" class="text-center">No data</td>
-            </tr>
-          </tbody>
-        </table>
+              <template #body="slotProps">
+                <Button
+                  icon="pi pi-ellipsis-v"
+                  class="text-primarylight"
+                  @click="(e) => toggle(e, slotProps.data.id)"
+                  :key="slotProps.data.id"
+                />
+                <Popover
+                  :ref="(el) => (popovers[slotProps.data.id] = el)"
+                  appendTo="body"
+                  class="!bg-primarylight text-accentwhite sm:w-48"
+                >
+                  <div class="flex flex-col gap-4 justify-start items-start">
+
+                    <Button
+                      label="Edit"
+                      icon="pi pi-pencil"
+                      @click="
+                        (e) => {
+                          editGoldType(slotProps.data.id);
+                          closePopover(slotProps.data.id);
+                        }
+                      "
+                    />
+                    <Button
+                      label="Delete"
+                      icon="pi pi-trash"
+                      @click="deleteGoldType(slotProps.data.id)"
+                    />
+                  </div>
+                </Popover>
+              </template>
+            </Column>
+          </DataTable>
       </div>
       <GoldMasterModal
         :displayModal="displayModal"

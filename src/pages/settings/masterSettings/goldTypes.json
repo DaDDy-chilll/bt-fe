@@ -1,6 +1,5 @@
-{
-  "goldTypes": [
-    { "id": 1, "name": "24k" },
-    { "id": 2, "name": "22k" }
-  ]
-}
+[
+    { "id": 1, "name": "24k", "unit_id": 4 },
+    { "id": 2, "name": "22k", "unit_id": 4 }
+]
+

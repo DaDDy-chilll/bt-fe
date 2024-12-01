@@ -27,7 +27,7 @@ const gold_units = goldUnits;
 
 //model variables
 const today_gold_model = ref<TodayGold[]>(today_gold_data.todayGoldData);
-const gold_types_model = ref<GoldTypes[]>(gold_types.goldTypes);
+const gold_types_model = ref<any[]>(gold_types);
 const gold_units_model = ref<GoldUnits[]>(gold_units.goldUnits);
 
 //form data for edit modal

@@ -101,7 +101,7 @@ const handleImageUpload = (event: Event) => {
 
 // Computed property for profile image display
 const profileImage = computed(() => {
-  return userProfile.value.profile_path || "/path/to/default/avatar.png";
+  return userProfile.value.profile_path || "/path/to/default/avatar.png"; //TODO: need to confirm default avatar path
 });
 </script>
 

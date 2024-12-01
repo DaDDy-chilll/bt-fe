@@ -1,21 +1,33 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import type { GoldTypes } from '~/types/goldTypes';
+//import type { GoldTypes } from '~/types/goldTypes'; -- need to confirm
+import goldUnits from "../../../pages/settings/masterSettings/goldUnits.json";
+import type { GoldUnits } from "~/types/goldUnits";
 
+
+//variables
 const internalDisplayModal = ref(false);
 
+//fetching data
+const gold_units = goldUnits.goldUnits.filter((unit: GoldUnits) => unit.category === "gold_type");
+
+//form data
 const formData = ref({
     id: 0,
     name: '',
+    unit_id: 0,
 });
+
+const gold_units_model = ref<GoldUnits[]>(gold_units);
+
 
 /********** props **********/
 const props = defineProps<{
     displayModal: boolean;
-    gold_types_model: GoldTypes[];
+    gold_types_model: any[];
     modalType: string;
     modalId: number;
-    formData: GoldTypes;
+    formData: any;
 }>();
 
 /********** emits **********/
@@ -29,12 +41,14 @@ watch(
     internalDisplayModal.value = newVal;
     if (newVal && props.modalType === 'edit') {
       formData.value = {
-        name: props.formData.name.replace('K', '').replace('k', ''),
+        name: props.formData.name,
+        unit_id: props.formData.unit_id,
         id: 1
       };
     } else if (!newVal) {
       formData.value = {
         name: '',
+        unit_id: 0,
         id: 1
       };
     }
@@ -47,12 +61,13 @@ watch(
   (newVal) => {
     if (props.modalType === 'edit') {
       console.log(newVal, "newVal");
-      const name = newVal.name.replace('K', '').replace('k', '');
       formData.value = {
-        name: name.toString(),
+        name: newVal.name,
+        unit_id: newVal.unit_id,
         id: 1
       };
     }
+    console.log(formData.value, "formData");
   },
   { immediate: true }
 );
@@ -81,6 +96,10 @@ watch(
  */
 const addGoldType = () => {
   console.log("addGoldType");
+  if (formData.value.name === '') {
+    alert("Please enter a valid gold type");
+    return;
+  }
   emit('addGoldType', { ...formData.value });
 }
 
@@ -91,6 +110,7 @@ const addGoldType = () => {
  */
 const updateGoldType = () => {
   emit('updateGoldType', { ...formData.value, id: props.modalId });
+  internalDisplayModal.value = false;
 }
 
 /**
@@ -126,9 +146,9 @@ const closeModal = () => {
                 >Gold Type</label
               >
               <Select
-                v-model="formData.id"
+                v-model="formData.unit_id"
                 inputId="unit_label"
-                :options="[{id: 1, name: 'K'}, {id: 2, name: 'K'}]"
+                :options="gold_units_model"
                 optionLabel="name"
                 optionValue="id"
                 class="bg-gray-300 text-accentwhite rounded-l-none rounded-r-md"

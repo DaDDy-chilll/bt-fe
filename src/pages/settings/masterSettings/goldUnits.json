@@ -1,6 +1,9 @@
 {
   "goldUnits": [
-    { "id": 1, "name": "gram" },
-    { "id": 2, "name": "kg" }
+    { "id": 1, "name": "gram", "category": "weight" },
+    { "id": 2, "name": "kg", "category": "weight" },
+    { "id": 3, "name": "ounce", "category": "weight" },
+    { "id": 4, "name": "K", "category": "gold_type" },
+    { "id": 5, "name": "G", "category": "gold_type" }
   ]
 }

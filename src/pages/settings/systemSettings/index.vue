@@ -9,8 +9,10 @@ import permissions from "./permissions.json";
 import type { Permission } from "@/types/permission";
 import PermissionModal from "@/components/settings/systemSettings/permissionModal.vue";
 
+//variables
 const showPermissionModal = ref(false);
 const editPagePermissionMode = ref(false);
+
 //temp fetching data
 const pageList = ref<Page[]>(pages);
 const roleList = ref<Role[]>(roles);
