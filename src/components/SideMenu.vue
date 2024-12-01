@@ -51,10 +51,12 @@ const items = ref([
       {
         label: "New Supplier",
         icon: "pi pi-fw pi-plus",
+        src: "/supplier",
       },
       {
         label: "Manage Suppliers",
         icon: "pi pi-fw pi-pencil",
+        src: "/supplier/manage",
       },
     ],
   },
