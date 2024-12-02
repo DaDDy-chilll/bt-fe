@@ -8,10 +8,13 @@ import type { Role } from "@/types/role";
 import permissions from "./permissions.json";
 import type { Permission } from "@/types/permission";
 import PermissionModal from "@/components/settings/systemSettings/permissionModal.vue";
+import AddItemModal from "@/components/settings/systemSettings/addItemModal.vue";
 
 //variables
 const showPermissionModal = ref(false);
 const editPagePermissionMode = ref(false);
+const addItemModal = ref(false);
+const addItemType = ref('');
 
 //temp fetching data
 const pageList = ref<Page[]>(pages);
@@ -70,6 +73,22 @@ const handleSavePermission = (permission: Permission) => {
   console.log(permission);
 };
 
+/**
+ * Handle add item
+ * @param item - The item object
+ * @author Aye Nadi
+ * @returns void
+ */
+const handleAddItem = (item: any) => {
+  if(addItemType.value === 'role'){
+    roleList.value.push(item);
+  }
+  else{
+    pageList.value.push(item);
+  }
+  addItemModal.value = false;
+}
+
 </script>
 <template>
   <div>
@@ -122,12 +141,12 @@ const handleSavePermission = (permission: Permission) => {
       <div class="flex justify-between">
         <div class="mt-4 flex justify-start gap-2">
           <button
-            class="px-3 py-1.5 bg-primarylight text-accentwhite rounded hover:bg-opacity-90"
+            class="px-3 py-1.5 bg-primarylight text-accentwhite rounded hover:bg-opacity-90" @click="addItemModal = true; addItemType = 'page'"
           >
             Add Page
           </button>
           <button
-            class="px-3 py-1.5 bg-primarylight text-accentwhite rounded hover:bg-opacity-90"
+            class="px-3 py-1.5 bg-primarylight text-accentwhite rounded hover:bg-opacity-90" @click="addItemModal = true; addItemType = 'role'"
           >
             Add Role
           </button>
@@ -145,7 +164,7 @@ const handleSavePermission = (permission: Permission) => {
         <div class="mt-4 flex justify-end gap-2">
           <button
             class="px-3 py-1.5 bg-primarylight text-accentwhite rounded hover:bg-opacity-90"
-            :class="{ 'bg-primarydark': editPagePermissionMode }"
+            :class="{'bg-gray-900': editPagePermissionMode }"
             @click="toggleEditPagePermissionMode"
           >
             Edit Page Permission
@@ -157,6 +176,8 @@ const handleSavePermission = (permission: Permission) => {
   </div>
   <!--Modal popup for setting permission-->
   <PermissionModal :show-modal="showPermissionModal" :modal-title="editPagePermissionMode ? 'Edit Page Permission' : 'Set Permissions'" @close-modal="showPermissionModal = false" @save-permission="handleSavePermission" />
+  <!--Modal popup for adding item-->
+  <AddItemModal :display-modal="addItemModal" :add-item-type="addItemType" @close-modal="addItemModal = false" @add-item="handleAddItem" />
 </template>
 
 <style scoped>
