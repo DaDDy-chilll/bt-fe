@@ -11,7 +11,6 @@ const filters = ref({
   level: { value: null, matchMode: FilterMatchMode.EQUALS },
 });
 
-
 /**
  * Handle all select
  * @param event
@@ -27,7 +26,6 @@ const handleAllSelect = (event: any) => {
   }
 };
 
-
 /**
  * Level options
  * @author PSK
@@ -35,8 +33,8 @@ const handleAllSelect = (event: any) => {
  * @updated ****-**-**
  */
 const levelOptions = ref([
-  { value: '', label: 'All' },
-  ...level.map(l => ({ value: l.value, label: l.value }))
+  { value: "", label: "All" },
+  ...level.map((l) => ({ value: l.value, label: l.value })),
 ]);
 
 /**
@@ -54,29 +52,60 @@ const sendMail = () => {
     <div class="flex gap-5">
       <h1 class="text-2xl font-semibold mb-5">Mail Marketing</h1>
     </div>
-    <div class="grid grid-cols-[2fr_3fr] gap-2 min-h-screen">
-      <div class="bg-accentwhite drop-shadow-md rounded-lg h-full">
-        <DataTable v-model:filters="filters" :value="customers" stripedRows class="w-full h-full text-sm p-2" scrollable
-          scrollHeight="calc(100vh)" resizableColumns columnResizeMode="fit" :totalRecords="customers.length"
-          v-model:selection="checked" dataKey="id" :showHeaders="false" :globalFilterFields="['name', 'level']">
+    <div class="grid grid-cols-[2fr_3fr] gap-2 h-full">
+      <div class="bg-accentwhite drop-shadow-md rounded-lg h-[calc(100vh-8rem)] overflow-y-auto">
+        <DataTable
+          v-model:filters="filters"
+          :value="customers"
+          stripedRows
+          class="w-full h-full text-sm p-2"
+          scrollable
+          resizableColumns
+          columnResizeMode="fit"
+          :totalRecords="customers.length"
+          v-model:selection="checked"
+          dataKey="id"
+          :showHeaders="false"
+          :globalFilterFields="['name', 'level']"
+        >
           <template #header class="p-0">
             <div class="flex justify-between items-center">
               <div class="flex items-center justify-start gap-2 min-w-20">
-                <Checkbox binary name="selectAll" label="Select All" @change="handleAllSelect" :checked="selectedAll"
-                  id="selectAll" />
-                <span class="text-xs text-label" htmlFor="selectAll">Select All</span>
+                <Checkbox
+                  binary
+                  name="selectAll"
+                  label="Select All"
+                  @change="handleAllSelect"
+                  :checked="selectedAll"
+                  id="selectAll"
+                />
+                <span class="text-xs text-label" htmlFor="selectAll"
+                  >Select All</span
+                >
               </div>
 
               <div class="flex gap-2">
-                <IconField class="border border-muted rounded-md px-4 flex items-center overflow-hidden">
+                <IconField
+                  class="border border-muted rounded-md px-4 flex items-center overflow-hidden"
+                >
                   <InputIcon>
                     <i class="pi pi-search" />
                   </InputIcon>
-                  <InputText v-model="filters.name.value" placeholder="Keyword Search" class="ml-6" />
+                  <InputText
+                    v-model="filters.name.value"
+                    placeholder="Keyword Search"
+                    class="ml-6"
+                  />
                 </IconField>
 
-                <Select v-model="filters.level.value" :options="levelOptions" optionLabel="label" optionValue="value" 
-                  placeholder="Level" class="bg-primarylight text-xs text-accentwhite" />
+                <Select
+                  v-model="filters.level.value"
+                  :options="levelOptions"
+                  optionLabel="label"
+                  optionValue="value"
+                  placeholder="Level"
+                  class="bg-primarylight text-xs text-accentwhite"
+                />
               </div>
             </div>
           </template>
@@ -86,24 +115,43 @@ const sendMail = () => {
           <Column field="email" class=""></Column>
           <Column field="level" class="">
             <template #body="slotProps">
-              <img :src="slotProps.data.level.icon" alt="Level" class="w-6 h-6" />
+              <img
+                :src="slotProps.data.level.icon"
+                alt="Level"
+                class="w-6 h-6"
+              />
             </template>
           </Column>
         </DataTable>
       </div>
 
-      <div class="bg-accentwhite drop-shadow-md rounded-lg h-full flex flex-col relative pb-1">
+      <div
+        class="bg-accentwhite drop-shadow-md rounded-lg h-full flex flex-col relative pb-1"
+      >
         <div class="flex flex-col gap-y-4 p-4">
-          <InputText name="cc" type="text" placeholder="Cc"
-            class="w-full rounded-none  border-b border-label text-sm p-1 placeholder:text-accentblack font-semibold" />
-          <InputText name="subject" type="text" placeholder="Subject"
-            class="w-full rounded-none  border-b border-label text-sm p-1" />
+          <InputText
+            name="cc"
+            type="text"
+            placeholder="Cc"
+            class="w-full rounded-none border-b border-label text-sm p-1 placeholder:text-accentblack font-semibold"
+          />
+          <InputText
+            name="subject"
+            type="text"
+            placeholder="Subject"
+            class="w-full rounded-none border-b border-label text-sm p-1"
+          />
         </div>
         <QuillEditor />
-        <Button label="Send"
+        <Button
+          label="Send"
           class="bg-primarylight text-accentwhite cursor-pointer absolute bottom-1 left-1 py-2 px-5 text-sm"
-          @click="sendMail" />
-        <Button icon="pi pi-trash" class="text-danger cursor-pointer absolute bottom-1 right-1 py-2 px-5 text-sm" />
+          @click="sendMail"
+        />
+        <Button
+          icon="pi pi-trash"
+          class="text-danger cursor-pointer absolute bottom-1 right-1 py-2 px-5 text-sm"
+        />
       </div>
     </div>
   </div>

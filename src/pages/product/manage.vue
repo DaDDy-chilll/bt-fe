@@ -9,10 +9,10 @@ import gemType from "./gemtype.json";
 import warehouse from "./warehouse.json";
 import supplier from "./supplier.json";
 
+
 const products = ref(productlist);
 const op = ref();
 const filterOp = ref();
-const filterArray = ref<Filter[]>([]);
 const filterItems = ref([
   {
     name: "Warehouse",
@@ -139,7 +139,6 @@ const filterDialogClose = () => {
  */
 const filterSelected = (event) => {
   filterOp.value.toggle();
-  filterArray.value.push(event);
   filterItems.value.find((item) => item.name === event.name).isSelected = true;
 };
 </script>
