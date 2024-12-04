@@ -1,22 +1,27 @@
 [
     {
         "id": 1,
-        "value": "Bronze"
+        "value": "Bronze",
+        "icon": "/_nuxt/assets/icons/bronze.svg"
     },
     {
         "id": 2,
-        "value": "Silver"
+        "value": "Silver",
+        "icon": "/_nuxt/assets/icons/silver.svg"
     },
     {
         "id": 3,
-        "value": "Gold"
+        "value": "Gold",
+        "icon": "/_nuxt/assets/icons/gold.svg"
     },
     {
         "id": 4,
-        "value": "Platinum"
+        "value": "Platinum",
+        "icon": "/_nuxt/assets/icons/platinum.svg"
     },
     {
         "id": 5,
-        "value": "Diamond"
+        "value": "Diamond",
+        "icon": "/_nuxt/assets/icons/diamond.svg"
     }
 ]

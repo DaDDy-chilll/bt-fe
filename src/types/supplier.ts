@@ -31,3 +31,10 @@ export type ManageSupplier = {
   state: string;
   city: string;
 };
+
+export type Filter = {
+  label: string;
+  key: string;
+  type: string;
+  options: any[];
+};
