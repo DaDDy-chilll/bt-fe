@@ -7,7 +7,7 @@
       "ygea_price": 4000000,
       "pyin_pa_price": 5000000,
       "other_price": 6000000,
-      "default": 1,
+      "default": 0,
       "unit_id": 1
     },
     {
@@ -17,7 +17,7 @@
       "ygea_price": 5000000,
       "pyin_pa_price": 6000000,
       "other_price": 7000000,
-      "default": 1,
+      "default": 0,
       "unit_id": 1
     },
     {
@@ -27,7 +27,7 @@
       "ygea_price": 6000000,
       "pyin_pa_price": 7000000,
       "other_price": 8000000,
-      "default": 1,
+      "default": 0,
       "unit_id": 1
     }
   ]

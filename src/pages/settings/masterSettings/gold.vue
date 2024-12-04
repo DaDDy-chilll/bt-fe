@@ -6,7 +6,7 @@ import { ref, watch } from "vue";
 import GoldMasterModal from "@/components/settings/masterSettings/goldMasterModal.vue";
 import DataTable from "primevue/datatable";
 import Popover from "primevue/popover";
-
+import { reactive } from "vue";
 
 //variables
 const displayModal = ref(false);
@@ -29,7 +29,7 @@ const formData = ref({
 const gold_types_model = ref(gold_types);
 
 // Ref to hold multiple popovers dynamically
-const popovers = ref<Record<number, any>>({});
+const popovers = reactive<Record<number, any>>({});
 
 /********** functions **********/
 /**
@@ -100,9 +100,9 @@ const updateGoldType = (updatedGoldType: any) => {
   //api call - try catch
   //update gold type
   //update model
-  const index = gold_types_model.value.findIndex((type) => type.id === updatedGoldType.id);
+  const index = gold_types_model.value.findIndex((type) => type.id === updatedGoldType.id); 
   if (index !== -1) {
-    gold_types_model.value[index] = updatedGoldType;
+    gold_types_model.value[index] = updatedGoldType; 
   }
 };
 
@@ -114,7 +114,7 @@ const updateGoldType = (updatedGoldType: any) => {
  * @returns void
  */
  const toggle = (event: MouseEvent, id: number) => {
-  const popoverRef = popovers.value[id]; // Access the correct popover by ID
+  const popoverRef = popovers[id]; // Access the correct popover by ID
   if (popoverRef) {
     popoverRef.toggle(event);
   }
@@ -128,7 +128,7 @@ const updateGoldType = (updatedGoldType: any) => {
  * @returns void
  */
 const closePopover = (id: number) => {
-  const popoverRef = document.querySelector(`[ref="op-${id}"]`) as any;
+  const popoverRef = popovers[id]; // Access the correct popover by ID
   if (popoverRef) {
     popoverRef.hide();
   }
@@ -197,10 +197,14 @@ const closePopover = (id: number) => {
                   icon="pi pi-ellipsis-v"
                   class="text-primarylight"
                   @click="(e) => toggle(e, slotProps.data.id)"
-                  :key="slotProps.data.id"
                 />
                 <Popover
-                  :ref="(el) => (popovers[slotProps.data.id] = el)"
+                  :key="slotProps.data.id"
+                  :ref="(el) => {
+                    if (el) {
+                      popovers[slotProps.data.id] = el;
+                    }
+                  }"
                   appendTo="body"
                   class="!bg-primarylight text-accentwhite sm:w-48"
                 >

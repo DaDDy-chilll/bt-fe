@@ -13,6 +13,7 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Button from "primevue/button";
 import Popover from "primevue/popover";
+import { reactive } from "vue";
 
 //variables
 const op = ref<any>(null);
@@ -42,9 +43,8 @@ const formData = ref<TodayGold>({
   unit_id: 0,
 });
 
-
 // Ref to hold multiple popovers dynamically
-const popovers = ref<Record<number, any>>({});
+const popovers = reactive<Record<number, any>>({});
 
 /********** functions **********/
 /**
@@ -77,14 +77,26 @@ const handleAddTodayGold = (newGoldItem: TodayGold) => {
   };
 };
 
-
 /**
- * Handle the show as default event
+ * Set the default today gold
+ * @param id - The ID of the gold data to set as default
  * @author Aye Nadi
  * @returns void
  */
-const handleShowAsDefault = () => {
-  console.log("Show as default");
+const handleShowAsDefault = (id: number) => {
+  //api call - try catch
+  //set default today gold
+  //update model
+  today_gold_model.value = today_gold_model.value.map((gold) =>
+    gold.id === id ? { ...gold, default: 1 } : gold
+  );
+  //change other default to 0
+  today_gold_model.value = today_gold_model.value.map((gold) =>
+    gold.id !== id ? { ...gold, default: 0 } : gold
+  );
+
+  //close popover
+  closePopover(id);
 };
 
 /**
@@ -114,8 +126,13 @@ const handleEdit = (id: number) => {
  * @author Aye Nadi
  * @returns void
  */
-const handleDelete = (id: number) => {
-  console.log("Delete");
+ const handleDelete = (id: number) => {
+
+  // Remove the item from the data model
+  today_gold_model.value = today_gold_model.value.filter(gold => gold.id !== id);
+  
+  //remove popover
+  delete popovers[id];
 };
 
 /**
@@ -130,7 +147,9 @@ const updateTodayGold = (updatedGold: TodayGold) => {
   //update today gold
   //update model
   console.log(updatedGold, "updatedGold");
-  const index = today_gold_model.value.findIndex((gold) => gold.id === updatedGold.id);
+  const index = today_gold_model.value.findIndex(
+    (gold) => gold.id === updatedGold.id
+  );
   console.log(index, "index");
   if (index !== -1) {
     today_gold_model.value[index] = { ...updatedGold };
@@ -146,12 +165,13 @@ const updateTodayGold = (updatedGold: TodayGold) => {
  * @returns void
  */
 const toggle = (event: MouseEvent, id: number) => {
-  const popoverRef = popovers.value[id]; // Access the correct popover by ID
+  const popoverRef = popovers[id];
   if (popoverRef) {
     popoverRef.toggle(event);
+  } else {
+    console.warn(`Popover reference missing for ID: ${id}`);
   }
 };
-
 
 /**
  * Close the popover
@@ -160,9 +180,11 @@ const toggle = (event: MouseEvent, id: number) => {
  * @returns void
  */
 const closePopover = (id: number) => {
-  const popoverRef = document.querySelector(`[ref="op-${id}"]`) as any;
+  const popoverRef = popovers[id];
   if (popoverRef) {
     popoverRef.hide();
+  } else {
+    console.warn(`Popover reference missing for ID: ${id}`);
   }
 };
 </script>
@@ -187,11 +209,12 @@ const closePopover = (id: number) => {
         <div class="overflow-x-auto">
           <DataTable
             :value="today_gold_model"
+            :rowKey="(item: TodayGold) => item.id"
             stripedRows
             class="w-full text-sm"
             scrollable
             resizableColumns
-            columnResizeMode="fit"
+            columnResizeMode="expand"
             showGridlines
             paginator
             :rows="14"
@@ -199,86 +222,120 @@ const closePopover = (id: number) => {
             :totalRecords="today_gold_model.length"
             responsiveLayout="scroll"
             breakpoint="sm"
+            :rowClass="
+              (data) => ({
+                'bg-primarylight bg-opacity-30': data.default === 1,
+              })
+            "
           >
             <!--No-->
-            <Column field="no" header="No" class="w-10">
+            <Column field="no" header="No" class="w-[10%]">
               <template #body="slotProps">
-                {{ slotProps.index + 1 }}
+                <div>
+                  {{ slotProps.index + 1 }}
+                </div>
               </template>
             </Column>
             <!--Gold Type-->
-            <Column field="gold_type_id" header="Gold Type" class="w-32">
+            <Column field="gold_type_id" header="Gold Type" class="w-[15%]">
               <template #body="slotProps">
-                {{
-                  gold_types_model.find(
-                    (type: GoldTypes) => type.id === slotProps.data.gold_type_id
-                  )?.name || slotProps.data.gold_type_id
-                }}
+                <div>
+                  {{
+                    gold_types_model.find(
+                      (type: GoldTypes) =>
+                        type.id === slotProps.data.gold_type_id
+                    )?.name || slotProps.data.gold_type_id
+                  }}
+                </div>
               </template>
             </Column>
             <!--Weight-->
-            <Column field="gold_weight" header="Weight" class="w-32"></Column>
+            <Column field="gold_weight" header="Weight" class="w-[15%]">
+              <template #body="slotProps">
+                <div>
+                  {{ slotProps.data.gold_weight }}
+                </div>
+              </template>
+            </Column>
             <!--YGEA Price-->
-            <Column
-              field="ygea_price"
-              header="YGEA Price"
-              class="w-32"
-            ></Column>
+            <Column field="ygea_price" header="YGEA Price" class="w-[15%]">
+              <template #body="slotProps">
+                <div>
+                  {{ slotProps.data.ygea_price }}
+                </div>
+              </template>
+            </Column>
             <!--Pyin Pa Price-->
             <Column
               field="pyin_pa_price"
               header="Pyin Pa Price"
-              class="w-32"
-            ></Column>
+              class="w-[15%]"
+            >
+              <template #body="slotProps">
+                <div>
+                  {{ slotProps.data.pyin_pa_price }}
+                </div>
+              </template>
+            </Column>
             <!--Other Price-->
-            <Column
-              field="other_price"
-              header="Other Price"
-              class="w-32"
-            ></Column>
+            <Column field="other_price" header="Other Price" class="w-[15%]">
+              <template #body="slotProps">
+                <div>
+                  {{ slotProps.data.other_price }}
+                </div>
+              </template>
+            </Column>
             <!--Action-->
             <Column
               field="action"
               header="Action"
-              class="w-32"
+              class="w-[15%]"
               alignFrozen="right"
               frozen
             >
               <template #body="slotProps">
-                <Button
-                  icon="pi pi-ellipsis-v"
-                  class="text-primarylight"
-                  @click="(e) => toggle(e, slotProps.data.id)"
-                  :key="slotProps.data.id"
-                />
-                <Popover
-                  :ref="(el) => (popovers[slotProps.data.id] = el)"
-                  appendTo="body"
-                  class="!bg-primarylight text-accentwhite sm:w-48"
-                >
-                  <div class="flex flex-col gap-4 justify-start items-start">
-                    <Button
-                      label="Show as default"
-                      icon="pi pi-eye"
-                      @click="handleShowAsDefault"
-                    />
-                    <Button
-                      label="Edit"
-                      icon="pi pi-pencil"
-                      @click="
-                        (e) => {
-                          handleEdit(slotProps.data.id);
-                          closePopover(slotProps.data.id);
+                <div>
+                  <Button
+                    icon="pi pi-ellipsis-v"
+                    class="text-primarylight"
+                    @click="(e) => toggle(e, slotProps.data.id)"
+                  />
+                  <Popover
+                    :key="slotProps.data.id"
+                    :ref="
+                      (el) => {
+                        if (el) {
+                          popovers[slotProps.data.id] = el;
                         }
-                      "
-                    />
-                    <Button
-                      label="Delete"
-                      icon="pi pi-trash"
-                      @click="handleDelete(slotProps.data.id)"
-                    />
-                  </div>
-                </Popover>
+                      }
+                    "
+                    appendTo="body"
+                    class="!bg-primarylight text-accentwhite sm:w-48"
+                  >
+                    <div class="flex flex-col gap-4 justify-start items-start">
+                      <Button
+                        label="Show as default"
+                        icon="pi pi-eye"
+                        @click="handleShowAsDefault(slotProps.data.id)"
+                      />
+                      <Button
+                        label="Edit"
+                        icon="pi pi-pencil"
+                        @click="
+                          (e) => {
+                            handleEdit(slotProps.data.id);
+                            closePopover(slotProps.data.id);
+                          }
+                        "
+                      />
+                      <Button
+                        label="Delete"
+                        icon="pi pi-trash"
+                        @click="handleDelete(slotProps.data.id)"
+                      />
+                    </div>
+                  </Popover>
+                </div>
               </template>
             </Column>
           </DataTable>
@@ -301,4 +358,3 @@ const closePopover = (id: number) => {
     </div>
   </div>
 </template>
-

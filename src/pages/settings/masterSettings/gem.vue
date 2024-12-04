@@ -1,51 +1,83 @@
 <script setup lang="ts">
 import MasterNavBar from "@/components/settings/masterSettings/master-nav-bar.vue";
-import { ref } from 'vue';
-import gemTypes from './gemTypes.json';
-import type { GemType } from '@/types/gemType';
+import { ref } from "vue";
+import gemTypes from "./gemTypes.json";
+import type { GemType } from "@/types/gemType";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Button from "primevue/button";
 import Popover from "primevue/popover";
 import AddIcon from "~/assets/icons/add_icon.vue";
-import GemTypeModal from "@/components/settings/systemSettings/gemTypeModal.vue";
+import GemTypeModal from "@/components/settings/masterSettings/gemTypeModal.vue";
+import { reactive } from "vue";
 //state
 const displayModal = ref(false);
-const modalType = ref('add');
+const modalType = ref("add");
 const modalId = ref(0);
 // Ref to hold multiple popovers dynamically
-const popovers = ref<Record<number, any>>({});
+const popovers = reactive<Record<number, any>>({});
 
 //fetching data
-const gem_types = gemTypes;
+const gem_types = ref(gemTypes);
+
+//temp color data for testing
+const gem_colors = ref([
+  { label: "Red", value: 1 },
+  { label: "Blue", value: 2 },
+  { label: "Green", value: 3 },
+  { label: "Yellow", value: 4 },
+  { label: "Purple", value: 5 },
+  { label: "Orange", value: 6 },
+  { label: "Pink", value: 7 },
+  { label: "Brown", value: 8 },
+  { label: "Gray", value: 9 },
+]);
+
+//temp icon data for testing
+const gem_icons = ref([
+  { label: "Diamond", icon: "/_nuxt/assets/images/Diamond.png" },
+  { label: "Jade", icon: "/_nuxt/assets/images/Jade.png" },
+  { label: "Crystal", icon: "/_nuxt/assets/images/Crystal.png" },
+]);
 
 //model variables
 const formData = ref<GemType>({
-    id: 0,
-    name: '',
-    color_id: 0,
-    icon: '',
+  id: 0,
+  name: "",
+  color_id: 0,
+  icon: "",
 });
 
 /*** functions ***/
 const editGemType = (id: number) => {
-    modalType.value = 'edit';
-    modalId.value = id;
-    displayModal.value = true;
+  modalType.value = "edit";
+  modalId.value = id;
+  displayModal.value = true;
+  // update formData
+  formData.value = gem_types.value.find((gem) => gem.id === id) as GemType;
 };
 
 const deleteGemType = (id: number) => {
-    // Implement delete logic
+  //remove gem type
+  gem_types.value = gem_types.value.filter((gem: GemType) => gem.id !== id);
+  //remove popover
+  delete popovers[id];
 };
 
 const addGemType = (data: GemType) => {
-  //
+  //api call - try catch
+  //add gem type
+  //update model
+  gem_types.value.push(data);
 };
 
-const updateGemType = (data: GemType) => {
-    modalType.value = 'edit';
-    modalId.value = data.id;
-    displayModal.value = true;
+const updateGemType = (data: GemType, id: number) => {
+  modalType.value = "edit";
+  modalId.value = id;
+  displayModal.value = true;
+
+  //update gem_types
+  gem_types.value = gem_types.value.map((gem) => (gem.id === id ? data : gem));
 };
 
 /**
@@ -55,13 +87,14 @@ const updateGemType = (data: GemType) => {
  * @author Aye Nadi
  * @returns void
  */
- const toggle = (event: MouseEvent, id: number) => {
-  const popoverRef = popovers.value[id]; // Access the correct popover by ID
+const toggle = (event: MouseEvent, id: number) => {
+  const popoverRef = popovers[id];
   if (popoverRef) {
     popoverRef.toggle(event);
+  } else {
+    console.warn(`Popover reference missing for ID: ${id}`);
   }
 };
-
 
 /**
  * Close the popover
@@ -70,33 +103,34 @@ const updateGemType = (data: GemType) => {
  * @returns void
  */
 const closePopover = (id: number) => {
-  const popoverRef = document.querySelector(`[ref="op-${id}"]`) as any;
+  const popoverRef = popovers[id];
   if (popoverRef) {
     popoverRef.hide();
+  } else {
+    console.warn(`Popover reference missing for ID: ${id}`);
   }
 };
-
 </script>
 
 <template>
-    <div>
+  <div>
     <MasterNavBar />
     <div class="px-6">
       <div class="flex md:justify-end items-center justify-start">
         <button
           @click="(modalType = 'add'), (displayModal = true)"
-      class="bg-primarylight text-white px-4 py-2 rounded-md mt-8 mb-8"
-    >
-      <span class="flex items-center gap-2">
-        <AddIcon />
-          Add
-        </span>
-      </button>
-    </div>
-    <!--table-->
-    <div class="w-full">
-      <div class="overflow-x-auto">
-        <DataTable
+          class="bg-primarylight text-white px-4 py-2 rounded-md mt-8 mb-8"
+        >
+          <span class="flex items-center gap-2">
+            <AddIcon />
+            Add
+          </span>
+        </button>
+      </div>
+      <!--table-->
+      <div class="w-full">
+        <div class="overflow-x-auto">
+          <DataTable
             :value="gem_types"
             stripedRows
             class="w-full text-sm"
@@ -118,27 +152,35 @@ const closePopover = (id: number) => {
               </template>
             </Column>
             <!--Gem Type-->
-            <Column field="gem_type_id" header="Gem Type" class="w-[20%]">
+            <Column field="name" header="Gem Type" class="w-[20%]">
               <template #body="slotProps">
                 {{ slotProps.data.name }}
               </template>
             </Column>
-             <!--Gem color-->
-             <Column field="gem_color_id" header="Gem Color" class="w-[20%]">
+            <!--Gem color-->
+            <Column field="color_id" header="Gem Color" class="w-[20%]">
               <template #body="slotProps">
-                {{ slotProps.data.color_id }}
+                {{
+                  gem_colors.find(
+                    (color) => color.value === slotProps.data.color_id
+                  )?.label
+                }}
               </template>
             </Column>
             <!--Icon-->
             <Column field="icon" header="Icon" class="w-[20%]">
               <template #body="slotProps">
-                <img :src="slotProps.data.icon" alt="icon" class="w-4 h-4 object-contain">
+                <img
+                  :src="slotProps.data.icon"
+                  alt="icon"
+                  class="w-4 h-4 object-contain"
+                />
               </template>
             </Column>
             <!--Action-->
             <Column
               field="action"
-              header="Action" 
+              header="Action"
               class="w-[10%]"
               alignFrozen="right"
               frozen
@@ -148,15 +190,20 @@ const closePopover = (id: number) => {
                   icon="pi pi-ellipsis-v"
                   class="text-primarylight"
                   @click="(e) => toggle(e, slotProps.data.id)"
-                  :key="slotProps.data.id"
                 />
                 <Popover
-                  :ref="(el) => (popovers[slotProps.data.id] = el)"
+                  :key="slotProps.data.id"
+                  :ref="
+                    (el) => {
+                      if (el) {
+                        popovers[slotProps.data.id] = el;
+                      }
+                    }
+                  "
                   appendTo="body"
                   class="!bg-primarylight text-accentwhite sm:w-32"
                 >
                   <div class="flex flex-col gap-4 justify-start items-start">
-
                     <Button
                       label="Edit"
                       icon="pi pi-pencil"
@@ -177,24 +224,21 @@ const closePopover = (id: number) => {
               </template>
             </Column>
           </DataTable>
-      </div>
-      <GemTypeModal
-        :displayModal="displayModal"
-        @update:displayModal="displayModal = $event"
-        :gem_types="gem_types"
-        @addGemType="addGemType"
-        :modalType="modalType"
-        :modalId="modalId"
-        @update:modalType="modalType = $event"
-        @updateGemType="updateGemType"
-        :formData="formData"
-      />
+        </div>
+        <GemTypeModal
+          :displayModal="displayModal"
+          @update:displayModal="displayModal = $event"
+          :gem_types="gem_types"
+          @addGemType="addGemType"
+          :modalType="modalType"
+          :modalId="modalId"
+          @update:modalType="modalType = $event"
+          @updateGemType="updateGemType"
+          :formData="formData"
+        />
       </div>
     </div>
   </div>
 </template>
 
-
-<style scoped>
-
-</style>
+<style scoped></style>

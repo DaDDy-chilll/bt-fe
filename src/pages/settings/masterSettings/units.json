@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Meter",
+        "type_id": 1,
+        "symbol": "m"
+    },
+    {
+        "id": 2,
+        "name": "Kilometer",
+        "type_id": 1,
+        "symbol": "km"
+    },
+    {
+        "id": 3,
+        "name": "Gram",
+        "type_id": 2,
+        "symbol": "g"
+    },
+    {
+        "id": 4,
+        "name": "Kilogram",
+        "type_id": 2,
+        "symbol": "kg"
+    }
+]
