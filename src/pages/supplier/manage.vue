@@ -3,19 +3,11 @@ import { ref, computed } from "vue";
 import SupplierData from "./supplierdata.json";
 import States from "./state.json";
 import Cities from "./city.json";
-import type { ManageSupplier } from "@/types/supplier";
-import { Button } from "primevue";
+import type { ManageSupplier, Filter } from "@/types/supplier"; 
 import { useRouter } from "vue-router";
+import DataTable from 'primevue/datatable'; 
+import Column from 'primevue/column'; 
 
-import {
-    Card,
-    InputText,
-    InputIcon,
-    IconField,
-    Select,
-    DatePicker,
-    Dialog,
-} from "primevue";
 import BackArrow from "@/assets/icons/back_icon.vue";
 
 // V-Model Variables
@@ -79,6 +71,71 @@ const filteredData = computed(() => {
 });
 
 const op = ref(null);
+const filterArray = ref<Filter[]>([]);
+const filterOp = ref(null);
+const textDialog = ref(false);
+const selectDialog = ref(false);
+const dateDialog = ref(false); 
+const showMemoDialog = ref(false);
+const selectedMemos = ref<{ name: string; date: string; text: string }[]>([]); 
+const filterItems = ref([
+    {
+        name: "Search",
+        type: "text",
+        icon: "pi pi-align-justify",
+        isSelected: true,
+        filterItems: {
+            value: "",
+            list: [],
+        },
+    },
+    {
+        name: "Date From",
+        type: "date",
+        icon: "pi pi-calendar",
+        isSelected: true,
+        filterItems: {
+            value: "",
+            list: [],
+        },
+    },
+    {
+        name: "Date To",
+        type: "date",
+        icon: "pi pi-calendar",
+        isSelected: true,
+        filterItems: {
+            value: "",
+            list: [],
+        },
+    },
+    {
+        name: "State",
+        type: "select",
+        icon: "pi pi-map-marker",
+        isSelected: true,
+        filterItems: {
+            value: "",
+            list: getStates.states.map((state) => ({
+                id: state,
+                value: state
+            })),
+        },
+    },
+    {
+        name: "City",
+        type: "select",
+        icon: "pi pi-map-marker",
+        isSelected: true,
+        filterItems: {
+            value: "",
+            list: getCities.cities[manageSupplier.value.state]?.map((city) => ({
+                id: city,
+                value: city,
+            })) || [],
+        },
+    },
+]);
 
 /**
  * Toggle
@@ -90,62 +147,73 @@ const toggle = (event: Event) => {
     }
 };
 
-const showMemoDialog = ref(false);
-const selectedMemos = ref([]);
-
-const showMemos = (memos) => {
+const showMemos = (memos: { name: string; date: string; text: string }[]) => { // Correct type for memos
     selectedMemos.value = memos;
     showMemoDialog.value = true;
 };
+
+/**
+ * Filter
+ * @param event
+ */
+const filter = (event: Event) => {
+    if (filterOp.value) {
+        (filterOp.value as any).toggle(event);
+    }
+};
+
+const filterDialog = (type: string) => {
+    filterDialogClose();
+    if (type === "text") {
+        textDialog.value = true;
+    } else if (type === "select") {
+        selectDialog.value = true;
+    } else if (type === "date") {
+        dateDialog.value = true;
+    }
+};
+
+/**
+ * Filter Dialog Close
+ */
+const filterDialogClose = () => {
+    selectDialog.value = false;
+    textDialog.value = false;
+    dateDialog.value = false;
+};
+
+/**
+ * Filter Selected
+ * @param event
+ */
+const filterSelected = (event: any) => {
+    if (filterOp.value) {
+        (filterOp.value as any).toggle();
+    }
+    filterArray.value.push(event);
+    const item = filterItems.value.find((item) => item.name === event.name); // Corrected key to name
+    if (item) {
+        item.isSelected = true;
+    }
+};
+
 </script>
 
 <template>
     <div>
         <Card>
-            <template #title>
-                <div class="flex gap-5">
-                    <BackArrow class="cursor-pointer hover:opacity-80" />
-                    <h1 class="text-xl font-bold mb-5">Manage Supplier</h1>
-                </div>
+            <template #header>
+                <slot-header title="Manage Supplier" :button="{
+                    label: 'New Supplier',
+                    link: '/supplier',
+                    icon: 'pi pi-plus',
+                }" />
             </template>
             <template #content>
                 <!-- Filter Bar -->
-                <div class="flex justify-between items-center gap-2">
-                    <div class="flex items-center gap-2">
-                        <div>
-                            <IconField class="border border-solid border-gray-400 rounded-md py-1.5">
-                                <InputIcon class="pi pi-search" />
-                                <InputText v-model="manageSupplier.search" placeholder="Search" class="pl-10" />
-                            </IconField>
-                        </div>
-                        <div class="w-[8.5rem]">
-                            <DatePicker v-model="manageSupplier.dateFrom" showIcon fluid :showOnFocus="true"
-                                class="border border-solid border-gray-400 rounded-md py-1.5 w-full pl-1"
-                                placeholder="From" />
-                        </div>
-                        <div class="w-[8.5rem]">
-                            <DatePicker v-model="manageSupplier.dateTo" showIcon fluid :showOnFocus="true"
-                                class="border border-solid border-gray-400 rounded-md py-1.5 w-full pl-1"
-                                placeholder="To" />
-                        </div>
-                        <div class="w-[8.5rem]">
-                            <Select v-model="manageSupplier.state" :options="['', ...getStates.states]"
-                                placeholder="State" @change="manageSupplier.city = ''"
-                                dropdownIcon="pi pi-chevron-down text-white text-sm"
-                                class="w-full bg-accent1 text-white placeholder-white" :inputStyle="{ color: 'white' }"
-                                :placeholderStyle="{ color: 'white' }" />
-                        </div>
-                        <div class="w-[8.5rem]">
-                            <Select v-model="manageSupplier.city"
-                                :options="getCities.cities[manageSupplier.state] || []" placeholder="City"
-                                :disabled="!manageSupplier.state" dropdownIcon="pi pi-chevron-down text-white text-sm"
-                                class="w-full bg-accent1 text-white placeholder-white" :inputStyle="{ color: 'white' }"
-                                :placeholderStyle="{ color: 'white' }" />
-                        </div>
-                    </div>
-                    <div>
-                        <Button icon="pi pi-plus" label="Add Supplier" @click="() => $router.push('/supplier')"
-                            class="bg-primarylight text-white font-normal px-4 py-2 rounded-md text-decoration-none hover:bg-accent1/90" />
+                <div class="flex justify-center items-center px-6">
+                    <div class="w-full float-left flex justify-start items-center ml-3">
+                        <filter-list :filterItems="filterItems" class="flex justify-start  items-center" />
                     </div>
                 </div>
 
@@ -153,8 +221,16 @@ const showMemos = (memos) => {
                 <div class="h-[1px] w-full bg-gray-300 my-5"></div>
 
                 <!-- Table -->
-                <DataTable :value="filteredData" stripedRows tableStyle="min-width: 50rem; font-size: small;">
-                    <Column field="code" header="Code" class="text-accent1"></Column>
+                <DataTable :value="filteredData" stripedRows class="w-full px-6 my-5 text-sm" scrollable
+                    resizableColumns columnResizeMode="fit" showGridlines paginator :rows="14"
+                    :rowsPerPageOptions="[10, 20, 50]" :totalRecords="filteredData.length">
+                    <Column field="code" header="Code" class="text-accent1">
+                        <template #body="slotProps">
+                            <NuxtLink :to="`/supplier/details?code=${slotProps.data.code}`"
+                                class="cursor-pointer hover:text-accent1">{{ slotProps.data.code }}
+                            </NuxtLink>
+                        </template>
+                    </Column>
                     <Column field="name" header="Name"></Column>
                     <Column field="branch" header="Branch"></Column>
                     <Column field="contact_name" header="Contact Name"></Column>
