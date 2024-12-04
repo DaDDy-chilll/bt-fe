@@ -85,6 +85,9 @@ const sendMail = () => {
           <Column field="name" class=""></Column>
           <Column field="email" class=""></Column>
           <Column field="level" class="">
+            <template #body="slotProps">
+              <img :src="slotProps.data.level.icon" alt="Level" class="w-6 h-6" />
+            </template>
           </Column>
         </DataTable>
       </div>
