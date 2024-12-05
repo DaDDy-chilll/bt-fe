@@ -22,7 +22,8 @@
         ],
         "level": {
             "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg"
+            "icon": "/_nuxt/assets/icons/gold.svg",
+            "value": "gold"
         }
     },
     {
@@ -43,7 +44,8 @@
         ],
         "level": {
             "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg"
+            "icon": "/_nuxt/assets/icons/silver.svg",
+            "value": "silver"
         }
     },
     {
@@ -64,7 +66,8 @@
         ],
         "level": {
             "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -85,7 +88,8 @@
         ],
         "level": {
             "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg"
+            "icon": "/_nuxt/assets/icons/bronze.svg",
+            "value": "bronze"
         }
     },
     {
@@ -106,7 +110,8 @@
         ],
         "level": {
             "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -127,7 +132,8 @@
         ],
         "level": {
             "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg"
+            "icon": "/_nuxt/assets/icons/silver.svg",
+            "value": "silver"
         }
     },
     {
@@ -148,7 +154,8 @@
         ],
         "level": {
             "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg"
+            "icon": "/_nuxt/assets/icons/gold.svg",
+            "value": "gold"
         }
     },
     {
@@ -169,7 +176,8 @@
         ],
         "level": {
             "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg"
+            "icon": "/_nuxt/assets/icons/bronze.svg",
+            "value": "bronze"
         }
     },
     {
@@ -190,7 +198,8 @@
         ],
         "level": {
             "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -211,7 +220,8 @@
         ],
         "level": {
             "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -232,7 +242,8 @@
         ],
         "level": {
             "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg"
+            "icon": "/_nuxt/assets/icons/silver.svg",
+            "value": "silver"
         }
     },
     {
@@ -253,7 +264,8 @@
         ],
         "level": {
             "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg"
+            "icon": "/_nuxt/assets/icons/gold.svg",
+            "value": "gold"
         }
     },
     {
@@ -274,7 +286,8 @@
         ],
         "level": {
             "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg"
+            "icon": "/_nuxt/assets/icons/bronze.svg",
+            "value": "bronze"
         }
     },
     {
@@ -295,7 +308,8 @@
         ],
         "level": {
             "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -316,7 +330,8 @@
         ],
         "level": {
             "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -337,7 +352,8 @@
         ],
         "level": {
             "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg"
+            "icon": "/_nuxt/assets/icons/silver.svg",
+            "value": "silver"
         }
     },
     {
@@ -358,7 +374,8 @@
         ],
         "level": {
             "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg"
+            "icon": "/_nuxt/assets/icons/gold.svg",
+            "value": "gold"
         }
     },
     {
@@ -379,7 +396,8 @@
         ],
         "level": {
             "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg"
+            "icon": "/_nuxt/assets/icons/bronze.svg",
+            "value": "bronze"
         }
     },
     {
@@ -400,7 +418,8 @@
         ],
         "level": {
             "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -421,7 +440,8 @@
         ],
         "level": {
             "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -442,7 +462,8 @@
         ],
         "level": {
             "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg"
+            "icon": "/_nuxt/assets/icons/silver.svg",
+            "value": "silver"
         }
     },
     {
@@ -463,7 +484,8 @@
         ],
         "level": {
             "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg"
+            "icon": "/_nuxt/assets/icons/gold.svg",
+            "value": "gold"
         }
     },
     {
@@ -484,7 +506,8 @@
         ],
         "level": {
             "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg"
+            "icon": "/_nuxt/assets/icons/bronze.svg",
+            "value": "bronze"
         }
     },
     {
@@ -505,7 +528,8 @@
         ],
         "level": {
             "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -526,7 +550,8 @@
         ],
         "level": {
             "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -552,7 +577,8 @@
         ],
         "level": {
             "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg"
+            "icon": "/_nuxt/assets/icons/silver.svg",
+            "value": "silver"
         }
     },
     {
@@ -573,7 +599,8 @@
         ],
         "level": {
             "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg"
+            "icon": "/_nuxt/assets/icons/gold.svg",
+                "value": "gold"
         }
     },
     {
@@ -594,7 +621,8 @@
         ],
         "level": {
             "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg"
+            "icon": "/_nuxt/assets/icons/bronze.svg",
+            "value": "bronze"
         }
     },
     {
@@ -615,7 +643,8 @@
         ],
         "level": {
             "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     },
     {
@@ -636,7 +665,8 @@
         ],
         "level": {
             "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg"
+            "icon": "/_nuxt/assets/icons/diamond.svg",
+            "value": "diamond"
         }
     }
 ]
