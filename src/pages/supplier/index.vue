@@ -114,7 +114,7 @@ const sendFormData = async () => {
             <div class="grid grid-cols-1 mb-6">
               <FloatLabel variant="on" class="text-sm">
                 <InputText id="name_label" v-model="supplier.name" autocomplete="off" 
-                  class="border border-primary w-full py-2 px-2" autofocus />
+                  class="border border-primary w-full py-3 px-2" autofocus />
                 <label for="name_label">Supplier Name</label>
               </FloatLabel>
             </div>
@@ -122,7 +122,7 @@ const sendFormData = async () => {
             <div class="grid grid-cols-1">
               <FloatLabel variant="on" class="text-sm">
                 <InputText id="branch_label" v-model="supplier.branch" autocomplete="off" 
-                  class="border border-primary w-full py-2 px-2" />
+                  class="border border-primary w-full py-3 px-2" />
                 <label for="branch_label">Supplier Category</label>
               </FloatLabel>
             </div>
@@ -132,7 +132,7 @@ const sendFormData = async () => {
             <div class="grid grid-cols-1 mb-6">
               <FloatLabel variant="on" class="text-sm">
                 <InputText id="contact_label" v-model="supplier.contact" autocomplete="off" 
-                  class="border border-primary w-full py-2 px-2" />
+                  class="border border-primary w-full py-3 px-2" />
                 <label for="contact_label">Supplier Contact</label>
               </FloatLabel>
             </div>
@@ -140,7 +140,7 @@ const sendFormData = async () => {
             <div class="grid grid-cols-1">
               <FloatLabel variant="on" class="text-sm">
                 <InputText id="startdate_label" v-model="supplier.startdate" autocomplete="off" 
-                  class="border border-primary w-full py-2 px-2" />
+                  class="border border-primary w-full py-3 px-2" />
                 <label for="startdate_label">Contact Start Date</label>
               </FloatLabel>
             </div>
@@ -150,7 +150,7 @@ const sendFormData = async () => {
             <div class="grid grid-cols-1 mb-6">
               <FloatLabel variant="on" class="text-sm">
                 <InputText id="email_label" v-model="supplier.email" autocomplete="off" 
-                  class="border border-primary w-full py-2 px-2" />
+                  class="border border-primary w-full py-3 px-2" />
                 <label for="email_label">Supplier Email</label>
               </FloatLabel>
             </div>
@@ -159,14 +159,14 @@ const sendFormData = async () => {
               <div class="grid grid-cols-1">
                 <FloatLabel variant="on" class="text-sm">
                   <InputText id="phone1_label" v-model="supplier.phone1" autocomplete="off" 
-                    class="border border-primary w-full py-2 px-2" />
+                    class="border border-primary w-full py-3 px-2" />
                   <label for="phone1_label">Phone 1</label>
                 </FloatLabel>
               </div>
               <div class="grid grid-cols-1">
                 <FloatLabel variant="on" class="text-sm">
                   <InputText id="phone2_label" v-model="supplier.phone2" autocomplete="off" 
-                    class="border border-primary w-full py-2 px-2" />
+                    class="border border-primary w-full py-3 px-2" />
                   <label for="phone2_label">Phone 2</label>
                 </FloatLabel>
               </div>
@@ -178,14 +178,14 @@ const sendFormData = async () => {
               <div class="grid grid-cols-1 mb-6">
                 <FloatLabel variant="on" class="text-sm">
                   <InputText id="state_label" v-model="supplier.state" autocomplete="off" 
-                    class="border border-primary w-full py-2 px-2" />
+                    class="border border-primary w-full py-3 px-2" />
                   <label for="state_label">State</label>
                 </FloatLabel>
               </div>
               <div class="grid grid-cols-1 mb-6">
                 <FloatLabel variant="on" class="text-sm">
                   <InputText id="city_label" v-model="supplier.city" autocomplete="off" 
-                    class="border border-primary w-full py-2 px-2" />
+                    class="border border-primary w-full py-3 px-2" />
                   <label for="city_label">City</label>
                 </FloatLabel>
               </div>
@@ -194,7 +194,7 @@ const sendFormData = async () => {
             <div class="grid grid-cols-1">
               <FloatLabel variant="on" class="text-sm">
                 <InputText id="address_label" v-model="supplier.address" autocomplete="off" 
-                  class="border border-primary w-full py-2 px-2" />
+                  class="border border-primary w-full py-3 px-2" />
                 <label for="address_label">Address</label>
               </FloatLabel>
             </div>
@@ -204,7 +204,7 @@ const sendFormData = async () => {
             <div class="grid grid-cols-1 mb-6">
               <FloatLabel variant="on" class="text-sm">
                 <InputText id="website_label" v-model="supplier.website" autocomplete="off" 
-                  class="border border-primary w-full py-2 px-2" />
+                  class="border border-primary w-full py-3 px-2" />
                 <label for="website_label">Website</label>
               </FloatLabel>
             </div>
@@ -212,7 +212,7 @@ const sendFormData = async () => {
             <div class="grid grid-cols-1 mb-6">
               <FloatLabel variant="on" class="text-sm">
                 <InputText id="social_label" v-model="supplier.social" autocomplete="off" 
-                  class="border border-primary w-full py-2 px-2" />
+                  class="border border-primary w-full py-3 px-2" />
                 <label for="social_label">Social</label>
               </FloatLabel>
             </div>
