@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-accentwhite">
+  <div class="bg-gray-100 dark:bg-secondarydark ">
     <AppHeader />
     <div class="flex w-full h-full  overflow-y-auto">
       <SideMenu />
-      <div class="p-3 w-full  bg-gray-100 h-full overflow-y-auto">
+      <div class="p-3 w-full  h-full overflow-y-auto">
         <slot />
       </div>
     </div>

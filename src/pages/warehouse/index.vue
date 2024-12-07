@@ -23,11 +23,11 @@ const createWarehouse = () => {
 <template>
   <div class="flex gap-4 justify-between items-start w-full py-3">
     <div
-      class="w-full bg-accentwhite drop-shadow-md rounded-lg flex justify-center items-center pb-5"
+      class="w-full bg-accentwhite dark:bg-primarydark drop-shadow-md rounded-lg flex justify-center items-center pb-5"
     >
-      <Card class="w-1/2 shadow-none">
+      <Card class="w-1/2 shadow-none bg-transparent">
         <template #title>
-          <h2 class="text-2xl py-3 mb-5">New Warehouse</h2>
+          <h2 class="text-2xl py-3 mb-5 text-accentblack dark:text-accentwhite">New Warehouse</h2>
         </template>
         <template #content>
           <div class="space-y-8">
@@ -37,9 +37,9 @@ const createWarehouse = () => {
                 <InputText
                   id="on_label"
                   v-model="warehouse.warehouseId"
-                  class="border w-full h-10 pl-2"
+                  class="border w-full h-10 pl-2 dark:bg-transparent text-accentblack dark:text-accentwhite"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label for="on_label" class="text-sm text-label  bg-accentwhite dark:text-accentwhite dark:bg-primarydark"
                   >Warehouse Code</label
                 >
               </FloatLabel>
@@ -51,9 +51,9 @@ const createWarehouse = () => {
                 <InputText
                   id="on_label"
                   v-model="warehouse.warehouseName"
-                  class="border w-full h-10 pl-2"
+                  class="border w-full h-10 pl-2 dark:bg-transparent text-accentblack dark:text-accentwhite"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label for="on_label" class="text-sm text-label bg-accentwhite dark:text-accentwhite dark:bg-primarydark"
                   >Warehouse Name</label
                 >
               </FloatLabel>
@@ -65,9 +65,9 @@ const createWarehouse = () => {
                 <InputText
                   id="on_label"
                   v-model="warehouse.contactPerson"
-                  class="border w-full h-10 pl-2"
+                  class="border w-full h-10 pl-2 dark:bg-transparent text-accentblack dark:text-accentwhite"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label for="on_label" class="text-sm text-label bg-accentwhite dark:text-accentwhite dark:bg-primarydark"
                   >Contact Person</label
                 >
               </FloatLabel>
@@ -79,9 +79,9 @@ const createWarehouse = () => {
                 <InputText
                   id="on_label"
                   v-model="warehouse.phone"
-                  class="border w-full h-10 pl-2"
+                  class="border w-full h-10 pl-2 dark:bg-transparent text-accentblack dark:text-accentwhite"
                 />
-                <label for="on_label" class="text-sm text-label">Phone</label>
+                <label for="on_label" class="text-sm text-label bg-accentwhite dark:text-accentwhite dark:bg-primarydark">Phone</label>
               </FloatLabel>
             </div>
 
@@ -91,9 +91,9 @@ const createWarehouse = () => {
                 <InputText
                   id="on_label"
                   v-model="warehouse.location"
-                  class="border w-full h-10 pl-2"
+                  class="border w-full h-10 pl-2 dark:bg-transparent text-accentblack dark:text-accentwhite"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label for="on_label" class="text-sm text-label bg-accentwhite dark:text-accentwhite dark:bg-primarydark"
                   >Location</label
                 >
               </FloatLabel>
@@ -105,9 +105,9 @@ const createWarehouse = () => {
                 <InputText
                   id="on_label"
                   v-model="warehouse.employees"
-                  class="border w-full h-10 pl-2"
+                  class="border w-full h-10 pl-2 dark:bg-transparent text-accentblack dark:text-accentwhite"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label for="on_label" class="text-sm text-label bg-accentwhite dark:text-accentwhite dark:bg-primarydark"
                   >Number of Employee</label
                 >
               </FloatLabel>
@@ -119,9 +119,9 @@ const createWarehouse = () => {
                 <InputText
                   id="on_label"
                   v-model="warehouse.warehouseType"
-                  class="border w-full h-10 pl-2"
+                  class="border w-full h-10 pl-2 dark:bg-transparent text-accentblack dark:text-accentwhite"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label for="on_label" class="text-sm text-label bg-accentwhite dark:text-accentwhite dark:bg-primarydark"
                   >Warehouse Type</label
                 >
               </FloatLabel>
@@ -133,7 +133,7 @@ const createWarehouse = () => {
               severity="secondary"
               label="Save"
               @click="createWarehouse"
-              class="w-full bg-primarylight text-white p-2 hover:bg-primarylight/70 cursor-pointer"
+              class="w-full bg-primarylight text-white p-2 hover:bg-primarylight/70 cursor-pointer dark:bg-accent2 dark:text-accentwhite"
             />
           </div>
         </template>
