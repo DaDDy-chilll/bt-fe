@@ -96,7 +96,7 @@ const toggleEditMode = () => {
 </script>
 <template>
   <div class="flex flex-col h-screen bg-accentwhite text-sm">
-    <SystemNavBar />
+    <SystemNavBar class="text-base"/>
     <div class="px-6 py-6 mt-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <!--Left Side-->
@@ -149,7 +149,7 @@ const toggleEditMode = () => {
         <!--Right Side-->
         <div v-if="edit_mode" class="flex flex-col items-center gap-6">
           <!--Name-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <div class="flex items-center w-auto h-8 rounded-md">
                 <InputText
@@ -162,7 +162,7 @@ const toggleEditMode = () => {
             </FloatLabel>
           </div>
           <!--Email-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <div class="flex items-center w-auto h-8 rounded-md">
                 <InputText
@@ -175,7 +175,7 @@ const toggleEditMode = () => {
             </FloatLabel>
           </div>
           <!--Phone-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <div class="flex items-center w-auto h-8 rounded-md">
                 <InputText
@@ -188,7 +188,7 @@ const toggleEditMode = () => {
             </FloatLabel>
           </div>
           <!--Address-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <div class="flex items-center w-auto rounded-md">
                 <Textarea

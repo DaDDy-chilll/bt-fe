@@ -91,8 +91,8 @@ const handleAddItem = (item: any) => {
 
 </script>
 <template>
-  <div>
-    <SystemNavBar />
+  <div class="flex flex-col h-screen bg-accentwhite text-sm">
+    <SystemNavBar class="text-base"/>
     <div class="px-6 py-6">
       <table>
         <thead class="border-b border-gray-200">
@@ -100,7 +100,7 @@ const handleAddItem = (item: any) => {
           <td
             v-for="page in pageList"
             :key="page.id"
-            class="w-32 sm:w-40 md:w-48 lg:w-56 px-4 py-2 text-sm sm:text-base"
+            class="w-32 sm:w-40 md:w-48 lg:w-56 px-4 py-2 text-sm"
           >
             {{ page.name }}
           </td>
@@ -115,7 +115,7 @@ const handleAddItem = (item: any) => {
             <td
               v-for="page in pageList"
               :key="page.id"
-              class="w-32 sm:w-40 md:w-48 lg:w-56 px-4 py-2 text-sm sm:text-base text-center"
+              class="w-32 sm:w-40 md:w-48 lg:w-56 px-4 py-2 text-sm text-center"
             >
               <input
                 type="checkbox"

@@ -1,5 +1,8 @@
+<script setup lang="ts">
+import tracking from '@/components/order/tracking.vue';
+</script>
 <template>
   <div>
-    <h1>New Order</h1>
+    <tracking />
   </div>
 </template>

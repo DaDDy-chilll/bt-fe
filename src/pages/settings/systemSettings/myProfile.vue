@@ -107,7 +107,7 @@ const profileImage = computed(() => {
 
 <template>
   <div class="flex flex-col h-screen bg-accentwhite text-sm">
-    <SystemNavBar />
+    <SystemNavBar class="text-base"/>
     <div class="px-6 py-6 mt-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <!--Left Side-->
@@ -135,7 +135,7 @@ const profileImage = computed(() => {
           </div>
           <div class="flex flex-col gap-8">
             <!--Username-->
-            <div class="mt-4 border border-accentblack rounded-md">
+            <div class="mt-4 border border-muted rounded-md">
               <FloatLabel variant="on">
                 <div class="flex items-center w-auto h-8 rounded-md">
                   <InputText
@@ -150,7 +150,7 @@ const profileImage = computed(() => {
               </FloatLabel>
             </div>
             <!--Phone-->
-            <div class="mt-4 border border-accentblack rounded-md">
+            <div class="mt-4 border border-muted rounded-md">
               <FloatLabel variant="on">
                 <div class="flex items-center w-auto h-8 rounded-md">
                   <InputText
@@ -163,7 +163,7 @@ const profileImage = computed(() => {
               </FloatLabel>
             </div>
             <!--Role-->
-            <div class="mt-4 border border-accentblack rounded-md">
+            <div class="mt-4 border border-muted rounded-md">
               <FloatLabel variant="on">
                 <Select
                   v-model="userProfile.role_id"
@@ -181,7 +181,7 @@ const profileImage = computed(() => {
         <!--Right Side-->
         <div class="flex flex-col items-center gap-6">
           <!--Address-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <div class="flex items-center w-auto h-8 rounded-md">
                 <InputText
@@ -194,7 +194,7 @@ const profileImage = computed(() => {
             </FloatLabel>
           </div>
           <!--Email-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <div class="flex items-center w-auto h-8 rounded-md">
                 <InputText
@@ -207,7 +207,7 @@ const profileImage = computed(() => {
             </FloatLabel>
           </div>
           <!--Emergency Contact-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <div class="flex items-center w-auto h-8 rounded-md">
                 <InputText
@@ -222,7 +222,7 @@ const profileImage = computed(() => {
             </FloatLabel>
           </div>
           <!--Religion-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <Select
                 v-model="userProfile.religion"
@@ -239,7 +239,7 @@ const profileImage = computed(() => {
           </div>
           <!--Date of Birth-->
           <!--Religion-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <div class="flex items-center w-auto h-8 rounded-md">
                 <DatePicker
@@ -255,7 +255,7 @@ const profileImage = computed(() => {
             </FloatLabel>
           </div>
           <!--Blood Type-->
-          <div class="mt-4 border border-accentblack rounded-md">
+          <div class="mt-4 border border-muted rounded-md">
             <FloatLabel variant="on">
               <Select
                 v-model="userProfile.blood_type_id"
