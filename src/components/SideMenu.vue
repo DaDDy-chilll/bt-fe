@@ -98,11 +98,11 @@ const items = ref([
     label: "Tracking",
     icon: "pi pi-fw pi-compass",
   },
-  {
-    label: "Report(Pro)",
-    icon: "pi pi-fw pi-chart-line",
-    badge: "Pro",
-  },
+  // {
+  //   label: "Report(Pro)",
+  //   icon: "pi pi-fw pi-chart-line",
+  //   badge: "Pro",
+  // },
   {
     label: "Invoice",
     icon: "pi pi-fw pi-file",
@@ -150,7 +150,7 @@ const items = ref([
 </script>
 
 <template>
-  <div class=" w-64 bg-primary px-3">
+  <div class="w-72 bg-primary px-3 h-full  overflow-y-auto">
     <img
       src="../assets/images/logo.png"
       alt="logo"

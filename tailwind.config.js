@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: [
     "./src/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -27,20 +28,19 @@ export default {
         label: "#6b7280",
       },
       backgroundImage: {
-        'light_img': "url(@/assets/images/light_bg.jpg)",
-        'dark_img': "url(@/assets/images/dark_bg.jpg)",
+        light_img: "url(@/assets/images/light_bg.jpg)",
+        dark_img: "url(@/assets/images/dark_bg.jpg)",
       },
       fontSize: {
-        'small': '9px',
-        'medium': '12px',
-        'large': '16px',
-        'xlarge': '20px',
-        '2xlarge': '24px',
-        '3xlarge': '32px',
-        '4xlarge': '40px',
-      }
+        small: "9px",
+        medium: "12px",
+        large: "16px",
+        xlarge: "20px",
+        "2xlarge": "24px",
+        "3xlarge": "32px",
+        "4xlarge": "40px",
+      },
     },
   },
   plugins: [],
-}
-
+};

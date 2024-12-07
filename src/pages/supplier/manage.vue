@@ -38,7 +38,7 @@ const filteredData = computed(() => {
                 item.name.toLowerCase().includes(searchTerm) ||
                 item.code.toLowerCase().includes(searchTerm) ||
                 item.contact_name.toLowerCase().includes(searchTerm) ||
-                item.phone.toLowerCase().includes(searchTerm) ||
+                item.phone.some((phone) => phone.toLowerCase().includes(searchTerm)) ||
                 item.email.toLowerCase().includes(searchTerm)
         );
     }
@@ -235,11 +235,21 @@ const filterSelected = (event: any) => {
                     <Column field="branch" header="Branch"></Column>
                     <Column field="contact_name" header="Contact Name"></Column>
                     <Column field="contact_start_date" header="Contact Start Date"></Column>
-                    <Column field="phone" header="Phone"></Column>
+                    <Column field="phone" header="Phone">
+                        <template #body="slotProps">
+                            <span>{{ slotProps.data.phone.join(' , ') }}</span>
+                        </template>
+                    </Column>
                     <Column field="email" header="Email"></Column>
                     <Column field="state" header="State"></Column>
                     <Column field="city" header="City"></Column>
-                    <Column field="address" header="Address"></Column>
+                    <Column field="address" header="Address">
+                        <template #body="slotProps">
+                            <span>
+                                {{ slotProps.data.address.length > 15 ? slotProps.data.address.slice(0, 15) + '...' : slotProps.data.address }}
+                            </span>
+                        </template>
+                    </Column>
                     <Column field="memo" header="Memo">
                         <template #body="slotProps">
                             <span class="cursor-pointer hover:text-accent1" @click="showMemos(slotProps.data.memo)">{{
