@@ -28,7 +28,8 @@ onMounted(async () => {
             modules: {
                 toolbar: toolbarOptions
             },
-            placeholder: 'Type your message here...'
+            placeholder: 'Type your message here...',
+            dark: true
         });
     }
 });
@@ -51,9 +52,10 @@ onMounted(async () => {
 
 .ql-toolbar {
     border:none !important;
-    width: 84%;
+    width: fit-content;
     margin-left: auto;
-    margin-right: 3%;
+    margin-right: 2%;
+    background-color: var(--accentwhite);
 }
 
 .ql-toolbar .ql-picker-options {
@@ -64,4 +66,11 @@ onMounted(async () => {
 .ql-toolbar .ql-picker.ql-expanded .ql-picker-options {
     margin-bottom: 5px;
 }
+
+
+
+.ql-editor.ql-blank::before {
+    color: rgb(148, 147, 147) !important;
+}
+
 </style>

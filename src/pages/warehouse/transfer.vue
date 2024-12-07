@@ -1,31 +1,26 @@
 <script setup lang="ts">
-defineProps({
-  close: {
-    type: Function,
-    required: true,
-  },
-  product: {
-    type: Array,
-    required: true,
-  },
-  warehouses: {
-    type: Array,
-    required: true,
-  },
-  transfer: {
-    type: Function,
-    required: true,
-  },
-});
+import Warehouse from "./warehouse.json";
+import Products from "./products.json";
+
+const warehouses = Warehouse;
+const product: transferProduct[] = Products;
+
 
 const fromWarehouse = ref("");
 const toWarehouse = ref("");
 const selectedProduct = ref();
 
+const close = () => {
+  navigateTo("/warehouse/check");
+};
+
+const transfer = () => {
+  console.log("transfer");
+};
 </script>
 <template>
   <div
-    class="absolute top-0 left-0 right-0 bottom-0 px-2 py-5 z-50 min-h-screen bg-transparent"
+    class=" px-2 py-5 z-50 min-h-screen bg-transparent"
   >
     <Card class="relative bg-accentwhite dark:bg-primarydark dark:shadow-accentwhite/20 shadow-sm ">
       <template #title>
@@ -40,8 +35,8 @@ const selectedProduct = ref();
               :options="warehouses"
               optionLabel="value"
               optionValue="id"
+              class="w-full md:w-48 bg-primarylight text-xs text-accentwhite dark:bg-accent2 dark:text-accentblack"
               placeholder="Select Warehouse"
-              class="w-full md:w-48 bg-primarylight text-xs text-accentwhite dark:bg-accent2 dark:text-accentwhite"
             />
             <i
               class="pi pi-arrow-right-arrow-left text-accentblack dark:text-accentwhite"
@@ -52,8 +47,8 @@ const selectedProduct = ref();
               :options="warehouses"
               optionLabel="value"
               optionValue="id"
+              class="w-full md:w-48 bg-primarylight text-xs text-accentwhite dark:bg-accent2 dark:text-accentblack"
               placeholder="Select Warehouse"
-              class="w-full md:w-48 bg-primarylight text-xs text-accentwhite dark:bg-accent2 dark:text-accentwhite"
             />
           </div>
         </div>
@@ -63,7 +58,7 @@ const selectedProduct = ref();
           <DataTable
             :value="product"
             stripedRows
-            class="w-full h-full text-sm"
+            class="w-full h-full text-sm bg-transparent dark:bg-transparent"
             scrollable
              scrollHeight="30rem"
             resizableColumns
@@ -157,4 +152,28 @@ const selectedProduct = ref();
   @apply border-muted drop-shadow-sm shadow-sm rounded-md;
   border-width: 0.09rem;
 }
+
+
+:deep(.p-select-dropdown > svg) {
+  @apply text-accentwhite;
+}
+:deep(.p-select-label, .p-placeholder) {
+  @apply text-accentwhite;
+}
+
+:deep(.p-datatable-header) {
+  @apply dark:bg-primarydark;
+}
+
+:deep(.p-datatable-thead > tr > th) {
+  @apply dark:bg-primarydark;
+}
+
+:deep(.p-datatable-tbody > tr) {
+  @apply dark:bg-primarydark;
+}
+:deep(.p-datatable-tbody > tr.p-highlight) {
+  @apply dark:bg-accent2;
+}
+
 </style>

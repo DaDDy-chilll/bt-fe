@@ -6,6 +6,7 @@ export default defineNuxtConfig({
       viewport: "width=device-width, initial-scale=1",
     },
   },
+
   devtools: { enabled: false },
   ssr: false,
   srcDir: "src",
@@ -52,4 +53,6 @@ export default defineNuxtConfig({
       apiBaseUrl: process.env.API_BASE_URL,
     },
   },
+
+  compatibilityDate: "2024-12-07",
 });
