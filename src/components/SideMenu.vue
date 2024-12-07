@@ -150,7 +150,7 @@ const items = ref([
 </script>
 
 <template>
-  <div class="w-72 bg-primary px-3 h-full  overflow-y-auto">
+  <div class="w-72 bg-primary px-3  overflow-y-auto">
     <img
       src="../assets/images/logo.png"
       alt="logo"

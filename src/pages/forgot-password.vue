@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Button, Message } from "primevue";
 import LOGO from "@/assets/icons/logo.svg";
 import type { LoginPayload, ErrorPayload } from "../types/auth";
 import { errorMessage } from "@/consts/errorMessage";

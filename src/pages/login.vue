@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { Password, Button, Message } from "primevue";
-import LOGO from "@/assets/icons/logo.svg";
-import LogosGoogleIcon from "@/assets/icons/google.svg";
-import LogosFacebook from "@/assets/icons/facebook.svg";
+
 import type { LoginPayload, ErrorPayload } from "../types/auth";
 import { errorMessage } from "@/consts/errorMessage";
 import { useAuthStore } from "../stores/auth";
@@ -113,7 +110,10 @@ const facebookLogin = () => {
     class="w-full sm:max-w-md bg-accentwhite rounded-xl p-8 shadow-md dark:bg-accentblack"
   >
     <!-- Logo -->
-    <LOGO alt="logo" class="mx-auto mb-3" />
+    <div class="mx-auto mb-3">
+      <img src="@/assets/icons/logo.svg" alt="logo" class="w-10 h-10" />
+    </div>
+
     <h1
       class="text-2xl font-medium text-center text-accentblack dark:text-accentwhite"
     >
@@ -257,14 +257,14 @@ const facebookLogin = () => {
         @click="googleLogin"
         class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <LogosGoogleIcon alt="google" class="w-5 h-5" />
+        <img src="@/assets/icons/google.svg" alt="google" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Google</span>
       </button>
       <button
         @click="facebookLogin"
         class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <LogosFacebook alt="facebook" class="w-5 h-5" />
+        <img src="@/assets/icons/facebook.svg" alt="facebook" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Facebook</span>
       </button>
     </div>

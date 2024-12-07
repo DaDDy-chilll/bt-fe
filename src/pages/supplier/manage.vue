@@ -261,9 +261,15 @@ const filterSelected = (event: any) => {
                             <Button icon="pi pi-ellipsis-v" class="text-primarylight" @click="toggle" />
                             <Popover ref="op" class="!bg-primarylight text-accentwhite">
                                 <div class="flex flex-col gap-4 justify-start items-start">
-                                    <Button label="View" icon="pi pi-eye" />
-                                    <Button label="Edit" icon="pi pi-pencil" />
-                                    <Button label="Copy" icon="pi pi-copy" />
+                                    <NuxtLink to="/supplier/1" class="button">
+                                        <Button label="View" icon="pi pi-eye" />
+                                    </NuxtLink>
+                                    <NuxtLink to="/supplier/1/edit" class="button">
+                                        <Button label="Edit" icon="pi pi-pencil" />
+                                    </NuxtLink>
+                                    <NuxtLink to="/supplier/copy" class="button">
+                                        <Button label="Copy" icon="pi pi-copy" />
+                                    </NuxtLink>
                                 </div>
                             </Popover>
                         </template>

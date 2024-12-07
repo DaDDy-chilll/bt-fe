@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BackArrow from "@/assets/icons/back_icon.vue";
-import SupplierData from "./supplierdata.json";
+import SupplierData from "../supplierdata.json";
 import PersonIcon from "~/assets/icons/person.vue";
 import Dialog from 'primevue/dialog';
 import { ref } from "vue";

@@ -96,7 +96,7 @@ const handleAddItem = (item: any) => {
     <div class="px-6 py-6">
       <table>
         <thead class="border-b border-gray-200">
-          <td class="w-32 sm:w-40 md:w-48 lg:w-56"></td>
+          <!-- <td class="w-32 sm:w-40 md:w-48 lg:w-56"></td> -->
           <td
             v-for="page in pageList"
             :key="page.id"
