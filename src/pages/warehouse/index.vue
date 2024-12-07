@@ -21,7 +21,7 @@ const createWarehouse = () => {
 };
 </script>
 <template>
-  <div class="flex gap-4 justify-between items-start w-full">
+  <div class="flex gap-4 justify-between items-start w-full py-3">
     <div
       class="w-full bg-accentwhite drop-shadow-md rounded-lg flex justify-center items-center pb-5"
     >

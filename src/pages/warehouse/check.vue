@@ -29,7 +29,7 @@ const transferProducts = () => {
 };
 </script>
 <template>
-  <div class="relative">
+  <div class="relative py-3">
     <Card>
       <template #title>
         <div class="flex gap-5">

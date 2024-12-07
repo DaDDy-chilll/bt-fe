@@ -1,672 +1,552 @@
 [
-    {
-        "id": 1,
-        "firstname": "John",
-        "lastname": "Doe",
-        "phone": "123-456-7890",
-        "nrc": "12/ABC(N)123456",
-        "email": "john.doe@example.com",
-        "social": "@johndoe",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Initial Contact",
-                "date": "2022-01-01",
-                "text": "Met at the trade show."
-            },
-            {
-                "name": "Deployment",
-                "date": "2024-02-20",
-                "text": "Deployed project to production."
-            }
-        ],
-        "level": {
-            "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg",
-            "value": "gold"
-        }
-    },
-    {
-        "id": 2,
-        "firstname": "Jane",
-        "lastname": "Smith",
-        "phone": "987-654-3210",
-        "nrc": "34/DEF(N)654321",
-        "email": "jane.smith@example.com",
-        "social": "@janesmith",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Follow-up",
-                "date": "2022-02-15",
-                "text": "Sent follow-up email."
-            }
-        ],
-        "level": {
-            "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg",
-            "value": "silver"
-        }
-    },
-    {
-        "id": 3,
-        "firstname": "Alice",
-        "lastname": "Johnson",
-        "phone": "555-123-4567",
-        "nrc": "56/GHI(N)789012",
-        "email": "alice.johnson@example.com",
-        "social": "@alicejohnson",
-        "status": "Do Not Sell",
-        "memo": [
-            {
-                "name": "Meeting",
-                "date": "2022-03-10",
-                "text": "Discussed project requirements."
-            }
-        ],
-        "level": {
-            "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 4,
-        "firstname": "Bob",
-        "lastname": "Brown",
-        "phone": "444-987-6543",
-        "nrc": "78/JKL(N)345678",
-        "email": "bob.brown@example.com",
-        "social": "@bobbrown",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Phone Call",
-                "date": "2022-04-05",
-                "text": "Discussed contract details."
-            }
-        ],
-        "level": {
-            "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg",
-            "value": "bronze"
-        }
-    },
-    {
-        "id": 5,
-        "firstname": "Charlie",
-        "lastname": "Davis",
-        "phone": "333-222-1111",
-        "nrc": "90/MNO(N)901234",
-        "email": "charlie.davis@example.com",
-        "social": "@charliedavis",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Email",
-                "date": "2022-05-20",
-                "text": "Sent project proposal."
-            }
-        ],
-        "level": {
-            "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 6,
-        "firstname": "David",
-        "lastname": "Wilson",
-        "phone": "222-333-4444",
-        "nrc": "11/PQR(N)567890",
-        "email": "david.wilson@example.com",
-        "social": "@davidwilson",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Conference",
-                "date": "2022-06-10",
-                "text": "Attended annual conference."
-            }
-        ],
-        "level": {
-            "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg",
-            "value": "silver"
-        }
-    },
-    {
-        "id": 7,
-        "firstname": "Emma",
-        "lastname": "Thomas",
-        "phone": "111-222-3333",
-        "nrc": "22/STU(N)123456",
-        "email": "emma.thomas@example.com",
-        "social": "@emmathomas",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Workshop",
-                "date": "2022-07-15",
-                "text": "Participated in workshop."
-            }
-        ],
-        "level": {
-            "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg",
-            "value": "gold"
-        }
-    },
-    {
-        "id": 8,
-        "firstname": "Frank",
-        "lastname": "White",
-        "phone": "666-777-8888",
-        "nrc": "33/VWX(N)789012",
-        "email": "frank.white@example.com",
-        "social": "@frankwhite",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Webinar",
-                "date": "2022-08-20",
-                "text": "Joined online webinar."
-            }
-        ],
-        "level": {
-            "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg",
-            "value": "bronze"
-        }
-    },
-    {
-        "id": 9,
-        "firstname": "Grace",
-        "lastname": "Harris",
-        "phone": "777-888-9999",
-        "nrc": "44/YZA(N)345678",
-        "email": "grace.harris@example.com",
-        "social": "@graceharris",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Networking",
-                "date": "2022-09-25",
-                "text": "Attended networking event."
-            }
-        ],
-        "level": {
-            "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 10,
-        "firstname": "Henry",
-        "lastname": "Martin",
-        "phone": "888-999-0000",
-        "nrc": "55/BCD(N)901234",
-        "email": "henry.martin@example.com",
-        "social": "@henrymartin",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Client Meeting",
-                "date": "2022-10-30",
-                "text": "Met with client for project discussion."
-            }
-        ],
-        "level": {
-            "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 11,
-        "firstname": "Ivy",
-        "lastname": "Clark",
-        "phone": "999-000-1111",
-        "nrc": "66/EFG(N)567890",
-        "email": "ivy.clark@example.com",
-        "social": "@ivyclark",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Product Launch",
-                "date": "2022-11-05",
-                "text": "Attended product launch event."
-            }
-        ],
-        "level": {
-            "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg",
-            "value": "silver"
-        }
-    },
-    {
-        "id": 12,
-        "firstname": "Jack",
-        "lastname": "Lewis",
-        "phone": "000-111-2222",
-        "nrc": "77/HIJ(N)123456",
-        "email": "jack.lewis@example.com",
-        "social": "@jacklewis",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Training",
-                "date": "2022-12-10",
-                "text": "Completed training session."
-            }
-        ],
-        "level": {
-            "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg",
-            "value": "gold"
-        }
-    },
-    {
-        "id": 13,
-        "firstname": "Kara",
-        "lastname": "Walker",
-        "phone": "111-222-3333",
-        "nrc": "88/KLM(N)789012",
-        "email": "kara.walker@example.com",
-        "social": "@karawalker",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Seminar",
-                "date": "2023-01-15",
-                "text": "Attended industry seminar."
-            }
-        ],
-        "level": {
-            "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg",
-            "value": "bronze"
-        }
-    },
-    {
-        "id": 14,
-        "firstname": "Liam",
-        "lastname": "Hall",
-        "phone": "222-333-4444",
-        "nrc": "99/NOP(N)345678",
-        "email": "liam.hall@example.com",
-        "social": "@liamhall",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Consultation",
-                "date": "2023-02-20",
-                "text": "Consulted on project strategy."
-            }
-        ],
-        "level": {
-            "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 15,
-        "firstname": "Mia",
-        "lastname": "Young",
-        "phone": "333-444-5555",
-        "nrc": "00/QRS(N)901234",
-        "email": "mia.young@example.com",
-        "social": "@miayoung",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Review",
-                "date": "2023-03-25",
-                "text": "Reviewed project deliverables."
-            }
-        ],
-        "level": {
-            "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 16,
-        "firstname": "Noah",
-        "lastname": "King",
-        "phone": "444-555-6666",
-        "nrc": "11/TUV(N)567890",
-        "email": "noah.king@example.com",
-        "social": "@noahking",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Feedback",
-                "date": "2023-04-30",
-                "text": "Provided feedback on proposal."
-            }
-        ],
-        "level": {
-            "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg",
-            "value": "silver"
-        }
-    },
-    {
-        "id": 17,
-        "firstname": "Olivia",
-        "lastname": "Scott",
-        "phone": "555-666-7777",
-        "nrc": "22/WXY(N)123456",
-        "email": "olivia.scott@example.com",
-        "social": "@oliviascott",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Presentation",
-                "date": "2023-05-05",
-                "text": "Gave presentation on new product."
-            }
-        ],
-        "level": {
-            "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg",
-            "value": "gold"
-        }
-    },
-    {
-        "id": 18,
-        "firstname": "Paul",
-        "lastname": "Adams",
-        "phone": "666-777-8888",
-        "nrc": "33/ZAB(N)789012",
-        "email": "paul.adams@example.com",
-        "social": "@pauladams",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Strategy Meeting",
-                "date": "2023-06-10",
-                "text": "Discussed marketing strategy."
-            }
-        ],
-        "level": {
-            "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg",
-            "value": "bronze"
-        }
-    },
-    {
-        "id": 19,
-        "firstname": "Quinn",
-        "lastname": "Baker",
-        "phone": "777-888-9999",
-        "nrc": "44/CDE(N)345678",
-        "email": "quinn.baker@example.com",
-        "social": "@quinnbaker",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Team Meeting",
-                "date": "2023-07-15",
-                "text": "Held team meeting for project update."
-            }
-        ],
-        "level": {
-            "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 20,
-        "firstname": "Rachel",
-        "lastname": "Carter",
-        "phone": "888-999-0000",
-        "nrc": "55/FGH(N)901234",
-        "email": "rachel.carter@example.com",
-        "social": "@rachelcarter",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Client Call",
-                "date": "2023-08-20",
-                "text": "Discussed client requirements."
-            }
-        ],
-        "level": {
-            "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 21,
-        "firstname": "Sam",
-        "lastname": "Dixon",
-        "phone": "999-000-1111",
-        "nrc": "66/IJK(N)567890",
-        "email": "sam.dixon@example.com",
-        "social": "@samdixon",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Project Kickoff",
-                "date": "2023-09-25",
-                "text": "Initiated project kickoff meeting."
-            }
-        ],
-        "level": {
-            "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg",
-            "value": "silver"
-        }
-    },
-    {
-        "id": 22,
-        "firstname": "Tina",
-        "lastname": "Evans",
-        "phone": "000-111-2222",
-        "nrc": "77/LMN(N)123456",
-        "email": "tina.evans@example.com",
-        "social": "@tinaevans",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Budget Review",
-                "date": "2023-10-30",
-                "text": "Reviewed project budget."
-            }
-        ],
-        "level": {
-            "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg",
-            "value": "gold"
-        }
-    },
-    {
-        "id": 23,
-        "firstname": "Uma",
-        "lastname": "Foster",
-        "phone": "111-222-3333",
-        "nrc": "88/OPQ(N)789012",
-        "email": "uma.foster@example.com",
-        "social": "@umafoster",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Design Review",
-                "date": "2023-11-05",
-                "text": "Reviewed design specifications."
-            }
-        ],
-        "level": {
-            "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg",
-            "value": "bronze"
-        }
-    },
-    {
-        "id": 24,
-        "firstname": "Victor",
-        "lastname": "Garcia",
-        "phone": "222-333-4444",
-        "nrc": "99/RST(N)345678",
-        "email": "victor.garcia@example.com",
-        "social": "@victorgarcia",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Code Review",
-                "date": "2023-12-10",
-                "text": "Conducted code review session."
-            }
-        ],
-        "level": {
-            "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 25,
-        "firstname": "Wendy",
-        "lastname": "Hughes",
-        "phone": "333-444-5555",
-        "nrc": "00/UVW(N)901234",
-        "email": "wendy.hughes@example.com",
-        "social": "@wendyhughes",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Testing",
-                "date": "2024-01-15",
-                "text": "Completed testing phase."
-            }
-        ],
-        "level": {
-            "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 26,
-        "firstname": "Xander",
-        "lastname": "Ingram",
-        "phone": "444-555-6666",
-        "nrc": "11/XYZ(N)567890",
-        "email": "xander.ingram@example.com",
-        "social": "@xanderingram",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Deployment",
-                "date": "2024-02-20",
-                "text": "Deployed project to production."
-            },
-            {
-                "name": "Deployment",
-                "date": "2024-02-20",
-                "text": "Deployed project to production."
-            }
-        ],
-        "level": {
-            "id": 2,
-            "icon": "/_nuxt/assets/icons/silver.svg",
-            "value": "silver"
-        }
-    },
-    {
-        "id": 27,
-        "firstname": "Yara",
-        "lastname": "James",
-        "phone": "555-666-7777",
-        "nrc": "22/ABC(N)123456",
-        "email": "yara.james@example.com",
-        "social": "@yarajames",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Maintenance",
-                "date": "2024-03-25",
-                "text": "Performed system maintenance."
-            }
-        ],
-        "level": {
-            "id": 3,
-            "icon": "/_nuxt/assets/icons/gold.svg",
-                "value": "gold"
-        }
-    },
-    {
-        "id": 28,
-        "firstname": "Zane",
-        "lastname": "Keller",
-        "phone": "666-777-8888",
-        "nrc": "33/DEF(N)789012",
-        "email": "zane.keller@example.com",
-        "social": "@zanekeller",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Audit",
-                "date": "2024-04-30",
-                "text": "Conducted system audit."
-            }
-        ],
-        "level": {
-            "id": 1,
-            "icon": "/_nuxt/assets/icons/bronze.svg",
-            "value": "bronze"
-        }
-    },
-    {
-        "id": 29,
-        "firstname": "Amy",
-        "lastname": "Lopez",
-        "phone": "777-888-9999",
-        "nrc": "44/GHI(N)345678",
-        "email": "amy.lopez@example.com",
-        "social": "@amylopez",
-        "status": "No issues",
-        "memo": [
-            {
-                "name": "Training",
-                "date": "2024-05-05",
-                "text": "Conducted training session."
-            }
-        ],
-        "level": {
-            "id": 4,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    },
-    {
-        "id": 30,
-        "firstname": "Brian",
-        "lastname": "Morris",
-        "phone": "888-999-0000",
-        "nrc": "55/JKL(N)901234",
-        "email": "brian.morris@example.com",
-        "social": "@brianmorris",
-        "status": "Warning",
-        "memo": [
-            {
-                "name": "Closure",
-                "date": "2024-06-10",
-                "text": "Closed project successfully."
-            }
-        ],
-        "level": {
-            "id": 5,
-            "icon": "/_nuxt/assets/icons/diamond.svg",
-            "value": "diamond"
-        }
-    }
+  {
+    "id": 1,
+    "firstname": "John",
+    "lastname": "Doe",
+    "phone": "123-456-7890",
+    "nrc": "12/ABC(N)123456",
+    "email": "john.doe@example.com",
+    "social": "@johndoe",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Initial Contact",
+        "date": "2022-01-01",
+        "text": "Met at the trade show."
+      },
+      {
+        "name": "Deployment",
+        "date": "2024-02-20",
+        "text": "Deployed project to production."
+      }
+    ],
+    "level": "gold"
+  },
+  {
+    "id": 2,
+    "firstname": "Jane",
+    "lastname": "Smith",
+    "phone": "987-654-3210",
+    "nrc": "34/DEF(N)654321",
+    "email": "jane.smith@example.com",
+    "social": "@janesmith",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Follow-up",
+        "date": "2022-02-15",
+        "text": "Sent follow-up email."
+      }
+    ],
+    "level": "silver"
+  },
+  {
+    "id": 3,
+    "firstname": "Alice",
+    "lastname": "Johnson",
+    "phone": "555-123-4567",
+    "nrc": "56/GHI(N)789012",
+    "email": "alice.johnson@example.com",
+    "social": "@alicejohnson",
+    "status": "Do Not Sell",
+    "memo": [
+      {
+        "name": "Meeting",
+        "date": "2022-03-10",
+        "text": "Discussed project requirements."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 4,
+    "firstname": "Bob",
+    "lastname": "Brown",
+    "phone": "444-987-6543",
+    "nrc": "78/JKL(N)345678",
+    "email": "bob.brown@example.com",
+    "social": "@bobbrown",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Phone Call",
+        "date": "2022-04-05",
+        "text": "Discussed contract details."
+      }
+    ],
+    "level": "bronze"
+  },
+  {
+    "id": 5,
+    "firstname": "Charlie",
+    "lastname": "Davis",
+    "phone": "333-222-1111",
+    "nrc": "90/MNO(N)901234",
+    "email": "charlie.davis@example.com",
+    "social": "@charliedavis",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Email",
+        "date": "2022-05-20",
+        "text": "Sent project proposal."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 6,
+    "firstname": "David",
+    "lastname": "Wilson",
+    "phone": "222-333-4444",
+    "nrc": "11/PQR(N)567890",
+    "email": "david.wilson@example.com",
+    "social": "@davidwilson",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Conference",
+        "date": "2022-06-10",
+        "text": "Attended annual conference."
+      }
+    ],
+    "level": "silver"
+  },
+  {
+    "id": 7,
+    "firstname": "Emma",
+    "lastname": "Thomas",
+    "phone": "111-222-3333",
+    "nrc": "22/STU(N)123456",
+    "email": "emma.thomas@example.com",
+    "social": "@emmathomas",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Workshop",
+        "date": "2022-07-15",
+        "text": "Participated in workshop."
+      }
+    ],
+    "level": "gold"
+  },
+  {
+    "id": 8,
+    "firstname": "Frank",
+    "lastname": "White",
+    "phone": "666-777-8888",
+    "nrc": "33/VWX(N)789012",
+    "email": "frank.white@example.com",
+    "social": "@frankwhite",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Webinar",
+        "date": "2022-08-20",
+        "text": "Joined online webinar."
+      }
+    ],
+    "level": "bronze"
+  },
+  {
+    "id": 9,
+    "firstname": "Grace",
+    "lastname": "Harris",
+    "phone": "777-888-9999",
+    "nrc": "44/YZA(N)345678",
+    "email": "grace.harris@example.com",
+    "social": "@graceharris",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Networking",
+        "date": "2022-09-25",
+        "text": "Attended networking event."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 10,
+    "firstname": "Henry",
+    "lastname": "Martin",
+    "phone": "888-999-0000",
+    "nrc": "55/BCD(N)901234",
+    "email": "henry.martin@example.com",
+    "social": "@henrymartin",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Client Meeting",
+        "date": "2022-10-30",
+        "text": "Met with client for project discussion."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 11,
+    "firstname": "Ivy",
+    "lastname": "Clark",
+    "phone": "999-000-1111",
+    "nrc": "66/EFG(N)567890",
+    "email": "ivy.clark@example.com",
+    "social": "@ivyclark",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Product Launch",
+        "date": "2022-11-05",
+        "text": "Attended product launch event."
+      }
+    ],
+    "level": "silver"
+  },
+  {
+    "id": 12,
+    "firstname": "Jack",
+    "lastname": "Lewis",
+    "phone": "000-111-2222",
+    "nrc": "77/HIJ(N)123456",
+    "email": "jack.lewis@example.com",
+    "social": "@jacklewis",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Training",
+        "date": "2022-12-10",
+        "text": "Completed training session."
+      }
+    ],
+    "level": "gold"
+  },
+  {
+    "id": 13,
+    "firstname": "Kara",
+    "lastname": "Walker",
+    "phone": "111-222-3333",
+    "nrc": "88/KLM(N)789012",
+    "email": "kara.walker@example.com",
+    "social": "@karawalker",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Seminar",
+        "date": "2023-01-15",
+        "text": "Attended industry seminar."
+      }
+    ],
+    "level": "bronze"
+  },
+  {
+    "id": 14,
+    "firstname": "Liam",
+    "lastname": "Hall",
+    "phone": "222-333-4444",
+    "nrc": "99/NOP(N)345678",
+    "email": "liam.hall@example.com",
+    "social": "@liamhall",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Consultation",
+        "date": "2023-02-20",
+        "text": "Consulted on project strategy."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 15,
+    "firstname": "Mia",
+    "lastname": "Young",
+    "phone": "333-444-5555",
+    "nrc": "00/QRS(N)901234",
+    "email": "mia.young@example.com",
+    "social": "@miayoung",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Review",
+        "date": "2023-03-25",
+        "text": "Reviewed project deliverables."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 16,
+    "firstname": "Noah",
+    "lastname": "King",
+    "phone": "444-555-6666",
+    "nrc": "11/TUV(N)567890",
+    "email": "noah.king@example.com",
+    "social": "@noahking",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Feedback",
+        "date": "2023-04-30",
+        "text": "Provided feedback on proposal."
+      }
+    ],
+    "level": "silver"
+  },
+  {
+    "id": 17,
+    "firstname": "Olivia",
+    "lastname": "Scott",
+    "phone": "555-666-7777",
+    "nrc": "22/WXY(N)123456",
+    "email": "olivia.scott@example.com",
+    "social": "@oliviascott",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Presentation",
+        "date": "2023-05-05",
+        "text": "Gave presentation on new product."
+      }
+    ],
+    "level": "gold"
+  },
+  {
+    "id": 18,
+    "firstname": "Paul",
+    "lastname": "Adams",
+    "phone": "666-777-8888",
+    "nrc": "33/ZAB(N)789012",
+    "email": "paul.adams@example.com",
+    "social": "@pauladams",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Strategy Meeting",
+        "date": "2023-06-10",
+        "text": "Discussed marketing strategy."
+      }
+    ],
+    "level": "bronze"
+  },
+  {
+    "id": 19,
+    "firstname": "Quinn",
+    "lastname": "Baker",
+    "phone": "777-888-9999",
+    "nrc": "44/CDE(N)345678",
+    "email": "quinn.baker@example.com",
+    "social": "@quinnbaker",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Team Meeting",
+        "date": "2023-07-15",
+        "text": "Held team meeting for project update."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 20,
+    "firstname": "Rachel",
+    "lastname": "Carter",
+    "phone": "888-999-0000",
+    "nrc": "55/FGH(N)901234",
+    "email": "rachel.carter@example.com",
+    "social": "@rachelcarter",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Client Call",
+        "date": "2023-08-20",
+        "text": "Discussed client requirements."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 21,
+    "firstname": "Sam",
+    "lastname": "Dixon",
+    "phone": "999-000-1111",
+    "nrc": "66/IJK(N)567890",
+    "email": "sam.dixon@example.com",
+    "social": "@samdixon",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Project Kickoff",
+        "date": "2023-09-25",
+        "text": "Initiated project kickoff meeting."
+      }
+    ],
+    "level": "silver"
+  },
+  {
+    "id": 22,
+    "firstname": "Tina",
+    "lastname": "Evans",
+    "phone": "000-111-2222",
+    "nrc": "77/LMN(N)123456",
+    "email": "tina.evans@example.com",
+    "social": "@tinaevans",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Budget Review",
+        "date": "2023-10-30",
+        "text": "Reviewed project budget."
+      }
+    ],
+    "level": "gold"
+  },
+  {
+    "id": 23,
+    "firstname": "Uma",
+    "lastname": "Foster",
+    "phone": "111-222-3333",
+    "nrc": "88/OPQ(N)789012",
+    "email": "uma.foster@example.com",
+    "social": "@umafoster",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Design Review",
+        "date": "2023-11-05",
+        "text": "Reviewed design specifications."
+      }
+    ],
+    "level": "bronze"
+  },
+  {
+    "id": 24,
+    "firstname": "Victor",
+    "lastname": "Garcia",
+    "phone": "222-333-4444",
+    "nrc": "99/RST(N)345678",
+    "email": "victor.garcia@example.com",
+    "social": "@victorgarcia",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Code Review",
+        "date": "2023-12-10",
+        "text": "Conducted code review session."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 25,
+    "firstname": "Wendy",
+    "lastname": "Hughes",
+    "phone": "333-444-5555",
+    "nrc": "00/UVW(N)901234",
+    "email": "wendy.hughes@example.com",
+    "social": "@wendyhughes",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Testing",
+        "date": "2024-01-15",
+        "text": "Completed testing phase."
+      }
+    ],
+    "level": "platinum"
+  },
+  {
+    "id": 26,
+    "firstname": "Xander",
+    "lastname": "Ingram",
+    "phone": "444-555-6666",
+    "nrc": "11/XYZ(N)567890",
+    "email": "xander.ingram@example.com",
+    "social": "@xanderingram",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Deployment",
+        "date": "2024-02-20",
+        "text": "Deployed project to production."
+      },
+      {
+        "name": "Deployment",
+        "date": "2024-02-20",
+        "text": "Deployed project to production."
+      }
+    ],
+    "level": "silver"
+  },
+  {
+    "id": 27,
+    "firstname": "Yara",
+    "lastname": "James",
+    "phone": "555-666-7777",
+    "nrc": "22/ABC(N)123456",
+    "email": "yara.james@example.com",
+    "social": "@yarajames",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Maintenance",
+        "date": "2024-03-25",
+        "text": "Performed system maintenance."
+      }
+    ],
+    "level": "gold"
+  },
+  {
+    "id": 28,
+    "firstname": "Zane",
+    "lastname": "Keller",
+    "phone": "666-777-8888",
+    "nrc": "33/DEF(N)789012",
+    "email": "zane.keller@example.com",
+    "social": "@zanekeller",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Audit",
+        "date": "2024-04-30",
+        "text": "Conducted system audit."
+      }
+    ],
+    "level": "bronze"
+  },
+  {
+    "id": 29,
+    "firstname": "Amy",
+    "lastname": "Lopez",
+    "phone": "777-888-9999",
+    "nrc": "44/GHI(N)345678",
+    "email": "amy.lopez@example.com",
+    "social": "@amylopez",
+    "status": "No issues",
+    "memo": [
+      {
+        "name": "Training",
+        "date": "2024-05-05",
+        "text": "Conducted training session."
+      }
+    ],
+    "level": "diamond"
+  },
+  {
+    "id": 30,
+    "firstname": "Brian",
+    "lastname": "Morris",
+    "phone": "888-999-0000",
+    "nrc": "55/JKL(N)901234",
+    "email": "brian.morris@example.com",
+    "social": "@brianmorris",
+    "status": "Warning",
+    "memo": [
+      {
+        "name": "Closure",
+        "date": "2024-06-10",
+        "text": "Closed project successfully."
+      }
+    ],
+    "level": "diamond"
+  }
 ]

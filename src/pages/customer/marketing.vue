@@ -3,11 +3,11 @@ import customers from "./customers.json";
 import level from "./level.json";
 import { FilterMatchMode } from "@primevue/core/api";
 useHead({ title: "Mail Marketing" });
-const selectedCustomer = ref<any[]>([]); // This will track the selected customers
+const selectedCustomer = ref<any[]>([]);
 const selectedAll = ref(false);
 const checked = ref();
 const filters = ref({
-  name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+  firstname: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
   level: { value: null, matchMode: FilterMatchMode.EQUALS },
 });
 
@@ -19,11 +19,8 @@ const filters = ref({
  * @updated ****-**-**
  */
 const handleAllSelect = (event: any) => {
-  if (event.target.checked) {
-    checked.value = [...customers];
-  } else {
-    checked.value = [];
-  }
+  if (event.target.checked) checked.value = [...customers];
+  else checked.value = [];
 };
 
 /**
@@ -47,13 +44,16 @@ const sendMail = () => {
   console.log("filters", filters);
 };
 </script>
+
 <template>
   <div class="relative">
     <div class="flex gap-5">
       <h1 class="text-2xl font-semibold mb-5">Mail Marketing</h1>
     </div>
     <div class="grid grid-cols-[2fr_3fr] gap-2 h-full">
-      <div class="bg-accentwhite drop-shadow-md rounded-lg h-[calc(100vh-8rem)] overflow-y-auto">
+      <div
+        class="bg-accentwhite drop-shadow-md rounded-lg h-[calc(100vh-8rem)] overflow-y-auto"
+      >
         <DataTable
           v-model:filters="filters"
           :value="customers"
@@ -66,7 +66,6 @@ const sendMail = () => {
           v-model:selection="checked"
           dataKey="id"
           :showHeaders="false"
-          :globalFilterFields="['name', 'level']"
         >
           <template #header class="p-0">
             <div class="flex justify-between items-center">
@@ -92,7 +91,7 @@ const sendMail = () => {
                     <i class="pi pi-search" />
                   </InputIcon>
                   <InputText
-                    v-model="filters.name.value"
+                    v-model="filters.firstname.value"
                     placeholder="Keyword Search"
                     class="ml-6"
                   />
@@ -111,12 +110,16 @@ const sendMail = () => {
           </template>
 
           <Column selectionMode="multiple" headerStyle="display: none"></Column>
-          <Column field="name" class=""></Column>
+          <Column field="firstname" class="">
+            <template #body="slotProps">
+              {{ slotProps.data.firstname }} {{ slotProps.data.lastname }}
+            </template></Column
+          >
           <Column field="email" class=""></Column>
           <Column field="level" class="">
             <template #body="slotProps">
               <img
-                :src="slotProps.data.level.icon"
+                :src="`/_nuxt/assets/icons/${slotProps.data.level}.svg`"
                 alt="Level"
                 class="w-6 h-6"
               />

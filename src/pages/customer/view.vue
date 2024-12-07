@@ -5,7 +5,6 @@ import BackArrow from "@/assets/icons/back_icon.vue";
 
 //Fetch Customer
 const selectedCustomer = CustomerData.find(customer => customer.id === 1); // 1 is the id of the customer to be selected
-
 </script>
 
 <template>
