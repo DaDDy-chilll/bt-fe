@@ -3,16 +3,22 @@ import type {GoldMethod} from "@/types/goldMethod";
 import SaveIcon from "@/assets/icons/save.vue";
 import { ref } from "vue";
 
+//props
 const props = defineProps<{
     model_data: GoldMethod[];
 }>();
 
+//v-model variables
 const model_data = ref<GoldMethod[]>(props.model_data);
 
+/*********Functions*********/
+
+//save method
 const onSaveMethod = () => {
     showSaveAnimation();
 };
 
+//save data
 const saveData = () => {
     //api call
     //save data
@@ -77,14 +83,14 @@ const showSaveAnimation = () => {
           <table class="w-full min-w-[800px] text-sm">
             <thead>
               <tr class="border-b border-gray-300">
-                <th class="py-3 px-4 text-left">NO.</th>
-                <th class="py-3 px-4 text-left">Weight</th>
-                <th class="py-3 px-4 text-left">Category</th>
-                <th class="py-3 px-4 text-left">1 kyatt</th>
-                <th class="py-3 px-4 text-left">5 muu</th>
-                <th class="py-3 px-4 text-left">1 matt</th>
-                <th class="py-3 px-4 text-left">1 mu</th>
-                <th class="py-3 px-4 text-left">1 pae</th>
+                <td class="py-3 px-4 text-left">No.</td>
+                <td class="py-3 px-4 text-left">Weight</td>
+                <td class="py-3 px-4 text-left">Category</td>
+                <td class="py-3 px-4 text-left">1 kyatt</td>
+                <td class="py-3 px-4 text-left">5 muu</td>
+                <td class="py-3 px-4 text-left">1 matt</td>
+                <td class="py-3 px-4 text-left">1 mu</td>
+                <td class="py-3 px-4 text-left">1 pae</td>
               </tr>
             </thead>
             <tbody>
@@ -99,7 +105,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-accentblack rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md"
                     name="one_kyatt"
                     v-model="item.one_kyatt"
                   />
@@ -107,7 +113,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-accentblack rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md"
                     name="five_muu"
                     v-model="item.five_muu"
                   />
@@ -115,7 +121,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-accentblack rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md"
                     name="one_matt"
                     v-model="item.one_matt"
                   />
@@ -123,7 +129,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-accentblack rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md"
                     name="one_mu"
                     v-model="item.one_mu"
                   />
@@ -131,7 +137,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-accentblack rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md"
                     name="one_pae"
                     v-model="item.one_pae"
                   />
