@@ -26,7 +26,7 @@ export const useAuth = (): UseAuth => {
     if (redirect && typeof redirect === "string") {
       return navigateTo(redirect);
     } else {
-      return navigateTo("/ask-ai");
+      return navigateTo("/dashboard");
     }
   };
   const logouted = () => {

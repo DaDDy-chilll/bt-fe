@@ -30,16 +30,13 @@ export default defineNuxtConfig({
           cssLayer: {
             name: "my-theme",
             order: "tailwind-base",
-          }
+          },
         },
       },
     },
   },
 
-  modules: [
-    "@pinia/nuxt",
-    "@primevue/nuxt-module",
-  ],
+  modules: ["@pinia/nuxt", "@primevue/nuxt-module"],
 
   components: [
     {
@@ -54,5 +51,18 @@ export default defineNuxtConfig({
     },
   },
 
+<<<<<<< Updated upstream
+=======
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler", // or "modern"
+        },
+      },
+    },
+  },
+
+>>>>>>> Stashed changes
   compatibilityDate: "2024-12-07",
 });
