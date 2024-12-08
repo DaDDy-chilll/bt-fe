@@ -1,19 +1,36 @@
 <script setup lang="ts">
 import tracking from "@/components/order/tracking.vue";
 import addProductModal from "@/components/order/addProductModal.vue";
+import productType from "~/pages/product/producttype.json";
 
-//fetch product list
-const products = ref([]);
+//fetch data;
+const productTypes = ref(productType);
 
-
-const quantity = ref(1);
-
+//constants
 const displayModal = ref(false);
 
-const subTotal = (product: any, quantity: number) => {
-  return (
-    product.ayoutwat + product.latt_kha + product.estimate_price
-  ) * quantity;
+const products = ref<any[]>([]);
+
+//emit
+const emit = defineEmits(['nextStep']);
+
+/*** Functions ***/
+
+//add new product
+const addNewProduct = (product: any) => {
+  console.log('add new product',product);
+  products.value.push(product);
+};
+
+//delete product
+const deleteProduct = (product: any) => {
+  products.value = products.value.filter(p => p.id !== product.id);
+};
+
+//next step
+const nextStep = (products: any[]) => {
+  emit('nextStep', products);
+  navigateTo('/order/customer');
 };
 
 </script>
@@ -104,7 +121,7 @@ const subTotal = (product: any, quantity: number) => {
         </div>
         <!--Actions-->
         <div
-          class="flex flex-col items-center gap-2 border-r-2 border-gray-300"
+          class="flex flex-col items-center gap-2"
         >
           <button @click="displayModal = true" class="bg-primarylight text-white px-2 py-1 rounded-md w-1/2">
             <span class="text-white">Add Product</span>
@@ -152,6 +169,7 @@ const subTotal = (product: any, quantity: number) => {
             <Column field="name" class="w-[15%]">
               <template #body="slotProps">
                 <div>
+                  <div class="font-bold">Product Name</div>
                   {{ slotProps.data.code }}
                 </div>
               </template>
@@ -160,7 +178,7 @@ const subTotal = (product: any, quantity: number) => {
             <Column field="type" header="Type" class="w-[15%]">
               <template #body="slotProps">
                 <div>
-                  {{ slotProps.data.type }}
+                  {{ productTypes.find(type => type.id === slotProps.data.type_id)?.value }}
                 </div>
               </template>
             </Column>
@@ -176,6 +194,7 @@ const subTotal = (product: any, quantity: number) => {
             <Column field="quantity" header="Quantity" class="w-[15%]">
               <template #body="slotProps">
                 <input
+                  @change="slotProps.data.quantity = Number(($event.target as HTMLInputElement).value) || 1"
                   type="number"
                   value="1"
                   class="w-10 pl-2 border-muted border-2 rounded-md"
@@ -186,6 +205,7 @@ const subTotal = (product: any, quantity: number) => {
             <Column field="estimate_price" header="Est. Price" class="w-[15%]">
               <template #body="slotProps">
                 <input
+                  @change="slotProps.data.estimate_price = Number(($event.target as HTMLInputElement).value)"
                   type="number"
                   :value="slotProps.data.estimate_price"
                   class="w-full pl-2 border-muted border-2 rounded-md"
@@ -196,6 +216,7 @@ const subTotal = (product: any, quantity: number) => {
             <Column field="ayoutwat" header="Ayoutwat" class="w-[15%]">
               <template #body="slotProps">
                 <input
+                  @change="slotProps.data.ayoutwat = Number(($event.target as HTMLInputElement).value)"
                   type="number"
                   :value="slotProps.data.ayoutwat"
                   class="w-full pl-2 border-muted border-2 rounded-md"
@@ -206,6 +227,7 @@ const subTotal = (product: any, quantity: number) => {
             <Column field="latt_kha" header="Latt Kha" class="w-[15%]">
               <template #body="slotProps">
                 <input
+                  @change="slotProps.data.latt_kha = Number(($event.target as HTMLInputElement).value)"
                   type="number"
                   :value="slotProps.data.latt_kha"
                   class="w-20 pl-2 border-muted border-2 rounded-md"
@@ -216,22 +238,26 @@ const subTotal = (product: any, quantity: number) => {
             <Column field="sub_total" header="Sub Total" class="w-[15%]">
               <template #body="slotProps">
                 <div>
-                  {{ subTotal(slotProps.data, quantity) }}
+                  {{ slotProps.data.quantity * (slotProps.data.estimate_price + slotProps.data.ayoutwat + slotProps.data.latt_kha) }}
                 </div>
               </template>
             </Column>
             <!--Action-->
             <Column field="action" class="w-[15%]" alignFrozen="right" frozen>
-              <template #body>
-                <button class="text-red-500 hover:text-red-700">
+              <template #body="slotProps">
+                <button @click="deleteProduct(slotProps.data)" class="text-red-500 hover:text-red-700">
                   <i class="pi pi-trash"></i>
                 </button>
               </template>
             </Column>
           </DataTable>
+          <button @click="nextStep(products)" class="bg-primarylight text-white px-6 py-1 rounded-md float-right">
+            <span class="text-white">Next</span>
+          </button>
         </div>
+    
       </div>
     </div>
   </div>
-  <addProductModal :displayModal="displayModal" @update:displayModal="displayModal = $event" />
+  <addProductModal :displayModal="displayModal" @update:displayModal="displayModal = $event" @addNewProduct="addNewProduct" />
 </template>

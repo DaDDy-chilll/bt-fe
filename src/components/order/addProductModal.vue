@@ -18,20 +18,18 @@ const props = defineProps({
   },
 });
 
-//data
-const localFormData = ref({
- 
-});
+//emits
+const emit = defineEmits(['update:displayModal', 'addNewProduct']);
 
+
+/*** Functions */
 //add new product
-const addNewProduct = () => {
-  console.log('add new product');
+const addNewProduct = (product) => {
+  console.log('add new product',product);
+  emit('addNewProduct', product);
 };
 
-//emits
-const emit = defineEmits(['update:displayModal']);
-
-//methods
+//close modal
 const closeModal = () => {
     console.log('close modal');
   emit('update:displayModal', false);
@@ -151,8 +149,8 @@ const closeModal = () => {
             </Column>
             <!--Action-->
             <Column field="action" class="w-[15%]" alignFrozen="right" frozen>
-              <template #body>
-                <button class="w-6 h-6 text-primarylight hover:text-primary border-2 border-primarylight -rotate-45 flex items-center justify-center">
+              <template #body="slotProps">
+                <button  @click="addNewProduct(slotProps.data)" class="w-6 h-6 text-primarylight hover:text-primary border-2 border-primarylight -rotate-45 flex items-center justify-center">
                   <i class="pi pi-plus -rotate-45"></i>
                 </button>
               </template>
