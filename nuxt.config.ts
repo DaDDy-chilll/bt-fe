@@ -30,16 +30,13 @@ export default defineNuxtConfig({
           cssLayer: {
             name: "my-theme",
             order: "tailwind-base",
-          }
+          },
         },
       },
     },
   },
 
-  modules: [
-    "@pinia/nuxt",
-    "@primevue/nuxt-module",
-  ],
+  modules: ["@pinia/nuxt", "@primevue/nuxt-module"],
 
   components: [
     {
@@ -51,6 +48,16 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.API_BASE_URL,
+    },
+  },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler", // or "modern"
+        },
+      },
     },
   },
 
