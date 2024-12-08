@@ -51,8 +51,6 @@ export default defineNuxtConfig({
     },
   },
 
-<<<<<<< Updated upstream
-=======
   vite: {
     css: {
       preprocessorOptions: {
@@ -63,6 +61,5 @@ export default defineNuxtConfig({
     },
   },
 
->>>>>>> Stashed changes
   compatibilityDate: "2024-12-07",
 });
