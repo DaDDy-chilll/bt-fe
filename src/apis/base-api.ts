@@ -36,7 +36,7 @@ export const fetcher = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: apiBaseUrl + "/api",
+    baseURL: apiBaseUrl,
     headers: {
       authorization:
         "Bearer " +
@@ -97,7 +97,7 @@ export const fetcherWithoutAuthHeader = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: apiBaseUrl + "/api",
+    baseURL: apiBaseUrl ,
     retry: 0,
     credentials: "include",
     onRequest,
@@ -143,7 +143,7 @@ export const fetcherWith404ErrorHandling = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: apiBaseUrl + "/api",
+    baseURL: apiBaseUrl ,
     headers: {
       authorization:
         "Bearer " +
@@ -197,7 +197,7 @@ export const fetcherDownload = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: apiBaseUrl + "/api",
+    baseURL: apiBaseUrl,
     headers: {
       authorization:
         "Bearer " +

@@ -58,3 +58,8 @@ export type Product = {
   gems: Gem[];
   memo: string;
 };
+
+export type Filter = {
+  page: number;
+  limit: number;
+};

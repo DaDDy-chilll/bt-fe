@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { onMounted, onUnmounted } from "vue";
-import type { Gem } from "~/types/product";
+import type { Gem, Filter, Product } from "@/types/product";
 import GemType from "./gemtype.json";
 import GemColor from "./gemcolor.json";
 import GemMassUnit from "./gemmassunit.json";
@@ -24,6 +24,14 @@ const goldColors = GoldColor;
 const units = LengthUnit;
 const weightUnits = WeightUnit;
 const warehouses = Warehouse;
+
+
+
+const productStore = useProductStore();
+
+onMounted(async () => {
+  await productStore.getProductCategories();
+});
 
 // V-Model Variables
 const images = ref([
