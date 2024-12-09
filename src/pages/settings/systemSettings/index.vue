@@ -91,7 +91,7 @@ const handleAddItem = (item: any) => {
 
 </script>
 <template>
-  <div class="flex flex-col h-screen bg-accentwhite text-sm">
+  <div class="flex flex-col h-screen bg-accentwhite drop-shadow-md rounded-lg text-sm">
     <SystemNavBar class="text-base"/>
     <div class="px-6 py-6">
       <table>

@@ -2,67 +2,104 @@
 import tracking from "@/components/order/tracking.vue";
 import addProductModal from "@/components/order/addProductModal.vue";
 import productType from "~/pages/product/producttype.json";
+import { useOrderStore } from "@/stores/order";
 
 //fetch data;
 const productTypes = ref(productType);
 
 //constants
 const displayModal = ref(false);
+const orderStore = useOrderStore();
 
 const products = ref<any[]>([]);
 
-//emit
-const emit = defineEmits(['nextStep']);
-
 /*** Functions ***/
+const generateInvoiceCode = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}${month}${day}-XXXX`;
+};
+//refs for order details
+const invoiceCode = ref(generateInvoiceCode());
+const staffName = ref("John Doe"); // to fix later
+const goldPrice = ref(60000000); // come from master data to fix later
+const todayDate = ref(new Date().toISOString().slice(0, 10).replace(/-/g, '/'));
+
+// Update refs to track selected values
+const goldType = ref('24K');
+const orderType = ref('In Store');
+const orderPlatform = ref('facebook');
+const goldMethod = ref('method1');
 
 //add new product
 const addNewProduct = (product: any) => {
-  console.log('add new product',product);
+  console.log("add new product", product);
   products.value.push(product);
 };
 
 //delete product
 const deleteProduct = (product: any) => {
-  products.value = products.value.filter(p => p.id !== product.id);
+  products.value = products.value.filter((p) => p.id !== product.id);
 };
 
-//next step
+/**
+ * next step
+ * @param products
+ */
 const nextStep = (products: any[]) => {
-  emit('nextStep', products);
-  navigateTo('/order/customer');
+  //save products to the store
+  orderStore.addProduct(products);
+  //save order details to the store
+  orderStore.addOrderDetails({
+    invoiceCode: invoiceCode.value,
+    todayDate: todayDate.value,
+    staffName: staffName.value,
+    goldPrice: goldPrice.value,
+    goldMethod: goldMethod.value,
+    orderType: orderType.value,
+    orderPlatform: orderPlatform.value,
+    productType: "In Stock",
+    paymentStatus: 'pending',
+    paymentMethod: 'pending',
+ 
+  });
+  console.log(orderStore.orderDetails);
+  //navigate to the customer form
+  navigateTo("/order/customer");
 };
-
 </script>
 <template>
   <div class="h-screen">
     <tracking />
     <!--Upper Section-->
-    <div class="w-full bg-accentwhite py-6 px-3 rounded-lg">
+    <div class="w-full bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="text-3xl font-bold text-accentblack"
-            >#20240912-XXXX</span
+        <div class="flex items-center gap-4">
+          <span class="text-3xl font-bold text-accentblack" id="invoice-code"
+            >#{{ invoiceCode }}</span
           >
           <div class="flex flex-col">
             <div class="text-sm text-gray-500">
               <span class="text-gray-500">Today Date -</span>
-              <span class="text-gray-500">12/07/2024</span>
+              <span class="text-gray-500" id="today-date">{{ todayDate }}</span>
             </div>
             <div class="text-sm text-gray-500">
               <span class="text-gray-500">Staff Name -</span>
-              <span class="text-gray-500">John Doe</span>
+              <span class="text-gray-500">{{ staffName }}</span>
             </div>
           </div>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-4">
           <div class="flex flex-col justify-end">
             <span class="text-sm text-gray-500">Today gold price</span>
-            <span class="text-xl font-bold text-red-500">60,000,000</span>
+            <span class="text-xl font-bold text-red-500">{{ goldPrice }}</span>
           </div>
           <div class="flex items-center gap-2">
             <select
+              v-model="goldType"
               name="gold"
               id="gold"
               class="bg-primarylight text-white px-2 py-1 rounded-md"
@@ -75,28 +112,32 @@ const nextStep = (products: any[]) => {
         </div>
       </div>
 
-      <div class="grid grid-cols-3 gap-4 mt-4">
+      <div class="grid grid-cols-3 gap-4 mt-6">
         <!--order type-->
         <div class="flex flex-col gap-2 border-r-2 border-gray-300">
           <h1 class="text-lg font-bold text-accentblack">Select Order Type</h1>
           <div class="flex items-center gap-4">
             <input
               type="radio"
-              name="order-status"
-              id="order-status"
+              v-model="orderType"
+              name="order-type"
+              value="In Store"
               class="accent-primarylight"
             />
-            <label for="order-status">In Store</label>
+            <label for="order-type">In Store</label>
             <input
               type="radio"
-              name="order-status"
-              id="order-status"
+              v-model="orderType"
+              name="order-type"
+              value="Online"
               class="accent-primarylight"
             />
-            <label for="order-status">Order</label>
+            <label for="order-type">Online</label>
             <select
-              name="order-status"
-              id="order-status"
+              v-model="orderPlatform"
+              name="order-platform"
+              id="order-platform"
+              :disabled="orderType !== 'Online'"
               class="text-accentblack px-2 py-1 rounded-md border-muted border-2"
             >
               <option value="facebook">Facebook</option>
@@ -111,6 +152,7 @@ const nextStep = (products: any[]) => {
             Gold Calculate Method
           </h1>
           <select
+            v-model="goldMethod"
             name="gold-calculate-method"
             id="gold-calculate-method"
             class="text-accentblack px-2 py-1 w-1/2 rounded-md border-muted border-2"
@@ -120,10 +162,11 @@ const nextStep = (products: any[]) => {
           </select>
         </div>
         <!--Actions-->
-        <div
-          class="flex flex-col items-center gap-2"
-        >
-          <button @click="displayModal = true" class="bg-primarylight text-white px-2 py-1 rounded-md w-1/2">
+        <div class="flex flex-col items-center gap-2">
+          <button
+            @click="displayModal = true"
+            class="bg-primarylight text-white px-2 py-1 rounded-md w-1/2"
+          >
             <span class="text-white">Add Product</span>
           </button>
           <button class="bg-primarylight text-white px-2 py-1 rounded-md w-1/2">
@@ -134,7 +177,7 @@ const nextStep = (products: any[]) => {
     </div>
 
     <!--Lower Section-->
-    <div class="w-full mt-6 bg-accentwhite py-6 px-3 rounded-lg">
+    <div class="w-full mt-6 bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
       <!--table-->
       <div class="w-full">
         <div class="overflow-x-auto">
@@ -178,7 +221,11 @@ const nextStep = (products: any[]) => {
             <Column field="type" header="Type" class="w-[15%]">
               <template #body="slotProps">
                 <div>
-                  {{ productTypes.find(type => type.id === slotProps.data.type_id)?.value }}
+                  {{
+                    productTypes.find(
+                      (type) => type.id === slotProps.data.type_id
+                    )?.value
+                  }}
                 </div>
               </template>
             </Column>
@@ -194,7 +241,10 @@ const nextStep = (products: any[]) => {
             <Column field="quantity" header="Quantity" class="w-[15%]">
               <template #body="slotProps">
                 <input
-                  @change="slotProps.data.quantity = Number(($event.target as HTMLInputElement).value) || 1"
+                  @change="
+                    slotProps.data.quantity =
+                      Number(($event.target as HTMLInputElement).value) || 1
+                  "
                   type="number"
                   value="1"
                   class="w-10 pl-2 border-muted border-2 rounded-md"
@@ -205,7 +255,11 @@ const nextStep = (products: any[]) => {
             <Column field="estimate_price" header="Est. Price" class="w-[15%]">
               <template #body="slotProps">
                 <input
-                  @change="slotProps.data.estimate_price = Number(($event.target as HTMLInputElement).value)"
+                  @change="
+                    slotProps.data.estimate_price = Number(
+                      ($event.target as HTMLInputElement).value
+                    )
+                  "
                   type="number"
                   :value="slotProps.data.estimate_price"
                   class="w-full pl-2 border-muted border-2 rounded-md"
@@ -216,7 +270,11 @@ const nextStep = (products: any[]) => {
             <Column field="ayoutwat" header="Ayoutwat" class="w-[15%]">
               <template #body="slotProps">
                 <input
-                  @change="slotProps.data.ayoutwat = Number(($event.target as HTMLInputElement).value)"
+                  @change="
+                    slotProps.data.ayoutwat = Number(
+                      ($event.target as HTMLInputElement).value
+                    )
+                  "
                   type="number"
                   :value="slotProps.data.ayoutwat"
                   class="w-full pl-2 border-muted border-2 rounded-md"
@@ -227,7 +285,11 @@ const nextStep = (products: any[]) => {
             <Column field="latt_kha" header="Latt Kha" class="w-[15%]">
               <template #body="slotProps">
                 <input
-                  @change="slotProps.data.latt_kha = Number(($event.target as HTMLInputElement).value)"
+                  @change="
+                    slotProps.data.latt_kha = Number(
+                      ($event.target as HTMLInputElement).value
+                    )
+                  "
                   type="number"
                   :value="slotProps.data.latt_kha"
                   class="w-20 pl-2 border-muted border-2 rounded-md"
@@ -238,26 +300,41 @@ const nextStep = (products: any[]) => {
             <Column field="sub_total" header="Sub Total" class="w-[15%]">
               <template #body="slotProps">
                 <div>
-                  {{ slotProps.data.quantity * (slotProps.data.estimate_price + slotProps.data.ayoutwat + slotProps.data.latt_kha) }}
+                  {{
+                    slotProps.data.quantity *
+                    (slotProps.data.estimate_price +
+                      slotProps.data.ayoutwat +
+                      slotProps.data.latt_kha)
+                  }}
                 </div>
               </template>
             </Column>
             <!--Action-->
             <Column field="action" class="w-[15%]" alignFrozen="right" frozen>
               <template #body="slotProps">
-                <button @click="deleteProduct(slotProps.data)" class="text-red-500 hover:text-red-700">
+                <button
+                  @click="deleteProduct(slotProps.data)"
+                  class="text-red-500 hover:text-red-700"
+                >
                   <i class="pi pi-trash"></i>
                 </button>
               </template>
             </Column>
           </DataTable>
-          <button @click="nextStep(products)" class="bg-primarylight text-white px-6 py-1 rounded-md float-right">
+
+          <button
+            @click="nextStep(products)"
+            class="bg-primarylight text-white px-6 py-1 rounded-md float-right"
+          >
             <span class="text-white">Next</span>
           </button>
         </div>
-    
       </div>
     </div>
   </div>
-  <addProductModal :displayModal="displayModal" @update:displayModal="displayModal = $event" @addNewProduct="addNewProduct" />
+  <addProductModal
+    :displayModal="displayModal"
+    @update:displayModal="displayModal = $event"
+    @addNewProduct="addNewProduct"
+  />
 </template>

@@ -1,0 +1,57 @@
+[
+    {
+       "id": 1,
+       "firstname": "John",
+       "lastname": "Doe",
+       "nrc": "1234567890",
+       "phone": "09123456789",
+       "email": "john.doe@example.com",
+       "social": "https://www.facebook.com/john.doe",
+       "status": "active",
+       "level": 1
+    },
+    {
+        "id": 2,
+        "firstname": "Jane",
+        "lastname": "Smith",
+        "nrc": "0987654321",
+        "phone": "09123456789",
+        "email": "jane.smith@example.com",
+        "social": "https://www.instagram.com/jane.smith",
+        "status": "inactive",
+        "level": 2
+    },
+    {
+        "id": 3,
+        "firstname": "Alice",
+        "lastname": "Johnson",
+        "nrc": "1122334455",
+        "phone": "09123456789",
+        "email": "alice.johnson@example.com",
+        "social": "https://www.twitter.com/alice.johnson",
+        "status": "pending",
+        "level": 3
+    },
+    {
+        "id": 4,
+        "firstname": "Bob",
+        "lastname": "Brown",
+        "nrc": "9988776655",
+        "phone": "09123456789",
+        "email": "bob.brown@example.com",
+        "social": "https://www.linkedin.com/bob.brown",
+        "status": "active",
+        "level": 4
+    },
+    {
+        "id": 5,
+        "firstname": "Charlie",
+        "lastname": "Davis",
+        "nrc": "5566778899",
+        "phone": "09123456789",
+        "email": "charlie.davis@example.com",
+        "social": "https://www.x.com/charlie.davis",
+        "status": "inactive",
+        "level": 5
+    }
+]

@@ -95,7 +95,7 @@ const toggleEditMode = () => {
 };
 </script>
 <template>
-  <div class="flex flex-col h-screen bg-accentwhite text-sm">
+  <div class="flex flex-col h-screen bg-accentwhite text-sm drop-shadow-md rounded-lg">
     <SystemNavBar class="text-base"/>
     <div class="px-6 py-6 mt-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">

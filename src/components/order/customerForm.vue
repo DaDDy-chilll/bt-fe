@@ -1,15 +1,41 @@
 <script setup lang="ts">
-//model data
-const customer = ref({
-  firstName: "",
-  lastName: "",
-  phone: "",
-  email: "",
-  address: "",
-  nrc: "",
-  social: "",
+import searchCustomerModal from "@/components/order/searchCustomerModal.vue";
 
+//data
+const displayModal = ref(false);
+
+//model data
+const props = defineProps({
+  customer: {
+    type: Object,
+    required: true,
+  },
 });
+
+//watch modal data
+watch(
+  () => props.customer,
+  (newValue) => {
+    console.log('Customer data updated:', newValue);
+    props.customer.value = newValue;
+  },
+  { deep: true }
+);
+
+//functions
+const searchCustomer = () => {
+  displayModal.value = true;
+};
+
+/**
+ * save customer data to the form
+ * @param customer 
+ */
+const handleAddCustomer = (customer: any) => {
+  console.log('add new customer in customerForm', customer);
+  Object.assign(props.customer, customer);
+};
+
 </script>
 <template>
   <h1 class="text-lg font-semibold">Customer Information</h1>
@@ -22,8 +48,9 @@ const customer = ref({
             <div class="flex items-center w-auto h-8 rounded-md">
               <InputText
                 id="firstName"
-                v-model="customer.firstName"
-                class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+                v-model="props.customer.firstname"
+                class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+                :value="props.customer.firstname"
               />
               <label for="firstName" class="text-sm text-label"
                 >First Name</label
@@ -37,8 +64,9 @@ const customer = ref({
             <div class="flex items-center w-auto h-8 rounded-md">
               <InputText
                 id="lastName"
-                v-model="customer.lastName"
-                class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+                v-model="props.customer.lastname"
+                class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+                :value="props.customer.lastname"
               />
               <label for="lastName" class="text-sm text-label">Last Name</label>
             </div>
@@ -51,8 +79,9 @@ const customer = ref({
           <div class="flex items-center w-auto h-8 rounded-md">
             <InputText
               id="phone"
-              v-model="customer.phone"
-              class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+              v-model="props.customer.phone"
+              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+              :value="props.customer.phone"
             />
             <label for="phone" class="text-sm text-label"
               >Telephone Number</label
@@ -66,8 +95,9 @@ const customer = ref({
           <div class="flex items-center w-auto h-8 rounded-md">
             <InputText
               id="nrc"
-              v-model="customer.nrc"
-              class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+              v-model="props.customer.nrc"
+              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+              :value="props.customer.nrc"
             />
             <label for="nrc" class="text-sm text-label"
               >NRC Number</label
@@ -81,8 +111,9 @@ const customer = ref({
           <div class="flex items-center w-auto h-8 rounded-md">
             <InputText
               id="email"
-              v-model="customer.email"
-              class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+              v-model="props.customer.email"
+              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+              :value="props.customer.email"
             />
             <label for="email" class="text-sm text-label"
               >Email</label
@@ -96,8 +127,9 @@ const customer = ref({
           <div class="flex items-center w-auto h-8 rounded-md">
             <InputText
               id="social"
-              v-model="customer.social"
-              class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+              v-model="props.customer.social"
+              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+              :value="props.customer.social"
             />
             <label for="social" class="text-sm text-label"
               >Social Media</label
@@ -108,7 +140,7 @@ const customer = ref({
     </div>
     <!--Search customer button-->
     <div class="flex justify-end mt-4">
-      <button
+      <button @click="searchCustomer"
         class="flex items-center gap-1 bg-primarylight text-white px-4 py-2 h-8 rounded-md"
       >
         <i class="pi pi-search"></i>
@@ -116,4 +148,5 @@ const customer = ref({
       </button>
     </div>
   </div>
+  <searchCustomerModal :displayModal="displayModal" @update:displayModal="displayModal = $event" @addNewCustomer="handleAddCustomer"  />
 </template>
