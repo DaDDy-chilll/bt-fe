@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LOGO from "@/assets/icons/logo.svg";
+import LOGO from "~/assets/icons/logo.svg?url";
 import type { RegisterPayload, ErrorPayload } from "../types/auth";
 import { errorMessage } from "@/consts/errorMessage";
 definePageMeta({
@@ -8,9 +8,7 @@ definePageMeta({
 
 const otp = ref(null);
 
-const login = () => {
-  console.log(otp.value);
-};
+
 
 /**
  *@description Value of email,password,name,confirmPassword,favoriteColor,nickname
@@ -38,6 +36,12 @@ const error: ErrorPayload = reactive<ErrorPayload>({
   confirmPassword: null,
 });
 
+/**
+ *@description Register function
+ *@author PSK
+ *@created 2024-11-22
+ *@updated 2024-11-24
+ */
 const register = async () => {
   checkValidation();
   if (Object.values(error).every((value) => value === null)) {
@@ -48,6 +52,8 @@ const register = async () => {
     }
   }
 };
+
+
 
 const checkValidation = () => {
   const passwordPattern =
@@ -73,7 +79,10 @@ const checkValidation = () => {
   <div
     className="w-full sm:max-w-md bg-accentwhite rounded-xl p-7 shadow-md dark:bg-accentblack"
   >
-    <LOGO alt="logo" class="mx-auto mb-3" />
+       <!-- Logo -->
+    <div class=" mb-3">
+      <img :src="LOGO" alt="logo" class="w-15 h-15 mx-auto" />
+    </div>
     <h1
       class="text-2xl font-medium text-center text-accentblack dark:text-accentwhite"
     >
