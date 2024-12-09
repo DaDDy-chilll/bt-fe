@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import tracking from "@/components/order/tracking.vue";
-import customerForm from "@/components/order/customerForm.vue";
+import shippingForm from "@/components/order/shippingForm.vue";
 import invoice from "@/components/order/invoice.vue";
-import searchCustomerModal from "@/components/order/searchCustomerModal.vue";
+import customerInfo from "@/components/order/customerInfo.vue";
 import { useOrderStore } from "@/stores/order";
 import { computed, ref } from "vue";
 //import type { Customer } from "@/types/customer";
@@ -11,26 +11,26 @@ import { computed, ref } from "vue";
 const orderStore = useOrderStore();
 const products = computed(() => orderStore.products);
 const displayModal = ref(false);
-const customer = ref({});
+const shipping = ref({});
 
 //functions
 /**
  * Fill customer data to the form
  * @param customer
  */
-const handleAddCustomer = (customer: any) => {
-  console.log("add new customer", customer);
-  customer.value = customer;
+const handleAddCustomer = (shipping: any) => {
+  console.log("add new shipping", shipping);
+  shipping.value = shipping;
 };
 
 /**
  * next step
- * @param customer
+ * @param shipping
  */
-const nextStep = (customer: any, products: any) => {
-  orderStore.addCustomer(customer);
+const nextStep = (shipping: any, products: any) => {
+  orderStore.addShipping(shipping);
   orderStore.addProduct(products);
-  console.log(orderStore.products, orderStore.customer);
+  console.log(orderStore.products, orderStore.shipping);
   navigateTo("/order/shipping");
 };
 </script>
@@ -40,23 +40,24 @@ const nextStep = (customer: any, products: any) => {
     <tracking />
     <div class="px-3 py-6 flex items-center justify-center gap-20">
       <div class="w-2/4 bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
-        <customerForm :customer="customer" />
+        <shippingForm :shipping="shipping" />
       </div>
-      <div class="w-1/3 bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
-        <invoice />
+      <div class="w-1/3 flex flex-col gap-4">
+        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+          <invoice />
+        </div>
+        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+          <customerInfo />
+        </div>
       </div>
     </div>
-    <searchCustomerModal
-      :displayModal="displayModal"
-      @update:displayModal="displayModal = $event"
-      @addNewCustomer="handleAddCustomer"
-    />
+
     <div>
-      <Button @click="navigateTo('/order/new-order')" class="underline"
+      <Button @click="navigateTo('/order/customer')" class="underline"
         >Back</Button
       >
       <button
-        @click="nextStep(customer, products)"
+        @click="nextStep(shipping, products)"
         class="bg-primarylight text-white px-6 py-1 rounded-md float-right"
       >
         <span class="text-white">Next</span>

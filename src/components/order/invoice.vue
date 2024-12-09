@@ -1,12 +1,6 @@
 <script setup>
 import { ref } from "vue";
-
-const props = defineProps({
-  products: {
-    type: Array,
-    required: true,
-  },
-}); 
+ 
 
 const orderStore = useOrderStore();
 
@@ -15,7 +9,7 @@ const invoice_data = ref({
   code: orderStore.orderDetails.invoiceCode,
   date: orderStore.orderDetails.todayDate,
   staff: orderStore.orderDetails.staffName,
-  total_quantity: 10,
+  total_quantity: 10, // to calculate
   gold_method: orderStore.orderDetails.goldMethod,
   order_type: orderStore.orderDetails.orderType,
   product_type: orderStore.orderDetails.productType,
