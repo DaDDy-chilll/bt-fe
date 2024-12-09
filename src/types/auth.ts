@@ -13,7 +13,7 @@ export type RegisterPayload = {
 }
 
 export type ErrorPayload = {
-  email: string | null;
+  email?: string | null;
   password: string | null;
   name?: string | null;
   confirmPassword?: string | null;

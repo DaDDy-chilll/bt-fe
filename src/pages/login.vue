@@ -1,5 +1,8 @@
 <script setup lang="ts">
-
+import LOGO from "~/assets/icons/logo.svg?url"
+import google from "~/assets/icons/google.svg?url"
+import facebook from "~/assets/icons/facebook.svg?url"
+import { ref, reactive, computed } from "vue";
 import type { LoginPayload, ErrorPayload } from "../types/auth";
 import { errorMessage } from "@/consts/errorMessage";
 import { useAuthStore } from "../stores/auth";
@@ -110,8 +113,8 @@ const facebookLogin = () => {
     class="w-full sm:max-w-md bg-accentwhite rounded-xl p-8 shadow-md dark:bg-accentblack"
   >
     <!-- Logo -->
-    <div class="mx-auto mb-3">
-      <img src="@/assets/icons/logo.svg" alt="logo" class="w-10 h-10" />
+    <div class=" mb-3">
+      <img :src="LOGO" alt="logo" class="w-15 h-15 mx-auto" />
     </div>
 
     <h1
@@ -257,14 +260,14 @@ const facebookLogin = () => {
         @click="googleLogin"
         class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <img src="@/assets/icons/google.svg" alt="google" class="w-5 h-5" />
+        <img :src="google" alt="google" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Google</span>
       </button>
       <button
         @click="facebookLogin"
         class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <img src="@/assets/icons/facebook.svg" alt="facebook" class="w-5 h-5" />
+        <img :src="facebook" alt="facebook" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Facebook</span>
       </button>
     </div>

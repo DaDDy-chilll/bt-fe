@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Password, Button, Message } from "primevue";
-import LOGO from "@/assets/icons/logo.svg";
-import LogosGoogleIcon from "@/assets/icons/google.svg";
-import LogosFacebook from "@/assets/icons/facebook.svg";
+import LOGO from "~/assets/icons/logo.svg?url";
+import google from "~/assets/icons/google.svg?url";
+import facebook from "~/assets/icons/facebook.svg?url";
 import type { RegisterPayload, ErrorPayload } from "../types/auth";
 import { errorMessage } from "@/consts/errorMessage";
 import { useAuthStore } from "../stores/auth";
@@ -79,6 +79,13 @@ const register = async () => {
   }
 };
 
+
+/**
+ *@description Check validation
+ *@author PSK
+ *@created 2024-11-24
+ *@updated ****-**-**
+ */
 const checkValidation = () => {
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const passwordPattern =
@@ -118,13 +125,36 @@ const checkValidation = () => {
     error.nickname = errorMessage.NICKNAME_REQUIRED;
   else error.nickname = null;
 };
+
+
+/**
+ *@description Google login function
+ *@author PSK
+ *@created 2024-11-24
+ *@updated ****-**-**
+ */
+const googleLogin = () => {
+  console.log("google login");
+};
+
+/**
+ *@description Facebook login function
+ *@author PSK
+ *@created 2024-11-24
+ *@updated ****-**-**
+ */
+const facebookLogin = () => {
+  console.log("facebook login");
+};
 </script>
 <template>
   <div
     class="w-full sm:max-w-md bg-accentwhite rounded-xl p-7 shadow-md dark:bg-accentblack"
   >
-    <!-- Logo -->
-    <LOGO alt="logo" class="mx-auto mb-3" />
+        <!-- Logo -->
+    <div class=" mb-3">
+      <img :src="LOGO" alt="logo" class="w-15 h-15 mx-auto" />
+    </div>
     <h1
       class="text-2xl font-medium text-center text-accentblack dark:text-accentwhite"
     >
@@ -421,16 +451,18 @@ const checkValidation = () => {
 
     <!-- Google and Facebook -->
     <div class="flex items-center justify-around gap-2 mt-5">
-      <button
+       <button
+        @click="googleLogin"
         class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <LogosGoogleIcon alt="google" class="w-5 h-5" />
+        <img :src="google" alt="google" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Google</span>
       </button>
-      <button
+       <button
+        @click="facebookLogin"
         class="flex items-center justify-center gap-2 border border-accentblack p-2 rounded-md w-full mx-3 dark:border-accentwhite cursor-pointer hover:bg-accentblack/10 dark:hover:bg-accentwhite/10"
       >
-        <LogosFacebook alt="facebook" class="w-5 h-5" />
+        <img :src="facebook" alt="facebook" class="w-5 h-5" />
         <span class="text-accentblack dark:text-accentwhite">Facebook</span>
       </button>
     </div>
