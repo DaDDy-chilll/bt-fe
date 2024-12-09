@@ -1,6 +1,6 @@
 <script setup>
 import productList from "~/pages/order/productList.json";
-import productCategory from "~/pages/product/productCategory.json";
+import productCategory from "~/pages/product/productcategory.json";
 import goldType from "~/pages/product/goldtype.json";
 import productType from "~/pages/product/producttype.json";
 

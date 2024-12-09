@@ -106,7 +106,7 @@ const profileImage = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col h-screen bg-accentwhite text-sm">
+  <div class="flex flex-col h-screen bg-accentwhite text-sm drop-shadow-md rounded-lg">
     <SystemNavBar class="text-base"/>
     <div class="px-6 py-6 mt-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -141,7 +141,7 @@ const profileImage = computed(() => {
                   <InputText
                     id="username"
                     v-model="userProfile.name"
-                    class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+                    class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                   />
                   <label for="username" class="text-sm text-label"
                     >Username</label
@@ -156,7 +156,7 @@ const profileImage = computed(() => {
                   <InputText
                     id="phone"
                     v-model="userProfile.phone"
-                    class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+                    class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                   />
                   <label for="phone" class="text-sm text-label">Phone</label>
                 </div>
@@ -187,7 +187,7 @@ const profileImage = computed(() => {
                 <InputText
                   id="address"
                   v-model="userProfile.address"
-                  class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+                  class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
                 <label for="address" class="text-sm text-label">Address</label>
               </div>
@@ -213,7 +213,7 @@ const profileImage = computed(() => {
                 <InputText
                   id="emergency_contact"
                   v-model="userProfile.emergency_contact"
-                  class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+                  class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
                 <label for="emergency_contact" class="text-sm text-label"
                   >Emergency Contact</label
@@ -245,7 +245,7 @@ const profileImage = computed(() => {
                 <DatePicker
                   id="date_of_birth"
                   v-model="userProfile.dob"
-                  class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
+                  class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
                 <i class="pi pi-calendar absolute right-2 text-gray-600"></i>
                 <label for="date_of_birth" class="text-sm text-label"

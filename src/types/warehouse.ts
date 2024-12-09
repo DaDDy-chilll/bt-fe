@@ -1,10 +1,10 @@
 export type warehousePayLoad = {
-  warehouseId: number | string;
+  warehouseId: string;
   warehouseName: string;
   contactPerson: string;
   phone: string;
   location: string;
-  employees: number;
+  employees: string;
   warehouseType: string;
 };
 

@@ -191,7 +191,7 @@ const closePopover = (id: number) => {
 <template>
   <div>
     <MasterNavBar />
-    <div class="px-6 text-sm">
+    <div class="px-6 text-sm drop-shadow-md rounded-lg">
       <!--add button-->
       <div class="flex md:justify-end items-center justify-start">
         <button

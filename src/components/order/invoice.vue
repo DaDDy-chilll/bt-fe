@@ -1,16 +1,28 @@
 <script setup>
+import { ref } from "vue";
+
+const props = defineProps({
+  products: {
+    type: Array,
+    required: true,
+  },
+}); 
+
+const orderStore = useOrderStore();
+
 //sample data
 const invoice_data = ref({
-  code: "20240912-XXXX",
-  date: "2024/10/1",
-  staff: "PIC(Staff Name)",
+  code: orderStore.orderDetails.invoiceCode,
+  date: orderStore.orderDetails.todayDate,
+  staff: orderStore.orderDetails.staffName,
   total_quantity: 10,
-  gold_method: "Method 1",
-  order_type: "In Store",
-  product_type: "In Stock",
-  payment_status: "-",
-  payment_method: "-",
+  gold_method: orderStore.orderDetails.goldMethod,
+  order_type: orderStore.orderDetails.orderType,
+  product_type: orderStore.orderDetails.productType,
+  payment_status: orderStore.orderDetails.paymentStatus,
+  payment_method: orderStore.orderDetails.paymentMethod,
 });
+
 </script>
 <template>
   <div class="flex items-center gap-2 px-4">
