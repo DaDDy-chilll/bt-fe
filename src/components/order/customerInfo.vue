@@ -13,7 +13,7 @@ const store = useOrderStore();
       <h1>Customer Information</h1>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 mt-4 px-4">
+    <div class="grid grid-cols-2 gap-4 mt-4">
       <span class="text-sm">
         <i class="pi pi-user mr-2 text-primarylight"></i> <!--to change icon design-->
         <span>
@@ -28,7 +28,7 @@ const store = useOrderStore();
       </span>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 mt-4 px-4">
+    <div class="grid grid-cols-2 gap-4 mt-4">
       <span class="text-sm">
         <i class="pi pi-phone mr-2 text-primarylight"></i> <!--to change icon design-->
         <span>
@@ -37,7 +37,7 @@ const store = useOrderStore();
       </span>
       <span class="text-sm flex items-center">
         <i class="pi pi-envelope mr-2 text-primarylight"></i> <!--to change icon design-->
-        <span>
+        <span class="text-wrap break-words">
           {{ store.customer?.email }}
         </span>
       </span>

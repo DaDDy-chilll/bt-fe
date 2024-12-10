@@ -36,6 +36,15 @@ export const useOrderStore = defineStore('order', {
       shipping_fee: "",
       memo: "",
     },
+    payment: {
+      payment_method: "",
+      payment_status: "",
+      partial_amount: "",
+      date: "",
+      tax_amount: "",
+      total_amount: "",
+      payment_image: "",
+    },
   }),
   actions: {
     addProduct(products: any) {
@@ -60,6 +69,9 @@ export const useOrderStore = defineStore('order', {
     },
     addShipping(shipping: any) {
       this.shipping = shipping;
+    },
+    addPayment(payment: any) {
+      this.payment = payment;
     },
   },
 });

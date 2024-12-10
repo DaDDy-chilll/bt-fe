@@ -1,6 +1,5 @@
 <script setup lang="ts">
-//data
-const displayModal = ref(false);
+import { ref, watch } from "vue";
 
 //model data
 const props = defineProps({
@@ -33,11 +32,8 @@ watch(
   { deep: true }
 );
 
-//functions
-const searchCustomer = () => {
-  displayModal.value = true;
-};
 </script>
+
 <template>
   <div class="flex justify-between items-center gap-2">
     <h1 class="text-lg font-semibold">Shipping Information</h1>

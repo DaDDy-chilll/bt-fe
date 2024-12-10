@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import tracking from "@/components/order/tracking.vue";
-import shippingForm from "@/components/order/shippingForm.vue";
+import paymentForm from "@/components/order/paymentForm.vue";
 import invoice from "@/components/order/invoice.vue";
 import customerInfo from "@/components/order/customerInfo.vue";
 import { useOrderStore } from "@/stores/order";
@@ -9,27 +9,27 @@ import { computed, ref } from "vue";
 
 //constants
 const orderStore = useOrderStore();
-const shipping = ref({});
+const payment = ref({});
 
 //functions
 /**
- * Fill shipping data to the form
- * @param shipping
+ * Fill payment data to the form
+ * @param payment
  */
-const handleAddShipping = (shipping: any) => {
-  console.log("add new shipping", shipping);
-  shipping.value = shipping;
+const handleAddPayment = (payment: any) => {
+  console.log("add new payment", payment);
+  payment.value = payment;
 };
 
 /**
  * next step
- * @param shipping
+ * @param payment
  */
-const nextStep = (shipping: any) => {
-  orderStore.addShipping(shipping);
-  console.log(orderStore.shipping,"shipping");
+const nextStep = (payment: any) => {
+  orderStore.addPayment(payment);
+  console.log(orderStore.payment,"payment");
   navigateTo("/order/payment  ");
-};
+};  
 </script>
 
 <template>
@@ -37,7 +37,7 @@ const nextStep = (shipping: any) => {
     <tracking />
     <div class="px-3 py-6 flex items-center justify-center gap-20">
       <div class="w-2/4 bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
-        <shippingForm :shipping="shipping" />
+        <paymentForm :payment="payment" />
       </div>
       <div class="w-1/3 flex flex-col gap-4">
         <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
@@ -54,7 +54,7 @@ const nextStep = (shipping: any) => {
         >Back</Button
       >
       <button
-        @click="nextStep(shipping)"
+        @click="nextStep(payment)"
         class="bg-primarylight text-white px-6 py-1 rounded-md float-right"
       >
         <span class="text-white">Next</span>
