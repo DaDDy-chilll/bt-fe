@@ -3,10 +3,10 @@ import { ref, computed } from "vue";
 import SupplierData from "./supplierdata.json";
 import States from "./state.json";
 import Cities from "./city.json";
-import type { ManageSupplier, Filter } from "@/types/supplier"; 
+import type { ManageSupplier, Filter } from "@/types/supplier";
 import { useRouter } from "vue-router";
-import DataTable from 'primevue/datatable'; 
-import Column from 'primevue/column'; 
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 
 import BackArrow from "@/assets/icons/back_icon.vue";
 
@@ -75,9 +75,9 @@ const filterArray = ref<Filter[]>([]);
 const filterOp = ref(null);
 const textDialog = ref(false);
 const selectDialog = ref(false);
-const dateDialog = ref(false); 
+const dateDialog = ref(false);
 const showMemoDialog = ref(false);
-const selectedMemos = ref<{ name: string; date: string; text: string }[]>([]); 
+const selectedMemos = ref<{ name: string; date: string; text: string }[]>([]);
 const filterItems = ref([
     {
         name: "Search",
@@ -155,6 +155,9 @@ const showMemos = (memos: { name: string; date: string; text: string }[]) => { /
 /**
  * Filter
  * @param event
+ * @author SPN
+ * @created 
+ * @updated ****-**-**
  */
 const filter = (event: Event) => {
     if (filterOp.value) {
@@ -162,6 +165,13 @@ const filter = (event: Event) => {
     }
 };
 
+/**
+ * Filter Dialog
+ * @param type
+ * @author SPN
+ * @created 
+ * @updated ****-**-**
+ */
 const filterDialog = (type: string) => {
     filterDialogClose();
     if (type === "text") {
@@ -175,6 +185,9 @@ const filterDialog = (type: string) => {
 
 /**
  * Filter Dialog Close
+ * @author SPN
+ * @created 
+ * @updated ****-**-**
  */
 const filterDialogClose = () => {
     selectDialog.value = false;
@@ -185,6 +198,9 @@ const filterDialogClose = () => {
 /**
  * Filter Selected
  * @param event
+ * @author SPN
+ * @created 
+ * @updated ****-**-**
  */
 const filterSelected = (event: any) => {
     if (filterOp.value) {
@@ -200,85 +216,76 @@ const filterSelected = (event: any) => {
 </script>
 
 <template>
-    <div>
-        <Card>
-            <template #header>
-                <slot-header title="Manage Supplier" :button="{
-                    label: 'New Supplier',
-                    link: '/supplier',
-                    icon: 'pi pi-plus',
-                }" />
-            </template>
-            <template #content>
-                <!-- Filter Bar -->
-                <div class="flex justify-center items-center px-6">
-                    <div class="w-full float-left flex justify-start items-center ml-3">
-                        <filter-list :filterItems="filterItems" class="flex justify-start  items-center" />
-                    </div>
-                </div>
-
-                <!-- Divider -->
-                <div class="h-[1px] w-full bg-gray-300 my-5"></div>
-
-                <!-- Table -->
-                <DataTable :value="filteredData" stripedRows class="w-full px-6 my-5 text-sm" scrollable
-                    resizableColumns columnResizeMode="fit" showGridlines paginator :rows="14"
-                    :rowsPerPageOptions="[10, 20, 50]" :totalRecords="filteredData.length">
-                    <Column field="code" header="Code" class="text-accent1">
-                        <template #body="slotProps">
-                            <NuxtLink :to="`/supplier/details?code=${slotProps.data.code}`"
-                                class="cursor-pointer hover:text-accent1">{{ slotProps.data.code }}
+    <div class="w-full bg-accentwhite pb-3 drop-shadow-md rounded-lg dark:bg-primarydark">
+        <slot-header title="Manage Supplier" :button="{
+            label: 'New Supplier',
+            link: '/supplier',
+            icon: 'pi pi-plus',
+        }" />
+        <!-- Filter Bar -->
+        <div class="flex justify-center items-center px-6 dark:bg-primarydark">
+            <div class="w-full float-left flex justify-start items-center ml-3">
+                <filter-list :filterItems="filterItems" class="flex justify-start items-center" />
+            </div>
+        </div>
+        <!-- Table -->
+        <DataTable :value="filteredData" stripedRows class="w-full px-6 my-5 text-sm" scrollable
+            resizableColumns columnResizeMode="fit" showGridlines paginator :rows="14" :rowsPerPageOptions="[10, 20, 50]"
+            :totalRecords="filteredData.length">
+            <Column field="code" header="Code" class="dark:bg-primarydark">
+                <template #body="slotProps">
+                    <NuxtLink :to="`/supplier/details?code=${slotProps.data.code}`"
+                        class="cursor-pointer text-accent1 dark:text-accent2">{{ slotProps.data.code }}
+                    </NuxtLink>
+                </template>
+            </Column>
+            <Column field="name" header="Name" class="dark:bg-primarydark"></Column>
+            <Column field="branch" header="Branch" class="dark:bg-primarydark"></Column>
+            <Column field="contact_name" header="Contact Name" class="dark:bg-primarydark"></Column>
+            <Column field="contact_start_date" header="Contact Start Date" class="dark:bg-primarydark"></Column>
+            <Column field="phone" header="Phone" class="dark:bg-primarydark">
+                <template #body="slotProps">
+                    <span>{{ slotProps.data.phone.join(' , ') }}</span>
+                </template>
+            </Column>
+            <Column field="email" header="Email" class="dark:bg-primarydark"></Column>
+            <Column field="state" header="State" class="dark:bg-primarydark"></Column>
+            <Column field="city" header="City" class="dark:bg-primarydark"></Column>
+            <Column field="address" header="Address" class="dark:bg-primarydark">
+                <template #body="slotProps">
+                    <span>
+                        {{ slotProps.data.address.length > 15 ? slotProps.data.address.slice(0, 15) + '...' :
+                            slotProps.data.address }}
+                    </span>
+                </template>
+            </Column>
+            <Column field="memo" header="Memo" class="dark:bg-primarydark">
+                <template #body="slotProps">
+                    <span class="cursor-pointer hover:text-accent1" @click="showMemos(slotProps.data.memo)">{{
+                        slotProps.data.memo.length }} Memos</span>
+                </template>
+            </Column>
+            <Column field="action" header="Action" class="w-10 dark:bg-primarydark" alignFrozen="right" frozen >
+                <template #body="slotProps">
+                    <Button icon="pi pi-ellipsis-v" class="text-primarylight dark:text-accent2" @click="toggle" />
+                    <Popover ref="op" class="!bg-primarylight dark:!bg-accent2 text-accentwhite">
+                        <div class="flex flex-col gap-4 justify-start items-start">
+                            <NuxtLink to="/supplier/1" class="button">
+                                <Button label="View" icon="pi pi-eye" />
                             </NuxtLink>
-                        </template>
-                    </Column>
-                    <Column field="name" header="Name"></Column>
-                    <Column field="branch" header="Branch"></Column>
-                    <Column field="contact_name" header="Contact Name"></Column>
-                    <Column field="contact_start_date" header="Contact Start Date"></Column>
-                    <Column field="phone" header="Phone">
-                        <template #body="slotProps">
-                            <span>{{ slotProps.data.phone.join(' , ') }}</span>
-                        </template>
-                    </Column>
-                    <Column field="email" header="Email"></Column>
-                    <Column field="state" header="State"></Column>
-                    <Column field="city" header="City"></Column>
-                    <Column field="address" header="Address">
-                        <template #body="slotProps">
-                            <span>
-                                {{ slotProps.data.address.length > 15 ? slotProps.data.address.slice(0, 15) + '...' : slotProps.data.address }}
-                            </span>
-                        </template>
-                    </Column>
-                    <Column field="memo" header="Memo">
-                        <template #body="slotProps">
-                            <span class="cursor-pointer hover:text-accent1" @click="showMemos(slotProps.data.memo)">{{
-                                slotProps.data.memo.length }} Memos</span>
-                        </template>
-                    </Column>
-                    <Column field="action" header="Action" class="w-10" alignFrozen="right" frozen>
-                        <template #body="slotProps">
-                            <Button icon="pi pi-ellipsis-v" class="text-primarylight" @click="toggle" />
-                            <Popover ref="op" class="!bg-primarylight text-accentwhite">
-                                <div class="flex flex-col gap-4 justify-start items-start">
-                                    <NuxtLink to="/supplier/1" class="button">
-                                        <Button label="View" icon="pi pi-eye" />
-                                    </NuxtLink>
-                                    <NuxtLink to="/supplier/1/edit" class="button">
-                                        <Button label="Edit" icon="pi pi-pencil" />
-                                    </NuxtLink>
-                                    <NuxtLink to="/supplier/copy" class="button">
-                                        <Button label="Copy" icon="pi pi-copy" />
-                                    </NuxtLink>
-                                </div>
-                            </Popover>
-                        </template>
-                    </Column>
-                </DataTable>
-            </template>
-        </Card>
+                            <NuxtLink to="/supplier/1/edit" class="button">
+                                <Button label="Edit" icon="pi pi-pencil" />
+                            </NuxtLink>
+                            <NuxtLink to="/supplier/copy" class="button">
+                                <Button label="Copy" icon="pi pi-copy" />
+                            </NuxtLink>
+                        </div>
+                    </Popover>
+                </template>
+            </Column>
+        </DataTable>
         <Dialog v-model:visible="showMemoDialog" header="Memos" :modal="true" :closable="true"
-            :style="{ width: '500px' }">
+            :style="{ width: '500px' }" class="dark:bg-primarydark dark:text-accentwhite">
             <div v-for="(memo, index) in selectedMemos" :key="index" class="mb-3">
                 <div class="flex justify-between items-center">
                     <div class="font-semibold">{{ memo.name }}</div>
@@ -290,4 +297,18 @@ const filterSelected = (event: any) => {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+:deep(.p-datatable-header) {
+  @apply dark:bg-primarydark;
+}
+
+:deep(.p-datatable-thead > tr > th) {
+  @apply dark:bg-primarydark;
+  @apply dark:text-accentwhite;
+}
+
+:deep(.p-datatable-tbody > tr) {
+  @apply dark:bg-primarydark;
+  @apply dark:text-accentwhite;
+}
+</style>
