@@ -4,8 +4,10 @@ export type Supplier = {
   contact: string;
   startdate: string;
   email: string;
-  phone1: string;
-  phone2: string;
+  phone: {
+    phone1: string;
+    phone2: string;
+  }[];
   state: string;
   city: string;
   address: string;
