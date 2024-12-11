@@ -28,7 +28,7 @@ const handleAddShipping = (shipping: any) => {
 const nextStep = (shipping: any) => {
   orderStore.addShipping(shipping);
   console.log(orderStore.shipping,"shipping");
-  navigateTo("/order/payment  ");
+  navigateTo("/order/payment");
 };
 </script>
 

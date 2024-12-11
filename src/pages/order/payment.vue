@@ -3,6 +3,7 @@ import tracking from "@/components/order/tracking.vue";
 import paymentForm from "@/components/order/paymentForm.vue";
 import invoice from "@/components/order/invoice.vue";
 import customerInfo from "@/components/order/customerInfo.vue";
+import shippingInfo from "~/components/order/shippingInfo.vue";
 import { useOrderStore } from "@/stores/order";
 import { computed, ref } from "vue";
 //import type { Customer } from "@/types/customer";
@@ -46,11 +47,14 @@ const nextStep = (payment: any) => {
         <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto">
           <customerInfo />
         </div>
+        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto">
+          <shippingInfo />
+        </div>
       </div>
     </div>
 
     <div class="mb-8">
-      <Button @click="navigateTo('/order/customer')" class="underline"
+      <Button @click="navigateTo('/order/shipping')" class="underline"
         >Back</Button
       >
       <button

@@ -9,9 +9,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     },
     {
         "id": 2,
@@ -23,9 +24,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     },
     {
         "id": 3,
@@ -37,9 +39,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     },
     {
         "id": 4,
@@ -51,9 +54,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     },
     {
         "id": 5,
@@ -65,9 +69,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     },
     {
         "id": 6,
@@ -79,9 +84,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     },
     {
         "id": 7,
@@ -93,9 +99,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     },
     {
         "id": 8,
@@ -107,9 +114,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     },
     {
         "id": 9,
@@ -121,9 +129,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     },
     {
         "id": 10,
@@ -135,8 +144,10 @@
         "estimate_price": 3000000,
         "ayoutwat": 15000,
         "latt_kha": 10000,
-        "quantity": 10,
+        "available_stock": 10,
         "gold_type_id": 1,
-        "image": "/_nuxt/assets/images/Diamond.png"
+        "image": "/_nuxt/assets/images/Diamond.png",
+        "quantity": 1
     }
 ]
+
