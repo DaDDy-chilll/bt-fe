@@ -17,8 +17,8 @@ import Warehouse from "./warehouse.json";
 const gemTypes = GemType;
 const gemColors = GemColor;
 const gemMassUnits = GemMassUnit;
-const productCategories = ProductCategory;
-const productTypes = ProductType;
+const productCategories = ref();
+const productTypes = ref();
 const goldTypes = GoldType;
 const goldColors = GoldColor;
 const units = LengthUnit;
@@ -26,11 +26,15 @@ const weightUnits = WeightUnit;
 const warehouses = Warehouse;
 
 
-
 const productStore = useProductStore();
 
+const loadMasterData = async () => {
+  productCategories.value = await productStore.getProductCategories();
+  productTypes.value = await productStore.getProductTypes();
+};
+
 onMounted(async () => {
-  await productStore.getProductCategories();
+  await loadMasterData();
 });
 
 // V-Model Variables

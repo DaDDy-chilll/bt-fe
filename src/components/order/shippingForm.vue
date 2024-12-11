@@ -162,9 +162,9 @@ watch(
         <div class="flex items-center w-auto h-8 rounded-md">
           <InputText
             id="company_name"
-            v-model="props.shipping.company_name"
+            v-model="props.shipping.shipping_company"
             class="h-8 w-full rounded-l-md rounded-r-none pl-2"
-            :value="props.shipping.company_name"
+            :value="props.shipping.shipping_company"
           />
           <label for="company_name" class="text-sm text-label"
             >Shipping Company Name</label
@@ -177,14 +177,14 @@ watch(
       <div class="mt-4 border border-muted rounded-md">
         <FloatLabel variant="on">
           <div class="flex items-center w-auto h-8 rounded-md">
-            <InputText
+            <InputNumber
               id="estimated_duration"
               v-model="props.shipping.estimated_duration"
               class="h-8 w-full rounded-l-md rounded-r-none pl-2"
               :value="props.shipping.estimated_duration"
             />
             <label for="estimated_duration" class="text-sm text-label"
-              >Estimated Duration</label
+              >Estimated Duration(Days)</label
             >
           </div>
         </FloatLabel>
@@ -193,7 +193,7 @@ watch(
       <div class="mt-4 border border-muted rounded-md">
         <FloatLabel variant="on">
           <div class="flex items-center w-auto h-8 rounded-md">
-            <InputText
+            <InputNumber
               id="shipping_fee"
               v-model="props.shipping.shipping_fee"
               class="h-8 w-full rounded-l-md rounded-r-none pl-2"
@@ -213,7 +213,7 @@ watch(
           <div class="flex items-center w-auto h-8 rounded-md">
             <DatePicker
               v-model="props.shipping.shipping_date"
-              class="h-8 w-full rounded-l-md rounded-r-none"
+              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
               :value="props.shipping.shipping_date"
             />
             <span
@@ -233,8 +233,9 @@ watch(
           <div class="flex items-center w-auto h-8 rounded-md">
             <DatePicker
               v-model="props.shipping.pickup_date"
-              class="h-8 w-full rounded-l-md rounded-r-none"
+              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
               :value="props.shipping.pickup_date"
+              :minDate="props.shipping.shipping_date"
             />
             <span
               class="bg-white h-8 px-2 rounded-r-md border-l flex items-center"

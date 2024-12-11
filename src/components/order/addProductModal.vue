@@ -132,10 +132,10 @@ const closeModal = () => {
               </template>
             </Column>
             <!--Quantity-->
-            <Column field="quantity" header="Available" class="w-[15%]">
+            <Column field="available_stock" header="Available" class="w-[15%]">
               <template #body="slotProps">
                <div>
-                {{ slotProps.data.quantity }}
+                {{ slotProps.data.available_stock }}
                </div>
               </template>
             </Column>

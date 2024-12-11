@@ -1,10 +1,13 @@
-<script setup lang="ts">
+  <script setup lang="ts">
 import AddDiamond from "@/assets/icons/add_diamond.vue";
 import cash from "~/assets/icons/cash.vue";
 import kpay from "~/assets/icons/kpay.vue";
 import kbz from "~/assets/icons/kbz.vue";
 import yoma from "~/assets/icons/yoma.vue";
+import { ref, watch } from "vue";
 
+
+const store = useOrderStore();
 const props = defineProps({
   payment: {
     type: Object,
@@ -14,17 +17,61 @@ const props = defineProps({
 
 const imagePreview = ref<string | null>(null);
 
+/**
+ * preview image
+ * @param event 
+ * @author Aye Nadi
+ */
 const previewImage = (event: any) => {
   const file = event.target.files[0];
   imagePreview.value = URL.createObjectURL(file);
   props.payment.payment_image = file; // to adjust later
 };
 
+/**
+ * calculate grand total
+ * @returns grand total
+ * @author Aye Nadi
+ */
 const totalAmount = computed(() => {
-  const totalAmount = props.payment.partial_amount + props.payment.tax_amount;
-  props.payment.total_amount = totalAmount; //store total amount to the payment object
-  return totalAmount;
+  if(props.payment.payment_status === "Full Payment"){
+    const grandTotal =  store.orderDetails.totalAmount + store.shipping.shipping_fee + props.payment.tax_amount;
+    props.payment.total_amount = grandTotal; //store total amount to the payment object
+    return grandTotal;
+  }else{
+    const grandTotal =  store.orderDetails.totalAmount + store.shipping.shipping_fee + props.payment.tax_amount-props.payment.partial_amount;
+    props.payment.total_amount = grandTotal; //store total amount to the payment object
+    return grandTotal;
+  }
 });
+ 
+//watch payment method changes
+watch(
+  () => props.payment.payment_method,
+  (newValue) => {
+    console.log("Payment method updated:", newValue);
+    props.payment.value = newValue;
+    store.payment.payment_method = newValue;
+  },
+  { deep: true }
+);
+
+// watch payment status changes
+watch(
+  () => props.payment.payment_status, 
+  (newValue) => {
+    console.log("Payment status updated:", newValue);
+    props.payment.value = newValue;
+    store.payment.payment_status = newValue;
+    if(newValue === "Full Payment"){
+      props.payment.partial_amount = 0; //reset partial amount
+      store.payment.partial_amount = 0;
+    }
+  },
+  { deep: true }
+);
+
+
 </script>
 <template>
   <h1 class="text-lg font-semibold">Payment Method</h1>
@@ -68,8 +115,8 @@ const totalAmount = computed(() => {
               v-model="payment.payment_status"
               type="radio"
               name="payment-type"
+              value="Full Payment"
               class="w-4 h-4 text-primarylight border-primarylight ring-primarylight"
-              checked
             />
             <span>Full Payment</span>
           </label>
@@ -78,6 +125,7 @@ const totalAmount = computed(() => {
               v-model="payment.payment_status"
               type="radio"
               name="payment-type"
+              value="Partial Payment"
               class="w-4 h-4 text-primarylight border-primarylight ring-primarylight"
             />
             <span>Partial Payment</span>
@@ -89,6 +137,8 @@ const totalAmount = computed(() => {
             <div class="flex items-center w-auto h-8 rounded-md">
               <InputNumber
                 id="partial_amount"
+                :disabled="payment.payment_status === 'Full Payment'"
+                :class="{ 'bg-gray-200': payment.payment_status === 'Full Payment' }"
                 class="h-7 w-full rounded-l-md rounded-r-none pl-2"
                 v-model="payment.partial_amount"
               />
@@ -156,15 +206,15 @@ const totalAmount = computed(() => {
         <div class="flex flex-col mt-4">
           <div class="flex justify-between py-2">
             <span class="text-sm text-accentblack">Total Product Quantity</span>
-            <span class="text-sm ml-4">9  </span>
+            <span class="text-sm ml-4">{{ store.orderDetails.totalQuantity }}</span>
           </div>
           <div class="flex justify-between py-2">
             <span class="text-sm text-accentblack">Total Product Amount</span>
-            <span class="text-sm ml-4">10</span>
+            <span class="text-sm ml-4">{{ store.orderDetails.totalAmount }}</span>
           </div>
           <div class="flex justify-between py-2">
             <span class="text-sm text-accentblack">Shipping Fee</span>
-            <span class="text-sm ml-4">10</span>
+            <span class="text-sm ml-4">{{ store.shipping.shipping_fee }}</span>
           </div>
           <div class="flex justify-between py-2">
             <span class="text-sm text-accentblack">Tax Amount</span>

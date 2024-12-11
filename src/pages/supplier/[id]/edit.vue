@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BackArrow from "@/assets/icons/back_icon.vue";
 import SupplierData from "../supplierdata.json";
-import PersonIcon from "~/assets/icons/person.vue";
 import Dialog from 'primevue/dialog';
 import { ref } from "vue";
 
@@ -33,149 +32,137 @@ const saveMemo = () => {
 </script>
 
 <template>
-    <div class="grid grid-cols-2 gap-5">
-        <Card>
+    <div class="grid grid-cols-2 gap-5 dark:bg-secondarydark rounded-lg">
+        <Card class="dark:bg-primarydark">
             <template #header>
                 <div class="flex items-center justify-center relative pt-5">
-                    <BackArrow class="absolute left-5" />
+                    <BackArrow class="absolute left-5 cursor-pointer w-10 h-10 text-accent1 dark:text-accent2" @click="$router.back()" />
                     <div class="flex items-center gap-2">
-                        <PersonIcon class="w-7 h-7 text-accent1" />
-                        <span class="text-2xl font-bold">{{ selectedSupplier?.code }}</span>
+                        <i class="pi pi-user text-accent1 dark:text-accent2 text-xl"></i>
+                        <span class="text-2xl font-bold dark:text-accentwhite">{{ selectedSupplier?.code }}</span>
                     </div>
-                    <Button class="absolute right-5" icon="pi pi-trash text-xl text-red-500" />
+                    <Button class="absolute right-5" icon="pi pi-trash text-xl text-red-600" />
                 </div>
             </template>
             <template #content>
                 <div class="flex flex-col px-10 md:px-20 py-5">
                     <div class="mb-5">
-                        <FloatLabel variant="on" class="text-sm">
-                            <InputText id="name_label" v-model="selectedSupplier.name" autocomplete="off"
-                                class="border border-primary w-full py-3 px-2" autofocus />
-                            <label for="name_label">Supplier Name</label>
+                        <FloatLabel variant="on">
+                            <InputText id="on_label" v-model="selectedSupplier.name" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Supplier Name</label>
                         </FloatLabel>
                     </div>
                     <div>
-                        <FloatLabel variant="on" class="text-sm">
-                            <InputText id="branch_label" v-model="selectedSupplier.branch" autocomplete="off"
-                                class="border border-primary w-full py-3 px-2" />
-                            <label for="branch_label">Supplier Category</label>
+                        <FloatLabel variant="on">
+                            <InputText id="on_label" v-model="selectedSupplier.branch" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Supplier Branch</label>
                         </FloatLabel>
                     </div>
                     <!-- Divider -->
-                    <div class="h-[1px] w-full bg-gray-300 my-5"></div>
+                    <div class="h-[1px] w-full bg-gray-300 my-5 dark:bg-accentwhite dark:bg-opacity-10"></div>
                     <div class="mb-5">
-                        <FloatLabel variant="on" class="text-sm">
-                            <InputText id="contact_label" v-model="selectedSupplier.contact_name" autocomplete="off"
-                                class="border border-primary w-full py-3 px-2" />
-                            <label for="contact_label">Contact</label>
+                        <FloatLabel variant="on">
+                            <InputText id="on_label" v-model="selectedSupplier.contact_name" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Contact Name</label>
                         </FloatLabel>
                     </div>
                     <div>
-                        <FloatLabel variant="on" class="text-sm">
-                            <InputText id="contact_start_date_label" v-model="selectedSupplier.contact_start_date"
-                                autocomplete="off" class="border border-primary w-full py-3 px-2" />
-                            <label for="contact_start_date_label">Contact Start Date</label>
+                        <FloatLabel variant="on">
+                            <InputText id="on_label" v-model="selectedSupplier.contact_start_date" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Contact Start Date</label>
                         </FloatLabel>
                     </div>
                     <!-- Divider -->
-                    <div class="h-[1px] w-full bg-gray-300 my-5"></div>
+                    <div class="h-[1px] w-full bg-gray-300 my-5 dark:bg-accentwhite dark:bg-opacity-10"></div>
                     <div class="mb-5">
-                        <FloatLabel variant="on" class="text-sm">
-                            <InputText id="email_label" v-model="selectedSupplier.email" autocomplete="off"
-                                class="border border-primary w-full py-3 px-2" />
-                            <label for="email_label">Email</label>
+                        <FloatLabel variant="on">
+                            <InputText id="on_label" v-model="selectedSupplier.email" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Email</label>
                         </FloatLabel>
                     </div>
                     <div class="grid grid-cols-2 gap-5">
                         <!-- phone1 -->
                         <div>
-                            <FloatLabel variant="on" class="text-sm">
-                                <InputText id="phone1_label" v-model="selectedSupplier.phone[0].phone1"
-                                    autocomplete="off" class="border border-primary w-full py-3 px-2" />
-                                <label for="phone1_label">Phone 1</label>
+                            <FloatLabel variant="on">
+                                <InputText id="on_label" v-model="selectedSupplier.phone[0]" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                                <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Phone 1</label>
                             </FloatLabel>
                         </div>
                         <!-- phone2 -->
                         <div>
-                            <FloatLabel variant="on" class="text-sm">
-                                <InputText id="phone2_label" v-model="selectedSupplier.phone[0].phone2"
-                                    autocomplete="off" class="border border-primary w-full py-3 px-2" />
-                                <label for="phone2_label">Phone 2</label>
+                            <FloatLabel variant="on">
+                                <InputText id="on_label" v-model="selectedSupplier.phone[1]" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                                <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Phone 2</label>
                             </FloatLabel>
                         </div>
                     </div>
                     <!-- Divider -->
-                    <div class="h-[1px] w-full bg-gray-300 my-5"></div>
+                    <div class="h-[1px] w-full bg-gray-300 my-5 dark:bg-accentwhite dark:bg-opacity-10"></div>
                     <div class="grid grid-cols-2 mb-5 gap-5">
-                        <FloatLabel variant="on" class="text-sm">
-                            <InputText id="state_label" v-model="selectedSupplier.state" autocomplete="off"
-                                class="border border-primary w-full py-3 px-2" />
-                            <label for="state_label">State</label>
+                        <FloatLabel variant="on">
+                            <InputText id="on_label" v-model="selectedSupplier.state" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">State</label>
                         </FloatLabel>
-                        <FloatLabel variant="on" class="text-sm">
-                            <InputText id="city_label" v-model="selectedSupplier.city" autocomplete="off"
-                                class="border border-primary w-full py-3 px-2" />
-                            <label for="city_label">City</label>
+                        <FloatLabel variant="on">
+                            <InputText id="on_label" v-model="selectedSupplier.city" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">City</label>
                         </FloatLabel>
                     </div>
                     <div class="">
-                        <FloatLabel variant="on" class="text-sm">
-                            <InputText id="address_label" v-model="selectedSupplier.address" autocomplete="off"
-                                class="border border-primary w-full py-3 px-2" />
-                            <label for="address_label">Address</label>
+                        <FloatLabel variant="on">
+                            <InputText id="on_label" v-model="selectedSupplier.address" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Address</label>
                         </FloatLabel>
                     </div>
                     <!-- Divider -->
-                    <div class="h-[1px] w-full bg-gray-300 my-5"></div>
+                    <div class="h-[1px] w-full bg-gray-300 my-5 dark:bg-accentwhite dark:bg-opacity-10"></div>
                     <div class="mb-5">
                         <FloatLabel variant="on" class="text-sm">
-                            <InputText id="website_label" v-model="selectedSupplier.website" autocomplete="off"
-                                class="border border-primary w-full py-3 px-2" />
-                            <label for="website_label">Website</label>
+                            <InputText id="on_label" v-model="selectedSupplier.website" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Website</label>
                         </FloatLabel>
                     </div>
                     <div class="mb-5">
-                        <FloatLabel variant="on" class="text-sm">
-                            <InputText id="social_label" v-model="selectedSupplier.social" autocomplete="off"
-                                class="border border-primary w-full py-3 px-2" />
-                            <label for="social_label">Social</label>
+                        <FloatLabel variant="on">
+                            <InputText id="on_label" v-model="selectedSupplier.social" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+                            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Social</label>
                         </FloatLabel>
                     </div>
                     <div>
-                        <Button label="Save" class="text-white bg-accent1 w-full py-3" />
+                        <Button label="Save" class="text-white bg-accent1 dark:bg-accent2 w-full py-3" />
                     </div>
                 </div>
             </template>
         </Card>
-        <Card>
+        <Card class="dark:bg-primarydark">
             <template #header>
-                <h3 class="text-xl font-bold mt-5 pl-14">Memo</h3>
+                <h3 class="text-xl font-bold mt-5 pl-14 dark:text-accentwhite">Memo</h3>
             </template>
             <template #content>
-                <div class="px-10" style="height: 70vh; overflow-y: auto;">
-                    <div class="h-[1px] w-full bg-gray-300 mb-5"></div>
+                <div class="px-10" style="height: 68.8vh; overflow-y: auto;">
+                    <div class="h-[1px] w-full bg-gray-300 dark:bg-accentwhite dark:bg-opacity-10 mb-5"></div>
                     <div v-for="(memo, index) in selectedSupplier?.memo" :key="memo.name">
                         <div class="flex justify-between items-center gap-2">
-                            <div>
-                                <div class="font-bold">{{ memo.name }}</div>
-                                <div class="text-sm">{{ memo.date }}</div>
+                            <div class="flex items-center gap-2">
+                                <div class="font-bold dark:text-accentwhite">{{ memo.name }}</div>
+                                <div class="text-sm dark:text-accentwhite dark:text-opacity-50">{{ memo.date }}</div>
                             </div>
                             <div class="flex items-center">
-                                <Button icon="pi pi-pencil text-sm text-accent1"
+                                <Button icon="pi pi-pencil text-sm text-accent1 dark:text-accent2"
                                     @click="handleEditMemo(memo.text, index)" />
                                 <!-- <Button icon="pi pi-trash text-sm text-red-500" /> -->
                             </div>
                         </div>
-                        <div class="text-sm text-gray-500 py-2">{{ memo.text }}</div>
+                        <div class="text-sm text-gray-500 py-2 dark:text-accentwhite dark:text-opacity-50">{{ memo.text }}</div>
                     </div>
                 </div>
 
-                <Dialog v-model:visible="editMemo" modal header="Edit Memo" :style="{ width: '30rem' }">
-                    <div class="mt-1">
+                <Dialog v-model:visible="editMemo" modal header="Edit Memo" :style="{ width: '30rem' }" class="dark:bg-primarydark dark:text-accentwhite">
+                    <div class="mt-2">
                         <FloatLabel variant="on" class="text-sm">
                             <Textarea id="memo_text" v-model="memoText" rows="5"
-                                class="border border-primary w-full py-2 px-2" />
-                            <label for="memo_text">Memo Text</label>
+                                class="border border-primary w-full py-2 px-2 dark:bg-primarydark" />
+                            <label for="memo_text" class="text-sm text-label dark:bg-primarydark dark:text-accentwhite">Memo Text</label>
                         </FloatLabel>
                     </div>
                     <div class="flex justify-end gap-4 mt-5">
@@ -187,10 +174,10 @@ const saveMemo = () => {
             </template>
             <template #footer>
                 <div class="w-full px-10 relative">
-                    <Textarea id="memo_text" v-model="memoText" rows="5" class="border-2 border-accent1 border-opacity-80 w-full py-3 px-2"
+                    <Textarea id="memo_text" v-model="memoText" rows="5" class="border-2 border-accent1 border-opacity-80 w-full py-3 px-2 dark:bg-primarydark dark:text-accentwhite"
                         style="resize: none;" />
                     <div class="flex justify-end mt-2 absolute bottom-4 right-12">
-                        <Button type="button" icon="pi pi-send" class="text-white bg-accent1 py-2 px-10"
+                        <Button type="button" icon="pi pi-send" class="text-white bg-accent1 dark:bg-accent2 py-2 px-10"
                             @click="sendMemo"></Button>
                     </div>
                 </div>
@@ -199,4 +186,10 @@ const saveMemo = () => {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+:deep(.p-inputtext) {
+    @apply dark:bg-primarydark;
+    @apply dark:text-accentwhite;
+}
+
+</style>
