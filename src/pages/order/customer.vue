@@ -9,13 +9,14 @@ import { computed, ref } from "vue";
 
 //constants
 const orderStore = useOrderStore();
-const products = computed(() => orderStore.products);
+//const products = computed(() => orderStore.products);
 const displayModal = ref(false);
 const customer = ref({});
 
 //functions
 /**
  * Fill customer data to the form
+ * @author Aye Nadi
  * @param customer
  */
 const handleAddCustomer = (customer: any) => {
@@ -24,14 +25,13 @@ const handleAddCustomer = (customer: any) => {
 };
 
 /**
- * next step
+ * next step . store customer data and navigate to shipping page
+ * @author Aye Nadi
  * @param customer
  */
-const nextStep = (customer: any, products: any) => {
+const nextStep = (customer: any) => {
   orderStore.addCustomer(customer);
-  orderStore.addProduct(products);
-  console.log(orderStore.products,orderStore.customer);
-  navigateTo("/order/invoice");
+  navigateTo("/order/shipping");
 };
 </script>
 
@@ -43,7 +43,7 @@ const nextStep = (customer: any, products: any) => {
         <customerForm :customer="customer" />
       </div>
       <div class="w-1/3 bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
-        <invoice :orderStore="orderStore" />
+        <invoice />
       </div>
     </div>
     <searchCustomerModal
@@ -52,14 +52,15 @@ const nextStep = (customer: any, products: any) => {
       @addNewCustomer="handleAddCustomer"
     />
     <div>
-      <Button @click="navigateTo('/order/new-order')" class="underline">Back</Button>
-          <button
-            @click="nextStep(customer, products)"
-            class="bg-primarylight text-white px-6 py-1 rounded-md float-right"
-    >
-      <span class="text-white">Next</span>
-    </button>
+      <Button @click="navigateTo('/order/new-order')" class="underline"
+        >Back</Button
+      >
+      <button
+        @click="nextStep(customer)"
+        class="bg-primarylight text-white px-6 py-1 rounded-md float-right"
+      >
+        <span class="text-white">Next</span>
+      </button>
     </div>
-   
   </div>
 </template>

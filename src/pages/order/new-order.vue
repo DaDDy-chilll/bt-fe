@@ -12,8 +12,12 @@ const displayModal = ref(false);
 const orderStore = useOrderStore();
 
 const products = ref<any[]>([]);
-
 /*** Functions ***/
+/**
+ * Generate invoice code
+ * @author Aye Nadi
+ * @returns invoice code
+ */
 const generateInvoiceCode = () => {
   const date = new Date();
   const year = date.getFullYear();
@@ -25,15 +29,19 @@ const generateInvoiceCode = () => {
 const invoiceCode = ref(generateInvoiceCode());
 const staffName = ref("John Doe"); // to fix later
 const goldPrice = ref(60000000); // come from master data to fix later
-const todayDate = ref(new Date().toISOString().slice(0, 10).replace(/-/g, '/'));
+const todayDate = ref(new Date().toISOString().slice(0, 10).replace(/-/g, "/"));
 
 // Update refs to track selected values
-const goldType = ref('24K');
-const orderType = ref('In Store');
-const orderPlatform = ref('facebook');
-const goldMethod = ref('method1');
+const goldType = ref("24K");
+const orderType = ref("In Store");
+const orderPlatform = ref("facebook");
+const goldMethod = ref("method1");
 
-//add new product
+/**
+ * Add new product to the order
+ * @author Aye Nadi
+ * @param product
+ */
 const addNewProduct = (product: any) => {
   console.log("add new product", product);
   products.value.push(product);
@@ -46,11 +54,25 @@ const deleteProduct = (product: any) => {
 
 /**
  * next step
+ * @author Aye Nadi
  * @param products
  */
 const nextStep = (products: any[]) => {
   //save products to the store
   orderStore.addProduct(products);
+  console.log(products, "products");
+
+  //calculate total quantity and total amount
+  const totalQuantity = products.reduce((sum, product) => {
+    return sum + product.quantity;
+  }, 0);
+
+  const totalAmount = products.reduce((sum, product) => {
+    return sum + product.estimate_price * product.quantity + product.ayoutwat + product.latt_kha;
+  }, 0);
+ 
+  console.log(totalQuantity,totalAmount);
+
   //save order details to the store
   orderStore.addOrderDetails({
     invoiceCode: invoiceCode.value,
@@ -60,11 +82,11 @@ const nextStep = (products: any[]) => {
     goldMethod: goldMethod.value,
     orderType: orderType.value,
     orderPlatform: orderPlatform.value,
-    productType: "In Stock",
-    paymentStatus: 'pending',
-    paymentMethod: 'pending',
- 
+    productType: "In Stock", // to confirm and fix later
+    totalQuantity: totalQuantity,
+    totalAmount: totalAmount,
   });
+
   console.log(orderStore.orderDetails);
   //navigate to the customer form
   navigateTo("/order/customer");
@@ -242,12 +264,15 @@ const nextStep = (products: any[]) => {
               <template #body="slotProps">
                 <input
                   @change="
-                    slotProps.data.quantity =
-                      Number(($event.target as HTMLInputElement).value) || 1
+                    slotProps.data.quantity = Number(
+                      ($event.target as HTMLInputElement).value
+                    )
                   "
                   type="number"
-                  value="1"
-                  class="w-10 pl-2 border-muted border-2 rounded-md"
+                  :value="slotProps.data.quantity"
+                  :min="1"
+                  :max="slotProps.data.available_stock"
+                  class="w-16 pl-2 border-muted border-2 rounded-md"
                 />
               </template>
             </Column>

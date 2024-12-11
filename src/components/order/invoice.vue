@@ -1,12 +1,6 @@
 <script setup>
 import { ref } from "vue";
-
-const props = defineProps({
-  products: {
-    type: Array,
-    required: true,
-  },
-}); 
+ 
 
 const orderStore = useOrderStore();
 
@@ -15,13 +9,19 @@ const invoice_data = ref({
   code: orderStore.orderDetails.invoiceCode,
   date: orderStore.orderDetails.todayDate,
   staff: orderStore.orderDetails.staffName,
-  total_quantity: 10,
+  total_quantity: orderStore.orderDetails.totalQuantity,
   gold_method: orderStore.orderDetails.goldMethod,
   order_type: orderStore.orderDetails.orderType,
   product_type: orderStore.orderDetails.productType,
-  payment_status: orderStore.orderDetails.paymentStatus,
-  payment_method: orderStore.orderDetails.paymentMethod,
+  payment_status: orderStore.payment.payment_status,
+  payment_method: orderStore.payment.payment_method,
 });
+
+//watch store changes for payment status and method
+watch(()=>{
+  invoice_data.value.payment_status = orderStore.payment.payment_status;
+  invoice_data.value.payment_method = orderStore.payment.payment_method;
+})
 
 </script>
 <template>

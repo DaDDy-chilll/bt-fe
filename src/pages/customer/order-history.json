@@ -1,0 +1,109 @@
+[
+  {
+    "customer_id": 1,
+    "order_history": {
+    "order_1": {
+      "order_date": "2022-01-01",
+      "product": "product_name_1",
+      "type": "ring",
+      "quantity": 1,
+      "Ayawt": 300000,
+      "Lakha": 200000,
+      "price": 200000000,
+      "Order_method": "in-shop",
+      "order_type": "store",
+      "payment": "kpay"
+    },
+    "order_2": {
+      "order_date": "2022-01-02",
+      "product": "product_name_2",
+      "type": "etc",
+      "quantity": 2,
+      "Ayawt": 300000,
+      "Lakha": 200000,
+      "price": 200000000,
+      "Order_method": "in-shop",
+      "order_type": "store",
+      "payment": "cash"
+    },
+    "order_3": {
+      "order_date": "2022-01-03",
+      "product": "product_name_3",
+      "type": "ring",
+      "quantity": 3,
+      "Ayawt": 300000,
+      "Lakha": 200000,
+      "price": 200000000,
+      "Order_method": "in-shop",
+      "order_type": "store",
+      "payment": "wavepay"
+    },
+    "order_4": {
+      "order_date": "2022-01-05",
+      "product": "product_name_4",
+      "type": "etc",
+      "quantity": 4,
+      "Ayawt": 300000,
+      "Lakha": 200000,
+      "price": 200000000,
+      "Order_method": "etc",
+      "order_type": "etc",
+      "payment": "ayapay"
+      }
+    }
+  },
+  {
+    "customer_id": 2,
+    "order_history": {
+    "order_1": {
+      "order_date": "2022-01-01",
+      "product": "product_name_1",
+      "type": "ring",
+      "quantity": 1,
+      "Ayawt": 300000,
+      "Lakha": 200000,
+      "price": 200000000,
+      "Order_method": "in-shop",
+      "order_type": "store",
+      "payment": "kpay"
+    },
+    "order_2": {
+      "order_date": "2022-01-02",
+      "product": "product_name_2",
+      "type": "etc",
+      "quantity": 2,
+      "Ayawt": 300000,
+      "Lakha": 200000,
+      "price": 200000000,
+      "Order_method": "etc",
+      "order_type": "etc",
+      "payment": "cash"
+    },
+    "order_3": {
+      "order_date": "2022-01-03",
+      "product": "product_name_3",
+      "type": "ring",
+      "quantity": 3,
+      "Ayawt": 300000,
+      "Lakha": 200000,
+      "price": 200000000,
+      "Order_method": "in-shop",
+      "order_type": "store",
+      "payment": "wavepay"
+    },
+    "order_4": {
+      "order_date": "2022-01-04",
+      "product": "product_name_4",
+      "type": "etc",
+      "quantity": 4,
+      "Ayawt": 300000,
+      "Lakha": 200000,
+      "price": 200000000,
+      "Order_method": "etc",
+      "order_type": "etc",
+      "payment": "ayapay"
+      }
+    }
+  }
+]
+
