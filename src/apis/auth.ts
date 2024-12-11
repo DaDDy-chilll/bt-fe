@@ -1,6 +1,6 @@
-
 import { fetcher } from "~/apis/base-api";
 import type { LoginPayload, RegisterPayload } from "~/types/auth";
+import type { Filter } from "~/types/product";
 
 /**
  * @param payload LoginPayload
@@ -54,3 +54,23 @@ export const useForgotApi = async (payload: LoginPayload) => {
   );
   return data;
 }
+
+
+
+
+export const testApi = async () => {
+  try {
+    const response = await $fetch('/product-categories', {
+      baseURL: useRuntimeConfig().public.apiBaseUrl,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+};
+

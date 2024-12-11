@@ -41,12 +41,14 @@ const isDark = ref(false);
 
 // Dark mode initialization
 onMounted(() => {
+
   const savedDarkMode = localStorage.getItem('darkMode');
   if (savedDarkMode === 'true' || (!savedDarkMode && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     console.log('dark mode');
     isDark.value = true;
     document.documentElement.classList.add('dark');
   }
+
 });
 </script>
 

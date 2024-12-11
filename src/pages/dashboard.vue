@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import Warehouse from "./product/warehouse.json";
+import { testApi } from "~/apis/auth";
 
 const warehouses = Warehouse;
 const selectedWarehouse = ref("");
@@ -13,6 +14,13 @@ onMounted(() => {
 
 const chartData = ref();
 const chartOptions = ref();
+
+const test = async () => {
+  const response = await testApi();
+  console.log("success"+"_"+response);
+  console.log(response);
+  return response;
+}
 
 const setChartData = () => {
   const documentStyle = getComputedStyle(document.documentElement);
@@ -133,6 +141,9 @@ const orders = ref([
           <p class="text-sm text-secondarydark">
             Welcome John Doe / Shwe Nan Daw
           </p>
+          <Button class="text-xs py-1 px-6 mt-3 text-primarylight hover:text-primary" @click="test">
+            test Api
+          </Button>
         </div>
       </div>
     </div>
@@ -157,7 +168,7 @@ const orders = ref([
       <div class="col-span-1">
         <div class="h-10"></div>
         <div class="p-4 bg-accentwhite rounded-lg drop-shadow-md">
-          <p class="text-sm text-secondarydark mb-4 font-bold">Total Cost</p>
+          <p class="text-sm text-secondarydark mb-4 font-bold">Test</p>
           <div class="flex justify-start items-center">
             <img
               src="@/assets/icons/Cost.png"
