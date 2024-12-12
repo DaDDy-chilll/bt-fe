@@ -18,9 +18,6 @@ export const useGetProductCategories = async (
     fetcher(`product-categories`, {
       method: "GET",
       params: filter,
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
     })
   );
   if (!error.value) {
@@ -44,10 +41,7 @@ export const useGetProductTypes = async (
     "getProductTypes",
     fetcher(`product-types`, { 
       method: "GET", 
-      params: filter,
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
+      params: filter
     })
   );
   if (!error.value) {

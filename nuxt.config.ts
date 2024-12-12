@@ -61,5 +61,9 @@ export default defineNuxtConfig({
     },
   },
 
+  routeRules: {
+    "/v1/api/**": { proxy: { to: process.env.API_BASE_URL + "/**" } },
+  },
+
   compatibilityDate: "2024-12-07",
 });
