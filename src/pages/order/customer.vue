@@ -38,7 +38,7 @@ const nextStep = (customer: any) => {
 <template>
   <div class="h-screen">
     <tracking />
-    <div class="px-3 py-6 flex items-center justify-center gap-20">
+    <div class="px-3 py-6 flex justify-center gap-20">
       <div class="w-2/4 bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
         <customerForm :customer="customer" />
       </div>

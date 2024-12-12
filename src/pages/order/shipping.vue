@@ -23,7 +23,7 @@ const handleAddShipping = (shipping: any) => {
 
 /**
  * next step
- * @param shipping
+ * @param summary
  */
 const nextStep = (shipping: any) => {
   orderStore.addShipping(shipping);
@@ -35,7 +35,7 @@ const nextStep = (shipping: any) => {
 <template>
   <div class="min-h-screen mb-8">
     <tracking />
-    <div class="px-3 py-6 flex items-center justify-center gap-20">
+    <div class="px-3 py-6 flex justify-center gap-20">
       <div class="w-2/4 bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
         <shippingForm :shipping="shipping" />
       </div>
@@ -49,7 +49,7 @@ const nextStep = (shipping: any) => {
       </div>
     </div>
 
-    <div class="mb-8">
+    <div class="mb-8 flex justify-between">
       <Button @click="navigateTo('/order/customer')" class="underline"
         >Back</Button
       >

@@ -29,7 +29,7 @@ const handleAddPayment = (payment: any) => {
 const nextStep = (payment: any) => {
   orderStore.addPayment(payment);
   console.log(orderStore.payment,"payment");
-  navigateTo("/order/payment  ");
+  navigateTo("/order/summary");
 };  
 </script>
 
@@ -53,7 +53,7 @@ const nextStep = (payment: any) => {
       </div>
     </div>
 
-    <div class="mb-8">
+    <div class="mb-12 flex justify-between">
       <Button @click="navigateTo('/order/shipping')" class="underline"
         >Back</Button
       >

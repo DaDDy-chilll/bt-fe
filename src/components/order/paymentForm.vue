@@ -39,7 +39,7 @@ const totalAmount = computed(() => {
     props.payment.total_amount = grandTotal; //store total amount to the payment object
     return grandTotal;
   }else{
-    const grandTotal =  store.orderDetails.totalAmount + store.shipping.shipping_fee + props.payment.tax_amount-props.payment.partial_amount;
+    const grandTotal =  store.orderDetails.totalAmount + store.shipping.shipping_fee + props.payment.tax_amount;
     props.payment.total_amount = grandTotal; //store total amount to the payment object
     return grandTotal;
   }
@@ -216,17 +216,21 @@ watch(
             <span class="text-sm text-accentblack">Shipping Fee</span>
             <span class="text-sm ml-4">{{ store.shipping.shipping_fee }}</span>
           </div>
-          <div class="flex justify-between py-2">
+          <div class="flex justify-between py-2 border-b border-b-gray-300">
             <span class="text-sm text-accentblack">Tax Amount</span>
             <span class="text-sm ml-4">{{ payment.tax_amount }}</span>
+          </div>
+          <div class="flex justify-between py-2">
+            <span class="text-sm text-accentblack">Grand Total</span>
+            <span class="text-sm ml-4">{{ totalAmount }}</span>
           </div>
           <div class="flex justify-between py-2 border-b border-gray-500">
             <span class="text-sm text-accentblack">Partial Paid</span>
             <span class="text-sm ml-4 text-red-500">{{ payment.partial_amount }}</span>
           </div>
           <div class="flex justify-between py-2">
-            <span class="text-lg font-semibold text-accentblack">Grand Total</span>
-            <span class="text-lg font-semibold ml-4">{{ totalAmount }}</span>
+            <span class="text-lg font-semibold text-accentblack">Remaining Amount</span>
+            <span class="text-lg font-semibold ml-4">{{ totalAmount - payment.partial_amount }}</span>
           </div>
         </div>
       </div>
