@@ -1,0 +1,100 @@
+[
+  {
+    "id": 1,
+    "order_type": 1,
+    "order_number": "1234567890",
+    "order_category_id": 1,
+    "order_available": 1,
+    "order_date": "2023-10-01",
+    "factory_ready_date": "2023-10-05",
+    "shipping_date": "2023-10-07",
+    "shipping_prefecture": "Yangon",
+    "delivery_day": 3,
+    "sales_person":[{
+        "sales_person_id": 2001,
+        "sales_person_Name": "Sales Person 1"
+    }],
+    "gold_calculate_method": 1,
+    "today_gold_price": 5000,
+    "customer":[{
+        "customer_id": 3001,
+        "customer_Name": "Customer 1",
+        "customer_Phone": "1234567890",
+        "customer_Address": "Rose Road, Yangon"
+    }],
+    "tax_id": 4001,
+    "status": 0,
+    "m_order_products": [
+      {
+        "product_id": 22,
+        "quantity": 1,
+        "status": 1,
+        "product_type": 1,
+        "est_price": 100,
+        "ayoutwat": 100,
+        "larkha": 100,
+        "sub_total": 100
+      },
+      {
+        "product_id": 23,
+        "quantity": 1,
+        "status": 1,
+        "est_price": 100,
+        "ayoutwat": 100,
+        "larkha": 100,
+        "sub_total": 100
+      },
+      {
+        "product_id": 24,
+        "quantity": 1,
+        "status": 1,
+        "est_price": 100,
+        "ayoutwat": 100,
+        "larkha": 100,
+        "sub_total": 100
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "order_type": 1,
+    "order_number": "1234567890",
+    "order_category_id": 1,
+    "order_available": 1,
+    "order_date": "2023-10-01",
+    "factory_ready_date": "2023-10-05",
+    "shipping_date": "2023-10-07",
+    "shipping_prefecture": "Taunggyi",
+    "delivery_day": 3,
+    "sales_person":[{
+        "sales_person_id": 2001,
+        "sales_person_Name": "Sales Person 1"
+    }],
+    "gold_calculate_method": 1,
+    "today_gold_price": 5000,
+    "customer":[{
+        "customer_id": 3001,
+        "customer_Name": "Customer 1",
+        "customer_Phone": "1234567890",
+        "customer_Address": "Mya Kan Thar, Taunggyi"
+    }],
+    "tax_id": 4001,
+    "status": 1,
+    "m_order_products": [
+      {
+        "product_id": 22,
+        "quantity": 1,
+        "status": 1,
+        "est_price": 100,
+        "sub_total": 100
+      },
+      {
+        "product_id": 23,
+        "quantity": 1,
+        "status": 1,
+        "est_price": 100,
+        "sub_total": 100
+      }
+    ]
+  }
+]
