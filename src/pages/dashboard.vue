@@ -22,6 +22,8 @@ const test = async () => {
   return response;
 }
 
+console.log(test());
+
 const setChartData = () => {
   const documentStyle = getComputedStyle(document.documentElement);
 

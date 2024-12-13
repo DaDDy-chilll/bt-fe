@@ -1,10 +1,7 @@
-
-
 import type { NitroFetchOptions } from "nitropack";
 import type { FetchContext, FetchError } from "ofetch";
 import { StatusCodes } from "~/utils/status-codes";
 
-const apiBaseUrl = useRuntimeConfig().public.apiBaseUrl;
 
 export const fetcher = <ResT>(
   path: string,
@@ -36,12 +33,12 @@ export const fetcher = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: apiBaseUrl,
+    baseURL: "/v1/api/",
     headers: {
       authorization:
         "Bearer " +
         (token.value ??
-          "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlYXJseWNyb3NzQHRlc3QuY29tIiwiaWF0IjoxNzAwNzg5MjUzLCJleHAiOjE3MDEzOTQwNTN9.tiKGsHkJy6WCAcI9AdESpsrGv2Cv3n2p-Rgsq-mWrTTS9gZ-7HQIq08swCntRpAx6hXNjDjr5xxR1t54T8-Adg"),
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Imxpbm5rb2tvMTEzMEBnbWFpbC5jb20iLCJpYXQiOjE3MzM5MzY1NzQsImV4cCI6MTczMzk0NjU3NH0.5fg7kumHjxMGYHXO2QnuP6SQtRgZbpqNZEgd0UXdIOQ"),
     },
     retry: 0,
     credentials: "include",
@@ -97,7 +94,7 @@ export const fetcherWithoutAuthHeader = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: apiBaseUrl ,
+    baseURL: "/v1/api/",
     retry: 0,
     credentials: "include",
     onRequest,
@@ -143,7 +140,7 @@ export const fetcherWith404ErrorHandling = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: apiBaseUrl ,
+    baseURL: "/v1/api/",
     headers: {
       authorization:
         "Bearer " +
@@ -197,7 +194,7 @@ export const fetcherDownload = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: apiBaseUrl,
+    baseURL: "/v1/api/",
     headers: {
       authorization:
         "Bearer " +

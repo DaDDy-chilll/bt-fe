@@ -17,8 +17,8 @@ import Warehouse from "./warehouse.json";
 const gemTypes = GemType;
 const gemColors = GemColor;
 const gemMassUnits = GemMassUnit;
-const productCategories = ref();
-const productTypes = ref();
+const productCategories = ref([]);
+const productTypes = ref([]);
 const goldTypes = GoldType;
 const goldColors = GoldColor;
 const units = LengthUnit;
@@ -31,6 +31,8 @@ const productStore = useProductStore();
 const loadMasterData = async () => {
   productCategories.value = await productStore.getProductCategories();
   productTypes.value = await productStore.getProductTypes();
+
+  console.log(productCategories.value._value.data);
 };
 
 onMounted(async () => {
@@ -172,8 +174,8 @@ const addProduct = () => {
                 <Select
                   v-model="product.productCategory"
                   inputId="on_label"
-                  :options="productCategories"
-                  optionLabel="value"
+                  :options="productCategories?._value?.data"
+                  optionLabel="category"
                   class="w-full border h-10 dropdown-svg-white"
                 />
                 <label for="on_label" class="text-sm text-label"
@@ -186,8 +188,8 @@ const addProduct = () => {
                 <Select
                   v-model="product.productType"
                   inputId="on_label"
-                  :options="productTypes"
-                  optionLabel="value"
+                  :options="productTypes._value?.data"
+                  optionLabel="type"
                   class="w-full border h-10 dropdown-svg-white"
                 />
                 <label for="on_label" class="text-sm text-label"
