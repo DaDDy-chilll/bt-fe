@@ -5,11 +5,19 @@ import goldType from "~/pages/product/goldtype.json";
 import productType from "~/pages/product/producttype.json";
 import { useOrderStore } from "~/stores/order";
 
+const props = defineProps({
+  products: {
+    type: Array,
+    required: true,
+  },
+});
+
 //data
-const products = useOrderStore().products;
+const products = useOrderStore().products?useOrderStore().products:props.products;
 const productCategories = ref(productCategory);
 const goldTypes = ref(goldType);
 const productTypes = ref(productType);
+
 </script>
 <template>
   <div class="text-sm">

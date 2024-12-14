@@ -24,15 +24,7 @@ const handleAddPayment = (payment: any) => {
   payment.value = payment;
 };
 
-const printOrder = () => {
-  console.log("print order");
-};
 
-const finishedOrder = () => {
-  //clear order store
-  orderStore.clearOrder();
-  console.log("finished order");
-};
 </script>
 
 <template>
@@ -62,26 +54,6 @@ const finishedOrder = () => {
         >
           <shippingInfo />
         </div>
-      </div>
-    </div>
-
-    <div class="mb-8 flex justify-between">
-      <Button @click="navigateTo('/order/shipping')" class="underline"
-        >Back</Button
-      >
-      <div class="flex gap-4">
-      <button
-        @click="printOrder"
-        class="bg-primarylight text-white px-6 py-1 rounded-md float-right mb-8"
-      >
-        <span class="text-white">Print</span>
-      </button>
-      <button
-        @click="finishedOrder"
-        class="bg-primarylight text-white px-6 py-1 rounded-md float-right mb-8"
-      >
-        <span class="text-white">Finished</span>
-      </button>
       </div>
     </div>
   </div>

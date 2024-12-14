@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import tracking from "@/components/order/tracking.vue";
 import paymentForm from "@/components/order/paymentForm.vue";
 import invoice from "@/components/order/invoice.vue";
 import customerInfo from "@/components/order/customerInfo.vue";
@@ -13,6 +12,7 @@ import CommentSection from "~/components/order/commentSection.vue";
 //constants
 const orderStore = useOrderStore();
 const payment = ref({});
+const isProductSummaryOpen = ref(false);
 
 //functions
 /**
@@ -29,19 +29,22 @@ const printOrder = () => {
 };
 
 const finishedOrder = () => {
-  //clear order store
-  orderStore.clearOrder();
   console.log("finished order");
 };
 </script>
 
 <template>
   <div class="min-h-screen mb-8">
-    <tracking />
     <div class="px-3 py-6 flex justify-center gap-10">
       <div class="w-3/4 flex flex-col gap-4">
-        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
-          <ProductSummary />
+        <div class="bg-accentwhite drop-shadow-md rounded-lg">
+          <div class="flex justify-between items-center px-3 py-4 cursor-pointer" @click="isProductSummaryOpen = !isProductSummaryOpen">
+            <h3 class="font-medium">Product Summary</h3>
+            <i :class="['pi', isProductSummaryOpen ? 'pi-chevron-up' : 'pi-chevron-down']"></i>
+          </div>
+          <div v-if="isProductSummaryOpen" class="px-3 pb-4">
+            <ProductSummary />
+          </div>
         </div>
         <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
           <CommentSection />
@@ -65,24 +68,5 @@ const finishedOrder = () => {
       </div>
     </div>
 
-    <div class="mb-8 flex justify-between">
-      <Button @click="navigateTo('/order/shipping')" class="underline"
-        >Back</Button
-      >
-      <div class="flex gap-4">
-      <button
-        @click="printOrder"
-        class="bg-primarylight text-white px-6 py-1 rounded-md float-right mb-8"
-      >
-        <span class="text-white">Print</span>
-      </button>
-      <button
-        @click="finishedOrder"
-        class="bg-primarylight text-white px-6 py-1 rounded-md float-right mb-8"
-      >
-        <span class="text-white">Finished</span>
-      </button>
-      </div>
-    </div>
   </div>
 </template>

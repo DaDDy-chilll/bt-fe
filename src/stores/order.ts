@@ -73,5 +73,50 @@ export const useOrderStore = defineStore('order', {
     addPayment(payment: any) {
       this.payment = payment;
     },
+    clearOrder(){
+      this.products = [];
+      this.customer = {
+        firstname: "",
+        lastname: "",
+        phone: "",
+        nrc: "",
+        email: "",
+        social_media: "",
+      };
+      this.orderDetails = {
+        invoiceCode: "",
+        todayDate: "",
+        staffName: "",
+        goldPrice: 0,
+        goldMethod: "",
+        orderType: "",
+        orderPlatform: "",
+        productType: "",
+        totalQuantity:0,
+        totalAmount:0,
+      };
+      this.shipping = {
+        shipping_method: "",
+        country: "",
+        prefecture: "",
+        address: "",
+        address1: "",
+        receiver_name: "",
+        phone_number: "",
+        shipping_company: "",
+        estimated_duration: 0,
+        shipping_fee: 0,
+        memo: "",
+      };
+      this.payment = {
+        payment_method: "",
+        payment_status: "",
+        partial_amount: 0,
+        date: "",
+        tax_amount: 0,
+        total_amount: 0,
+        payment_image: "",
+      };
+    }
   },
 });

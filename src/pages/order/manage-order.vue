@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import order from "./order.json";
+import viewOrderModal from "~/components/order/viewOrderModal.vue";
+import editOrderModal from "~/components/order/editOrderModal.vue";
 
+//constants
 const orders = ref(order);
 const op = ref();
 const filterOp = ref();
 const expandedRows = ref([]);
+const showOrderModal = ref(false);
+const showEditOrderModal = ref(false);
+
+//filter items
 const filterItems = ref([
   {
     name: "Order ID",
@@ -140,18 +147,53 @@ const filterDialogClose = () => {
  * Filter Selected
  * @param event
  */
-const filterSelected = (event) => {
+const filterSelected = (event:any) => {
   filterOp.value.toggle();
   filterItems.value.find((item) => item.name === event.name).isSelected = true;
 };
 
-const onRowExpand = (event) => {
+/***** Functions *****/
+
+/**
+ * On Row Expand
+ * @param event
+ */
+const onRowExpand = (event:any) => {
   console.log(event);
 };
 
-const onRowCollapse = (event) => {
+/**
+ * On Row Collapse
+ * @param event
+ */
+const onRowCollapse = (event:any) => {
   console.log(event);
 };
+
+/**
+ * View Order
+ * @param orderNumber
+ */
+const viewOrder = (orderNumber:any) => {
+  showOrderModal.value = true;
+};
+
+/**
+ * Edit Order
+ * @param orderNumber
+ */
+const editOrder = (orderNumber:any) => {
+  showEditOrderModal.value = true;
+};
+
+/**
+ * Refund Order
+ * @param orderNumber
+ */
+const refundOrder = (orderNumber:any) => {
+  console.log(orderNumber);
+};
+
 </script>
 
 <template>
@@ -308,9 +350,9 @@ const onRowCollapse = (event) => {
             />
             <Popover ref="op" class="!bg-primarylight text-accentwhite">
               <div class="flex flex-col gap-4 justify-start items-start">
-                <Button label="View" icon="pi pi-eye" />
-                <Button label="Edit" icon="pi pi-pencil" />
-                <Button label="Refund" icon="pi pi-undo" />
+                <Button @click="viewOrder(slotProps.data.order_number)" label="View" icon="pi pi-eye" />
+                <Button @click="editOrder(slotProps.data.order_number)" label="Edit" icon="pi pi-pencil" />
+                <Button @click="refundOrder(slotProps.data.order_number)" label="Refund" icon="pi pi-undo" />
               </div>
             </Popover>
           </template>
@@ -318,5 +360,8 @@ const onRowCollapse = (event) => {
       </DataTable>
     </div>
   </div>
+  <viewOrderModal :showOrderModal="showOrderModal" @update:showOrderModal="showOrderModal = $event" />
+  <editOrderModal :showEditOrderModal="showEditOrderModal" @update:showEditOrderModal="showEditOrderModal = $event" />
+
 </template>
 <style scoped></style>
