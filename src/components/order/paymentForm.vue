@@ -74,27 +74,27 @@ watch(
 
 </script>
 <template>
-  <h1 class="text-lg font-semibold">Payment Method</h1>
+  <h1 class="text-lg font-semibold dark:text-accentwhite">Payment Method</h1>
   <div class="flex flex-col justify-center text-sm">
     <!-- payment method -->
     <div class="grid grid-cols-5 gap-4 mt-4 justify-center items-center">
       <button @click="payment.payment_method = 'cash'"
-        class="py-4 px-6 rounded-md border border-muted hover:border-primarylight flex items-center justify-center"
+        class="py-4 px-6 rounded-md border border-muted hover:border-primarylight  dark:hover:border-accent2 flex items-center justify-center"
       >
         <cash />
       </button>
       <button @click="payment.payment_method = 'kpay'"
-        class="py-4 px-6 rounded-md border border-muted hover:border-primarylight flex items-center justify-center"
+        class="py-4 px-6 rounded-md border border-muted hover:border-primarylight dark:hover:border-accent2 flex items-center justify-center"
       >
         <kpay />
       </button>
       <button @click="payment.payment_method = 'kbz'"
-        class="py-4 px-6 rounded-md border border-muted hover:border-primarylight flex items-center justify-center"
+        class="py-4 px-6 rounded-md border border-muted hover:border-primarylight dark:hover:border-accent2 flex items-center justify-center"
       >
         <kbz />
       </button>
       <button @click="payment.payment_method = 'yoma'"
-        class="py-4 px-6 rounded-md border border-muted hover:border-primarylight flex items-center justify-center"
+        class="py-4 px-6 rounded-md border border-muted hover:border-primarylight dark:hover:border-accent2 flex items-center justify-center"
       >
         <yoma />
       </button>
@@ -104,19 +104,19 @@ watch(
     </div>
     <!-- payment method end -->
     <!--Payment status and info-->
-    <h1 class="mt-4 text-lg font-semibold">Payment Status</h1>
+    <h1 class="mt-4 text-lg font-semibold dark:text-accentwhite">Payment Status</h1>
 
     <div class="grid grid-cols-2 gap-4 mt-4">
       <!--Payment status-->
       <div>
-        <div class="flex items-center justify-center gap-2">
+        <div class="flex items-center justify-center gap-2 dark:text-accentwhite">
           <label class="flex items-center space-x-2 cursor-pointer">
             <input
               v-model="payment.payment_status"
               type="radio"
               name="payment-type"
               value="Full Payment"
-              class="w-4 h-4 text-primarylight border-primarylight ring-primarylight"
+              class="w-4 h-4 text-primarylight border-primarylight ring-primarylight accent-primarylight dark:accent-accent2"
             />
             <span>Full Payment</span>
           </label>
@@ -126,52 +126,52 @@ watch(
               type="radio"
               name="payment-type"
               value="Partial Payment"
-              class="w-4 h-4 text-primarylight border-primarylight ring-primarylight"
+              class="w-4 h-4 text-primarylight border-primarylight ring-primarylight accent-primarylight dark:accent-accent2"
             />
             <span>Partial Payment</span>
           </label>
         </div>
         <!--Partial Amount-->
-        <div class="mt-4 border border-muted rounded-md">
+        <div class="mt-6 border border-muted rounded-md">
           <FloatLabel variant="on">
             <div class="flex items-center w-auto h-8 rounded-md">
               <InputNumber
                 id="partial_amount"
                 :disabled="payment.payment_status === 'Full Payment'"
-                :class="{ 'bg-gray-200': payment.payment_status === 'Full Payment' }"
-                class="h-7 w-full rounded-l-md rounded-r-none pl-2"
+                :class="{ 'bg-gray-200 dark:bg-primarydark': payment.payment_status === 'Full Payment' }"
+                class="h-7 w-full rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
                 v-model="payment.partial_amount"
               />
-              <label for="partial_amount" class="text-sm text-label"
+              <label for="partial_amount" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
                 >Partial Amount</label
               >
             </div>
           </FloatLabel>
         </div>
         <!--date-->
-        <div class="mt-4 border border-muted rounded-md">
+        <div class="mt-6 border border-muted rounded-md">
           <FloatLabel variant="on">
             <div class="flex items-center w-auto h-8 rounded-md">
               <DatePicker class="h-8 w-full px-2 rounded-l-md rounded-r-none" v-model="payment.date" />
               <span
-                class="bg-white h-8 px-2 rounded-r-md border-l flex items-center"
+                class="bg-white dark:bg-primarydark h-8 px-2 rounded-r-md border-l flex items-center dark:text-accentwhite"
               >
-                <i class="pi pi-calendar"></i>
+                <i class="pi pi-calendar dark:text-accent2"></i>
               </span>
             </div>
-            <label for="date" class="text-sm text-label">Date</label>
+            <label for="date" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Date</label>
           </FloatLabel>
         </div>
         <!--Tax Amount-->
-        <div class="mt-4 border border-muted rounded-md">
+        <div class="mt-6 border border-muted rounded-md">
           <FloatLabel variant="on">
             <div class="flex items-center w-auto h-8 rounded-md">
               <InputNumber
                 v-model="payment.tax_amount"
                 id="tax_amount"
-                class="h-7 w-full rounded-l-md rounded-r-none pl-2"
+                class="h-7 w-full rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
               />
-              <label for="partial_amount" class="text-sm text-label"
+              <label for="partial_amount" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
                 >Tax Amount</label
               >
             </div>
@@ -183,7 +183,7 @@ watch(
       <div class="flex flex-col items-center justify-center">
         <!--Payment image-->
         <div
-          class="relative w-48 h-48 border-2 border-muted rounded-lg flex items-center justify-center hover:border-primarylight transition-colors"
+          class="relative w-48 h-48 border-2 border-muted rounded-lg flex items-center justify-center hover:border-primarylight dark:hover:border-accent2 transition-colors"
         >
           <input
             type="file"
@@ -192,7 +192,7 @@ watch(
             @change="previewImage"
           />
           <div v-if="!imagePreview" class="text-center">
-            <i class="pi pi-image text-2xl text-gray-400 mb-2"></i>
+            <i class="pi pi-image text-2xl text-gray-400 mb-2 dark:text-accentwhite"></i>
             <p class="text-xs text-gray-500">PDF,SVG,PNG,JPG or GIF</p>
             <p class="text-xs text-gray-500">Max 800 x 400 Px</p>
           </div>
@@ -203,33 +203,33 @@ watch(
           />
         </div>
         <!--Payment-->
-        <div class="flex flex-col mt-4">
+        <div class="flex flex-col mt-4 dark:text-accentwhite">
           <div class="flex justify-between py-2">
-            <span class="text-sm text-accentblack">Total Product Quantity</span>
+            <span class="text-sm">Total Product Quantity</span>
             <span class="text-sm ml-4">{{ store.orderDetails.totalQuantity }}</span>
           </div>
           <div class="flex justify-between py-2">
-            <span class="text-sm text-accentblack">Total Product Amount</span>
+            <span class="text-sm">Total Product Amount</span>
             <span class="text-sm ml-4">{{ store.orderDetails.totalAmount }}</span>
           </div>
           <div class="flex justify-between py-2">
-            <span class="text-sm text-accentblack">Shipping Fee</span>
+            <span class="text-sm">Shipping Fee</span>
             <span class="text-sm ml-4">{{ store.shipping.shipping_fee }}</span>
           </div>
           <div class="flex justify-between py-2 border-b border-b-gray-300">
-            <span class="text-sm text-accentblack">Tax Amount</span>
+            <span class="text-sm">Tax Amount</span>
             <span class="text-sm ml-4">{{ payment.tax_amount }}</span>
           </div>
           <div class="flex justify-between py-2">
-            <span class="text-sm text-accentblack">Grand Total</span>
+            <span class="text-sm">Grand Total</span>
             <span class="text-sm ml-4">{{ totalAmount }}</span>
           </div>
           <div class="flex justify-between py-2 border-b border-gray-500">
-            <span class="text-sm text-accentblack">Partial Paid</span>
+            <span class="text-sm">Partial Paid</span>
             <span class="text-sm ml-4 text-red-500">{{ payment.partial_amount }}</span>
           </div>
           <div class="flex justify-between py-2">
-            <span class="text-lg font-semibold text-accentblack">Remaining Amount</span>
+            <span class="text-lg font-semibold">Remaining Amount</span>
             <span class="text-lg font-semibold ml-4">{{ totalAmount - payment.partial_amount }}</span>
           </div>
         </div>
@@ -237,3 +237,12 @@ watch(
     </div>
   </div>
 </template>
+<style scoped>
+:deep(.p-inputtext) {
+  @apply dark:bg-primarydark;
+}
+
+:deep(.p-select-label) {
+  @apply dark:text-accentwhite;
+}
+</style>

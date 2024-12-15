@@ -41,7 +41,7 @@ const productTypes = ref(productType);
             breakpoint="sm"
           >
             <!--Image-->
-            <Column field="image" class="w-[10%]">
+            <Column field="image" class="w-[10%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   <img
@@ -53,7 +53,7 @@ const productTypes = ref(productType);
               </template>
             </Column>
             <!--Product Name-->
-            <Column field="name" class="w-[15%]">
+            <Column field="name" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div class="font-bold">Product Name</div>
                 <div>
@@ -62,7 +62,7 @@ const productTypes = ref(productType);
               </template>
             </Column>
             <!--Category-->
-            <Column field="category" header="Category" class="w-[15%]">
+            <Column field="category" header="Category" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{
@@ -74,7 +74,7 @@ const productTypes = ref(productType);
               </template>
             </Column>
             <!--Type-->
-            <Column field="type" header="Type" class="w-[15%]">
+            <Column field="type" header="Type" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{
@@ -86,7 +86,7 @@ const productTypes = ref(productType);
               </template>
             </Column>
             <!--Size-->
-            <Column field="size" header="Size" class="w-[15%]">
+            <Column field="size" header="Size" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{ slotProps.data.size }}
@@ -94,7 +94,7 @@ const productTypes = ref(productType);
               </template>
             </Column>
             <!--Quantity-->
-            <Column field="available_stock" header="Available" class="w-[15%]">
+            <Column field="available_stock" header="Available" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{ slotProps.data.available_stock }}
@@ -102,7 +102,7 @@ const productTypes = ref(productType);
               </template>
             </Column>
             <!--Gold Type-->
-            <Column field="goldType" header="Gold Type" class="w-[15%]">
+            <Column field="goldType" header="Gold Type" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{
@@ -119,3 +119,23 @@ const productTypes = ref(productType);
     </div>
   </div>
 </template>
+<style scoped>
+:deep(.p-paginator) {
+  @apply dark:bg-primarydark;
+  @apply dark:text-accentwhite;
+}
+
+ :deep(.p-paginator-rpp-dropdown) {
+    @apply dark:bg-transparent;
+    @apply dark:text-accentwhite;
+    @apply dark:border-1 dark:border-b-gray-400;
+  }
+
+  :deep(.p-select-label) {
+    @apply dark:text-accentwhite;
+  }
+
+  :deep(.p-datatable-empty-message) {
+    @apply dark:bg-transparent;
+  }
+  </style>

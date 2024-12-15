@@ -3,11 +3,11 @@ const store = useOrderStore();
 console.log(store.orderDetails, "orderDetails",store.payment, "payment");
 </script>
 <template>
-  <div class="grid grid-cols-2 gap-4 text-sm">
+  <div class="grid grid-cols-2 gap-4 text-sm dark:text-accentwhite">
     <div class="px-4 border-r border-r-gray-300">
       <div class="flex items-center justify-between mb-4">
-        <h1 class="text-base">Comment Section</h1>
-        <NuxtLink to="/order/memo" class="text-primarylight text-sm underline"
+        <h1 class="text-base dark:text-accentwhite">Comment Section</h1>
+        <NuxtLink to="/order/memo" class="text-primarylight dark:text-accent2 text-sm underline"
           >see all</NuxtLink
         >
       </div>
@@ -24,35 +24,33 @@ console.log(store.orderDetails, "orderDetails",store.payment, "payment");
         ></textarea>
       </div>
     </div>
-    <div class="col-span-1">
+    <div class="col-span-1 dark:text-accentwhite">
         <div class="flex justify-between py-2">
-            <span class="text-sm text-accentblack">Total Product Quantity</span>
+            <span class="text-sm">Total Product Quantity</span>
             <span class="text-sm ml-4">{{ store.orderDetails.totalQuantity }}</span>
           </div>
           <div class="flex justify-between py-2">
-            <span class="text-sm text-accentblack">Total Product Amount</span>
+            <span class="text-sm">Total Product Amount</span>
             <span class="text-sm ml-4">{{ store.orderDetails.totalAmount }}</span>
           </div>
           <div class="flex justify-between py-2">
-            <span class="text-sm text-accentblack">Shipping Fee</span>
+            <span class="text-sm">Shipping Fee</span>
             <span class="text-sm ml-4">{{ store.shipping.shipping_fee }}</span>
           </div>
           <div class="flex justify-between py-2 border-b border-b-gray-300">
-            <span class="text-sm text-accentblack">Tax Amount</span>
+            <span class="text-sm">Tax Amount</span>
             <span class="text-sm ml-4">{{ store.payment.tax_amount }}</span>
           </div>
           <div class="flex justify-between py-2">
-            <span class="text-sm text-accentblack">Grand Total</span>
+            <span class="text-sm">Grand Total</span>
             <span class="text-sm ml-4">{{ store.payment.total_amount }}</span>
           </div>
           <div class="flex justify-between py-2 border-b border-gray-500">
-            <span class="text-sm text-accentblack">Partial Paid</span>
+            <span class="text-sm">Partial Paid</span>
             <span class="text-sm ml-4 text-red-500">{{ store.payment.partial_amount }}</span>
           </div>
           <div class="flex justify-between py-2">
-        <span class="text-lg font-semibold text-accentblack"
-          >Remaining Amount</span
-        >
+        <span class="text-lg font-semibold">Remaining Amount</span>
         <span class="text-lg font-semibold ml-4"
           >{{ store.payment.total_amount - store.payment.partial_amount }}</span
         >

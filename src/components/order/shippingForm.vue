@@ -36,15 +36,15 @@ watch(
 
 <template>
   <div class="flex justify-between items-center gap-2">
-    <h1 class="text-lg font-semibold">Shipping Information</h1>
+    <h1 class="text-lg font-semibold dark:text-accentwhite">Shipping Information</h1>
     <div class="flex items-center gap-2">
-      <label for="is_previous" class="text-sm text-label"
+      <label for="is_previous" class="text-sm text-label dark:text-accentwhite"
         >Use Previous Shipping</label
       >
-      <input type="checkbox" v-model="props.shipping.is_previous" />
+      <input type="checkbox" v-model="props.shipping.is_previous" class="accent-primarylight dark:accent-accent2" />
     </div>
   </div>
-  <div class="w-full bg-accentwhite px-3 rounded-lg text-sm">
+  <div class="w-full bg-accentwhite dark:bg-primarydark px-3 rounded-lg text-sm">
     <!--Shipping Method-->
     <div class="mt-4 border border-muted rounded-md">
       <FloatLabel variant="on">
@@ -57,9 +57,9 @@ watch(
           ]"
           optionLabel="name"
           optionValue="id"
-          class="w-full h-8 dropdown-svg-white"
+          class="w-full h-8 dropdown-svg-white dark:bg-primarydark dark:text-accentwhite [&_.p-dropdown-items]:dark:text-accentwhite [&_.p-dropdown-item]:dark:text-accentwhite [&_.p-dropdown-panel]:dark:bg-primarydark [&_.p-dropdown-item.p-highlight]:dark:bg-accent2"
         />
-        <label for="shipping_method_label" class="text-sm text-label"
+        <label for="shipping_method_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
           >Shipping Method</label
         >
       </FloatLabel>
@@ -74,9 +74,9 @@ watch(
             :options="countries_model"
             optionLabel="name"
             optionValue="id"
-            class="w-full h-8 dropdown-svg-white"
+            class="w-full h-8 dropdown-svg-white dark:bg-primarydark dark:text-accentwhite [&_.p-dropdown-items]:dark:text-accentwhite [&_.p-dropdown-item]:dark:text-accentwhite [&_.p-dropdown-panel]:dark:bg-primarydark [&_.p-dropdown-item.p-highlight]:dark:bg-accent2"
           />
-          <label for="country_label" class="text-sm text-label">Country</label>
+          <label for="country_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Country</label>
         </FloatLabel>
       </div>
       <!-- Prefecture -->
@@ -88,9 +88,9 @@ watch(
             :options="prefectures_model"
             optionLabel="name"
             optionValue="id"
-            class="w-full h-8 dropdown-svg-white"
+            class="w-full h-8 dropdown-svg-white dark:bg-primarydark dark:text-accentwhite [&_.p-dropdown-items]:dark:text-accentwhite [&_.p-dropdown-item]:dark:text-accentwhite [&_.p-dropdown-panel]:dark:bg-primarydark [&_.p-dropdown-item.p-highlight]:dark:bg-accent2"
           />
-          <label for="prefecture_label" class="text-sm text-label"
+          <label for="prefecture_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
             >Prefecture</label
           >
         </FloatLabel>
@@ -103,10 +103,10 @@ watch(
           <InputText
             id="address"
             v-model="props.shipping.address"
-            class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+            class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
             :value="props.shipping.address"
           />
-          <label for="address" class="text-sm text-label">Address</label>
+          <label for="address" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Address</label>
         </div>
       </FloatLabel>
     </div>
@@ -117,10 +117,10 @@ watch(
           <InputText
             id="address1"
             v-model="props.shipping.address1"
-            class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+            class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
             :value="props.shipping.address1"
           />
-          <label for="address1" class="text-sm text-label"
+          <label for="address1" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
             >Address(Street Number/ Apartment Name)</label
           >
         </div>
@@ -133,10 +133,10 @@ watch(
           <InputText
             id="receiver_name"
             v-model="props.shipping.receiver_name"
-            class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+            class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
             :value="props.shipping.receiver_name"
           />
-          <label for="receiver_name" class="text-sm text-label"
+          <label for="receiver_name" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
             >Receiver Name</label
           >
         </div>
@@ -149,10 +149,10 @@ watch(
           <InputText
             id="phone"
             v-model="props.shipping.phone"
-            class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+            class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
             :value="props.shipping.phone"
           />
-          <label for="phone" class="text-sm text-label">Phone Number</label>
+          <label for="phone" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Phone Number</label>
         </div>
       </FloatLabel>
     </div>
@@ -163,10 +163,10 @@ watch(
           <InputText
             id="company_name"
             v-model="props.shipping.shipping_company"
-            class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+            class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
             :value="props.shipping.shipping_company"
           />
-          <label for="company_name" class="text-sm text-label"
+          <label for="company_name" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
             >Shipping Company Name</label
           >
         </div>
@@ -180,10 +180,10 @@ watch(
             <InputNumber
               id="estimated_duration"
               v-model="props.shipping.estimated_duration"
-              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+              class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
               :value="props.shipping.estimated_duration"
             />
-            <label for="estimated_duration" class="text-sm text-label"
+            <label for="estimated_duration" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
               >Estimated Duration(Days)</label
             >
           </div>
@@ -196,10 +196,10 @@ watch(
             <InputNumber
               id="shipping_fee"
               v-model="props.shipping.shipping_fee"
-              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+              class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
               :value="props.shipping.shipping_fee"
             />
-            <label for="shipping_fee" class="text-sm text-label"
+            <label for="shipping_fee" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
               >Shipping Fee</label
             >
           </div>
@@ -213,16 +213,16 @@ watch(
           <div class="flex items-center w-auto h-8 rounded-md">
             <DatePicker
               v-model="props.shipping.shipping_date"
-              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+              class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
               :value="props.shipping.shipping_date"
             />
             <span
-              class="bg-white h-8 px-2 rounded-r-md border-l flex items-center"
+              class="bg-white dark:bg-primarydark h-8 px-2 rounded-r-md border-l flex items-center dark:text-accentwhite"
             >
-              <i class="pi pi-calendar"></i>
+              <i class="pi pi-calendar dark:text-accent2"></i>
             </span>
           </div>
-          <label for="shipping_date" class="text-sm text-label"
+          <label for="shipping_date" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
             >Shipping Date</label
           >
         </FloatLabel>
@@ -233,17 +233,17 @@ watch(
           <div class="flex items-center w-auto h-8 rounded-md">
             <DatePicker
               v-model="props.shipping.pickup_date"
-              class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+              class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite t"
               :value="props.shipping.pickup_date"
               :minDate="props.shipping.shipping_date"
             />
             <span
-              class="bg-white h-8 px-2 rounded-r-md border-l flex items-center"
+              class="bg-white h-8 px-2 rounded-r-md border-l flex items-center dark:bg-primarydark dark:text-accentwhite"
             >
-              <i class="pi pi-calendar"></i>
+              <i class="pi pi-calendar dark:text-accent2"></i>
             </span>
           </div>
-          <label for="pickup_date" class="text-sm text-label"
+          <label for="pickup_date" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
             >Pick Up Date</label
           >
         </FloatLabel>
@@ -256,12 +256,22 @@ watch(
           <InputText
             id="memo"
             v-model="props.shipping.memo"
-            class="h-8 w-full rounded-l-md rounded-r-none pl-2"
+            class="h-8 w-[99%] rounded-l-md rounded-r-none pl-2 dark:bg-primarydark dark:text-accentwhite"
             :value="props.shipping.memo"
           />
-          <label for="memo" class="text-sm text-label">Shipping Memo</label>
+          <label for="memo" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Shipping Memo</label>
         </div>
       </FloatLabel>
     </div>
   </div>
 </template>
+
+<style scoped>
+:deep(.p-inputtext) {
+  @apply dark:bg-primarydark;
+}
+
+:deep(.p-select-label) {
+  @apply dark:text-accentwhite;
+}
+</style>

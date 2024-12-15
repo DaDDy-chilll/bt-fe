@@ -350,9 +350,9 @@ const nextStep = (products: any[]) => {
 
           <button
             @click="nextStep(products)"
-            class="bg-primarylight dark:bg-accent2 dark:text-accentwhite text-white px-6 py-1 rounded-md float-right"
+            class="bg-primarylight dark:bg-accent2 dark:text-accentblack text-white px-6 py-1 rounded-md float-right"
           >
-            <span class="text-white">Next</span>
+            <span class="text-white dark:text-accentblack">Next</span>
           </button>
         </div>
       </div>

@@ -40,25 +40,25 @@ const finishedOrder = () => {
     <tracking />
     <div class="px-3 py-6 flex justify-center gap-10">
       <div class="w-3/4 flex flex-col gap-4">
-        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+        <div class=" bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
           <ProductSummary />
         </div>
-        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+        <div class=" bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
           <CommentSection />
         </div>
       </div>
 
       <div class="w-1/3 flex flex-col gap-4">
-        <div class="bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+        <div class="bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
           <invoice />
         </div>
         <div
-          class="bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
+          class="bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
         >
           <customerInfo />
         </div>
         <div
-          class="bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
+          class="bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
         >
           <shippingInfo />
         </div>
@@ -66,21 +66,21 @@ const finishedOrder = () => {
     </div>
 
     <div class="mb-8 flex justify-between">
-      <Button @click="navigateTo('/order/shipping')" class="underline"
+      <Button @click="navigateTo('/order/shipping')" class="underline dark:text-accentwhite"
         >Back</Button
       >
       <div class="flex gap-4">
       <button
         @click="printOrder"
-        class="bg-primarylight text-white px-6 py-1 rounded-md float-right mb-8"
+        class="bg-primarylight text-white dark:text-accentblack dark:bg-accent2 px-6 py-1 rounded-md float-right mb-8"
       >
-        <span class="text-white">Print</span>
+        <span class="text-white dark:text-accentblack">Print</span>
       </button>
       <button
         @click="finishedOrder"
-        class="bg-primarylight text-white px-6 py-1 rounded-md float-right mb-8"
+        class="bg-primarylight text-white dark:text-accentblack dark:bg-accent2 px-6 py-1 rounded-md float-right mb-8"
       >
-        <span class="text-white">Finished</span>
+        <span class="text-white dark:text-accentblack">Finished</span>
       </button>
       </div>
     </div>
