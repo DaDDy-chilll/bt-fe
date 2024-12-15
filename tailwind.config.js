@@ -40,6 +40,10 @@ export default {
         "3xlarge": "32px",
         "4xlarge": "40px",
       },
+      borderWidth: {
+        "1": "1px",
+        "2": "2px",
+      },
     },
   },
   plugins: [],

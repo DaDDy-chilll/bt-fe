@@ -96,10 +96,10 @@ const nextStep = (products: any[]) => {
   <div class="h-screen">
     <tracking />
     <!--Upper Section-->
-    <div class="w-full bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+    <div class="w-full bg-accentwhite dark:text-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-4">
-          <span class="text-3xl font-bold text-accentblack" id="invoice-code"
+          <span class="text-3xl font-bold text-accentblack dark:text-accentwhite" id="invoice-code"
             >#{{ invoiceCode }}</span
           >
           <div class="flex flex-col">
@@ -124,7 +124,7 @@ const nextStep = (products: any[]) => {
               v-model="goldType"
               name="gold"
               id="gold"
-              class="bg-primarylight text-white px-2 py-1 rounded-md"
+              class="bg-primarylight dark:bg-accent2 dark:text-accentblack text-white px-2 py-1 rounded-md"
             >
               <option value="24K">24K</option>
               <option value="22K">22K</option>
@@ -137,14 +137,14 @@ const nextStep = (products: any[]) => {
       <div class="grid grid-cols-3 gap-4 mt-6">
         <!--order type-->
         <div class="flex flex-col gap-2 border-r-2 border-gray-300">
-          <h1 class="text-lg font-bold text-accentblack">Select Order Type</h1>
+          <h1 class="text-lg font-bold text-accentblack dark:text-accentwhite">Select Order Type</h1>
           <div class="flex items-center gap-4">
             <input
               type="radio"
               v-model="orderType"
               name="order-type"
               value="In Store"
-              class="accent-primarylight"
+              class="accent-primarylight dark:accent-accent2"
             />
             <label for="order-type">In Store</label>
             <input
@@ -152,7 +152,7 @@ const nextStep = (products: any[]) => {
               v-model="orderType"
               name="order-type"
               value="Online"
-              class="accent-primarylight"
+              class="accent-primarylight dark:accent-accent2"
             />
             <label for="order-type">Online</label>
             <select
@@ -160,7 +160,7 @@ const nextStep = (products: any[]) => {
               name="order-platform"
               id="order-platform"
               :disabled="orderType !== 'Online'"
-              class="text-accentblack px-2 py-1 rounded-md border-muted border-2"
+              class="text-accentblack dark:text-gray-400 dark:bg-transparent px-2 py-1 rounded-md border-muted border-2"
             >
               <option value="facebook">Facebook</option>
               <option value="instagram">Instagram</option>
@@ -170,14 +170,14 @@ const nextStep = (products: any[]) => {
         </div>
         <!--gold calculate method-->
         <div class="flex flex-col gap-2 border-r-2 border-gray-300">
-          <h1 class="text-lg font-bold text-accentblack">
+          <h1 class="text-lg font-bold text-accentblack dark:text-accentwhite">
             Gold Calculate Method
           </h1>
           <select
             v-model="goldMethod"
             name="gold-calculate-method"
             id="gold-calculate-method"
-            class="text-accentblack px-2 py-1 w-1/2 rounded-md border-muted border-2"
+            class="text-accentblack dark:text-gray-400 dark:bg-transparent px-2 py-1 w-1/2 rounded-md border-muted border-2"
           >
             <option value="method1">Method 1</option>
             <option value="method2">Method 2</option>
@@ -187,23 +187,23 @@ const nextStep = (products: any[]) => {
         <div class="flex flex-col items-center gap-2">
           <button
             @click="displayModal = true"
-            class="bg-primarylight text-white px-2 py-1 rounded-md w-1/2"
+            class="bg-primarylight dark:bg-accent2 text-white px-2 py-1 rounded-md w-1/2"
           >
-            <span class="text-white">Add Product</span>
+            <span class="text-white dark:text-accentblack">Add Product</span>
           </button>
-          <button class="bg-primarylight text-white px-2 py-1 rounded-md w-1/2">
-            <span class="text-white">Factory Request</span>
+          <button class="bg-primarylight dark:bg-accent2 text-white px-2 py-1 rounded-md w-1/2">
+            <span class="text-white dark:text-accentblack">Factory Request</span>
           </button>
         </div>
       </div>
     </div>
 
     <!--Lower Section-->
-    <div class="w-full mt-6 bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+    <div class="w-full mt-6 bg-accentwhite dark:bg-primarydark dark:text-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
       <!--table-->
       <div class="w-full">
         <div class="overflow-x-auto">
-          <DataTable
+          <DataTable 
             :value="products"
             stripedRows
             class="w-full text-sm"
@@ -217,9 +217,10 @@ const nextStep = (products: any[]) => {
             :totalRecords="products.length"
             responsiveLayout="scroll"
             breakpoint="sm"
+    
           >
             <!--Image-->
-            <Column field="image" class="w-[10%]">
+            <Column field="image" class="w-[10%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400">
               <template #body="slotProps">
                 <div>
                   <img
@@ -231,7 +232,7 @@ const nextStep = (products: any[]) => {
               </template>
             </Column>
             <!--Product Name-->
-            <Column field="name" class="w-[15%]">
+            <Column field="name" class="w-[15%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400">
               <template #body="slotProps">
                 <div>
                   <div class="font-bold">Product Name</div>
@@ -240,7 +241,7 @@ const nextStep = (products: any[]) => {
               </template>
             </Column>
             <!--Type-->
-            <Column field="type" header="Type" class="w-[15%]">
+            <Column field="type" header="Type" class="w-[15%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400">
               <template #body="slotProps">
                 <div>
                   {{
@@ -252,7 +253,7 @@ const nextStep = (products: any[]) => {
               </template>
             </Column>
             <!--Size-->
-            <Column field="size" header="Size" class="w-[15%]">
+            <Column field="size" header="Size" class="w-[15%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400">
               <template #body="slotProps">
                 <div>
                   {{ slotProps.data.size }}
@@ -260,7 +261,7 @@ const nextStep = (products: any[]) => {
               </template>
             </Column>
             <!--Quantity-->
-            <Column field="quantity" header="Quantity" class="w-[15%]">
+            <Column field="quantity" header="Quantity" class="w-[15%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400">
               <template #body="slotProps">
                 <input
                   @change="
@@ -272,12 +273,12 @@ const nextStep = (products: any[]) => {
                   :value="slotProps.data.quantity"
                   :min="1"
                   :max="slotProps.data.available_stock"
-                  class="w-16 pl-2 border-muted border-2 rounded-md"
+                  class="w-16 pl-2 border-muted border-2 rounded-md dark:bg-transparent"
                 />
               </template>
             </Column>
             <!--Estimate Price-->
-            <Column field="estimate_price" header="Est. Price" class="w-[15%]">
+            <Column field="estimate_price" header="Est. Price" class="w-[15%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400">
               <template #body="slotProps">
                 <input
                   @change="
@@ -287,12 +288,12 @@ const nextStep = (products: any[]) => {
                   "
                   type="number"
                   :value="slotProps.data.estimate_price"
-                  class="w-full pl-2 border-muted border-2 rounded-md"
+                  class="w-full pl-2 border-muted border-2 rounded-md dark:bg-transparent"
                 />
               </template>
             </Column>
             <!--Ayoutwat-->
-            <Column field="ayoutwat" header="Ayoutwat" class="w-[15%]">
+            <Column field="ayoutwat" header="Ayoutwat" class="w-[15%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400">
               <template #body="slotProps">
                 <input
                   @change="
@@ -302,12 +303,12 @@ const nextStep = (products: any[]) => {
                   "
                   type="number"
                   :value="slotProps.data.ayoutwat"
-                  class="w-full pl-2 border-muted border-2 rounded-md"
+                  class="w-full pl-2 border-muted border-2 rounded-md dark:bg-transparent"
                 />
               </template>
             </Column>
             <!--Latt Kha-->
-            <Column field="latt_kha" header="Latt Kha" class="w-[15%]">
+            <Column field="latt_kha" header="Latt Kha" class="w-[15%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400">
               <template #body="slotProps">
                 <input
                   @change="
@@ -317,12 +318,12 @@ const nextStep = (products: any[]) => {
                   "
                   type="number"
                   :value="slotProps.data.latt_kha"
-                  class="w-20 pl-2 border-muted border-2 rounded-md"
+                  class="w-20 pl-2 border-muted border-2 rounded-md dark:bg-transparent"
                 />
               </template>
             </Column>
             <!--Sub Total-->
-            <Column field="sub_total" header="Sub Total" class="w-[15%]">
+            <Column field="sub_total" header="Sub Total" class="w-[15%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400">
               <template #body="slotProps">
                 <div>
                   {{
@@ -335,7 +336,7 @@ const nextStep = (products: any[]) => {
               </template>
             </Column>
             <!--Action-->
-            <Column field="action" class="w-[15%]" alignFrozen="right" frozen>
+            <Column field="action" class="w-[15%] dark:bg-primarydark dark:text-accentwhite dark:border-b-1 dark:border-b-gray-400" alignFrozen="right" frozen>
               <template #body="slotProps">
                 <button
                   @click="deleteProduct(slotProps.data)"
@@ -349,7 +350,7 @@ const nextStep = (products: any[]) => {
 
           <button
             @click="nextStep(products)"
-            class="bg-primarylight text-white px-6 py-1 rounded-md float-right"
+            class="bg-primarylight dark:bg-accent2 dark:text-accentwhite text-white px-6 py-1 rounded-md float-right"
           >
             <span class="text-white">Next</span>
           </button>
@@ -363,3 +364,24 @@ const nextStep = (products: any[]) => {
     @addNewProduct="addNewProduct"
   />
 </template>
+
+<style scoped>
+:deep(.p-paginator) {
+  @apply dark:bg-primarydark;
+  @apply dark:text-accentwhite;
+}
+
+ :deep(.p-paginator-rpp-dropdown) {
+    @apply dark:bg-transparent;
+    @apply dark:text-accentwhite;
+    @apply dark:border-1 dark:border-b-gray-400;
+  }
+
+  :deep(.p-select-label) {
+    @apply dark:text-accentwhite;
+  }
+
+  :deep(.p-datatable-empty-message) {
+    @apply dark:bg-transparent;
+  }
+  </style>
