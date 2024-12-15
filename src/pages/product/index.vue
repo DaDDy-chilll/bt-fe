@@ -1,38 +1,55 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { onMounted, onUnmounted } from "vue";
-import type { Gem, Filter, Product } from "@/types/product";
-import GemType from "./gemtype.json";
-import GemColor from "./gemcolor.json";
-import GemMassUnit from "./gemmassunit.json";
-import LengthUnit from "./lengthunit.json";
-import WeightUnit from "./weightunit.json";
-import ProductCategory from "./productcategory.json";
-import ProductType from "./producttype.json";
-import GoldType from "./goldtype.json";
-import GoldColor from "./goldcolor.json";
+import { onMounted } from "vue";
+import type { Gem,  Product, sendData } from "@/types/product";
 import Warehouse from "./warehouse.json";
 
-// Fetching Data
-const gemTypes = GemType;
-const gemColors = GemColor;
-const gemMassUnits = GemMassUnit;
-const productCategories = ref([]);
-const productTypes = ref([]);
-const goldTypes = GoldType;
-const goldColors = GoldColor;
-const units = LengthUnit;
-const weightUnits = WeightUnit;
+// Master Data
+const gemTypes = ref<any>([]);
+const gemColors = ref<any>([]);
+const gemMassUnits = ref<any>([]);
+const productCategories = ref<any>([]);
+const productTypes = ref<any>([]);
+const goldTypes = ref<any>([]);
+const goldColors = ref<any>([]);
+const lengthUnits = ref<any>([]);
+const sizeUnits = ref<any>([]);
+const weightUnits = ref<any>([]);
 const warehouses = Warehouse;
+const gemSlot = ref([]);
+const selectedCity = ref(null);
+const addGermVisible = ref(false);
+const blockScreen = ref(false);
+const drawerVisible = ref(false);
 
-
+// Stores
 const productStore = useProductStore();
+const commonStore = useCommonStore();
 
+/**
+ * Load Master Data
+ * @author LK
+ * @created 2024-12-13
+ * @updated ****-**-**
+ */
 const loadMasterData = async () => {
-  productCategories.value = await productStore.getProductCategories();
-  productTypes.value = await productStore.getProductTypes();
-
-  console.log(productCategories.value._value.data);
+  try {
+    blockScreen.value = true;
+    productCategories.value = await productStore.getProductCategories();
+    productTypes.value = await productStore.getProductTypes();
+    goldTypes.value = await productStore.getGoldTypes();
+    goldColors.value = await productStore.getGoldColors();
+    lengthUnits.value = await commonStore.getUnit(2);
+    sizeUnits.value = await commonStore.getUnit(3);
+    weightUnits.value = await commonStore.getUnit(1);
+    gemTypes.value = await productStore.getGemTypes();
+    gemColors.value = goldColors.value;
+    gemMassUnits.value = await commonStore.getUnit(1);
+  } catch (error) {
+    // alert(error);
+  } finally {
+    blockScreen.value = false;
+  }
 };
 
 onMounted(async () => {
@@ -51,28 +68,55 @@ const images = ref([
 
 const product = ref<Product>({
   id: 0,
-  warehouse: "",
+  warehouse: {
+    id: 0,
+    name: null,
+  },
   images: [],
-  productCategory: "",
-  productType: "",
-  productName: "",
+  productCategory: {
+    id: 0,
+    category: null,
+  },
+  productType: {
+    id: 0,
+    type: null,
+  },
+  productName: null,
   productLength: {
     length: 0,
-    unit: "",
+    unit: {
+      id: 0,
+      symbol: null,
+    },
   },
   productWeight: {
     weight: 0,
-    unit: "",
+    unit: {
+      id: 0,
+      symbol: null,
+    },
   },
-  goldType: "",
-  goldColor: "",
+  goldType: {
+    id: 0,
+    type: null,
+  },
+  goldColor: {
+    id: 0,
+    color: null,
+  },
   goldSize: {
     size: 0,
-    unit: "",
+    unit: {
+      id: 0,
+      symbol: null,
+    },
   },
   goldWeight: {
     weight: 0,
-    unit: "",
+    unit: {
+      id: 0,
+      symbol: null,
+    },
   },
   kyatt: 0,
   pe: 0,
@@ -86,24 +130,19 @@ const product = ref<Product>({
   gm2: 0,
   latkha: 0,
   gems: [],
-  memo: "",
+  memo: null,
 });
 
 const gem = ref<Gem>({
   id: 0,
-  type: "",
-  color: "",
+  type: null,
+  color: null,
   mass: 0,
-  massUnit: "",
+  massUnit: null,
   pieces: 0,
   price: 0,
 });
 
-const gemSlot = ref([]);
-const selectedCity = ref(null);
-const addGermVisible = ref(false);
-const blockScreen = ref(false);
-const drawerVisible = ref(false);
 
 /**
  * Add Gem to the product
@@ -113,10 +152,10 @@ const addGem = (gem: Gem) => {
   product.value.gems.push(gem);
   gem.value = {
     id: 0,
-    type: "",
-    color: "",
+    type: null,
+    color: null,
     mass: 0,
-    massUnit: "",
+    massUnit: null,
     pieces: 0,
     price: 0,
   };
@@ -132,6 +171,33 @@ const removeGem = (index: number) => {
 
 const addProduct = () => {
   blockScreen.value = true;
+  const sendData: sendData=  {
+  id: null,
+  code: null,
+  category_id: product.value.productCategory.id,
+  type_id: product.value.productType.id,
+  name: product.value.productName,
+  length: product.value.productLength.length,
+  length_unit_id: product.value.productLength.unit.id,
+  weight: product.value.productWeight.weight,
+  weight_unit_id: product.value.productWeight.unit.id,
+  gold_types_id: product.value.goldType.id,
+  gold_color_id: product.value.goldColor.id,
+  size: product.value.goldSize.size,
+  size_unit_id: product.value.goldSize.unit.id,
+  total_weight: product.value.goldWeight.weight,
+  total_weight_unit_id: product.value.goldWeight.unit.id,
+  gems_price: 0,
+  ayoutwat: 0,
+  latt_kha: 0,
+  m_product_gems: null,
+  m_photos: null,
+  created_by: 0,
+  created_at: new Date(),
+  updated_at: new Date(),
+  del_flg: false,
+  };
+  console.log(sendData);
   setTimeout(() => {
     blockScreen.value = false;
   }, 2000);
@@ -140,20 +206,28 @@ const addProduct = () => {
 
 <template>
   <div class="flex gap-4 justify-between items-start w-full">
-    <div class="w-full lg:w-2/3 bg-accentwhite drop-shadow-md rounded-lg">
-      <Card>
+    <div
+      class="w-full lg:w-2/3 bg-accentwhite dark:bg-primarydark drop-shadow-md rounded-lg"
+    >
+      <Card class="dark:bg-primarydark">
         <template #title>
-          <h2 class="text-xl float-left">New Product</h2>
+          <h2
+            class="text-xl float-left font-medium text-accentblack dark:text-accentwhite"
+          >
+            New Product
+          </h2>
           <div class="float-right">
             <div class="card flex items-center justify-center text-base">
-              <span class="mr-4">Warehouse</span>
+              <span class="mr-4 text-accentblack dark:text-accentwhite"
+                >Warehouse</span
+              >
               <Select
-                v-model="product.warehouse"
+                v-model="product.warehouse.id"
                 :options="warehouses"
                 optionLabel="value"
                 optionValue="id"
                 placeholder="Select Warehouse"
-                class="w-full md:w-44 bg-primarylight text-sm text-accentwhite"
+                class="w-full md:w-44 bg-primarylight dark:bg-accent2 text-sm text-accentwhite"
               />
             </div>
           </div>
@@ -176,9 +250,12 @@ const addProduct = () => {
                   inputId="on_label"
                   :options="productCategories?._value?.data"
                   optionLabel="category"
-                  class="w-full border h-10 dropdown-svg-white"
+                  optionValue="id"
+                  class="w-full border h-10 dropdown-svg-white dark:bg-primarydark"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label
+                  for="on_label"
+                  class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
                   >Product Category</label
                 >
               </FloatLabel>
@@ -190,9 +267,12 @@ const addProduct = () => {
                   inputId="on_label"
                   :options="productTypes._value?.data"
                   optionLabel="type"
-                  class="w-full border h-10 dropdown-svg-white"
+                  optionValue="id"
+                  class="w-full border h-10 dropdown-svg-white dark:bg-primarydark"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label
+                  for="on_label"
+                  class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
                   >Product Type <span class="text-red-500">*</span></label
                 >
               </FloatLabel>
@@ -206,9 +286,11 @@ const addProduct = () => {
                 <InputText
                   id="on_label"
                   v-model="product.productName"
-                  class="border w-full h-10 pl-2"
+                  class="border w-full h-10 pl-2 dark:bg-primarydark text-accentblack dark:text-accentwhite"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label
+                  for="on_label"
+                  class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
                   >Product Name</label
                 >
               </FloatLabel>
@@ -221,18 +303,20 @@ const addProduct = () => {
                   <InputNumber
                     id="length_label"
                     v-model="product.productLength.length"
-                    class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
+                    class="border h-10 rounded-l-md rounded-r-none pl-2 w-full dark:bg-primarydark"
                     fluid
                   />
-                  <label for="length_label" class="text-sm text-label"
+                  <label
+                    for="length_label"
+                    class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
                     >Length</label
                   >
                   <Select
-                    v-model="product.productLength.unit"
-                    :options="units"
-                    optionLabel="value"
-                    optionValue="value"
-                    class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
+                    v-model="product.productLength.unit.id"
+                    :options="lengthUnits._value?.data"
+                    optionLabel="symbol"
+                    optionValue="id"
+                    class="bg-primarylight dark:bg-accent2 text-accentwhite rounded-l-none rounded-r-md unit"
                   />
                 </div>
               </FloatLabel>
@@ -242,18 +326,20 @@ const addProduct = () => {
                   <InputNumber
                     id="weight_label"
                     v-model="product.productWeight.weight"
-                    class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
+                    class="border h-10 rounded-l-md rounded-r-none pl-2 w-full dark:bg-primarydark"
                     fluid
                   />
-                  <label for="weight_label" class="text-sm text-label"
+                  <label
+                    for="weight_label"
+                    class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
                     >Weight</label
                   >
                   <Select
-                    v-model="product.productWeight.unit"
-                    :options="weightUnits"
-                    optionLabel="value"
-                    optionValue="value"
-                    class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
+                    v-model="product.productWeight.unit.id"
+                    :options="weightUnits._value?.data"
+                    optionLabel="symbol"
+                    optionValue="id"
+                    class="bg-primarylight dark:bg-accent2 text-accentwhite rounded-l-none rounded-r-md unit"
                   />
                 </div>
               </FloatLabel>
@@ -266,13 +352,16 @@ const addProduct = () => {
             <div>
               <FloatLabel variant="on">
                 <Select
-                  v-model="product.goldType"
+                  v-model="product.goldType.id"
                   inputId="on_label"
-                  :options="goldTypes"
-                  optionLabel="value"
-                  class="w-full border h-10 dropdown-svg-white"
+                  :options="goldTypes._value?.data"
+                  optionLabel="name"
+                  optionValue="id"
+                  class="w-full border h-10 dropdown-svg-white dark:bg-primarydark"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label
+                  for="on_label"
+                  class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
                   >Gold Type</label
                 >
               </FloatLabel>
@@ -280,13 +369,16 @@ const addProduct = () => {
             <div>
               <FloatLabel variant="on">
                 <Select
-                  v-model="product.goldColor"
+                  v-model="product.goldColor.id"
                   inputId="on_label"
-                  :options="goldColors"
-                  optionLabel="value"
-                  class="w-full border h-10 dropdown-svg-white"
+                  :options="goldColors._value?.data"
+                  optionLabel="name"
+                  optionValue="id"
+                  class="w-full border h-10 dropdown-svg-white dark:bg-primarydark"
                 />
-                <label for="on_label" class="text-sm text-label"
+                <label
+                  for="on_label"
+                  class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
                   >Gold Color</label
                 >
               </FloatLabel>
@@ -300,17 +392,19 @@ const addProduct = () => {
                 <InputNumber
                   id="length_label"
                   v-model="product.goldSize.size"
-                  class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
+                  class="border h-10 rounded-l-md rounded-r-none pl-2 w-full dark:bg-primarydark"
                 />
-                <label for="length_label" class="text-sm text-label"
+                <label
+                  for="length_label"
+                  class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
                   >Size</label
                 >
                 <Select
-                  v-model="product.goldSize.unit"
-                  :options="units"
-                  optionLabel="value"
-                  optionValue="value"
-                  class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
+                  v-model="product.goldSize.unit.id"
+                  :options="sizeUnits._value?.data"
+                  optionLabel="symbol"
+                  optionValue="id"
+                  class="bg-primarylight dark:bg-accent2 text-accentwhite rounded-l-none rounded-r-md unit"
                 />
               </div>
             </FloatLabel>
@@ -320,17 +414,19 @@ const addProduct = () => {
                 <InputNumber
                   id="weight_label"
                   v-model="product.goldWeight.weight"
-                  class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
+                  class="border h-10 rounded-l-md rounded-r-none pl-2 w-full dark:bg-primarydark"
                 />
-                <label for="weight_label" class="text-sm text-label"
+                <label
+                  for="weight_label"
+                  class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
                   >Weight</label
                 >
                 <Select
-                  v-model="product.goldWeight.unit"
-                  :options="weightUnits"
-                  optionLabel="value"
-                  optionValue="value"
-                  class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
+                  v-model="product.goldWeight.unit.id"
+                  :options="weightUnits._value?.data"
+                  optionLabel="symbol"
+                  optionValue="id"
+                  class="bg-primarylight dark:bg-accent2 text-accentwhite rounded-l-none rounded-r-md unit"
                 />
               </div>
             </FloatLabel>
@@ -343,10 +439,14 @@ const addProduct = () => {
               <InputNumber
                 v-model="product.kyatt"
                 inputId="on_label"
-                class="border h-10 pl-2 rounded-md"
+                class="border h-10 pl-2 rounded-md dark:bg-primarydark"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Kyatt</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Kyatt</label
+              >
             </FloatLabel>
 
             <!-- Pe -->
@@ -354,40 +454,56 @@ const addProduct = () => {
               <InputNumber
                 id="on_label"
                 v-model="product.pe"
-                class="border h-10 pl-2 rounded-md"
+                class="border h-10 pl-2 rounded-md dark:bg-primarydark"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Pe</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Pe</label
+              >
             </FloatLabel>
             <!-- Yaway -->
             <FloatLabel variant="on">
               <InputNumber
                 id="on_label"
                 v-model="product.yaway"
-                class="border h-10 pl-2 rounded-md"
+                class="border h-10 pl-2 rounded-md dark:bg-primarydark"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Yaway</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Yaway</label
+              >
             </FloatLabel>
             <!-- Chan -->
             <FloatLabel variant="on">
               <InputNumber
                 id="on_label"
                 v-model="product.chan"
-                class="border h-10 pl-2 rounded-md"
+                class="border h-10 pl-2 rounded-md dark:bg-primarydark"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Chan</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Chan</label
+              >
             </FloatLabel>
             <!-- GM -->
             <FloatLabel variant="on">
               <InputNumber
                 id="on_label"
                 v-model="product.gm"
-                class="border h-10 pl-2 rounded-md"
+                class="border h-10 pl-2 rounded-md dark:bg-primarydark"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Gm</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Gm</label
+              >
             </FloatLabel>
           </div>
           <!-- A Yout Twat -->
@@ -401,47 +517,67 @@ const addProduct = () => {
                 class="border h-10 pl-2 rounded-md"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Kyatt</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Kyatt</label
+              >
             </FloatLabel>
             <!-- Pe -->
             <FloatLabel variant="on">
               <InputNumber
                 id="on_label"
                 v-model="product.pe2"
-                class="border h-10 pl-2 rounded-md"
+                class="border h-10 pl-2 rounded-md dark:bg-primarydark"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Pe</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Pe</label
+              >
             </FloatLabel>
             <!-- Yaway -->
             <FloatLabel variant="on">
               <InputNumber
                 id="on_label"
                 v-model="product.yaway2"
-                class="border h-10 pl-2 rounded-md"
+                class="border h-10 pl-2 rounded-md dark:bg-primarydark"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Yaway</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Yaway</label
+              >
             </FloatLabel>
             <!-- Chan -->
             <FloatLabel variant="on">
               <InputNumber
                 id="on_label"
                 v-model="product.chan2"
-                class="border h-10 pl-2 rounded-md"
+                class="border h-10 pl-2 rounded-md dark:bg-primarydark"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Chan</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Chan</label
+              >
             </FloatLabel>
             <!-- GM -->
             <FloatLabel variant="on">
               <InputNumber
                 id="on_label"
                 v-model="product.gm2"
-                class="border h-10 pl-2 rounded-md"
+                class="border h-10 pl-2 rounded-md dark:bg-primarydark"
                 fluid
               />
-              <label for="on_label" class="text-sm text-label">Gm</label>
+              <label
+                for="on_label"
+                class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark"
+                >Gm</label
+              >
             </FloatLabel>
           </div>
           <!-- Latt Kha -->
@@ -451,7 +587,7 @@ const addProduct = () => {
             <InputNumber
               id="on_label"
               v-model="product.latkha"
-              class="border h-10 pl-2 rounded-md"
+              class="border h-10 pl-2 rounded-md dark:bg-primarydark"
               fluid
             />
           </div>
@@ -463,7 +599,7 @@ const addProduct = () => {
             <Button
               type="button"
               label="Add Gem"
-              class="bg-primarylight px-4 py-2 text-sm text-accentwhite float-right"
+              class="bg-primarylight dark:bg-accent2 px-4 py-2 text-sm text-accentwhite float-right"
               @click="addGermVisible = true"
             ></Button>
           </div>
@@ -527,15 +663,15 @@ const addProduct = () => {
       @click="drawerVisible = true"
     />
   </div>
-  <div class="flex justify-end mt-4 w-full">
-    <Button
+  <div class="flex justify-end mt-4 mb-12 w-full">
+    <!-- <Button
       label="back"
       class="underline px-4 py-2 text-accentblack mr-auto"
       @click="goBack"
-    />
+    /> -->
     <Button
       label="Add Product"
-      class="bg-primarylight px-4 py-2 text-accentwhite"
+      class="bg-primarylight px-4 py-2 text-accentwhite dark:bg-accent2"
       @click="addProduct"
     />
   </div>
@@ -546,11 +682,11 @@ const addProduct = () => {
     header="Gem Slot"
     :style="{ width: '25rem' }"
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
-    class="!rounded-lg !border-muted"
+    class="!rounded-lg !border-muted bg-accentwhite dark:bg-primarydark text-accentblack dark:text-accentwhite"
   >
     <product-add-germ
       :gem="gem"
-      :gemTypes="gemTypes"
+      :gemTypes="gemTypes._value?.data"
       :gemColors="gemColors"
       :gemMassUnits="gemMassUnits"
       @addGem="addGem"
@@ -586,11 +722,11 @@ const addProduct = () => {
 }
 
 :deep(.dropdown-svg-white .p-select-dropdown > svg) {
-  @apply text-accentblack;
+  @apply text-accentblack dark:text-accentwhite;
 }
 
 :deep(.p-select-dropdown) {
-  @apply text-accentblack;
+  @apply text-accentblack dark:text-accentwhite;
   @apply flex items-center justify-center w-6 pr-3;
 }
 
@@ -600,6 +736,10 @@ const addProduct = () => {
 }
 
 :deep(.dropdown-svg-white .p-select-label) {
-  @apply text-secondarydark;
+  @apply text-secondarydark dark:text-accentwhite;
+}
+
+:deep(.p-inputnumber-input) {
+  @apply dark:bg-primarydark dark:text-accentwhite;
 }
 </style>

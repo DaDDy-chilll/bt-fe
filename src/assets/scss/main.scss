@@ -3,9 +3,29 @@
 @tailwind utilities;
 @import "primeicons/primeicons.css";
 
+body * {
+    @apply transition-colors duration-300;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-accentblack dark:bg-accentwhite;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-accentblack dark:bg-accentwhite;
+}
+
 
 .p-panelmenu-panel {
-    background: var(--primary) !important;
+    @apply bg-primary dark:bg-primarydark;
     margin-top: 0.5rem !important;
 }
 
@@ -22,4 +42,9 @@
 .p-panelmenu-header-content:hover,
 .p-panelmenu-item-content:hover {
     background: var(--primarylight) !important;
+}
+
+.p-paginator{
+    @apply dark:bg-primarydark;
+    @apply text-accentblack dark:text-accentwhite;
 }

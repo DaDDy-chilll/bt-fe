@@ -1,7 +1,22 @@
 [
-    { "id": 1, "value": "Ring" },
-    { "id": 2, "value": "Necklace" },
-    { "id": 3, "value": "Earring" },
-    { "id": 4, "value": "Bracelet" },
-    { "id": 5, "value": "Pendant" }
+    {
+        "id": 1,
+        "value": "Ring"
+    },
+    {
+        "id": 2,
+        "value": "Necklace"
+    },
+    {
+        "id": 3,
+        "value": "Earring"
+    },
+    {
+        "id": 4,
+        "value": "Bracelet"
+    },
+    {
+        "id": 5,
+        "value": "Pendant"
+    }
 ]

@@ -42,7 +42,7 @@ const toggleTypeFilter = (event, item) => {
     <Button
       icon="pi pi-filter-fill"
       @click="toggleFilter"
-      class="text-primarylight py-2.5 px-4 text-xs rounded-border mr-3 border border-primarylight hover:bg-primarylight hover:text-accentwhite"
+      class="text-primarylight dark:text-accent2 py-2.5 px-4 text-xs rounded-border mr-3 border border-primarylight dark:border-accent2 hover:bg-primarylight dark:hover:bg-accent2 hover:text-accentwhite"
       iconPos="right"
     />
 
@@ -53,7 +53,7 @@ const toggleTypeFilter = (event, item) => {
       <Button
         :label="item.name"
         icon="pi pi-sort-down-fill"
-        class="bg-primary text-accentwhite py-2.5 px-3 text-xs rounded-md flex justify-center items-center"
+        class="bg-primary dark:bg-accent2 text-accentwhite py-2.5 px-3 text-xs rounded-md flex justify-center items-center"
         iconPos="right"
         iconClass="p-0 mx-2"
         @click="toggleTypeFilter($event, item)"

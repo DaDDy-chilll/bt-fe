@@ -12,6 +12,8 @@ export const fetcher = <ResT>(
   const onRequestError = () => {};
   const onResponse = () => {};
   const token = useCookie("token");
+  token.value =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Imxpbm5rb2tvMTEzMEBnbWFpbC5jb20iLCJpYXQiOjE3MzQxNDY3MTAsImV4cCI6MTczNjczODcxMH0.HSubGZRWL4560HLfpL49g37PVR7B7i1AS4hA2ewyCqo";
   const onResponseError = async ({ response }: FetchContext) => {
     if (!response) {
       return;
@@ -33,12 +35,11 @@ export const fetcher = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: "/v1/api/",
+    baseURL: "/api/",
     headers: {
       authorization:
         "Bearer " +
-        (token.value ??
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Imxpbm5rb2tvMTEzMEBnbWFpbC5jb20iLCJpYXQiOjE3MzM5MzY1NzQsImV4cCI6MTczMzk0NjU3NH0.5fg7kumHjxMGYHXO2QnuP6SQtRgZbpqNZEgd0UXdIOQ"),
+        (token.value),
     },
     retry: 0,
     credentials: "include",
@@ -94,7 +95,7 @@ export const fetcherWithoutAuthHeader = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: "/v1/api/",
+    baseURL: "/api/",
     retry: 0,
     credentials: "include",
     onRequest,
@@ -140,12 +141,11 @@ export const fetcherWith404ErrorHandling = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: "/v1/api/",
+    baseURL: "/api/",
     headers: {
       authorization:
         "Bearer " +
-        (token.value ??
-          "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlYXJseWNyb3NzQHRlc3QuY29tIiwiaWF0IjoxNzAwNzg5MjUzLCJleHAiOjE3MDEzOTQwNTN9.tiKGsHkJy6WCAcI9AdESpsrGv2Cv3n2p-Rgsq-mWrTTS9gZ-7HQIq08swCntRpAx6hXNjDjr5xxR1t54T8-Adg"),
+        (token.value),
     },
     retry: 0,
     credentials: "include",
@@ -194,12 +194,11 @@ export const fetcherDownload = <ResT>(
     }
   };
   const defaultOptions: NitroFetchOptions<string> = {
-    baseURL: "/v1/api/",
+    baseURL: "/api/",
     headers: {
       authorization:
         "Bearer " +
-        (token.value ??
-          "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlYXJseWNyb3NzQHRlc3QuY29tIiwiaWF0IjoxNzAwNzg5MjUzLCJleHAiOjE3MDEzOTQwNTN9.tiKGsHkJy6WCAcI9AdESpsrGv2Cv3n2p-Rgsq-mWrTTS9gZ-7HQIq08swCntRpAx6hXNjDjr5xxR1t54T8-Adg"),
+        (token.value),
     },
     retry: 0,
     credentials: "include",

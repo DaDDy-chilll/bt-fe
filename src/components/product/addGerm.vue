@@ -27,23 +27,11 @@ const addGem = () => {
       v-model="gem.type"
       inputId="on_label"
       :options="gemTypes"
-      optionLabel="value"
+      :optionLabel="(item) => `${item.name} (${item.color_id})`"
       optionValue="id"
-      class="w-full border h-10 dropdown-svg-white"
+      class="w-full border h-10 dropdown-svg-white dark:bg-primarydark "
     />
-    <label for="on_label" class="text-sm text-label">Gem Type</label>
-  </FloatLabel>
-  <!-- Gem Type -->
-  <FloatLabel variant="on" class="my-4">
-    <Select
-      v-model="gem.color"
-      inputId="on_label"
-      :options="gemColors"
-      optionLabel="value"
-      optionValue="id"
-      class="w-full border h-10 dropdown-svg-white"
-    />
-    <label for="on_label" class="text-sm text-label">Gem Color</label>
+    <label for="on_label" class="text-sm  text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark">Gem Type</label>
   </FloatLabel>
   <!-- Gem Type -->
   <FloatLabel variant="on" class="my-4">
@@ -51,15 +39,15 @@ const addGem = () => {
       <InputNumber
         id="length_label"
         v-model="gem.mass"
-        class="border h-10 rounded-l-md rounded-r-none pl-2 w-full"
+        class="border h-10 rounded-l-md rounded-r-none pl-2 w-full dark:bg-primarydark"
       />
-      <label for="length_label" class="text-sm text-label">Gem Mass</label>
+      <label for="length_label" class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark">Gem Mass</label>
       <Select
         v-model="gem.massUnit"
-        :options="gemMassUnits"
-        optionLabel="value"
+        :options="gemMassUnits._value.data"
+        optionLabel="symbol"
         optionValue="id"
-        class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit"
+        class="bg-primarylight text-accentwhite rounded-l-none rounded-r-md unit dark:bg-accent2"
       />
     </div>
   </FloatLabel>
@@ -70,7 +58,7 @@ const addGem = () => {
       v-model="gem.pieces"
       class="border w-full h-10 pl-2"
     />
-    <label for="on_label" class="text-sm text-label">Gem Pieces</label>
+    <label for="on_label" class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark">Gem Pieces</label>
   </FloatLabel>
   <!-- Gem Type -->
   <FloatLabel variant="on" class="my-4">
@@ -79,7 +67,7 @@ const addGem = () => {
       v-model="gem.price"
       class="border w-full h-10 pl-2"
     />
-    <label for="on_label" class="text-sm text-label">Gem Price</label>
+    <label for="on_label" class="text-sm text-label dark:text-accentwhite bg-accentwhite dark:bg-primarydark">Gem Price</label>
   </FloatLabel>
   <div class="flex justify-end gap-2 w-full mt-6">
     <Button
@@ -87,12 +75,12 @@ const addGem = () => {
       label="Discard"
       severity="secondary"
       @click="addGermVisible = false"
-      class="bg-accentwhite border text-sm text-red-500 border-red-500 px-4 py-2 mr-auto"
+      class="bg-accentwhite border text-sm text-red-500 border-red-500 px-4 py-2 mr-auto dark:bg-primarydark"
     ></Button>
     <Button
       type="button"
       label="Add Gem"
-      class="bg-primarylight px-4 py-2 text-sm text-accentwhite float-right"
+      class="bg-primarylight px-4 py-2 text-sm text-accentwhite float-right dark:bg-accent2"
       @click="addGem"
     ></Button>
   </div>
@@ -111,11 +99,11 @@ const addGem = () => {
 }
 
 :deep(.dropdown-svg-white .p-select-dropdown > svg) {
-  @apply text-accentblack;
+  @apply text-accentblack dark:text-accentwhite;
 }
 
 :deep(.p-select-dropdown) {
-  @apply text-accentblack;
+  @apply text-accentblack dark:text-accentwhite;
   @apply flex items-center justify-center w-6 pr-3;
 }
 
@@ -125,7 +113,9 @@ const addGem = () => {
 }
 
 :deep(.dropdown-svg-white .p-select-label) {
-  @apply text-secondarydark;
+  @apply text-secondarydark dark:text-accentwhite;
 }
-
+:deep(.p-inputnumber-input) {
+  @apply dark:bg-primarydark dark:text-accentwhite;
+}
 </style>

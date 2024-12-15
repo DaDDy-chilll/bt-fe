@@ -150,7 +150,7 @@ const items = ref([
 </script>
 
 <template>
-  <div class="w-72 bg-primary px-3  overflow-y-auto">
+  <div class="w-72 bg-primary px-3  overflow-y-auto dark:bg-primarydark">
     <img
       src="../assets/images/logo.png"
       alt="logo"
@@ -164,7 +164,7 @@ const items = ref([
           :to="item.src"
         >
           <span :class="[item.icon, 'text-muted']" />
-          <span class="ml-2 text-muted">{{ item.label }}</span>
+          <span class="ml-2 text-base text-muted">{{ item.label }}</span>
           <Badge v-if="item.badge" class="ml-auto bg-accent2" :value="item.badge" />
           <span v-if="item.shortcut" class="ml-auto">
             <span :class="[item.shortcut, 'text-muted']" />
