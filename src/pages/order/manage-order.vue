@@ -3,6 +3,7 @@ import { ref } from "vue";
 import order from "./order.json";
 import viewOrderModal from "~/components/order/viewOrderModal.vue";
 import editOrderModal from "~/components/order/editOrderModal.vue";
+import refundModal from "~/components/order/refundModal.vue";
 
 //constants
 const orders = ref(order);
@@ -11,7 +12,7 @@ const filterOp = ref();
 const expandedRows = ref([]);
 const showOrderModal = ref(false);
 const showEditOrderModal = ref(false);
-
+const showRefundModal = ref(false);
 //filter items
 const filterItems = ref([
   {
@@ -191,7 +192,7 @@ const editOrder = (orderNumber:any) => {
  * @param orderNumber
  */
 const refundOrder = (orderNumber:any) => {
-  console.log(orderNumber);
+  showRefundModal.value = true;
 };
 
 </script>
@@ -362,6 +363,6 @@ const refundOrder = (orderNumber:any) => {
   </div>
   <viewOrderModal :showOrderModal="showOrderModal" @update:showOrderModal="showOrderModal = $event" />
   <editOrderModal :showEditOrderModal="showEditOrderModal" @update:showEditOrderModal="showEditOrderModal = $event" />
-
+  <refundModal :showRefundModal="showRefundModal" @update:showRefundModal="showRefundModal = $event" />
 </template>
 <style scoped></style>
