@@ -5,8 +5,8 @@ const props = defineProps({
 });
 </script>
 <template>
-     <nav
-          class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4 px-4"
+     <na
+          class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4 px-4 "
           aria-label="Table navigation"
         >
           <span
@@ -20,7 +20,7 @@ const props = defineProps({
             <li>
               <a
                 href="#"
-                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-acccentwhite border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
+                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-acccentwhite  border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
                 >Previous</a
               >
             </li>
@@ -68,6 +68,6 @@ const props = defineProps({
               >
             </li>
           </ul>
-        </nav>
+        </na>
 
 </template>

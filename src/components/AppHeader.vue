@@ -53,7 +53,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-primary text-accentwhite h-11 px-10 flex justify-end items-center">
+  <div class="bg-primary dark:bg-primarydark text-accentwhite h-11 px-10 flex justify-end items-center">
     <div class="icons">
       <Button
         @click="toggleDarkMode"

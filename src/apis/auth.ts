@@ -55,22 +55,3 @@ export const useForgotApi = async (payload: LoginPayload) => {
   return data;
 }
 
-
-
-
-export const testApi = async () => {
-  try {
-    const response = await $fetch('/product-categories', {
-      baseURL: useRuntimeConfig().public.apiBaseUrl,
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    });
-    return response;
-  } catch (error) {
-    console.error('API Error:', error);
-    throw error;
-  }
-};
-

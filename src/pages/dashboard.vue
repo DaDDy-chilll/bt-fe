@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import Warehouse from "./product/warehouse.json";
-import { testApi } from "~/apis/auth";
 
 const warehouses = Warehouse;
 const selectedWarehouse = ref("");
@@ -15,14 +14,6 @@ onMounted(() => {
 const chartData = ref();
 const chartOptions = ref();
 
-const test = async () => {
-  const response = await testApi();
-  console.log("success"+"_"+response);
-  console.log(response);
-  return response;
-}
-
-console.log(test());
 
 const setChartData = () => {
   const documentStyle = getComputedStyle(document.documentElement);

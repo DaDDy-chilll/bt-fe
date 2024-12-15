@@ -5,12 +5,11 @@ const props = defineProps({
   selectFilterItems: Object,
 });
 
+console.log(props.selectFilterItems);
+
 const selectedFilter = ref([]);
 
 const emit = defineEmits(['updateFilter']);
-
-
-
 
 const applyFilter = () => {
   emit('updateFilter', selectedFilter.value);
@@ -33,7 +32,7 @@ const applyFilter = () => {
           inputStyle="border-primary border-2 rounded-md"
         />
         <label :for="`checkbox-${index}`" class="text-accentblack text-sm">{{
-          item?.value
+          item?.[selectFilterItems?.filterItems?.key]
         }}</label>
       </div>
     </div>

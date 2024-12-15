@@ -1,6 +1,0 @@
-[
-    { "id": 1, "value": "Diamond", "icon": "/_nuxt/assets/images/Diamond.png" },
-    { "id": 2, "value": "Jade", "icon": "/_nuxt/assets/images/Jade.png" },
-    { "id": 3, "value": "Ruby", "icon": "/_nuxt/assets/images/Ruby.png" },
-    { "id": 4, "value": "Sapphire", "icon": "/_nuxt/assets/images/Sapphire.png" }
-]
