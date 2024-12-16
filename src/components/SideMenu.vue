@@ -97,6 +97,14 @@ const items = ref([
   {
     label: "Tracking",
     icon: "pi pi-fw pi-compass",
+    shortcut: "pi pi-fw pi-chevron-down",
+    items: [
+      {
+        label: "Tracking List",
+        icon: "pi pi-fw pi-pencil",
+        src: "/tracking",
+      },
+    ],
   },
   // {
   //   label: "Report(Pro)",
@@ -111,10 +119,12 @@ const items = ref([
       {
         label: "Invoice List",
         icon: "pi pi-fw pi-pencil",
+        src: "/invoice/list",
       },
       {
         label: "Invoice Setting",
         icon: "pi pi-fw pi-pencil",
+        src: "/invoice/setting",
       },
     ],
   },
