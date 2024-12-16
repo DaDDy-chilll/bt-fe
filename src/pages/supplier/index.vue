@@ -100,7 +100,7 @@ const sendFormData = async () => {
 
 <template>
   <div class="flex gap-4 justify-between items-start w-full">
-    <div class="w-3/5 pb-5 bg-accentwhite drop-shadow-md rounded-lg dark:bg-secondarydark">
+    <div class="w-3/5 pb-5 bg-accentwhite drop-shadow-md rounded-lg dark:bg-primarydark">
       <div class="flex justify-between items-center mb-5">
         <h3 class="text-accentblack my-2 py-3 px-5 float-left text-xl dark:text-accentwhite">New Supplier</h3>
         <div class="flex items-center gap-2">
@@ -112,15 +112,15 @@ const sendFormData = async () => {
         <!-- Name -->
         <div class="grid grid-cols-1 mb-6">
           <FloatLabel variant="on">
-            <InputText id="on_label" v-model="supplier.name" class="border w-full h-10 pl-2 dark:bg-secondarydark" autocomplete="off" />
-            <label for="on_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Supplier Name</label>
+            <InputText id="on_label" v-model="supplier.name" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Supplier Name</label>
           </FloatLabel>
         </div>
         <!-- Branch -->
         <div class="grid grid-cols-1">
           <FloatLabel variant="on">
-            <InputText id="on_label" v-model="supplier.branch" class="border w-full h-10 pl-2 dark:bg-secondarydark" autocomplete="off" />
-            <label for="on_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Supplier Category</label>
+            <InputText id="on_label" v-model="supplier.branch" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Supplier Category</label>
           </FloatLabel>
         </div>
         <!-- Divider -->
@@ -128,15 +128,15 @@ const sendFormData = async () => {
         <!-- Contact -->
         <div class="grid grid-cols-1 mb-6">
           <FloatLabel variant="on">
-            <InputText id="on_label" v-model="supplier.contact" class="border w-full h-10 pl-2 dark:bg-secondarydark" autocomplete="off" />
-            <label for="on_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Contact Name</label>
+            <InputText id="on_label" v-model="supplier.contact" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Contact Name</label>
           </FloatLabel>
         </div>
         <!-- Start Date -->
         <div class="grid grid-cols-1">
           <FloatLabel variant="on">
-            <InputText id="on_label" v-model="supplier.startdate" class="border w-full h-10 pl-2 dark:bg-secondarydark" autocomplete="off" />
-            <label for="on_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Contact Start Date</label>
+            <InputText id="on_label" v-model="supplier.startdate" class="border w-full h-10 pl-2 dark:bg-primarydark" autocomplete="off" />
+            <label for="on_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Contact Start Date</label>
           </FloatLabel>
         </div>
         <!-- Divider -->
@@ -144,8 +144,8 @@ const sendFormData = async () => {
         <!-- Email -->
         <div class="grid grid-cols-1 mb-6">
           <FloatLabel variant="on" class="text-sm">
-            <InputText id="email_label" v-model="supplier.email" autocomplete="off" class="border w-full h-10 pl-2 dark:bg-secondarydark" />
-            <label for="email_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Email</label>
+            <InputText id="email_label" v-model="supplier.email" autocomplete="off" class="border w-full h-10 pl-2 dark:bg-primarydark" />
+            <label for="email_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Email</label>
           </FloatLabel>
         </div>
         <!-- Phone 1 / Phone 2 -->
@@ -153,15 +153,15 @@ const sendFormData = async () => {
           <div class="grid grid-cols-1">
             <FloatLabel variant="on" class="text-sm">
               <InputText id="phone1_label" v-model="supplier.phone[0].phone1" autocomplete="off"
-                class="border w-full py-3 px-2 dark:bg-secondarydark" />
-              <label for="phone1_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Phone 1</label>
+                class="border w-full h-10 pl-2 dark:bg-primarydark" />
+              <label for="phone1_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Phone 1</label>
             </FloatLabel>
           </div>
           <div class="grid grid-cols-1">
             <FloatLabel variant="on" class="text-sm">
               <InputText id="phone2_label" v-model="supplier.phone[0].phone2" autocomplete="off"
-                class="border w-full py-3 px-2 dark:bg-secondarydark" />
-              <label for="phone2_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Phone 2</label>
+                class="border w-full h-10 pl-2 dark:bg-primarydark" />
+              <label for="phone2_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Phone 2</label>
             </FloatLabel>
           </div>
         </div>
@@ -171,14 +171,14 @@ const sendFormData = async () => {
         <div class="grid grid-cols-2 gap-4">
           <div class="grid grid-cols-1 mb-6">
             <FloatLabel variant="on" class="text-sm">
-              <InputText id="state_label" v-model="supplier.state" autocomplete="off" class="border w-full py-3 px-2 dark:bg-secondarydark" />
-              <label for="state_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">State</label>
+              <InputText id="state_label" v-model="supplier.state" autocomplete="off" class="border w-full h-10 pl-2 dark:bg-primarydark" />
+              <label for="state_label" class="text-sm text-label dark:bg-primarydark dark:text-white">State</label>
             </FloatLabel>
           </div>
           <div class="grid grid-cols-1 mb-6">
             <FloatLabel variant="on" class="text-sm">
-              <InputText id="city_label" v-model="supplier.city" autocomplete="off" class="border w-full py-3 px-2 dark:bg-secondarydark" />
-              <label for="city_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">City</label>
+              <InputText id="city_label" v-model="supplier.city" autocomplete="off" class="border w-full h-10 pl-2 dark:bg-primarydark" />
+              <label for="city_label" class="text-sm text-label dark:bg-primarydark dark:text-white">City</label>
             </FloatLabel>
           </div>
         </div>
@@ -186,8 +186,8 @@ const sendFormData = async () => {
         <div class="grid grid-cols-1">
           <FloatLabel variant="on" class="text-sm">
             <InputText id="address_label" v-model="supplier.address" autocomplete="off"
-              class="border w-full py-3 px-2 dark:bg-secondarydark" />
-            <label for="address_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Address</label>
+              class="border w-full h-10 pl-2 dark:bg-primarydark" />
+            <label for="address_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Address</label>
           </FloatLabel>
         </div>
         <!-- Divider -->
@@ -196,23 +196,23 @@ const sendFormData = async () => {
         <div class="grid grid-cols-1 mb-6">
           <FloatLabel variant="on" class="text-sm">
             <InputText id="website_label" v-model="supplier.website" autocomplete="off"
-              class="border w-full py-3 px-2 dark:bg-secondarydark" />
-            <label for="website_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Website</label>
+              class="border w-full h-10 pl-2 dark:bg-primarydark" />
+            <label for="website_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Website</label>
           </FloatLabel>
         </div>
         <!-- Social -->
         <div class="grid grid-cols-1 mb-6">
           <FloatLabel variant="on" class="text-sm">
-            <InputText id="social_label" v-model="supplier.social" autocomplete="off" class="border w-full py-3 px-2 dark:bg-secondarydark" />
-            <label for="social_label" class="text-sm text-label dark:bg-secondarydark dark:text-white">Social</label>
+            <InputText id="social_label" v-model="supplier.social" autocomplete="off" class="border w-full h-10 pl-2 dark:bg-primarydark" />
+            <label for="social_label" class="text-sm text-label dark:bg-primarydark dark:text-white">Social</label>
           </FloatLabel>
         </div>
         <!-- Save Button -->
         <Button label="Save" class="w-full py-2 bg-accent1 text-accentwhite mt-4 dark:bg-accent2" @click="sendFormData" />
       </div>
     </div>
-    <div class="w-2/5 bg-accentwhite drop-shadow-md rounded-lg p-5 dark:bg-secondarydark">
-      <h3 class="text-lg text-secondarydark mb-4 dark:text-accentwhite">Memo</h3>
+    <div class="w-2/5 bg-accentwhite drop-shadow-md rounded-lg p-5 dark:bg-primarydark">
+      <h3 class="text-lg text-accentblack mb-4 dark:text-accentwhite">Memo</h3>
       <!-- Divider -->
       <div class="border-t border-muted w-full dark:border-accentwhite dark:border-opacity-30"></div>
       <!-- Memo Text -->
@@ -220,7 +220,7 @@ const sendFormData = async () => {
         <div v-for="(memo, index) in memos" :key="index" class="w-full py-2">
           <div>
             <h3 class="text-sm inline font-semibold mr-2 dark:text-accentwhite">{{ memo.name }}</h3>
-            <span class="inline text-xs text-black opacity-50 dark:text-accentwhite">{{ memo.date }}</span>
+            <span class="inline text-xs text-accentblack opacity-50 dark:text-accentwhite">{{ memo.date }}</span>
           </div>
           <p class="text-xs dark:text-accentwhite">
             {{ memo.text }}
@@ -229,9 +229,9 @@ const sendFormData = async () => {
       </div>
       <!-- Memo Text -->
       <div class="w-full">
-        <h3 class="text-secondarydark dark:text-accentwhite mb-1">Add a note</h3>
+        <h3 class="text-accentblack dark:text-accentwhite mb-1">Add a note</h3>
         <Textarea id="memo_label" v-model="supplier.memo" rows="5" cols="30" style="resize: none"
-          class="bg-muted w-full p-2 mb-1 p-textarea p-component dark:bg-secondarydark dark:border dark:border-accent2" />
+          class="bg-muted w-full p-2 mb-1 p-textarea p-component dark:bg-primarydark dark:border dark:border-accent2" />
       </div>
       <Button label="Save" class="w-full py-2 bg-accent1 text-accentwhite dark:bg-accent2" @click="saveMemo" />
     </div>
