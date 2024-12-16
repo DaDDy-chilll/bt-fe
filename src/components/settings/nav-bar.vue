@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p class="text-accentblack my-2 px-6 py-3 float-left text-xl">
+  <div class="dark:text-accentwhite/50">
+    <p class="text-accentblack dark:text-accentwhite my-2 px-6 py-3 float-left text-xl">
       {{ title }}
     </p>
     <div
@@ -12,7 +12,7 @@
         <NuxtLink
           v-for="link in links"
           :to="link.path"
-          class="hover:text-primarylight"
+          class="hover:text-primarylight dark:hover:text-accent2"
         >
           {{ link.name }}
         </NuxtLink>
@@ -34,6 +34,7 @@ defineProps<{
 <style scoped>
 .router-link-exact-active {
   color: #42acd5;
+  @apply dark:text-accent2;
   text-decoration: underline;
   text-underline-offset: 10px;
   text-decoration-thickness: 2px;

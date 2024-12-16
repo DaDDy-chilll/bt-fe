@@ -196,11 +196,11 @@ const closePopover = (id: number) => {
       <div class="flex md:justify-end items-center justify-start">
         <button
           @click="(displayModal = true), (modalType = 'add')"
-          class="bg-primarylight text-white px-4 py-2 rounded-md mt-8 mb-8"
+          class="bg-primarylight dark:bg-accent2 text-white px-4 py-2 rounded-md mt-8 mb-8"
         >
           <span class="flex items-center gap-2">
             <AddIcon />
-            Add
+            Add 
           </span>
         </button>
       </div>
@@ -229,7 +229,7 @@ const closePopover = (id: number) => {
             "
           >
             <!--No-->
-            <Column field="no" header="No" class="w-[10%]">
+            <Column field="no" header="No" class="w-[10%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{ slotProps.index + 1 }}
@@ -237,7 +237,7 @@ const closePopover = (id: number) => {
               </template>
             </Column>
             <!--Gold Type-->
-            <Column field="gold_type_id" header="Gold Type" class="w-[15%]">
+            <Column field="gold_type_id" header="Gold Type" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{
@@ -250,7 +250,7 @@ const closePopover = (id: number) => {
               </template>
             </Column>
             <!--Weight-->
-            <Column field="gold_weight" header="Weight" class="w-[15%]">
+            <Column field="gold_weight" header="Weight" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{ slotProps.data.gold_weight }}
@@ -258,7 +258,7 @@ const closePopover = (id: number) => {
               </template>
             </Column>
             <!--YGEA Price-->
-            <Column field="ygea_price" header="YGEA Price" class="w-[15%]">
+            <Column field="ygea_price" header="YGEA Price" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{ slotProps.data.ygea_price }}
@@ -269,7 +269,7 @@ const closePopover = (id: number) => {
             <Column
               field="pyin_pa_price"
               header="Pyin Pa Price"
-              class="w-[15%]"
+              class="w-[15%] dark:bg-primarydark dark:text-accentwhite"
             >
               <template #body="slotProps">
                 <div>
@@ -278,7 +278,7 @@ const closePopover = (id: number) => {
               </template>
             </Column>
             <!--Other Price-->
-            <Column field="other_price" header="Other Price" class="w-[15%]">
+            <Column field="other_price" header="Other Price" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
                   {{ slotProps.data.other_price }}
@@ -289,7 +289,7 @@ const closePopover = (id: number) => {
             <Column
               field="action"
               header="Action"
-              class="w-[15%]"
+              class="w-[15%] dark:bg-primarydark dark:text-accentwhite"
               alignFrozen="right"
               frozen
             >
@@ -297,7 +297,7 @@ const closePopover = (id: number) => {
                 <div>
                   <Button
                     icon="pi pi-ellipsis-v"
-                    class="text-primarylight"
+                    class="text-primarylight dark:text-accent2"
                     @click="(e) => toggle(e, slotProps.data.id)"
                   />
                   <Popover
@@ -310,7 +310,7 @@ const closePopover = (id: number) => {
                       }
                     "
                     appendTo="body"
-                    class="!bg-primarylight text-accentwhite sm:w-48"
+                    class="bg-primarylight dark:bg-accent2 text-accentwhite sm:w-48"
                   >
                     <div class="flex flex-col gap-4 justify-start items-start">
                       <Button
@@ -358,3 +358,25 @@ const closePopover = (id: number) => {
     </div>
   </div>
 </template>
+
+<style scoped>
+:deep(.p-paginator) {
+  @apply dark:bg-primarydark;
+  @apply dark:text-accentwhite;
+}
+
+ :deep(.p-paginator-rpp-dropdown) {
+    @apply dark:bg-transparent;
+    @apply dark:text-accentwhite;
+    @apply dark:border-1 dark:border-b-gray-400;
+  }
+
+  :deep(.p-select-label) {
+    @apply dark:text-accentwhite;
+  }
+
+  :deep(.p-datatable-empty-message) {
+    @apply dark:bg-transparent;
+  }
+
+  </style>

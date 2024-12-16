@@ -142,7 +142,7 @@ const closeModal = () => {
                 v-model="formData.name"
                 class="h-10 rounded-l-md rounded-r-none pl-2 w-full"
               />
-              <label for="gold_type_label" class="text-sm text-label"
+              <label for="gold_type_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
                 >Gold Type</label
               >
               <Select
@@ -158,12 +158,37 @@ const closeModal = () => {
       </div>
       <template #footer>
         <div class="flex justify-end gap-2">
-          <button @click="modalType === 'edit' ? updateGoldType() : addGoldType()" class="px-4 py-2 rounded-md bg-primarylight text-white hover:bg-opacity-90">{{ modalType === 'edit' ? 'UPDATE' : 'ADD' }}</button>
-          <button @click="closeModal" class="px-4 py-2 rounded-md border border-primarylight text-primarylight hover:bg-primarylight hover:bg-opacity-10">Cancel</button>
+          <button @click="modalType === 'edit' ? updateGoldType() : addGoldType()" class="px-4 py-2 rounded-md bg-primarylight dark:bg-accent2 text-white hover:bg-opacity-90">{{ modalType === 'edit' ? 'UPDATE' : 'ADD' }}</button>
+          <button @click="closeModal" class="px-4 py-2 rounded-md border border-primarylight dark:border-accent2 text-primarylight dark:text-accent2 hover:bg-primarylight hover:bg-opacity-10">Cancel</button>
         </div>
       </template>
     </Dialog>
   </div>
 </template>
 
-<style scoped></style>
+<style>
+.p-dialog{
+  @apply dark:bg-primarydark;
+}
+
+
+</style>
+
+<style scoped>
+:deep(.p-inputtext) {
+  @apply dark:bg-primarydark;
+  @apply dark:text-accentwhite;
+  @apply dark:border-1 dark:border-accentwhite;
+}
+:deep(.p-select) {
+  @apply dark:bg-primarydark;
+  @apply dark:border-1 dark:border-accentwhite;
+  @apply h-10;
+}
+:deep(.p-select-label) {
+  @apply dark:text-accentwhite;
+  @apply dark:bg-primarydark;
+
+}
+
+</style>

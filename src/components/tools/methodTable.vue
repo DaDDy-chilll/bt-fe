@@ -71,8 +71,8 @@ const showSaveAnimation = () => {
 <template>
   <!-- Table title -->
      <div class="mt-8 flex items-center justify-between">
-        <p class="text-md">{{ model_data[0].method.charAt(0).toUpperCase() + model_data[0].method.slice(1) }}</p>
-        <button class="bg-primarylight text-white px-4 py-2 rounded-md flex items-center text-sm" @click="onSaveMethod">
+        <p class="text-md dark:text-accentwhite">{{ model_data[0].method.charAt(0).toUpperCase() + model_data[0].method.slice(1) }}</p>
+        <button class="bg-primarylight dark:bg-accent2 dark:text-accentwhite text-white px-4 py-2 rounded-md flex items-center text-sm" @click="onSaveMethod">
           <span class="mr-2"><SaveIcon /></span> 
           <span>Save</span>
         </button>
@@ -80,9 +80,9 @@ const showSaveAnimation = () => {
       <!-- Table -->
       <div class="mt-4">
         <div class="overflow-x-auto">
-          <table class="w-full min-w-[800px] text-sm">
+          <table class="w-full min-w-[800px] text-sm dark:text-accentwhite">
             <thead>
-              <tr class="border-b border-gray-300">
+              <tr class="border-b border-gray-300 dark:border-gray-600">
                 <td class="py-3 px-4 text-left">No.</td>
                 <td class="py-3 px-4 text-left">Weight</td>
                 <td class="py-3 px-4 text-left">Category</td>
@@ -97,7 +97,7 @@ const showSaveAnimation = () => {
               <tr
                 v-for="(item, index) in model_data"
                 :key="item.id"
-                class="border-b border-gray-200"
+                class="border-b border-gray-200 dark:border-gray-600"
               >
                 <td class="py-3 px-4">{{ index + 1 }}.</td>
                 <td class="py-3 px-4">{{ item.weight }}</td>
@@ -105,7 +105,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-muted rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md dark:bg-primarydark dark:text-accentwhite"
                     name="one_kyatt"
                     v-model="item.one_kyatt"
                   />
@@ -113,7 +113,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-muted rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md dark:bg-primarydark dark:text-accentwhite"
                     name="five_muu"
                     v-model="item.five_muu"
                   />
@@ -121,7 +121,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-muted rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md dark:bg-primarydark dark:text-accentwhite"
                     name="one_matt"
                     v-model="item.one_matt"
                   />
@@ -129,7 +129,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-muted rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md dark:bg-primarydark dark:text-accentwhite"
                     name="one_mu"
                     v-model="item.one_mu"
                   />
@@ -137,7 +137,7 @@ const showSaveAnimation = () => {
                 <td class="py-3 px-4">
                   <input
                     type="text"
-                    class="px-2 w-16 border border-muted rounded-md"
+                    class="px-2 w-16 border border-muted rounded-md dark:bg-primarydark dark:text-accentwhite"
                     name="one_pae"
                     v-model="item.one_pae"
                   />

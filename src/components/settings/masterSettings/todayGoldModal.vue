@@ -103,7 +103,7 @@ const closeModal = () => {
     <Dialog
       :visible="displayModal"
       header="Today Gold Master"
-      :style="{ width: '25rem' }"
+      :style="{ width: '25rem', borderRadius: '10px' }"
       :breakpoints="{ '960px': '75vw', '641px': '90vw' }"
       :closable="false"
     >
@@ -120,7 +120,7 @@ const closeModal = () => {
               optionValue="id"
               class="w-full border border-accentblack h-10 dropdown-svg-white"
             />
-            <label for="on_label" class="text-sm text-label">Gold Type</label>
+            <label for="on_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Gold Type</label>
           </FloatLabel>
         </div>
         <!--Gold Weight-->
@@ -132,7 +132,7 @@ const closeModal = () => {
                 v-model="localFormData.gold_weight"
                 class="h-10 rounded-l-md rounded-r-none pl-2 w-full"
               />
-              <label for="weight_label" class="text-sm text-label"
+              <label for="weight_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
                 >Gold Weight</label
               >
               <Select
@@ -143,7 +143,7 @@ const closeModal = () => {
                 optionValue="id"
                 class="bg-gray-300 text-accentwhite rounded-l-none rounded-r-md unit"
               />
-              <label for="unit_label" class="text-sm text-label">Unit</label>
+              <label for="unit_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Unit</label>
             </div>
           </FloatLabel>
         </div>
@@ -152,9 +152,9 @@ const closeModal = () => {
           <FloatLabel variant="on">
             <InputNumber
               v-model="localFormData.ygea_price"
-              class="w-full h-10 border border-accentblack px-4"
+              class="w-full h-10 border border-accentblack rounded-lg px-2"
             />
-            <label for="ygea_price_label" class="text-sm text-label"
+            <label for="ygea_price_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
               >YGEA Price(optional)</label
             >
           </FloatLabel>
@@ -164,9 +164,9 @@ const closeModal = () => {
           <FloatLabel variant="on">
             <InputNumber
               v-model="localFormData.pyin_pa_price"
-              class="w-full h-10 border border-accentblack px-4"
+              class="w-full h-10 border border-accentblack rounded-lg px-2"
             />
-            <label for="pyin_pa_price_label" class="text-sm text-label"
+            <label for="pyin_pa_price_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
               >Pyin Pa Price(optional)</label
             >
           </FloatLabel>
@@ -176,9 +176,9 @@ const closeModal = () => {
           <FloatLabel variant="on">
             <InputNumber
               v-model="localFormData.other_price"
-              class="w-full h-10 border border-accentblack px-4"
+              class="w-full h-10 border border-accentblack rounded-lg px-2"
             />
-            <label for="other_price_label" class="text-sm text-label"
+            <label for="other_price_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
               >Other Price(optional)</label
             >
           </FloatLabel>
@@ -190,13 +190,13 @@ const closeModal = () => {
             @click="
               modalType === 'add' ? addItem() : updateTodayGold(localFormData.id)
             "
-            class="px-4 py-2 rounded-md bg-primarylight text-white hover:bg-opacity-90"
+            class="px-4 py-2 rounded-md bg-primarylight dark:bg-accent2 text-white hover:bg-opacity-90"
           >
             {{ modalType === 'add' ? 'ADD' : 'UPDATE' }}
           </button>
           <button
             @click="closeModal"
-            class="px-4 py-2 rounded-md border border-primarylight text-primarylight hover:bg-primarylight hover:bg-opacity-10"
+            class="px-4 py-2 rounded-md border border-primarylight dark:border-accentwhite text-primarylight dark:text-accentwhite hover:bg-primarylight hover:bg-opacity-10"
           >
             Cancel
           </button>
@@ -206,3 +206,41 @@ const closeModal = () => {
   </div>
 </template>
 
+<style>
+.p-dialog {
+  @apply dark:bg-primarydark dark:text-accentwhite;
+  border-radius: 20px;
+}
+
+
+</style>
+
+<style scoped>
+:deep(.p-inputtext) {
+  @apply dark:bg-primarydark;
+  @apply dark:text-accentwhite;
+}
+:deep(.p-select) {
+  @apply dark:bg-primarydark;
+  @apply dark:border-1 dark:border-accentwhite;
+  @apply h-10;
+}
+:deep(.p-select-label) {
+  @apply dark:text-accentwhite;
+  @apply dark:bg-primarydark;
+
+}
+
+:deep(.p-inputnumber) {
+  @apply dark:border-1 dark:border-accentwhite;
+  @apply dark:bg-primarydark;
+}
+
+:deep(.p-inputtext) {
+  @apply dark:text-accentwhite;
+}
+
+:deep(#weight_label) {
+  @apply dark:border-1 dark:border-accentwhite;
+}
+</style>

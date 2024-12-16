@@ -119,7 +119,7 @@ const closePopover = (id: number) => {
       <div class="flex md:justify-end items-center justify-start">
         <button
           @click="(modalType = 'add'), (displayModal = true)"
-          class="bg-primarylight text-white px-4 py-2 rounded-md mt-8 mb-8"
+          class="bg-primarylight dark:bg-accent2 text-white px-4 py-2 rounded-md mt-8 mb-8"
         >
           <span class="flex items-center gap-2">
             <AddIcon />
@@ -146,19 +146,19 @@ const closePopover = (id: number) => {
             breakpoint="sm"
           >
             <!--No-->
-            <Column field="no" header="No" class="w-[15%]">
+            <Column field="no" header="No" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 {{ slotProps.index + 1 }}
               </template>
             </Column>
             <!--Gem Type-->
-            <Column field="name" header="Gem Type" class="w-[20%]">
+            <Column field="name" header="Gem Type" class="w-[20%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 {{ slotProps.data.name }}
               </template>
             </Column>
             <!--Gem color-->
-            <Column field="color_id" header="Gem Color" class="w-[20%]">
+            <Column field="color_id" header="Gem Color" class="w-[20%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 {{
                   gem_colors.find(
@@ -168,7 +168,7 @@ const closePopover = (id: number) => {
               </template>
             </Column>
             <!--Icon-->
-            <Column field="icon" header="Icon" class="w-[20%]">
+            <Column field="icon" header="Icon" class="w-[20%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <img
                   :src="slotProps.data.icon"
@@ -181,14 +181,14 @@ const closePopover = (id: number) => {
             <Column
               field="action"
               header="Action"
-              class="w-[10%]"
+              class="w-[10%] dark:bg-primarydark dark:text-accentwhite"
               alignFrozen="right"
               frozen
             >
               <template #body="slotProps">
                 <Button
                   icon="pi pi-ellipsis-v"
-                  class="text-primarylight"
+                  class="text-primarylight dark:text-accent2"
                   @click="(e) => toggle(e, slotProps.data.id)"
                 />
                 <Popover
@@ -201,7 +201,7 @@ const closePopover = (id: number) => {
                     }
                   "
                   appendTo="body"
-                  class="!bg-primarylight text-accentwhite sm:w-32"
+                  class="bg-primarylight dark:bg-accent2 text-accentwhite sm:w-32"
                 >
                   <div class="flex flex-col gap-4 justify-start items-start">
                     <Button
@@ -241,4 +241,24 @@ const closePopover = (id: number) => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+:deep(.p-paginator) {
+  @apply dark:bg-primarydark;
+  @apply dark:text-accentwhite;
+}
+
+ :deep(.p-paginator-rpp-dropdown) {
+    @apply dark:bg-transparent;
+    @apply dark:text-accentwhite;
+    @apply dark:border-1 dark:border-b-gray-400;
+  }
+
+  :deep(.p-select-label) {
+    @apply dark:text-accentwhite;
+  }
+
+  :deep(.p-datatable-empty-message) {
+    @apply dark:bg-transparent;
+  }
+
+  </style>

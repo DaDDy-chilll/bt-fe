@@ -16,16 +16,16 @@ const m2_model_data = ref<GoldMethod[]>(method2Data);
 
 <template>
   <div>
-    <div class="w-full bg-accentwhite drop-shadow-md rounded-lg">
+    <div class="w-full bg-accentwhite dark:bg-primarydark drop-shadow-md rounded-lg">
       <SlotHeader title="Gold Calculation Methods" />
       <!-- Method Table  1-->
-      <div class="px-6 py-2 bg-accentwhite rounded-lg">
+      <div class="px-6 py-2 bg-accentwhite dark:bg-primarydark rounded-lg">
         <MethodTable :model_data="m1_model_data" />
       </div>
     </div>
 
     <!-- Method Table 2-->
-    <div class="px-6 py-2 bg-accentwhite drop-shadow-md rounded-lg mt-4">
+    <div class="px-6 py-2 bg-accentwhite dark:bg-primarydark drop-shadow-md rounded-lg mt-4">
       <MethodTable :model_data="m2_model_data" />
     </div>
   </div>
