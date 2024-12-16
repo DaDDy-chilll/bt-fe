@@ -266,5 +266,18 @@ const handleSignature = (file: File) => {
     </div>
 </template>
 <style scoped>
+:deep(.p-inputtext) {
+  @apply text-accentblack;
+  @apply dark:text-accentwhite;
+}
 
+:deep(.p-textarea) {
+  @apply text-accentblack;
+  @apply dark:text-accentwhite;
+}
+
+:deep(.p-component) {
+  @apply text-accentblack;
+  @apply dark:text-accentwhite;
+}
 </style>
