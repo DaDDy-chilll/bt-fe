@@ -199,7 +199,7 @@ const refundOrder = (orderNumber:any) => {
 
 <template>
   <div class="justify-between items-start w-full">
-    <div class="w-full bg-accentwhite drop-shadow-md rounded-lg">
+    <div class="w-full bg-accentwhite dark:bg-primarydark drop-shadow-md rounded-lg">
       <slot-header
         title="Manage Orders"
         :button="{
@@ -265,7 +265,7 @@ const refundOrder = (orderNumber:any) => {
         </Column>
         <Column field="order_number" header="Order ID" class="w-32" sortable>
           <template #body="slotProps">
-            <span class="text-primarylight underline"
+            <span class="text-primarylight dark:text-accent2 underline"
               >#{{ slotProps.data.order_number }}</span
             >
           </template>
@@ -346,14 +346,14 @@ const refundOrder = (orderNumber:any) => {
           <template #body="slotProps">
             <Button
               icon="pi pi-ellipsis-v"
-              class="text-primarylight"
+              class="text-primarylight dark:text-accentwhite"
               @click="toggle"
             />
-            <Popover ref="op" class="!bg-primarylight text-accentwhite">
+            <Popover ref="op" class="bg-primarylight dark:bg-accent2 text-accentwhite dark:text-accentblack">
               <div class="flex flex-col gap-4 justify-start items-start">
-                <Button @click="viewOrder(slotProps.data.order_number)" label="View" icon="pi pi-eye" />
-                <Button @click="editOrder(slotProps.data.order_number)" label="Edit" icon="pi pi-pencil" />
-                <Button @click="refundOrder(slotProps.data.order_number)" label="Refund" icon="pi pi-undo" />
+                <Button @click="viewOrder(slotProps.data.order_number)" label="View" icon="pi pi-eye" class="dark:text-accentblack" />
+                <Button @click="editOrder(slotProps.data.order_number)" label="Edit" icon="pi pi-pencil" class="dark:text-accentblack" />
+                <Button @click="refundOrder(slotProps.data.order_number)" label="Refund" icon="pi pi-undo" class="dark:text-accentblack" />
               </div>
             </Popover>
           </template>
@@ -365,4 +365,36 @@ const refundOrder = (orderNumber:any) => {
   <editOrderModal :showEditOrderModal="showEditOrderModal" @update:showEditOrderModal="showEditOrderModal = $event" />
   <refundModal :showRefundModal="showRefundModal" @update:showRefundModal="showRefundModal = $event" />
 </template>
-<style scoped></style>
+<style scoped>
+:deep(.p-paginator) {
+  @apply dark:bg-primarydark;
+  @apply dark:text-accentwhite;
+}
+
+ :deep(.p-paginator-rpp-dropdown) {
+    @apply dark:bg-transparent;
+    @apply dark:text-accentwhite;
+    @apply dark:border-1 dark:border-b-gray-400;
+  }
+
+  :deep(.p-select-label) {
+    @apply dark:text-accentwhite;
+  }
+
+  :deep(.p-datatable-empty-message) {
+    @apply dark:bg-transparent;
+  }
+
+  :deep(.p-datatable-thead > tr > th) {
+    @apply dark:bg-primarydark;
+    @apply dark:text-accentwhite;
+  }
+
+  :deep(.p-datatable-tbody > tr > td) {
+    @apply dark:bg-primarydark;
+    @apply dark:text-accentwhite;
+  }
+
+
+  </style>
+

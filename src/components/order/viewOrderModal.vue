@@ -23,3 +23,9 @@ const emit = defineEmits(['update:showOrderModal'])
     <summaryModal />
   </Dialog>
 </template>
+<style>
+.p-dialog {
+  background-color: var(--secondarydark) !important;
+  color: white !important;
+}
+</style>

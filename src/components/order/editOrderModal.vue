@@ -57,24 +57,24 @@ const finishedOrder = () => {
     >
       <button
         v-if="currentStep > minStep"
-        class="bg-primarylight text-white px-6 py-1 rounded-md float-right mt-4"
+        class="bg-primarylight dark:bg-accentblack text-white px-6 py-1 rounded-md float-right mt-4"
         @click="previousStep"
       >
         <span class="text-white">Previous</span>
       </button>
       <button
         v-if="!isLastStep"
-        class="bg-primarylight text-white px-6 py-1 rounded-md float-right mt-4"
+        class="bg-primarylight dark:bg-accent2 text-white px-6 py-1 rounded-md float-right mt-4"
         @click="nextStep"
       >
-        <span class="text-white">Next</span>
+        <span class="text-white dark:text-accentblack">Next</span>
       </button>
       <button
         v-if="isLastStep"
-        class="bg-primarylight text-white px-6 py-1 rounded-md float-right mt-4"
+        class="bg-primarylight dark:bg-accent2 text-white px-6 py-1 rounded-md float-right mt-4"
         @click="finishedOrder"
       >
-        <span class="text-white">Finished</span>
+        <span class="text-white dark:text-accentblack">Finished</span>
       </button>
     </div>
   </editOrderModalTemplate>

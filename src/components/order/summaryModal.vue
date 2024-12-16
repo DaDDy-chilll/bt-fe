@@ -34,10 +34,10 @@ const finishedOrder = () => {
 </script>
 
 <template>
-  <div class="min-h-screen mb-8">
+  <div class="min-h-screen mb-8 dark:bg-secondarydark">
     <div class="px-3 py-6 flex justify-center gap-10">
       <div class="w-3/4 flex flex-col gap-4">
-        <div class="bg-accentwhite drop-shadow-md rounded-lg">
+        <div class="bg-accentwhite dark:bg-primarydark drop-shadow-md rounded-lg">
           <div class="flex justify-between items-center px-3 py-4 cursor-pointer" @click="isProductSummaryOpen = !isProductSummaryOpen">
             <h3 class="font-medium">Product Summary</h3>
             <i :class="['pi', isProductSummaryOpen ? 'pi-chevron-up' : 'pi-chevron-down']"></i>
@@ -46,22 +46,22 @@ const finishedOrder = () => {
             <ProductSummary />
           </div>
         </div>
-        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+        <div class=" bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
           <CommentSection />
         </div>
       </div>
 
       <div class="w-1/3 flex flex-col gap-4">
-        <div class="bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+        <div class="bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
           <invoice />
         </div>
         <div
-          class="bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
+          class="bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
         >
           <customerInfo />
         </div>
         <div
-          class="bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
+          class="bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
         >
           <shippingInfo />
         </div>

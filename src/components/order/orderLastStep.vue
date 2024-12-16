@@ -32,25 +32,25 @@ const handleAddPayment = (payment: any) => {
     <tracking />
     <div class="px-3 py-6 flex justify-center gap-10">
       <div class="w-3/4 flex flex-col gap-4">
-        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+        <div class=" bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
           <ProductSummary />
         </div>
-        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+        <div class=" bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
           <CommentSection />
         </div>
       </div>
 
       <div class="w-1/3 flex flex-col gap-4">
-        <div class="bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+        <div class="bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
           <invoice />
         </div>
         <div
-          class="bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
+          class="bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
         >
           <customerInfo />
         </div>
         <div
-          class="bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
+          class="bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto"
         >
           <shippingInfo />
         </div>

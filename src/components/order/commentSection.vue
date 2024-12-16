@@ -20,7 +20,7 @@ console.log(store.orderDetails, "orderDetails",store.payment, "payment");
         <textarea
           placeholder="Write a comment"
           rows="5"
-          class="w-full border-2 border-muted rounded-md px-2 py-1"
+          class="w-full border-2 border-muted rounded-md px-2 py-1 dark:bg-secondarydark dark:text-accentwhite dark:border-0"
         ></textarea>
       </div>
     </div>

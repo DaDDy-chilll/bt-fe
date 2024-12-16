@@ -28,14 +28,14 @@ const handleAddShipping = (shipping: any) => {
   <div class="min-h-screen mb-8">
     <tracking />
     <div class="px-3 py-6 flex justify-center gap-20">
-      <div class="w-2/4 bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+      <div class="w-2/4 bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
         <shippingForm :shipping="shipping" />
       </div>
       <div class="w-1/3 flex flex-col gap-4">
-        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg">
+        <div class=" bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg">
           <invoice />
         </div>
-        <div class=" bg-accentwhite py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto">
+        <div class=" bg-accentwhite dark:bg-primarydark py-6 px-3 drop-shadow-md rounded-lg overflow-x-auto">
           <customerInfo />
         </div>
       </div>
