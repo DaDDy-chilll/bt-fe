@@ -106,7 +106,7 @@ const profileImage = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col h-screen bg-accentwhite text-sm drop-shadow-md rounded-lg">
+  <div class="flex flex-col h-screen bg-accentwhite dark:bg-primarydark dark:text-accentwhite text-sm drop-shadow-md rounded-lg">
     <SystemNavBar class="text-base"/>
     <div class="px-6 py-6 mt-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -143,7 +143,7 @@ const profileImage = computed(() => {
                     v-model="userProfile.name"
                     class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                   />
-                  <label for="username" class="text-sm text-label"
+                  <label for="username" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
                     >Username</label
                   >
                 </div>
@@ -158,7 +158,7 @@ const profileImage = computed(() => {
                     v-model="userProfile.phone"
                     class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                   />
-                  <label for="phone" class="text-sm text-label">Phone</label>
+                  <label for="phone" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Phone</label>
                 </div>
               </FloatLabel>
             </div>
@@ -173,7 +173,7 @@ const profileImage = computed(() => {
                   optionValue="id"
                   class="w-full h-8 dropdown-svg-white"
                 />
-                <label for="role_label" class="text-sm text-label">Role</label>
+                <label for="role_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Role</label>
               </FloatLabel>
             </div>
           </div>
@@ -189,7 +189,7 @@ const profileImage = computed(() => {
                   v-model="userProfile.address"
                   class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
-                <label for="address" class="text-sm text-label">Address</label>
+                <label for="address" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Address</label>
               </div>
             </FloatLabel>
           </div>
@@ -202,7 +202,7 @@ const profileImage = computed(() => {
                   v-model="userProfile.email"
                   class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
-                <label for="email" class="text-sm text-label">Email</label>
+                <label for="email" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Email</label>
               </div>
             </FloatLabel>
           </div>
@@ -215,7 +215,7 @@ const profileImage = computed(() => {
                   v-model="userProfile.emergency_contact"
                   class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
-                <label for="emergency_contact" class="text-sm text-label"
+                <label for="emergency_contact" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
                   >Emergency Contact</label
                 >
               </div>
@@ -232,7 +232,7 @@ const profileImage = computed(() => {
                 optionValue="id"
                 class="w-full sm:w-64 md:w-72 lg:w-96 h-8 dropdown-svg-white"
               />
-              <label for="religion_label" class="text-sm text-label"
+              <label for="religion_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
                 >Religion</label
               >
             </FloatLabel>
@@ -248,7 +248,7 @@ const profileImage = computed(() => {
                   class="h-7 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
                 <i class="pi pi-calendar absolute right-2 text-gray-600"></i>
-                <label for="date_of_birth" class="text-sm text-label"
+                <label for="date_of_birth" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
                   >Date of Birth</label
                 >
               </div>
@@ -265,7 +265,7 @@ const profileImage = computed(() => {
                 optionValue="id"
                 class="w-full sm:w-64 md:w-72 lg:w-96 h-8 dropdown-svg-white"
               />
-              <label for="blood_type_label" class="text-sm text-label"
+              <label for="blood_type_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
                 >Blood Type</label
               >
             </FloatLabel>
@@ -276,7 +276,7 @@ const profileImage = computed(() => {
       <div class="flex justify-end mr-20 mt-8">
         <Button
           label="Update"
-          class="px-4 py-2 rounded-md bg-primarylight text-white hover:bg-opacity-90"
+          class="px-4 py-2 rounded-md bg-primarylight dark:bg-accent2 text-white hover:bg-opacity-90"
           @click="updateProfile"
         />
       </div>

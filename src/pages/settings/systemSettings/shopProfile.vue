@@ -60,12 +60,12 @@ const updateShopProfile = () => {
  */
 const handleImageUploadAction = () => {
   // Create a file input element
-  const fileInput = document.createElement('input');
-  fileInput.type = 'file';
-  fileInput.accept = 'image/*';
-  
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.accept = "image/*";
+
   // Add change event listener
-  fileInput.addEventListener('change', (event) => {
+  fileInput.addEventListener("change", (event) => {
     handleImageUpload(event);
   });
 
@@ -95,35 +95,39 @@ const toggleEditMode = () => {
 };
 </script>
 <template>
-  <div class="flex flex-col h-screen bg-accentwhite text-sm drop-shadow-md rounded-lg">
-    <SystemNavBar class="text-base"/>
+  <div
+    class="flex flex-col h-screen bg-accentwhite dark:bg-primarydark dark:text-accentwhite text-sm drop-shadow-md rounded-lg"
+  >
+    <SystemNavBar class="text-base" />
     <div class="px-6 py-6 mt-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <!--Left Side-->
         <div class="flex flex-col justify-center items-center gap-6">
           <p class="">Profile Photo</p>
           <div class="relative w-32 h-32 sm:w-48 sm:h-48">
-            <div v-if="edit_mode"
-              class="w-full h-full bg-gray-200 flex flex-col items-center justify-center rounded-lg z-10"
+            <div
+              v-if="edit_mode"
+              class="w-full h-full bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center rounded-lg z-10"
             >
-              <i
-                class="pi pi-images text-gray-400 text-3xl mb-2"
-              ></i>
-              <p class="text-gray-500 text-xs">
+              <i class="pi pi-images text-gray-400 text-3xl mb-2"></i>
+              <p class="text-gray-500 dark:text-accentwhite text-xs">
                 Click to upload or drag and drop
               </p>
-              <p class="text-gray-400 text-xs">
-                SVG, PNG, JPG, or GIF 
+              <p class="text-gray-400 dark:text-accentwhite text-xs">
+                SVG, PNG, JPG, or GIF
               </p>
-              <p class="text-gray-400 text-xs">Max: 800x400px</p>
+              <p class="text-gray-400 dark:text-accentwhite text-xs">
+                Max: 800x400px
+              </p>
             </div>
             <img
               :src="shop_model_data.logo_path"
-              class="absolute inset-0 w-full h-full object-cover rounded-lg z-0" :class="{'opacity-60': edit_mode, 'opacity-100': !edit_mode}"
+              class="absolute inset-0 w-full h-full object-cover rounded-lg z-0"
+              :class="{ 'opacity-60': edit_mode, 'opacity-100': !edit_mode }"
             />
             <input
               type="file"
-              class="absolute inset-0 w-full h-full opacity-0 cursor-pointer rounded-lg" 
+              class="absolute inset-0 w-full h-full opacity-0 cursor-pointer rounded-lg"
               accept="image/*"
               @change="handleImageUpload"
               ref="fileInput"
@@ -131,13 +135,15 @@ const toggleEditMode = () => {
             />
           </div>
           <div class="flex gap-4">
-            <button v-if="edit_mode"
+            <button
+              v-if="edit_mode"
               @click="handleImageUploadAction"
-              class="bg-primarylight text-white px-4 py-2 rounded-md"
+              class="bg-primarylight dark:bg-accent2 text-white px-4 py-2 rounded-md"
             >
               Upload
             </button>
-            <button v-if="edit_mode"
+            <button
+              v-if="edit_mode"
               @click="handleImageRemoveAction"
               class="bg-accentblack text-white px-4 py-2 rounded-md"
             >
@@ -157,7 +163,7 @@ const toggleEditMode = () => {
                   v-model="shop_model_data.name"
                   class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
-                <label for="name" class="text-sm text-label">Name</label>
+                <label for="name" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Name</label>
               </div>
             </FloatLabel>
           </div>
@@ -170,7 +176,7 @@ const toggleEditMode = () => {
                   v-model="shop_model_data.email"
                   class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
-                <label for="email" class="text-sm text-label">Email</label>
+                <label for="email" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Email</label>
               </div>
             </FloatLabel>
           </div>
@@ -183,7 +189,7 @@ const toggleEditMode = () => {
                   v-model="shop_model_data.phone"
                   class="h-6 rounded-l-md rounded-r-none pl-2 w-full sm:w-64 md:w-72 lg:w-96"
                 />
-                <label for="phone" class="text-sm text-label">Phone</label>
+                <label for="phone" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Phone</label>
               </div>
             </FloatLabel>
           </div>
@@ -198,27 +204,35 @@ const toggleEditMode = () => {
                   rows="3"
                   autoResize
                 />
-                <label for="address" class="text-sm text-label">Address</label>
+                <label for="address" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Address</label>
               </div>
             </FloatLabel>
           </div>
         </div>
         <div v-else class="flex flex-col items-center">
           <div class="mt-4 w-full sm:w-64 md:w-72 lg:w-96">
-            <p class="text-sm text-label">Name</p>
-            <p class="h-8 pl-2 text-primarylight">{{ shop_model_data.name }}</p>
+            <p class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Name</p>
+            <p class="h-8 pl-2 text-primarylight dark:text-accent2">
+              {{ shop_model_data.name }}
+            </p>
           </div>
           <div class="mt-4 w-full sm:w-64 md:w-72 lg:w-96">
-            <p class="text-sm text-label">Email</p>
-            <p class="h-8 pl-2 text-primarylight">{{ shop_model_data.email }}</p>
+            <p class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Email</p>
+            <p class="h-8 pl-2 text-primarylight dark:text-accent2">
+              {{ shop_model_data.email }}
+            </p>
           </div>
           <div class="mt-4 w-full sm:w-64 md:w-72 lg:w-96">
-            <p class="text-sm text-label">Phone</p>
-            <p class="h-8 pl-2 text-primarylight">{{ shop_model_data.phone }}</p>
+            <p class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Phone</p>
+            <p class="h-8 pl-2 text-primarylight dark:text-accent2">
+              {{ shop_model_data.phone }}
+            </p>
           </div>
           <div class="mt-4 w-full sm:w-64 md:w-72 lg:w-96">
-            <p class="text-sm text-label">Address</p>
-            <p class="h-24 pl-2 text-primarylight">{{ shop_model_data.address }}</p>
+            <p class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Address</p>
+            <p class="h-24 pl-2 text-primarylight dark:text-accent2">
+              {{ shop_model_data.address }}
+            </p>
           </div>
         </div>
       </div>
@@ -226,7 +240,7 @@ const toggleEditMode = () => {
       <div class="flex justify-end mr-20 mt-8">
         <Button
           :label="edit_mode ? 'Update' : 'Edit'"
-          class="px-4 py-2 rounded-md bg-primarylight text-white hover:bg-opacity-90"
+          class="px-4 py-2 rounded-md bg-primarylight dark:bg-accent2 text-white hover:bg-opacity-90"
           @click="toggleEditMode"
         />
       </div>

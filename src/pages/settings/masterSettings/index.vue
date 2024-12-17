@@ -224,7 +224,7 @@ const closePopover = (id: number) => {
             breakpoint="sm"
             :rowClass="
               (data) => ({
-                'bg-primarylight bg-opacity-30': data.default === 1,
+                'bg-primarylight bg-opacity-30 dark:bg-accent2 dark:bg-opacity-30': data.default === 1,
               })
             "
           >
