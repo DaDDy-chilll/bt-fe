@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import LOGO from "~/assets/icons/logo.svg?url";
-import type { LoginPayload, ErrorPayload } from "../types/auth";
+import type { ForgotPasswordPayload, ErrorPayload } from "../types/auth";
 import { errorMessage } from "@/consts/errorMessage";
 import { useAuthStore } from "../stores/auth";
 const store = useAuthStore();
@@ -14,15 +14,19 @@ const store = useAuthStore();
 definePageMeta({ layout: "authentication" });
 useHead({ title: "Forgot Password" });
 
+
+const loading = ref<boolean>(false)
+  const showAlert = ref<boolean>(false);
+    const alertMessage = ref<string>("");
+
 /**
  *@description Value of email and password
  *@author PSK
  *@created 2024-11-22
  *@updated ****-**-**
  */
-const loginPayload: LoginPayload = reactive<LoginPayload>({
+const loginPayload: ForgotPasswordPayload = reactive<ForgotPasswordPayload>({
   email: "",
-  password: "",
 });
 
 
@@ -60,14 +64,23 @@ const checkValidation = () => {
  *@updated 2024-11-24
  */
 const forgotPassword = async () => {
+  loading.value = true;
   checkValidation();
   if (Object.values(error).every((value) => value === null)) {
     try {
-      await store.forgot(loginPayload);
+      const res = await store.forgot(loginPayload);
+      if((res?.value as any)?.status === 200){
+        store.setEmail(loginPayload.email)
+        navigateTo("/otp")
+      }
     } catch (error) {
-      console.error(error);
+      if(error){
+        alertMessage.value = error as string
+        showAlert.value = true
+      }
     }
   }
+  loading.value = false;
 };
 </script>
 
@@ -102,13 +115,14 @@ const forgotPassword = async () => {
         </Message>
       </div>
 
-      <Button type="submit" severity="secondary" label="Confirm" @click="forgotPassword"
+      <Button type="button" :loading="loading" severity="secondary" label="Confirm" @click="forgotPassword"
         class="w-full bg-primarylight text-white p-2 hover:bg-primarylight/70 cursor-pointer" />
 
-      <NuxtLink to="/login" class="text-primarylight text-sm flex items-center gap-1 hover:text-primarylight/70">
+      <NuxtLink to="/" class="text-primarylight text-sm flex items-center gap-1 hover:text-primarylight/70">
         <i class="pi pi-angle-left"></i>
         <span>Back to Login</span>
       </NuxtLink>
     </div>
   </div>
+  <AlertBox :message="alertMessage" :visible="showAlert" @close="showAlert = false" />
 </template>

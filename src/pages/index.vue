@@ -7,7 +7,7 @@ import type { LoginPayload, ErrorPayload } from "../types/auth";
 import { errorMessage } from "@/consts/errorMessage";
 import { useAuthStore } from "../stores/auth";
 const store = useAuthStore();
-
+const { isLoggedIn,logined } = useAuth();
 /**
  *@description Page Layout and Title
  *@author PSK
@@ -17,13 +17,7 @@ const store = useAuthStore();
 definePageMeta({ layout: "authentication" });
 useHead({ title: "Login" });
 
-/**
- *@description Remember me
- *@author PSK
- *@created 2024-11-22
- *@updated 2024-11-24
- */
-const remember_me = ref<boolean>(false);
+
 /**
  *@description Value of email and password
  *@author PSK
@@ -47,6 +41,18 @@ const error: ErrorPayload = reactive<ErrorPayload>({
 });
 
 /**
+ *@description Remember me & Loading
+ *@author PSK
+ *@created 2024-11-22
+ *@updated 2024-11-24
+ */
+ const remember_me = ref<boolean>(false);
+ const loading = ref<boolean>(false);
+ const showAlert = ref<boolean>(false);
+ const alertMessage = ref<string>("");
+
+
+/**
  *@description Check validation
  *@author PSK
  *@created 2024-11-24
@@ -65,8 +71,6 @@ const checkValidation = () => {
 
   //Check for Password
   if (!loginPayload.password) error.password = errorMessage.PASSWORD_REQUIRED;
-  else if (!passwordPattern.test(loginPayload.password))
-    error.password = errorMessage.PASSWORD_INVALID;
   else error.password = null;
 };
 
@@ -77,14 +81,24 @@ const checkValidation = () => {
  *@updated 2024-11-24
  */
 const login = async () => {
+  loading.value = true;
   checkValidation();
   if (Object.values(error).every((value) => value === null)) {
     try {
-      await store.login(loginPayload);
+      const res = await store.login(loginPayload);
+      console.log("res from login",res)
+      if(res?.value){
+        logined((res?.value as any)?.data.token)
+        navigateTo("/dashboard")
+      }                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     } catch (error) {
-      console.error(error);
+      if(error){
+        alertMessage.value = error as string
+        showAlert.value = true
+      }
     }
-  }
+  } 
+  loading.value = false;
 };
 
 /**
@@ -106,6 +120,7 @@ const googleLogin = () => {
 const facebookLogin = () => {
   console.log("facebook login");
 };
+
 </script>
 
 <template>
@@ -225,10 +240,11 @@ const facebookLogin = () => {
         >
       </div>
       <Button
-        type="submit"
+        type="button"
         severity="secondary"
         label="Login"
         @click="login"
+        :loading="loading"
         class="w-full bg-primarylight text-white p-2 hover:bg-primarylight/70 cursor-pointer"
       />
     </div>
@@ -272,6 +288,7 @@ const facebookLogin = () => {
       </button>
     </div>
   </div>
+  <AlertBox :message="alertMessage" :visible="showAlert" @close="showAlert = false" />
 </template>
 <style scoped>
 :deep(.p-checkbox) {

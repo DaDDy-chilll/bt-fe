@@ -1,8 +1,8 @@
 <script setup lang="ts">
 defineProps({
   close: {
-    type: Function,
-    required: true,
+    type: Function as PropType<(event: MouseEvent) => void>,
+    default:()=>{}
   },
   product: {
     type: Array,
@@ -13,7 +13,7 @@ defineProps({
     required: true,
   },
   transfer: {
-    type: Function,
+    type: Function as PropType<(event: MouseEvent) => void>,
     required: true,
   },
 });

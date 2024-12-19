@@ -23,6 +23,9 @@ const nickNameOptions = [
   { id: 4, name: "Blue" },
 ];
 
+const showAlert = ref<boolean>(false);
+const alertMessage = ref<string>("");
+
 /**
  *@description Page Layout and Title
  *@author PSK
@@ -31,6 +34,9 @@ const nickNameOptions = [
  */
 definePageMeta({ layout: "authentication" });
 useHead({ title: "Sign Up" });
+
+
+const loading = ref<boolean>(false)
 
 /**
  *@description Value of email,password,name,confirmPassword,favoriteColor,nickname
@@ -69,14 +75,22 @@ const error: ErrorPayload = reactive<ErrorPayload>({
  *@updated 2024-11-24
  */
 const register = async () => {
+  loading.value = true
   checkValidation();
   if (Object.values(error).every((value) => value === null)) {
     try {
-      await store.register(registerPayload);
+      const res = await store.register({email:registerPayload.email,password:registerPayload.password});
+      if(res?.value){
+        navigateTo("/")
+      }
     } catch (error) {
-      console.error(error);
+      if(error){
+        alertMessage.value = error as string
+        showAlert.value = true
+      }
     }
   }
+  loading.value = false
 };
 
 
@@ -180,7 +194,7 @@ const facebookLogin = () => {
             id="on_label"
             v-model="registerPayload.name"
             autocomplete="off"
-            class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
+            class="bg-transparent p-2 text-accentblack dark:text-accentwhite w-full"
           />
           <label
             for="on_label"
@@ -204,11 +218,11 @@ const facebookLogin = () => {
       </div>
 
       <!-- Email -->
-      <div>
+      <div class="w-full">
         <FloatLabel
           variant="on"
           :class="[
-            'text-sm   bg-transparent border-b',
+            'text-sm   bg-transparent border-b w-full',
             error?.email
               ? 'border-red-500'
               : 'border-accentblack dark:border-accentwhite',
@@ -220,7 +234,7 @@ const facebookLogin = () => {
             id="on_label"
             v-model="registerPayload.email"
             autocomplete="off"
-            class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
+            class="bg-transparent p-2 text-accentblack dark:text-accentwhite w-full"
           />
           <label
             for="on_label"
@@ -260,7 +274,7 @@ const facebookLogin = () => {
             id="on_label"
             v-model="registerPayload.password"
             autocomplete="off"
-            class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
+            class="bg-transparent p-2 text-accentblack dark:text-accentwhite w-full"
           />
           <label
             for="on_label"
@@ -300,7 +314,7 @@ const facebookLogin = () => {
             id="on_label"
             v-model="registerPayload.confirmPassword"
             autocomplete="off"
-            class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
+            class="bg-transparent p-2 text-accentblack dark:text-accentwhite w-full"
           />
           <label
             for="on_label"
@@ -420,7 +434,8 @@ const facebookLogin = () => {
         </p>
       </div>
       <Button
-        type="submit"
+        type="button"
+        :loading="loading"
         severity="secondary"
         label="Sign Up"
         @click="register"
@@ -433,7 +448,7 @@ const facebookLogin = () => {
       <p class="text-sm text-center text-accentblack dark:text-accentwhite">
         Already have an account?
         <NuxtLink
-          to="/login"
+          to="/"
           class="text-primarylight cursor-pointer hover:text-primarylight/50"
           >Login</NuxtLink
         >
@@ -467,4 +482,5 @@ const facebookLogin = () => {
       </button>
     </div>
   </div>
+  <AlertBox :message="alertMessage" :visible="showAlert" @close="showAlert = false" />
 </template>

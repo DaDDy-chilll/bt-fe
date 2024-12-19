@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import LOGO from "~/assets/icons/logo.svg?url";
-
-const otp = ref<string>("");
+import type { OtpPayload } from "../types/auth";
+const store = useAuthStore();
+const verifyOTP = reactive<OtpPayload>({
+  email: store.email,
+  otp: ""
+})
 const error = ref<string>("");
+  const loading = ref<boolean>(false);
+ const showAlert = ref<boolean>(false);
+ const alertMessage = ref<string>("");
 
+ 
+console.log(store.email)
 /**
  *@description Page Layout and Title
  *@author PSK
@@ -21,11 +30,26 @@ useHead({ title: "OTP" })
  *@created 2024-12-09
  *@updated 2024-11-24
  */
-const login = () => {
+const login = async () => {
+  loading.value = true
   error.value = "";
-  if (otp.value !== "" && otp.value.length === 4) {
-    console.log(otp.value);
+  console.log(verifyOTP.otp);
+  if (verifyOTP.otp !== "" && verifyOTP.otp.length === 4) {
+    try{
+      const res = await store.otp(verifyOTP)
+      if(res?.value){
+        console.log(res.value,res)
+        store.setToken((res?.value as any)?.data.resetPasswordToken)
+        navigateTo("/reset-password")
+      } 
+    }catch(error){
+      if(error){
+        alertMessage.value = error as string
+        showAlert.value = true
+      }
+    }
   } else error.value = "Please enter 4 digits";
+  loading.value = false
 };
 
 </script>
@@ -44,7 +68,7 @@ const login = () => {
 
     <div class="flex flex-col justify-center items-center gap-4 mb-5">
       <!-- OTP Input -->
-      <InputOtp v-model="otp" integerOnly>
+      <InputOtp v-model="verifyOTP.otp" integerOnly>
         <template #default="{ attrs, events }">
           <input type="text" v-bind="attrs" v-on="events" :class="[
             'w-[40px] text-[36px] border-0 appearance-none text-center transition-all duration-200 bg-transparent border-b-2  text-accentblack dark:text-accentwhite focus:outline-none  focus:border-b-primarylight',
@@ -58,9 +82,10 @@ const login = () => {
         error
       }}</Message>
     </div>
-    <Button type="submit" severity="secondary" label="Confirm" @click="login"
+    <Button type="button" :loading="loading" severity="secondary" label="Confirm" @click="login"
       class="w-full bg-primarylight text-white p-2 hover:bg-primarylight/70 cursor-pointer" />
   </div>
+  <AlertBox :message="alertMessage" :visible="showAlert" @close="showAlert = false" />
 </template>
 
 <!-- <style scoped>

@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import LOGO from "~/assets/icons/logo.svg?url";
-import type { RegisterPayload, ErrorPayload } from "../types/auth";
+import type { ResetPasswordPayload, ErrorPayload } from "../types/auth";
 import { errorMessage } from "@/consts/errorMessage";
+const store = useAuthStore();
 definePageMeta({
   layout: "authentication",
 });
 
-const otp = ref(null);
-
+const loading = ref<boolean>(false);
+const showAlert = ref<boolean>(false);
+const alertMessage = ref<string>("");
 
 
 /**
@@ -16,13 +18,9 @@ const otp = ref(null);
  *@created 2024-11-22
  *@updated ****-**-**
  */
-const registerPayload: RegisterPayload = reactive<RegisterPayload>({
-  email: "",
+const ResetPayload: ResetPasswordPayload = reactive<ResetPasswordPayload>({
   password: "",
-  name: "",
-  confirmPassword: "",
-  favoriteColor: "",
-  nickname: "",
+  confirm_password: "",
 });
 
 /**
@@ -43,14 +41,22 @@ const error: ErrorPayload = reactive<ErrorPayload>({
  *@updated 2024-11-24
  */
 const register = async () => {
+  loading.value = true;
   checkValidation();
   if (Object.values(error).every((value) => value === null)) {
     try {
-      // await store.register(registerPayload);
+      const res = await store.resetPassword(ResetPayload, store.token);
+      if(res?.value){
+        navigateTo("/")
+      }                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     } catch (error) {
-      console.error(error);
+      if(error){
+        alertMessage.value = error as string
+        showAlert.value = true
+      }
     }
   }
+  loading.value = false;
 };
 
 
@@ -60,16 +66,16 @@ const checkValidation = () => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   //check Password
-  if (!registerPayload.password)
+  if (!ResetPayload.password)
     error.password = errorMessage.PASSWORD_REQUIRED;
-  else if (!passwordPattern.test(registerPayload.password))
+  else if (!passwordPattern.test(ResetPayload.password))
     error.password = errorMessage.PASSWORD_INVALID;
   else error.password = null;
 
   //check Confirm Password
-  if (!registerPayload.confirmPassword)
+  if (!ResetPayload.confirm_password)
     error.confirmPassword = errorMessage.CONFIRM_PASSWORD_REQUIRED;
-  else if (registerPayload.password !== registerPayload.confirmPassword)
+  else if (ResetPayload.password !== ResetPayload.confirm_password)
     error.confirmPassword = errorMessage.PASSWORD_NOT_MATCH;
   else error.confirmPassword = null;
 };
@@ -103,7 +109,7 @@ const checkValidation = () => {
             name="email"
             type="text"
             id="on_label"
-            v-model="registerPayload.password"
+            v-model="ResetPayload.password"
             autocomplete="off"
             class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
           />
@@ -143,7 +149,7 @@ const checkValidation = () => {
             name="email"
             type="text"
             id="on_label"
-            v-model="registerPayload.confirmPassword"
+            v-model="ResetPayload.confirm_password"
             autocomplete="off"
             class="bg-transparent p-2 text-accentblack dark:text-accentwhite"
           />
@@ -169,7 +175,8 @@ const checkValidation = () => {
       </div>
       <!-- <Message v-if="$form.passcode?.invalid" severity="error" size="small" variant="simple">{{ $form.passcode.error?.message }}</Message> -->
       <Button
-        type="submit"
+        type="button"
+        :loading="loading"
         severity="secondary"
         label="Confirm"
         @click="register"
@@ -177,4 +184,5 @@ const checkValidation = () => {
       />
     </div>
   </div>
+  <AlertBox :message="alertMessage" :visible="showAlert" @close="showAlert = false" />
 </template>
