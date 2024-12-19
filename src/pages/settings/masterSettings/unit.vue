@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MasterNavBar from "@/components/settings/masterSettings/master-nav-bar.vue";
-import { ref } from 'vue';
-import units from './units.json';
+import { ref, onMounted } from 'vue';
+//import units from './units.json';
 import type { UnitType } from '@/types/unitType';
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
@@ -9,13 +9,20 @@ import Button from "primevue/button";
 import Popover from "primevue/popover";
 import AddIcon from "~/assets/icons/add_icon.vue";
 import UnitTypeModal from "~/components/settings/masterSettings/unitTypeModal.vue";
+import { useMasterSettingsStore } from "@/stores/masterSettings";
 import { reactive } from "vue";
+
 //state
 const displayModal = ref(false);
 const modalType = ref("add");
 const modalId = ref(0);
+const blockScreen = ref(false);
+
 // Ref to hold multiple popovers dynamically
 const popovers = reactive<Record<number, any>>({});
+
+//stores
+const masterSettingsStore = useMasterSettingsStore();
 
 //temp unit category data for testing
 const unit_categories = ref([
@@ -23,8 +30,34 @@ const unit_categories = ref([
   { id: 2, name: "Mass" },
 ]);
 
+const unit_types = ref([]);
+
 //fetching data
-const unit_types = ref(units);
+/**
+ * @description Load data
+ * @returns void
+ * @author Phway
+ * @created 2024-12-19
+ * @updated 2024-12-19
+ */
+const loadData = async () => {
+  try {
+    blockScreen.value = true;
+    const data = await masterSettingsStore.getUnits();
+    unit_types.value = Array.isArray(data?.value?.data)
+      ? data.value.data
+      : [];
+  } catch (error) {
+    console.error("Error loading data:", error);
+  } finally {
+    blockScreen.value = false;
+  }
+};
+
+//to fetch data when page is mounted
+onMounted(() => {
+  loadData();
+});
 
 //model variables
 const formData = ref<UnitType>({
@@ -150,7 +183,7 @@ const closePopover = (id: number) => {
              <!--Unit Type-->
              <Column field="unit_type_id" header="Unit Type" class="w-[20%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
-                {{ unit_categories.find(cat => cat.id === slotProps.data.type_id)?.name }}
+                {{ unit_categories.find(cat => cat.id === slotProps.data.type)?.name }}
               </template>
             </Column>
             <!--Symbol-->
@@ -223,6 +256,14 @@ const closePopover = (id: number) => {
       </div>
     </div>
   </div>
+  <BlockUI :blocked="blockScreen" fullScreen>
+    <div
+      class="fixed inset-0 flex justify-center items-center"
+      v-show="blockScreen"
+    >
+      <ProgressSpinner />
+    </div>
+  </BlockUI>
 </template>
 
 

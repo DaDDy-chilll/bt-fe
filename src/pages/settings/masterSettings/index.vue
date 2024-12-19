@@ -1,43 +1,63 @@
 <script setup lang="ts">
 import MasterNavBar from "@/components/settings/masterSettings/master-nav-bar.vue";
 import AddIcon from "@/assets/icons/add_icon.vue";
-import todayGoldData from "./todayGold.json";
-import goldTypes from "./goldTypes.json";
-import goldUnits from "./goldUnits.json";
+// import todayGoldData from "./todayGold.json";
+// import goldTypes from "./goldTypes.json";
+// import goldUnits from "./goldUnits.json";
 import type { TodayGold } from "@/types/todayGold";
-import type { GoldTypes } from "@/types/goldTypes";
+// import type { GoldTypes } from "@/types/goldTypes";
 import type { GoldUnits } from "@/types/goldUnits";
-import { computed, ref } from "vue";
+import { ref, onMounted } from "vue";
 import TodayGoldModal from "@/components/settings/masterSettings/todayGoldModal.vue";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Button from "primevue/button";
 import Popover from "primevue/popover";
 import { reactive } from "vue";
+import { useMasterSettingsStore } from "@/stores/masterSettings";
 
 //variables
 const op = ref<any>(null);
 const displayModal = ref(false);
 const modalType = ref("");
 const modalId = ref(0);
+const blockScreen = ref(false);
+
+//stores
+const masterSettingsStore = useMasterSettingsStore();
+
+//data variables
+const today_gold_data = ref([]); // already fetched data
+const today_gold_model = ref<TodayGold[]>([]); // to do   
+
 
 //fetching data
-const today_gold_data = todayGoldData;
-const gold_types = goldTypes;
-const gold_units = goldUnits;
+const loadData = async () => {
+  try {
+    blockScreen.value = true;
+    const data = await masterSettingsStore.getTodayGoldPrice();
+    today_gold_data.value = Array.isArray(data?.value?.data) ? data.value.data : [];
+    today_gold_model.value = today_gold_data.value;
+    console.log(today_gold_model.value, "today_gold_model");
+  } catch (error) {
+    console.error("Error loading data:", error);
+  } finally {
+    blockScreen.value = false;
+  }
+};
 
-//model variables
-const today_gold_model = ref<TodayGold[]>(today_gold_data.todayGoldData);
-const gold_types_model = ref<any[]>(gold_types);
-const gold_units_model = ref<GoldUnits[]>(gold_units.goldUnits);
+//to fetch data when page is mounted
+onMounted(() => {
+  loadData();
+});
 
 //form data for edit modal
 const formData = ref<TodayGold>({
   id: 0,
-  gold_type_id: 0,
+  gold_types_id: 0,
   gold_weight: "",
   ygea_price: 0,
-  pyin_pa_price: 0,
+  pyinpa_price: 0,
   other_price: 0,
   default: 0,
   unit_id: 0,
@@ -67,10 +87,10 @@ const handleAddTodayGold = (newGoldItem: TodayGold) => {
   modalType.value = "";
   formData.value = {
     id: 0,
-    gold_type_id: 0,
+    gold_types_id: 0,
     gold_weight: "",
     ygea_price: 0,
-    pyin_pa_price: 0,
+    pyinpa_price: 0,
     other_price: 0,
     default: 0,
     unit_id: 0,
@@ -240,12 +260,7 @@ const closePopover = (id: number) => {
             <Column field="gold_type_id" header="Gold Type" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
-                  {{
-                    gold_types_model.find(
-                      (type: GoldTypes) =>
-                        type.id === slotProps.data.gold_type_id
-                    )?.name || slotProps.data.gold_type_id
-                  }}
+                  {{slotProps.data.m_gold_types.name}}
                 </div>
               </template>
             </Column>
@@ -253,7 +268,7 @@ const closePopover = (id: number) => {
             <Column field="gold_weight" header="Weight" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <div>
-                  {{ slotProps.data.gold_weight }}
+                  {{ slotProps.data.gold_weight }}{{ slotProps.data.m_units?.symbol }}
                 </div>
               </template>
             </Column>
@@ -267,13 +282,13 @@ const closePopover = (id: number) => {
             </Column>
             <!--Pyin Pa Price-->
             <Column
-              field="pyin_pa_price"
+              field="pyinpa_price"
               header="Pyin Pa Price"
               class="w-[15%] dark:bg-primarydark dark:text-accentwhite"
             >
               <template #body="slotProps">
                 <div>
-                  {{ slotProps.data.pyin_pa_price }}
+                  {{ slotProps.data.pyinpa_price }}
                 </div>
               </template>
             </Column>
@@ -357,6 +372,14 @@ const closePopover = (id: number) => {
       />
     </div>
   </div>
+  <BlockUI :blocked="blockScreen" fullScreen>
+    <div
+      class="fixed inset-0 flex justify-center items-center"
+      v-show="blockScreen"
+    >
+      <ProgressSpinner />
+    </div>
+  </BlockUI>
 </template>
 
 <style scoped>
