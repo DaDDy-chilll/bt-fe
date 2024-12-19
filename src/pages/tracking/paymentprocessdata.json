@@ -1,0 +1,237 @@
+
+[
+    {
+      "customerName": "customer name",
+      "totalOrder": 1,
+      "paymentMethod": "Kpay",
+      "paymentDate": "2024/10/12",
+      "productPrice": 300000000,
+      "shippingFees": 30000,
+      "taxes": 90000,
+      "paymentAmount": 300000000,
+      "paymentStatus": "Fully Paid",
+      "products": [
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Ring",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        }
+      ]
+    },
+    {
+      "customerName": "customer name",
+      "totalOrder": 2,
+      "paymentMethod": "Cash",
+      "paymentDate": "2024/10/12",
+      "productPrice": 300000000,
+      "shippingFees": 30000,
+      "taxes": 90000,
+      "paymentAmount": 300000000,
+      "paymentStatus": "Partial Paid",
+      "products": [
+        {   
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Necklace",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        },
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Ring",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        }
+      ]
+    },
+    {
+      "customerName": "customer name",
+      "totalOrder": 3,
+      "paymentMethod": "KBZ",
+      "paymentDate": "2024/10/12",
+      "productPrice": 300000000,
+      "shippingFees": 30000,
+      "taxes": 90000,
+      "paymentAmount": 300000000,
+      "paymentStatus": "Fully Paid",
+      "products": [
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Ring",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        },
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Necklace",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        },
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Bracelet",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        }
+      ]
+    },
+    {
+      "customerName": "customer name",
+      "totalOrder": 1,
+      "paymentMethod": "Yoma",
+      "paymentDate": "2024/10/12",
+      "productPrice": 300000000,
+      "shippingFees": 30000,
+      "taxes": 90000,
+      "paymentAmount": 300000000,
+      "paymentStatus": "Partial Paid",
+      "products": [
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Ring",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        }
+      ]
+    },
+    {
+      "customerName": "customer name",
+      "totalOrder": 2,
+      "paymentMethod": "Cash",
+      "paymentDate": "2024/10/12",
+      "productPrice": 300000000,
+      "shippingFees": 30000,
+      "taxes": 90000,
+      "paymentAmount": 300000000,
+      "paymentStatus": "Fully Paid",
+      "products": [
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Necklace",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        },
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Ring",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        }
+      ]
+    },
+    {
+      "customerName": "customer name",
+      "totalOrder": 3,
+      "paymentMethod": "Kpay",
+      "paymentDate": "2024/10/12",
+      "productPrice": 300000000,
+      "shippingFees": 30000,
+      "taxes": 90000,
+      "paymentAmount": 300000000,
+      "paymentStatus": "Partial Paid",
+      "products": [
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Ring",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        },
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Necklace",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        },
+        {
+          "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+          "name": "Product Name",
+          "id": "1234567890",
+          "type": "Bracelet",
+          "productCategory": "Gem + Gold",
+          "gems": "\ud83d\udc8e",
+          "goldType": "24K",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000
+        }
+      ]
+    }
+]

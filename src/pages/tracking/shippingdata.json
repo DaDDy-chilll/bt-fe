@@ -1,0 +1,248 @@
+[
+    {
+      "customerName": "customer name 1",
+      "totalOrder": 3,
+      "shippingMethod": "international",
+      "country": "myanmar",
+      "shippingDate": "2024/10/12",
+      "estimatedDuration": "about 3, 4 days",
+      "shippingFees": 30000,
+      "receiverName": "receiver name",
+      "shippingCompany": "amazon",
+      "products": [
+        {
+          "name": "ring",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        },
+        {
+          "name": "necklace",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        },
+        {
+          "name": "ring",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        }
+      ]
+    },
+    {
+      "customerName": "customer name 2",
+      "totalOrder": 3,
+      "shippingMethod": "pickup",
+      "country": "singapore",
+      "shippingDate": "2024/10/12",
+      "estimatedDuration": "about 3, 4 days",
+      "shippingFees": 30000,
+      "receiverName": "receiver name",
+      "shippingCompany": "amazon",
+      "products": [
+        {
+          "name": "ring",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        },
+        {
+          "name": "necklace",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        },
+        {
+          "name": "ring",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        }
+      ]
+    },
+    {
+      "customerName": "customer name 3",
+      "totalOrder": 3,
+      "shippingMethod": "international",
+      "country": "myanmar",
+      "shippingDate": "2024/10/12",
+      "estimatedDuration": "about 3, 4 days",
+      "shippingFees": 30000,
+      "receiverName": "receiver name",
+      "shippingCompany": "amazon",
+      "products": [
+        {
+          "name": "ring",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        },
+        {
+          "name": "necklace",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        },
+        {
+          "name": "ring",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        }
+      ]
+    },
+    {
+      "customerName": "customer name 4",
+      "totalOrder": 2,
+      "shippingMethod": "domestic",
+      "country": "united states",
+      "shippingDate": "2024/10/15",
+      "estimatedDuration": "about 2, 3 days",
+      "shippingFees": 20000,
+      "receiverName": "receiver name",
+      "shippingCompany": "fedex",
+      "products": [
+        {
+          "name": "earrings",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        },
+        {
+          "name": "bracelet",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        }
+      ]
+    },
+    {
+      "customerName": "customer name 5",
+      "totalOrder": 1,
+      "shippingMethod": "international",
+      "country": "france",
+      "shippingDate": "2024/10/18",
+      "estimatedDuration": "about 4, 5 days",
+      "shippingFees": 40000,
+      "receiverName": "receiver name",
+      "shippingCompany": "dhl",
+      "products": [
+        {
+          "name": "pendant",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        }
+      ]
+    },
+    {
+      "customerName": "customer name 6",
+      "totalOrder": 2,
+      "shippingMethod": "domestic",
+      "country": "canada",
+      "shippingDate": "2024/10/20",
+      "estimatedDuration": "about 3, 4 days",
+      "shippingFees": 30000,
+      "receiverName": "receiver name",
+      "shippingCompany": "ups",
+      "products": [
+        {
+          "name": "brooch",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        },
+        {
+          "name": "cufflinks",
+          "id": "#122412646",
+          "type": "gem + gold",
+          "gems": "diamond",
+          "goldType": "24k",
+          "goldPrice": 150000000,
+          "ayawt": 200000,
+          "latkha": 200000,
+          "totalPrice": 120000000,
+          "image": "https://images.pexels.com/photos/373280/pexels-photo-373280.jpeg"
+        }
+      ]
+    }
+  ]

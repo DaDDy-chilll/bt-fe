@@ -1,0 +1,613 @@
+[
+  {
+    "id": "#20241001-1992",
+    "customer": "Customer Name",
+    "phone": "+959796501228",
+    "quantity": 3,
+    "staff": "Staff Name 1",
+    "shipping": "Amazon Delivery",
+    "date": "2024/10/12",
+    "price": "$300,000,000",
+    "status": "Pending",
+    "products": [
+      {
+        "id": "#20241001-2007",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 1",
+        "type": "Ring",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔴",
+        "goldType": "24K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      },
+      {
+        "id": "#20241001-2008",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 2",
+        "type": "Necklace",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔴",
+        "goldType": "24K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      },
+      {
+        "id": "#20241001-2009",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 3",
+        "type": "Ring",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔴",
+        "goldType": "24K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-1993",
+    "customer": "John Doe",
+    "phone": "+1234567890",
+    "quantity": 2,
+    "staff": "Staff Name 2",
+    "shipping": "FedEx",
+    "date": "2024/11/15",
+    "price": "$200,000,000",
+    "status": "Shipped",
+    "products": [
+      {
+        "id": "#20241001-2010",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 4",
+        "type": "Bracelet",
+        "category": "Gold Only",
+        "gems": "🔴",
+        "goldType": "18K",
+        "goldPrice": "120,000,000",
+        "ayawt": "150,000",
+        "latkha": "150,000",
+        "totalPrice": "90,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-1994",
+    "customer": "Jane Doe",
+    "phone": "+9876543210",
+    "quantity": 1,
+    "staff": "Staff Name 3",
+    "shipping": "UPS",
+    "date": "2024/12/20",
+    "price": "$100,000,000",
+    "status": "Delivered",
+    "products": [
+      {
+        "id": "#20241001-2011",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 5",
+        "type": "Earrings",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔵",
+        "goldType": "22K",
+        "goldPrice": "100,000,000",
+        "ayawt": "150,000",
+        "latkha": "150,000",
+        "totalPrice": "80,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-1995",
+    "customer": "Michael Smith",
+    "phone": "+5551234567",
+    "quantity": 4,
+    "staff": "Staff Name 4",
+    "shipping": "DHL",
+    "date": "2025/01/05",
+    "price": "$400,000,000",
+    "status": "Pending",
+    "products": [
+      {
+        "id": "#20241001-2012",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 6",
+        "type": "Pendant",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔷",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      },
+      {
+        "id": "#20241001-2013",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 7",
+        "type": "Ring",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔷",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      },
+      {
+        "id": "#20241001-2014",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 8",
+        "type": "Necklace",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔷",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      },
+      {
+        "id": "#20241001-2015",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 9",
+        "type": "Bracelet",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔷",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-1996",
+    "customer": "Emily Johnson",
+    "phone": "+6667890123",
+    "quantity": 3,
+    "staff": "Staff Name 5",
+    "shipping": "Amazon Delivery",
+    "date": "2025/02/10",
+    "price": "$300,000,000",
+    "status": "Shipped",
+    "products": [
+      {
+        "id": "#20241001-2016",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 10",
+        "type": "Ring",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔸",
+        "goldType": "22K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      },
+      {
+        "id": "#20241001-2017",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 11",
+        "type": "Necklace",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔸",
+        "goldType": "22K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      },
+      {
+        "id": "#20241001-2018",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 12",
+        "type": "Earrings",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔸",
+        "goldType": "22K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-1997",
+    "customer": "William Brown",
+    "phone": "+7778901234",
+    "quantity": 2,
+    "staff": "Staff Name 6",
+    "shipping": "FedEx",
+    "date": "2025/03/15",
+    "price": "$200,000,000",
+    "status": "Delivered",
+    "products": [
+      {
+        "id": "#20241001-2019",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 13",
+        "type": "Pendant",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔹",
+        "goldType": "24K",
+        "goldPrice": "100,000,000",
+        "ayawt": "150,000",
+        "latkha": "150,000",
+        "totalPrice": "80,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-1998",
+    "customer": "Olivia Davis",
+    "phone": "+8889012345",
+    "quantity": 1,
+    "staff": "Staff Name 7",
+    "shipping": "UPS",
+    "date": "2025/04/20",
+    "price": "$100,000,000",
+    "status": "Pending",
+    "products": [
+      {
+        "id": "#20241001-2020",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 14",
+        "type": "Bracelet",
+        "category": "Gold Only",
+        "gems": "🔺",
+        "goldType": "18K",
+        "goldPrice": "50,000,000",
+        "ayawt": "100,000",
+        "latkha": "100,000",
+        "totalPrice": "40,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-1999",
+    "customer": "Benjamin Lee",
+    "phone": "+9990123456",
+    "quantity": 4,
+    "staff": "Staff Name 8",
+    "shipping": "DHL",
+    "date": "2025/05/05",
+    "price": "$400,000,000",
+    "status": "Shipped",
+    "products": [
+      {
+        "id": "#20241001-2021",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 15",
+        "type": "Ring",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔻",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      },
+      {
+        "id": "#20241001-2022",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 16",
+        "type": "Necklace",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔻",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      },
+      {
+        "id": "#20241001-2023",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 17",
+        "type": "Earrings",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔻",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      },
+      {
+        "id": "#20241001-2024",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 18",
+        "type": "Pendant",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔻",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-2000",
+    "customer": "Alexander Martin",
+    "phone": "+1011123456",
+    "quantity": 3,
+    "staff": "Staff Name 9",
+    "shipping": "Amazon Delivery",
+    "date": "2025/06/10",
+    "price": "$300,000,000",
+    "status": "Delivered",
+    "products": [
+      {
+        "id": "#20241001-2025",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 19",
+        "type": "Ring",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔼",
+        "goldType": "22K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      },
+      {
+        "id": "#20241001-2026",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 20",
+        "type": "Necklace",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔼",
+        "goldType": "22K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      },
+      {
+        "id": "#20241001-2027",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 21",
+        "type": "Earrings",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔼",
+        "goldType": "22K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-2001",
+    "customer": "Sophia Taylor",
+    "phone": "+1112131415",
+    "quantity": 2,
+    "staff": "Staff Name 10",
+    "shipping": "FedEx",
+    "date": "2025/07/15",
+    "price": "$200,000,000",
+    "status": "Pending",
+    "products": [
+      {
+        "id": "#20241001-2028",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 22",
+        "type": "Pendant",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔽",
+        "goldType": "24K",
+        "goldPrice": "100,000,000",
+        "ayawt": "150,000",
+        "latkha": "150,000",
+        "totalPrice": "80,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-2002",
+    "customer": "Mia White",
+    "phone": "+1213141516",
+    "quantity": 1,
+    "staff": "Staff Name 11",
+    "shipping": "UPS",
+    "date": "2025/08/20",
+    "price": "$100,000,000",
+    "status": "Shipped",
+    "products": [
+      {
+        "id": "#20241001-2029",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 23",
+        "type": "Bracelet",
+        "category": "Gold Only",
+        "gems": "🔾",
+        "goldType": "18K",
+        "goldPrice": "50,000,000",
+        "ayawt": "100,000",
+        "latkha": "100,000",
+        "totalPrice": "40,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-2003",
+    "customer": "Isabella Hall",
+    "phone": "+1314151617",
+    "quantity": 4,
+    "staff": "Staff Name 12",
+    "shipping": "DHL",
+    "date": "2025/09/05",
+    "price": "$400,000,000",
+    "status": "Delivered",
+    "products": [
+      {
+        "id": "#20241001-2030",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 24",
+        "type": "Ring",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔿",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      },
+      {
+        "id": "#20241001-2031",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 25",
+        "type": "Necklace",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔿",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      },
+      {
+        "id": "#20241001-2032",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 26",
+        "type": "Earrings",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔿",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      },
+      {
+        "id": "#20241001-2033",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 27",
+        "type": "Pendant",
+        "category": "Gem + Gold",
+        "gems": "💎 + 🔿",
+        "goldType": "24K",
+        "goldPrice": "200,000,000",
+        "ayawt": "250,000",
+        "latkha": "250,000",
+        "totalPrice": "160,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-2004",
+    "customer": "Charlotte Lewis",
+    "phone": "+1415161718",
+    "quantity": 3,
+    "staff": "Staff Name 13",
+    "shipping": "Amazon Delivery",
+    "date": "2025/10/10",
+    "price": "$300,000,000",
+    "status": "Pending",
+    "products": [
+      {
+        "id": "#20241001-2034",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 28",
+        "type": "Ring",
+        "category": "Gem + Gold",
+        "gems": "💎 + ✨",
+        "goldType": "22K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      },
+      {
+        "id": "#20241001-2035",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 29",
+        "type": "Necklace",
+        "category": "Gem + Gold",
+        "gems": "💎 + ✨",
+        "goldType": "22K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      },
+      {
+        "id": "#20241001-2036",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 30",
+        "type": "Earrings",
+        "category": "Gem + Gold",
+        "gems": "💎 + ✨",
+        "goldType": "22K",
+        "goldPrice": "150,000,000",
+        "ayawt": "200,000",
+        "latkha": "200,000",
+        "totalPrice": "120,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-2005",
+    "customer": "Abigail Walker",
+    "phone": "+1516171819",
+    "quantity": 2,
+    "staff": "Staff Name 14",
+    "shipping": "FedEx",
+    "date": "2025/11/15",
+    "price": "$200,000,000",
+    "status": "Shipped",
+    "products": [
+      {
+        "id": "#20241001-2037",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 31",
+        "type": "Pendant",
+        "category": "Gem + Gold",
+        "gems": "💎 + ✦",
+        "goldType": "24K",
+        "goldPrice": "100,000,000",
+        "ayawt": "150,000",
+        "latkha": "150,000",
+        "totalPrice": "80,000,000"
+      }
+    ]
+  },
+  {
+    "id": "#20241001-2006",
+    "customer": "Hannah Taylor",
+    "phone": "+1617181920",
+    "quantity": 1,
+    "staff": "Staff Name 15",
+    "shipping": "UPS",
+    "date": "2025/12/20",
+    "price": "$100,000,000",
+    "status": "Delivered",
+    "products": [
+      {
+        "id": "#20241001-2038",
+        "image": "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+        "name": "Product Name 32",
+        "type": "Bracelet",
+        "category": "Gold Only",
+        "gems": "✧",
+        "goldType": "18K",
+        "goldPrice": "50,000,000",
+        "ayawt": "100,000",
+        "latkha": "100,000",
+        "totalPrice": "40,000,000"
+      }
+    ]
+  }
+]
