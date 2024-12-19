@@ -24,10 +24,8 @@ const handleFileChange = (event: Event) => {
 // Handle drag over event
 const handleDragOver = (event: DragEvent) => {
   event.preventDefault(); // Prevent default behavior
-  console.log("Drag over detected");
   isDragging.value = true;
-  console.log("isDragging", isDragging.value);
-};                                  
+};
 
 // Handle drag leave event
 const handleDragLeave = () => {
@@ -38,20 +36,13 @@ const handleDragLeave = () => {
 
 // Handle file drop
 const handleDrop = (event: DragEvent) => {
-  event.preventDefault();
-  console.log("Drop detected:", event.dataTransfer?.files);
-  isDragging.value = true;
-  console.log("isDragging", isDragging.value);
+  event.preventDefault(); // Prevent default behavior
+  isDragging.value = false; // Reset dragging state
   const files = event.dataTransfer?.files;
   if (files && files.length > 0) {
     const file = files[0];
-    if (file.type.startsWith("image/")) {
-      previewImage(file);
-    } else {
-      console.error("Invalid file type or no file dropped");
-    }
-  } else {
-    console.error("No files dropped");
+    console.log("File dropped:", file);
+    previewImage(file);
   }
 };
 

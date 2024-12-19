@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { Button, Card, InputText, FloatLabel, Textarea } from "primevue";
 import type { InvoiceSetting } from "@/types/invoice";
-import Fileupload from "@/components/uploadfile/Fileupload.vue";
+import Fileupload from "@/components/invoice/Fileupload.vue";
 import themeImage1 from "~/assets/inv_theme/inv_theme1.png";
 import themeImage2 from "~/assets/inv_theme/inv_theme2.png";
 import themeImage3 from "~/assets/inv_theme/inv_theme3.png";
@@ -35,6 +35,7 @@ type ImagePreview = {
 const imagePreview = ref<ImagePreview[]>([]);
 const handleBackgroundImage = (file: File) => {
     handleImagePreview(file);
+    invoiceSetting.value.background_image = file.name;
 };
 
 const handleImagePreview = (file: File) => {
@@ -51,17 +52,17 @@ const handleImagePreview = (file: File) => {
 
 
 const handleLogoImage = (file: File) => {
-    console.log(file);
+    handleImagePreview(file);
     invoiceSetting.value.logo_image = file.name;
 };
 
 const handleQRCode = (file: File) => {
-    console.log(file);
+    handleImagePreview(file);
     invoiceSetting.value.qr_code = file.name;
 };
 
 const handleSignature = (file: File) => {
-    console.log(file);
+    handleImagePreview(file);
     invoiceSetting.value.signature = file.name;
 };
 
@@ -256,8 +257,8 @@ const handleSignature = (file: File) => {
                     </div>
                     <div class="w-full flex justify-end relative bottom-10">
                         <div class="flex gap-5">
-                            <Button label="Preview" class="bg-primarydark dark:bg-secondarydark text-white w-32 h-10 " />
-                            <Button label="Save" class="bg-accent1 dark:bg-accent2 text-white w-32 h-10 " />
+                            <Button label="Preview" class="bg-primarydark dark:bg-secondarydark text-accentwhite w-32 h-10 " />
+                            <Button label="Save" class="bg-accent1 dark:bg-accent2 text-accentwhite w-32 h-10 " />
                         </div>
                     </div>
                 </div>
@@ -279,5 +280,9 @@ const handleSignature = (file: File) => {
 :deep(.p-component) {
   @apply text-accentblack;
   @apply dark:text-accentwhite;
+}
+
+:deep(.p-button) {
+  @apply text-accentwhite;
 }
 </style>

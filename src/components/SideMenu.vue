@@ -97,14 +97,7 @@ const items = ref([
   {
     label: "Tracking",
     icon: "pi pi-fw pi-compass",
-    shortcut: "pi pi-fw pi-chevron-down",
-    items: [
-      {
-        label: "Tracking List",
-        icon: "pi pi-fw pi-pencil",
-        src: "/tracking",
-      },
-    ],
+    src: "/tracking",
   },
   // {
   //   label: "Report(Pro)",
