@@ -19,7 +19,7 @@ import type { FetchError } from "ofetch";
 export const useLoginApi = async (payload: LoginPayload) => {
   const { data, error } = await useAsyncData(
     "login",
-    fetcher("/auth/login", { method: "POST", body: payload })
+    fetcher("auth/login", { method: "POST", body: payload })
   );
   console.log("error from auth api----", error.value);
   if (error.value) throw error.value;
@@ -38,7 +38,7 @@ export const useRegisterApi = async (payload: RegisterPayload) => {
   console.log("api register", payload);
   const { data, error } = await useAsyncData(
     "register",
-    fetcher("/auth/register", { method: "POST", body: payload })
+    fetcher("auth/register", { method: "POST", body: payload })
   );
   // console.log("data from auth api-----",error.response?._data)
   if (error.value) throw error.value;
@@ -57,7 +57,7 @@ export const useForgotApi = async (payload: ForgotPasswordPayload) => {
   console.log("api forgot password", payload);
   const { data, error } = await useAsyncData(
     "register",
-    fetcher("/auth/forgot-password", { method: "POST", body: payload })
+    fetcher("auth/forgot-password", { method: "POST", body: payload })
   );
   if (error.value) throw error.value;
   if (data.value) return data;
@@ -74,7 +74,7 @@ export const useForgotApi = async (payload: ForgotPasswordPayload) => {
 export const useOtpApi = async (payload: OtpPayload) => {
   const { data, error } = await useAsyncData(
     "register",
-    fetcher("/auth/verify-otp", { method: "POST", body: payload })
+    fetcher("auth/verify-otp", { method: "POST", body: payload })
   );
   if (error.value) throw error.value;
   if (data.value) return data;
@@ -91,7 +91,7 @@ export const useOtpApi = async (payload: OtpPayload) => {
 export const useResetApi = async (payload: ResetPasswordPayload,token:string) => {
   const { data, error } = await useAsyncData(
     "register",
-    fetcher("/auth/reset-password", { method: "POST", body: payload ,headers:{
+    fetcher("auth/reset-password", { method: "POST", body: payload ,headers:{
       "Authorization": token,
     }})
   );
