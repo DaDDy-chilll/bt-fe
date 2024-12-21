@@ -2,10 +2,10 @@
 import MasterNavBar from "@/components/settings/masterSettings/master-nav-bar.vue";
 import AddIcon from "@/assets/icons/add_icon.vue";
 // import todayGoldData from "./todayGold.json";
-// import goldTypes from "./goldTypes.json";
-// import goldUnits from "./goldUnits.json";
+import goldTypes from "./goldTypes.json";
+import goldUnits from "./goldUnits.json";
 import type { TodayGold } from "@/types/todayGold";
-// import type { GoldTypes } from "@/types/goldTypes";
+import type { GoldTypes } from "@/types/goldTypes";
 import type { GoldUnits } from "@/types/goldUnits";
 import { ref, onMounted } from "vue";
 import TodayGoldModal from "@/components/settings/masterSettings/todayGoldModal.vue";
@@ -18,7 +18,7 @@ import { useMasterSettingsStore } from "@/stores/masterSettings";
 
 //variables
 const op = ref<any>(null);
-const displayModal = ref(false);
+const displayModal = ref(false);   
 const modalType = ref("");
 const modalId = ref(0);
 const blockScreen = ref(false);
@@ -29,16 +29,27 @@ const masterSettingsStore = useMasterSettingsStore();
 //data variables
 const today_gold_data = ref([]); // already fetched data
 const today_gold_model = ref<TodayGold[]>([]); // to do   
+const gold_types_model = ref<GoldTypes[]>([]);
+const gold_units_model = ref<GoldUnits[]>([]);
 
 
 //fetching data
 const loadData = async () => {
   try {
     blockScreen.value = true;
+    //fetch today gold data
     const data = await masterSettingsStore.getTodayGoldPrice();
     today_gold_data.value = Array.isArray(data?.value?.data) ? data.value.data : [];
     today_gold_model.value = today_gold_data.value;
-    console.log(today_gold_model.value, "today_gold_model");
+
+    //fetch gold types data
+    const goldTypesData = await masterSettingsStore.getGoldTypes();
+    gold_types_model.value = Array.isArray(goldTypesData?.value?.data) ? goldTypesData.value.data : [];
+
+    //fetch gold units data
+    const goldUnitsData = await masterSettingsStore.getUnits();
+    gold_units_model.value = Array.isArray(goldUnitsData?.value?.data) ? goldUnitsData.value.data : [];
+    console.log(gold_units_model.value, "gold_units_model");
   } catch (error) {
     console.error("Error loading data:", error);
   } finally {

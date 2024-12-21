@@ -1,6 +1,6 @@
 export interface UnitType {
     id: number;
     name: string;
-    type_id: number;
+    type: number;
     symbol: string;
 }

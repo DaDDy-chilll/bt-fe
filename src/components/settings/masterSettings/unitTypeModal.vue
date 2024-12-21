@@ -10,10 +10,11 @@ const props = defineProps<{
   formData: UnitType;
 }>();
 
-const formData = ref<UnitType>({
+//initial form data
+const formData = ref<any>({
   id: 0,
   name: "",
-  type_id: 0,
+  type: 0,
   symbol: "",
 });
 
@@ -25,43 +26,25 @@ const unit_categories = ref([
 
 
 //watches
-//watch for displayModal changes
 watch(
-  () => props.displayModal,
-  (newVal) => {
-    if (newVal && props.modalType === 'edit') {
+  [() => props.displayModal, () => props.formData],
+  ([isDisplayed, newFormData]) => {
+    if (isDisplayed && props.modalType === 'edit') {
       formData.value = {
         name: props.formData.name,
-        type_id: props.formData.type_id,
+        type: props.formData.type,
         symbol: props.formData.symbol,
         id: props.modalId
       };
-      console.log(formData.value, "formData");
-    } else if (!newVal) {
+    } else if (!isDisplayed) {
       formData.value = {
         name: '',
-        type_id: 0,
-        symbol: '',
-        id: 0
-      };
-    }
-  }
-);
-
-//watch for formData changes
-watch(
-  () => props.formData,
-  (newVal) => {
-    if (props.modalType === 'edit') {
-      formData.value = {
-        name: newVal.name,
-        type_id: newVal.type_id,
-        symbol: newVal.symbol,
-        id: 1
+        type: 0,
+        symbol: ''
       };
     }
   },
-  { immediate: true }   
+  { immediate: true }
 );
 
 
@@ -112,7 +95,7 @@ const closeModal = () => {
       <div class="mt-4">
           <FloatLabel variant="on">
             <Select
-              v-model="formData.type_id"
+              v-model="formData.type"
               inputId="on_label"
               :options="unit_categories"
               optionLabel="name"

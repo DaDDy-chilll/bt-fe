@@ -15,16 +15,18 @@ const props = defineProps<{
   modalId: number;
 }>();
 
+console.log(props.gold_types_model);
+
 // Emits definition
 const emit = defineEmits(['update:displayModal', 'addTodayGold', 'update:modalType', 'updateTodayGold', 'update:formData']);
 
 // Remove the computed formData and use a local ref instead
 const localFormData = ref<TodayGold>({
   id: 0,
-  gold_type_id: 0,
+  gold_types_id: 0,
   gold_weight: '',
   ygea_price: 0,
-  pyin_pa_price: 0,
+  pyinpa_price: 0,
   other_price: 0,
   default: 0,
   unit_id: props.gold_units_model[0]?.id || 0,
@@ -34,10 +36,10 @@ const localFormData = ref<TodayGold>({
 const resetForm = () => {
   localFormData.value = {
     id: 0,
-    gold_type_id: 0,
+    gold_types_id: 0,
     gold_weight: '',
     ygea_price: 0,
-    pyin_pa_price: 0,
+    pyinpa_price: 0,
     other_price: 0,
     default: 0,
     unit_id: props.gold_units_model[0]?.id || 0,
@@ -113,7 +115,7 @@ const closeModal = () => {
         <div class="mt-4">
           <FloatLabel variant="on">
             <Select
-              v-model="localFormData.gold_type_id"
+              v-model="localFormData.gold_types_id"
               inputId="on_label"
               :options="gold_types_model"
               optionLabel="name"
@@ -138,7 +140,7 @@ const closeModal = () => {
               <Select
                 v-model="localFormData.unit_id"
                 inputId="unit_label"
-                :options="gold_units_model"
+                :options="(gold_units_model.filter((unit)=>unit.type===1)).map((unit)=>({id:unit.id,name:unit.symbol}))"
                 optionLabel="name"
                 optionValue="id"
                 class="bg-gray-300 text-accentwhite rounded-l-none rounded-r-md unit"
@@ -163,7 +165,7 @@ const closeModal = () => {
         <div class="mt-4">
           <FloatLabel variant="on">
             <InputNumber
-              v-model="localFormData.pyin_pa_price"
+              v-model="localFormData.pyinpa_price"
               class="w-full h-10 border border-accentblack rounded-lg px-2"
             />
             <label for="pyin_pa_price_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"

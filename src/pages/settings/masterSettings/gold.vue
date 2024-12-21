@@ -1,21 +1,53 @@
 <script setup lang="ts">
 import MasterNavBar from "@/components/settings/masterSettings/master-nav-bar.vue";
 import AddIcon from "~/assets/icons/add_icon.vue";
-import goldTypes from "./goldTypes.json";
-import { ref, watch } from "vue";
+//import goldTypes from "./goldTypes.json";
+import { ref, onMounted } from "vue";
 import GoldMasterModal from "@/components/settings/masterSettings/goldMasterModal.vue";
 import DataTable from "primevue/datatable";
 import Popover from "primevue/popover";
 import { reactive } from "vue";
+import { useMasterSettingsStore } from "@/stores/masterSettings";
+
+//store
+const masterSettingsStore = useMasterSettingsStore();
 
 //variables
+const gold_types = ref<any>([]);
 const displayModal = ref(false);
 const modalType = ref("");
 const modalId = ref(0);
+const blockScreen = ref(false);
+/**** Fetching */
+/**
+ * @description Load data
+ * @returns void
+ * @author Phway
+ * @created 2024-12-20
+ * @updated 2024-12-20
+ */
+const loadData = async () => {
+  try {
+    blockScreen.value = true;
+    const data = await masterSettingsStore.getGoldTypes();
+    gold_types.value = Array.isArray(data?.value?.data) ? data.value.data : [];
+   
+  } catch (error) {
+    console.error(error);
+  }
+  finally {
+    blockScreen.value = false;
+  }
+};
 
-//fetching data
-const gold_types = goldTypes;
-console.log(gold_types, "gold_types");
+onMounted(() => {
+  loadData();
+});
+//model variables
+const gold_types_model = ref(gold_types);
+
+/**** Fetching End *********/
+
 
 //form data for edit modal
 const formData = ref({
@@ -24,9 +56,6 @@ const formData = ref({
   unit_id: 0,
   });
 
-
-//model variables
-const gold_types_model = ref(gold_types);
 
 // Ref to hold multiple popovers dynamically
 const popovers = reactive<Record<number, any>>({});
@@ -248,6 +277,14 @@ const closePopover = (id: number) => {
       </div>
     </div>
   </div>
+  <BlockUI :blocked="blockScreen" fullScreen>
+    <div
+      class="fixed inset-0 flex justify-center items-center"
+      v-show="blockScreen"
+    >
+      <ProgressSpinner />
+    </div>
+  </BlockUI>
 </template>
 
 <style scoped>

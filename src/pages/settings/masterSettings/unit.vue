@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import MasterNavBar from "@/components/settings/masterSettings/master-nav-bar.vue";
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 //import units from './units.json';
-import type { UnitType } from '@/types/unitType';
+import type { UnitType } from "@/types/unitType";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Button from "primevue/button";
@@ -32,7 +32,7 @@ const unit_categories = ref([
 
 const unit_types = ref([]);
 
-//fetching data
+/**** Fetch Data Functions ******/
 /**
  * @description Load data
  * @returns void
@@ -44,9 +44,7 @@ const loadData = async () => {
   try {
     blockScreen.value = true;
     const data = await masterSettingsStore.getUnits();
-    unit_types.value = Array.isArray(data?.value?.data)
-      ? data.value.data
-      : [];
+    unit_types.value = Array.isArray(data?.value?.data) ? data.value.data : [];
   } catch (error) {
     console.error("Error loading data:", error);
   } finally {
@@ -59,51 +57,108 @@ onMounted(() => {
   loadData();
 });
 
-//model variables
+/**** Model Variables ******/
 const formData = ref<UnitType>({
   id: 0,
   name: "",
-  type_id: 0,
+  type: 0,
   symbol: "",
 });
 
-/*** functions ***/
+/*** CRUD Functions ***/
+/**
+ * Edit unit type
+ * @param id - The ID of the unit type to edit
+ * @author Phway
+ * @created 2024-12-21
+ * @updated 2024-12-21
+ */
 const editUnitType = (id: number) => {
-    modalType.value = 'edit';
-    modalId.value = id;
-    displayModal.value = true;
+  modalType.value = "edit";
+  modalId.value = id;
+  displayModal.value = true;
   //update formData
   formData.value = unit_types.value.find((unit) => unit.id === id) as UnitType;
 };
 
-const deleteUnitType = (id: number) => {
-  // Implement delete logic
+/**
+ * Delete unit type
+ * @param id - The ID of the unit type to delete
+ * @author Phway
+ * @created 2024-12-21
+ * @updated 2024-12-21
+ */
+const deleteUnitType = async (id: number) => {
+  // update unit_types IN backend
+  if (confirm("Are you sure you want to delete this unit type?")) {
+    try {
+      await masterSettingsStore.deleteUnit(id);
+    } catch (error) {
+      console.error("Error deleting unit type:", error);
+    }
+    unit_types.value = unit_types.value.filter((unit) => unit.id !== id);
+  }
   //update unit_types
-  unit_types.value = unit_types.value.filter((unit) => unit.id !== id);
   //remove popover
   delete popovers[id];
 };
 
-const addUnitType = (data: UnitType) => {
-  //Todo: Implement add logic
-  console.log(data, "data");
-  //update model data
+/**
+ * Add unit type
+ * @param data - The data of the unit type to add
+ * @author Phway
+ * @created 2024-12-21
+ * @updated 2024-12-21
+ */
+const addUnitType = async (data: UnitType) => {
+  //save unit type in backend
+  try {
+    await masterSettingsStore.saveUnit(data);
+  } catch (error) {
+    console.error("Error saving unit type:", error);
+  }
+  //update model data in frontend
   unit_types.value.push(data);
   //close modal
   displayModal.value = false;
 };
 
-const updateUnitType = (data: UnitType, id: number) => {
+/**
+ * Update unit type
+ * @param data - The data of the unit type to update
+ * @param id - The ID of the unit type to update
+ * @author Phway
+ * @created 2024-12-21
+ * @updated 2024-12-21
+ */
+ const updateUnitType = async (data: UnitType, id: number) => {
   modalType.value = "edit";
   modalId.value = id;
-  displayModal.value = false;
 
-  // Update the unit_types using .value since it's now a ref
-  unit_types.value = unit_types.value.map((unit) =>
-    unit.id === id ? data : unit
-  );
-  console.log(unit_types.value, "unit_types");
+  try {
+    // Attempt to update the unit
+    await masterSettingsStore.updateUnit({ id, ...data });
+
+    // Close modal and update the UI on success
+    displayModal.value = false;
+    unit_types.value = unit_types.value.map((unit) =>
+      unit.id === id ? { ...unit, ...data } : unit
+    );
+  } catch (error: any) {
+    // Extract meaningful error message
+    const errorMessage = error.message || "Failed to update unit.";
+
+    // Log the error for debugging
+    console.error("Error in updateUnitType:", error);
+
+    // Display the error to the user
+    alert(errorMessage);
+
+    // Keep the modal open for retry
+    displayModal.value = true;
+  }
 };
+
 
 /**
  * Toggle the popover
@@ -112,13 +167,12 @@ const updateUnitType = (data: UnitType, id: number) => {
  * @author Aye Nadi
  * @returns void
  */
- const toggle = (event: MouseEvent, id: number) => {
+const toggle = (event: MouseEvent, id: number) => {
   const popoverRef = popovers[id]; // Access the correct popover by ID
   if (popoverRef) {
     popoverRef.toggle(event);
   }
 };
-
 
 /**
  * Close the popover
@@ -132,28 +186,27 @@ const closePopover = (id: number) => {
     popoverRef.hide();
   }
 };
-
 </script>
 
 <template>
-    <div>
+  <div>
     <MasterNavBar />
     <div class="px-6 drop-shadow-md rounded-lg">
       <div class="flex md:justify-end items-center justify-start">
         <button
           @click="(modalType = 'add'), (displayModal = true)"
-      class="bg-primarylight dark:bg-accent2 text-white px-4 py-2 rounded-md mt-8 mb-8"
-    >
-      <span class="flex items-center gap-2">
-        <AddIcon />
-          Add
-        </span>
-      </button>
-    </div>
-    <!--table-->
-    <div class="w-full">
-      <div class="overflow-x-auto">
-        <DataTable
+          class="bg-primarylight dark:bg-accent2 text-white px-4 py-2 rounded-md mt-8 mb-8"
+        >
+          <span class="flex items-center gap-2">
+            <AddIcon />
+            Add
+          </span>
+        </button>
+      </div>
+      <!--table-->
+      <div class="w-full">
+        <div class="overflow-x-auto">
+          <DataTable
             :value="unit_types"
             stripedRows
             class="w-full text-sm"
@@ -169,25 +222,44 @@ const closePopover = (id: number) => {
             breakpoint="sm"
           >
             <!--No-->
-            <Column field="no" header="No" class="w-[15%] dark:bg-primarydark dark:text-accentwhite">
+            <Column
+              field="no"
+              header="No"
+              class="w-[15%] dark:bg-primarydark dark:text-accentwhite"
+            >
               <template #body="slotProps">
                 {{ slotProps.index + 1 }}
               </template>
             </Column>
             <!--Unit Name-->
-            <Column field="unit_type_id" header="Unit Name" class="w-[20%] dark:bg-primarydark dark:text-accentwhite">
+            <Column
+              field="unit_type_id"
+              header="Unit Name"
+              class="w-[20%] dark:bg-primarydark dark:text-accentwhite"
+            >
               <template #body="slotProps">
                 {{ slotProps.data.name }}
               </template>
             </Column>
-             <!--Unit Type-->
-             <Column field="unit_type_id" header="Unit Type" class="w-[20%] dark:bg-primarydark dark:text-accentwhite">
+            <!--Unit Type-->
+            <Column
+              field="unit_type_id"
+              header="Unit Type"
+              class="w-[20%] dark:bg-primarydark dark:text-accentwhite"
+            >
               <template #body="slotProps">
-                {{ unit_categories.find(cat => cat.id === slotProps.data.type)?.name }}
+                {{
+                  unit_categories.find((cat) => cat.id === slotProps.data.type)
+                    ?.name
+                }}
               </template>
             </Column>
             <!--Symbol-->
-            <Column field="symbol" header="Symbol" class="w-[20%] dark:bg-primarydark dark:text-accentwhite">
+            <Column
+              field="symbol"
+              header="Symbol"
+              class="w-[20%] dark:bg-primarydark dark:text-accentwhite"
+            >
               <template #body="slotProps">
                 {{ slotProps.data.symbol }}
               </template>
@@ -195,7 +267,7 @@ const closePopover = (id: number) => {
             <!--Action-->
             <Column
               field="action"
-              header="Action" 
+              header="Action"
               class="w-[10%] dark:bg-primarydark dark:text-accentwhite"
               alignFrozen="right"
               frozen
@@ -205,7 +277,6 @@ const closePopover = (id: number) => {
                   icon="pi pi-ellipsis-v"
                   class="text-primarylight dark:text-accent2"
                   @click="(e) => toggle(e, slotProps.data.id)"
-                 
                 />
                 <Popover
                   :key="slotProps.data.id"
@@ -220,7 +291,6 @@ const closePopover = (id: number) => {
                   class="bg-primarylight dark:bg-accent2 text-accentwhite sm:w-32"
                 >
                   <div class="flex flex-col gap-4 justify-start items-start">
-
                     <Button
                       label="Edit"
                       icon="pi pi-pencil"
@@ -241,18 +311,18 @@ const closePopover = (id: number) => {
               </template>
             </Column>
           </DataTable>
-      </div>
-      <UnitTypeModal
-        :displayModal="displayModal"
-        @update:displayModal="displayModal = $event"
-        :unit_types="unit_types"
-        @addUnitType="addUnitType"
-        :modalType="modalType"
-        :modalId="modalId"
-        @update:modalType="modalType = $event"
-        @updateUnitType="updateUnitType"
-        :formData="formData"
-      />
+        </div>
+        <UnitTypeModal
+          :displayModal="displayModal"
+          @update:displayModal="displayModal = $event"
+          :unit_types="unit_types"
+          @addUnitType="addUnitType"
+          :modalType="modalType"
+          :modalId="modalId"
+          @update:modalType="modalType = $event"
+          @updateUnitType="updateUnitType"
+          :formData="formData"
+        />
       </div>
     </div>
   </div>
@@ -266,25 +336,23 @@ const closePopover = (id: number) => {
   </BlockUI>
 </template>
 
-
 <style scoped>
 :deep(.p-paginator) {
   @apply dark:bg-primarydark;
   @apply dark:text-accentwhite;
 }
 
- :deep(.p-paginator-rpp-dropdown) {
-    @apply dark:bg-transparent;
-    @apply dark:text-accentwhite;
-    @apply dark:border-1 dark:border-b-gray-400;
-  }
+:deep(.p-paginator-rpp-dropdown) {
+  @apply dark:bg-transparent;
+  @apply dark:text-accentwhite;
+  @apply dark:border-1 dark:border-b-gray-400;
+}
 
-  :deep(.p-select-label) {
-    @apply dark:text-accentwhite;
-  }
+:deep(.p-select-label) {
+  @apply dark:text-accentwhite;
+}
 
-  :deep(.p-datatable-empty-message) {
-    @apply dark:bg-transparent;
-  }
-
-  </style>
+:deep(.p-datatable-empty-message) {
+  @apply dark:bg-transparent;
+}
+</style>

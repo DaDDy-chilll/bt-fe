@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MasterNavBar from "@/components/settings/masterSettings/master-nav-bar.vue";
 import { ref } from "vue";
-import gemTypes from "./gemTypes.json";
+//import gemTypes from "./gemTypes.json";
 import type { GemType } from "@/types/gemType";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
@@ -10,35 +10,41 @@ import Popover from "primevue/popover";
 import AddIcon from "~/assets/icons/add_icon.vue";
 import GemTypeModal from "@/components/settings/masterSettings/gemTypeModal.vue";
 import { reactive } from "vue";
+import { useMasterSettingsStore } from "@/stores/masterSettings";
+
+//store
+const masterSettingsStore = useMasterSettingsStore();
+
 //state
+const gem_types = ref([]);
 const displayModal = ref(false);
 const modalType = ref("add");
 const modalId = ref(0);
+const blockScreen = ref(false);
+
 // Ref to hold multiple popovers dynamically
 const popovers = reactive<Record<number, any>>({});
 
-//fetching data
-const gem_types = ref(gemTypes);
+/***Fetching data start ***/
+const loadData = async () => {
+  try{
+    blockScreen.value = true;
+   const data = await masterSettingsStore.getGemTypes();
+   gem_types.value = Array.isArray(data.value.data) ? data.value.data : [];
+   console.log(gem_types.value, "gem_types");
+  }catch(error){
+    console.log(error);
+  }
+  finally{
+    blockScreen.value = false;
+  }
 
-//temp color data for testing
-const gem_colors = ref([
-  { label: "Red", value: 1 },
-  { label: "Blue", value: 2 },
-  { label: "Green", value: 3 },
-  { label: "Yellow", value: 4 },
-  { label: "Purple", value: 5 },
-  { label: "Orange", value: 6 },
-  { label: "Pink", value: 7 },
-  { label: "Brown", value: 8 },
-  { label: "Gray", value: 9 },
-]);
+};
 
-//temp icon data for testing
-const gem_icons = ref([
-  { label: "Diamond", icon: "/_nuxt/assets/images/Diamond.png" },
-  { label: "Jade", icon: "/_nuxt/assets/images/Jade.png" },
-  { label: "Crystal", icon: "/_nuxt/assets/images/Crystal.png" },
-]);
+onMounted(() => {
+  loadData();
+});
+/***Fetching data end ***/
 
 //model variables
 const formData = ref<GemType>({
@@ -54,7 +60,7 @@ const editGemType = (id: number) => {
   modalId.value = id;
   displayModal.value = true;
   // update formData
-  formData.value = gem_types.value.find((gem) => gem.id === id) as GemType;
+  formData.value = gem_types.value.find((gem:GemType) => gem.id === id);
 };
 
 const deleteGemType = (id: number) => {
@@ -160,18 +166,14 @@ const closePopover = (id: number) => {
             <!--Gem color-->
             <Column field="color_id" header="Gem Color" class="w-[20%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
-                {{
-                  gem_colors.find(
-                    (color) => color.value === slotProps.data.color_id
-                  )?.label
-                }}
+                {{ slotProps.data.m_colors.name }}
               </template>
             </Column>
             <!--Icon-->
             <Column field="icon" header="Icon" class="w-[20%] dark:bg-primarydark dark:text-accentwhite">
               <template #body="slotProps">
                 <img
-                  :src="slotProps.data.icon"
+                  :src="slotProps.data.m_gem_icons.icon_path"
                   alt="icon"
                   class="w-4 h-4 object-contain"
                 />
@@ -239,6 +241,14 @@ const closePopover = (id: number) => {
       </div>
     </div>
   </div>
+  <BlockUI :blocked="blockScreen" fullScreen>
+    <div
+      class="fixed inset-0 flex justify-center items-center"
+      v-show="blockScreen"
+    >
+      <ProgressSpinner />
+    </div>
+  </BlockUI>
 </template>
 
 <style scoped>

@@ -1,7 +1,15 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, onBeforeMount } from "vue";
 import type { GemType } from "../../../types/gemType";
-import gemTypes from "../../../pages/settings/masterSettings/gemTypes.json";
+//import gemTypes from "../../../pages/settings/masterSettings/gemTypes.json";
+import { useMasterSettingsStore } from "@/stores/masterSettings";
+
+//store
+const masterSettingsStore = useMasterSettingsStore();
+
+//state
+const gem_colors = ref([]);
+//const gem_icons = ref([]);
 
 //variables
 const previewImage = ref("");
@@ -14,74 +22,92 @@ const props = defineProps<{
   formData: GemType;
 }>();
 
-const formData = ref<GemType>({
+//initializing formData
+const formData = ref<{
+  id: number;
+  name: string;
+  color_id: number;
+  icon_id: number;
+  icon_path: string;
+}>({
   id: 0,
   name: "",
   color_id: 0,
-  icon: "",
+  icon_id: 0,
+  icon_path: "",
 });
 
-//temp color data for testing
-const gem_colors = ref([
-  { label: "Red", value: 1 },
-  { label: "Blue", value: 2 },
-  { label: "Green", value: 3 },
-  { label: "Yellow", value: 4 },
-  { label: "Purple", value: 5 },
-  { label: "Orange", value: 6 },
-  { label: "Pink", value: 7 },
-  { label: "Brown", value: 8 },
-  { label: "Gray", value: 9 },
+/***Fetching data start ***/
+const loadData = async () => {
+  try {
+    const data = await masterSettingsStore.getGemColors();
+    gem_colors.value = Array.isArray(data.value.data) ? data.value.data : [];
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// const loadIcons = async () => {
+//   try {
+//     const data = await masterSettingsStore.getGemIcons();
+//     gem_icons.value = Array.isArray(data.value.data) ? data.value.data : [];
+//     console.log(gem_icons.value, "gem_icons");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+//temp icon data for testing // to confirm with backend
+const gem_icons = ref([
+  { id: 1, icon_path: "/_nuxt/assets/images/Diamond.png" },
+  { id: 2, icon_path: "/_nuxt/assets/images/Jade.png" },
+  { id: 3, icon_path: "/_nuxt/assets/images/Crystal.png" },
+  { id: 4, icon_path: "/_nuxt/assets/images/Sapphire.png" },
 ]);
 
-//temp icon data for testing
-const gem_icons = ref([
-  { label: "Diamond", icon: "/_nuxt/assets/images/Diamond.png" },
-  { label: "Jade", icon: "/_nuxt/assets/images/Jade.png" },
-  { label: "Crystal", icon: "/_nuxt/assets/images/Crystal.png" },
-  { label: "Sapphire", icon: "/_nuxt/assets/images/Sapphire.png" },
-]);
+onBeforeMount(() => {
+  loadData();
+  //loadIcons();
+});
+/***Fetching data end ***/
 
 //watches
 //watch for displayModal changes
 watch(
   () => props.displayModal,
   (newVal) => {
-    if (newVal && props.modalType === 'edit') {
+    console.log(newVal, "newVal");
+    if (newVal && props.modalType === "edit") {
       console.log(props.formData);
       formData.value = {
         name: props.formData.name,
         color_id: props.formData.color_id,
-        icon: props.formData.icon,
-        id: props.modalId
+        icon_id: props.formData.icon_id,    
+        icon_path: gem_icons.value.find((icon) => icon.id === props.formData.icon_id)?.icon_path || '',
+        id: props.modalId,
       };
     } else if (!newVal) {
       formData.value = {
-        name: '',
+        name: "",
         color_id: 0,
-        icon: '',
-        id: 0
+        icon_id: 0,
+        icon_path: "",
+        id: 0,
       };
     }
   }
 );
 
-//watch for formData changes
+//watch for icon_id changes
 watch(
-  () => props.formData,
+  () => formData.value.icon_id,
   (newVal) => {
-    if (props.modalType === 'edit') {
-      console.log(newVal, "newVal");
-      formData.value = {
-        name: newVal.name,
-        color_id: newVal.color_id,
-        icon: newVal.icon,
-        id: 1
-      };
+    if (newVal === 0) {
+      formData.value.icon_path = 'upload';
+    } else {
+      formData.value.icon_path = gem_icons.value.find((icon) => icon.id === newVal)?.icon_path || '';
     }
-    console.log(formData.value, "formData");
-  },
-  { immediate: true }   
+  }
 );
 
 //emits
@@ -95,8 +121,8 @@ const emit = defineEmits([
 const addGemType = () => {
   //TODO: save icon to server (try catch)
   //if icon is upload, save the preview image to the icon field
-  if (previewImage.value && formData.value.icon === 'upload') {
-    formData.value.icon = previewImage.value;
+  if (previewImage.value && formData.value.icon_id === 0) {
+    formData.value.icon_path = previewImage.value;
   }
   emit("addGemType", formData.value);
   closeModal();
@@ -105,8 +131,8 @@ const addGemType = () => {
 const updateGemType = () => {
   //TODO: save icon to server ( try catch)
   //if icon is upload, save the preview image to the icon field
-  if (previewImage.value && formData.value.icon === 'upload') {
-    formData.value.icon = previewImage.value;
+  if (previewImage.value && formData.value.icon_id === 0) {
+    formData.value.icon_path = previewImage.value;
   }
   emit("updateGemType", formData.value, props.modalId);
   closeModal();
@@ -118,7 +144,7 @@ const closeModal = () => {
 
 /**
  * Handle image upload
- * @param event 
+ * @param event
  * @author Aye Nadi
  * @returns void
  */
@@ -127,10 +153,9 @@ const handleImageUpload = (event: Event) => {
   if (input.files && input.files[0]) {
     const file = input.files[0];
     previewImage.value = URL.createObjectURL(file);
-    formData.value.icon = 'upload';
+    formData.value.icon_path = previewImage.value;
   }
 };
-
 </script>
 
 <template>
@@ -146,71 +171,106 @@ const handleImageUpload = (event: Event) => {
       <div class="mt-4 border border-accentblack rounded-md text-sm">
         <FloatLabel variant="on">
           <div class="flex items-center w-auto h-10 rounded-md">
-            <InputText
-              v-model="formData.name"
-              type="text"
-              class="w-full p-2"
-            />
-            <label for="on_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Gem Name</label>
+            <InputText v-model="formData.name" type="text" class="w-full p-2" />
+            <label
+              for="on_label"
+              class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
+              >Gem Name</label
+            >
           </div>
         </FloatLabel>
       </div>
       <!--Gem Color-->
       <div class="mt-4">
-          <FloatLabel variant="on">
-            <Select
-              v-model="formData.color_id"
-              inputId="on_label"
-              :options="gem_colors"
-              optionLabel="label"
-              optionValue="value"
-              class="w-full border border-accentblack h-10 dropdown-svg-white"
-            >       
-            </Select>
-            <label for="on_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Gem Color</label>
-          </FloatLabel>
+        <FloatLabel variant="on">
+          <Select
+            v-model="formData.color_id"
+            inputId="on_label"
+            :options="gem_colors.map((color:any) => ({ label: color.name, value: color.id }))"
+            optionLabel="label"
+            optionValue="value"
+            class="w-full border border-accentblack h-10 dropdown-svg-white"
+          >
+          </Select>
+          <label
+            for="on_label"
+            class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
+            >Gem Color</label
+          >
+        </FloatLabel>
       </div>
       <!--Gem Icon-->
       <div class="mt-4">
         <FloatLabel variant="on">
-            <Select
-              v-model="formData.icon"
-              inputId="on_label"
-              :options="[{ label: 'Upload New Icon', icon: 'upload' }, ...gem_icons]"
-              optionLabel="label"
-              optionValue="icon"
-              class="w-full border border-accentblack h-10 dropdown-svg-white"
-            >
-              <template #option="slotProps">
-                <div class="flex items-center gap-2">
-                  <img :src="slotProps.option.icon" :alt="slotProps.option.label" class="w-4 h-4 object-contain" />
-                  <span>{{ slotProps.option.label }}</span>
-                </div>
-              </template>
-              <template #value="slotProps">
-                <div class="flex items-center gap-2">
-                    <img v-if="slotProps.value && slotProps.value !== 'upload'" :src="slotProps.value" alt="Selected icon" class="w-4 h-4 object-contain" />
-                    <span v-if="slotProps.value === 'upload'">Upload New Icon</span>
-                    <span v-else>{{ gem_icons.find(icon => icon.icon === slotProps.value)?.label }}</span>
-                  </div>
-              </template>
-            </Select>
-            <label for="on_label" class="text-sm text-label dark:text-accentwhite dark:bg-primarydark">Gem Icon</label>
+          <Select
+            v-model="formData.icon_id"
+            inputId="on_label"
+            :options="[
+              { id: 0, label: 'Upload New Icon' },
+              ...gem_icons.map(icon => ({ 
+                id: icon.id, 
+                label: `Icon ${icon.id}`,
+                icon_path: icon.icon_path 
+              }))
+            ]"
+            optionLabel="label"
+            optionValue="id"
+            class="w-full border border-accentblack h-10 dropdown-svg-white"
+          >
+            <template #option="slotProps">
+              <div class="flex items-center gap-2">
+                <img
+                  v-if="slotProps.option.icon_path"
+                  :src="slotProps.option.icon_path"
+                  :alt="`Icon ${slotProps.option.id}`"
+                  class="w-4 h-4 object-contain"
+                />
+                <span v-if="slotProps.option.label === 'Upload New Icon'">New Icon</span>
+              </div>
+            </template>
+            <template #value="slotProps">
+              <div class="flex items-center gap-2">
+                <img
+                  v-if="formData.icon_path && formData.icon_path !== 'upload'"
+                  :src="formData.icon_path"
+                  alt="Selected icon"
+                  class="w-4 h-4 object-contain"
+                />
+                <!-- <span v-if="formData.icon_id === 0">New Icon</span>
+                <span v-else>Icon {{ formData.icon_id }}</span> -->
+              </div>
+            </template>
+          </Select>
+          <label
+            for="on_label"
+            class="text-sm text-label dark:text-accentwhite dark:bg-primarydark"
+            >Gem Icon</label
+          >
         </FloatLabel>
         <!--Upload Icon Area-->
-        <div v-if="formData.icon === 'upload'" class="mt-4 flex flex-col items-center">
+        <div
+          v-if="formData.icon_path === 'upload'"
+          class="mt-4 flex flex-col items-center"
+        >
           <p class="text-sm text-label">Upload Icon</p>
-          <div class="relative w-1/2 h-32 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-primarylight dark:hover:border-accent2">
-            <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*" @change="handleImageUpload" />
+          <div
+            class="relative w-1/2 h-32 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-primarylight dark:hover:border-accent2"
+          >
+            <input
+              type="file"
+              class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              accept="image/*"
+              @change="handleImageUpload"
+            />
             <div class="flex flex-col items-center gap-2">
               <template v-if="!previewImage">
                 <i class="pi pi-upload text-2xl text-gray-400"></i>
                 <span class="text-sm text-gray-500">Click to upload icon</span>
               </template>
               <template v-else>
-                <img 
-                  :src="previewImage" 
-                  alt="Preview" 
+                <img
+                  :src="previewImage"
+                  alt="Preview"
                   class="w-16 h-16 object-contain"
                 />
                 <span class="text-sm text-gray-500">Click to change icon</span>
@@ -253,7 +313,6 @@ const handleImageUpload = (event: Event) => {
 :deep(.p-select-label) {
   @apply dark:text-accentwhite;
   @apply dark:bg-primarydark;
-
 }
 
 :deep(.p-inputnumber) {
